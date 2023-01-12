@@ -3,6 +3,7 @@ package frc.robot;
 import frc.robot.consoles.Logger;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.auto.*;
+import frc.robot.commands.swervedrive.*;
 
 public class BotCommands {
 
@@ -14,6 +15,10 @@ public class BotCommands {
     public static AutoCommand2 autoCommand2;
     public static AutoCommand3 autoCommand3;
     public static DefaultAutoCommand defaultAutoCommand;
+
+    // SwerveDriver
+    public static SwerveDrive swerveDrive;
+    public static ToggleDriverOrientation toggleDriverOrientation;
 
     // Initialize all robot commands
     public static void initializeCommands() {
@@ -28,6 +33,10 @@ public class BotCommands {
         autoCommand2 = new AutoCommand2();
         autoCommand3 = new AutoCommand3();
         defaultAutoCommand = new DefaultAutoCommand();
+
+        // SwerveDriver
+        swerveDrive = new SwerveDrive(BotSubsystems.swerveDriver, BotControllers.xbox2); 
+        toggleDriverOrientation = new ToggleDriverOrientation(BotSubsystems.swerveDriver);
  
     }
 }

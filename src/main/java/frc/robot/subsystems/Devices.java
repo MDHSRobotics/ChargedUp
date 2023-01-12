@@ -20,27 +20,7 @@ public class Devices {
 
     //////////////////////
     // Device Instances //
-    //////////////////////
-
-    // Climb
-    public static CANSparkMax sparkMaxLeftClimber = new CANSparkMax(MotorIDConstants.motorIdLeftClimb, MotorType.kBrushless);  
-    public static CANSparkMax sparkMaxRightClimber = new CANSparkMax(MotorIDConstants.motorIdRightClimb, MotorType.kBrushless);
-
-    // Pickup
-    public static CANSparkMax sparkMaxPickup = new CANSparkMax(MotorIDConstants.motorIdPickup, MotorType.kBrushless);
-
-    // Pneumatics
-    public static Compressor pcmCompressor = new Compressor(0, PneumaticsModuleType.CTREPCM);
-    public static Solenoid pickupSolenoidOne = new Solenoid(PneumaticsModuleType.CTREPCM, 1);
-    public static Solenoid pickupSolenoidTwo = new Solenoid(PneumaticsModuleType.CTREPCM, 7);
-
-    // Conveyor
-    public static CANSparkMax sparkMaxConveyor = new CANSparkMax(MotorIDConstants.motorIdConveyor, MotorType.kBrushless);
-    public static SparkMaxLimitSwitch sparkMaxCownveyorLimitSwitch = sparkMaxConveyor.getReverseLimitSwitch(SparkMaxLimitSwitch.Type.kNormallyOpen);
-
-    // Shoot
-    public static CANSparkMax sparkMaxShooterTopWheel = new CANSparkMax(MotorIDConstants.motorIdTopShooter, MotorType.kBrushless);
-    public static CANSparkMax sparkMaxShooterBottomWheel = new CANSparkMax(MotorIDConstants.motorIdBottomShooter, MotorType.kBrushless);  
+    ////////////////////// 
 
     // SwerveDrive
     public static DevTalonFX talonFxSwerveDriveFL = new DevTalonFX("talonFxSwerveDriveWheelFrontLeft", MotorIDConstants.motorIdDriveFL);
@@ -56,8 +36,5 @@ public class Devices {
     public static CANCoder canCoderFR = new CANCoder(3);
     public static CANCoder canCoderRL = new CANCoder(4);
     public static CANCoder canCoderRR = new CANCoder(2);
-
-    // SparkMax Test
-    public static CANSparkMax sparkMaxTestMotor = new CANSparkMax(5, MotorType.kBrushless);
 
 } 
