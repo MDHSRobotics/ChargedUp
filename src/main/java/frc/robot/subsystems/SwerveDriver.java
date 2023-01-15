@@ -61,13 +61,35 @@ public class SwerveDriver extends SubsystemBase {
     // Switch between robot and field relative control
     public boolean fieldRelative = false;
 
-    private final SwerveDriveOdometry odometer = new SwerveDriveOdometry(SwerveConstants.kDriveKinematics, new Rotation2d(0), new SwerveModulePosition[0]);
+        SwerveModulePosition modulePositionFL;
+        SwerveModulePosition modulePositionFR;
+        SwerveModulePosition modulePositionRL;
+        SwerveModulePosition modulePositionRR;
 
+    private final SwerveDriveOdometry odometer;
+
+    SwerveModulePosition[] modulePositions = new SwerveModulePosition[4];
+
+    // Constructs new SwerveDriver
     public SwerveDriver() {
         frontLeft.resetEncoders();
         frontRight.resetEncoders();
         rearLeft.resetEncoders();
         rearRight.resetEncoders();
+
+        // Initialize swerve module positions with initial values
+        modulePositionFL =  new SwerveModulePosition(frontLeft.getDrivePositionMeters(), getWheelPosition(frontLeft));
+        modulePositionFR =  new SwerveModulePosition(frontRight.getDrivePositionMeters(), getWheelPosition(frontRight));
+        modulePositionRL =  new SwerveModulePosition(rearLeft.getDrivePositionMeters(), getWheelPosition(rearLeft));
+        modulePositionRR =  new SwerveModulePosition(rearRight.getDrivePositionMeters(), getWheelPosition(rearRight));
+
+        // Initialize swerve odometer with initial values
+        odometer = new SwerveDriveOdometry(SwerveConstants.kDriveKinematics, BotSensors.gyro.getRotation2d(), new SwerveModulePosition[] {
+            modulePositionFL,
+            modulePositionFR,
+            modulePositionRL,
+            modulePositionRR
+          });
 
         new Thread(() -> {
             try {
@@ -105,7 +127,6 @@ public class SwerveDriver extends SubsystemBase {
         return Rotation2d.fromDegrees(angleInDegrees);
     }
 
-
     public Pose2d getPose() {
         return odometer.getPoseMeters();
     }
@@ -117,12 +138,11 @@ public class SwerveDriver extends SubsystemBase {
     @Override
     public void periodic() {
 
-        SwerveModulePosition modulePositionFL =  new SwerveModulePosition(frontLeft.getDrivePositionMeters(), getWheelPosition(frontLeft));
-        SwerveModulePosition modulePositionFR =  new SwerveModulePosition(frontRight.getDrivePositionMeters(), getWheelPosition(frontRight));
-        SwerveModulePosition modulePositionRL =  new SwerveModulePosition(rearLeft.getDrivePositionMeters(), getWheelPosition(rearLeft));
-        SwerveModulePosition modulePositionRR =  new SwerveModulePosition(rearRight.getDrivePositionMeters(), getWheelPosition(rearRight));
-
-        SwerveModulePosition[] modulePositions = new SwerveModulePosition[4];
+        // Updates module positions
+        modulePositionFL = new SwerveModulePosition(frontLeft.getDrivePositionMeters(), getWheelPosition(frontLeft));
+        modulePositionFR = new SwerveModulePosition(frontRight.getDrivePositionMeters(), getWheelPosition(frontRight));
+        modulePositionRL = new SwerveModulePosition(rearLeft.getDrivePositionMeters(), getWheelPosition(rearLeft));
+        modulePositionRR = new SwerveModulePosition(rearRight.getDrivePositionMeters(), getWheelPosition(rearRight));
 
         modulePositions[0] = modulePositionFL;
         modulePositions[1] = modulePositionFR;
