@@ -24,42 +24,42 @@ public class Logger {
 
     // Grey text for constructor logging, etc.
     public static void setup(Object message) {
-        System.out.println("setup --> " + LocalTime.now() + " :: " + message);
+        System.out.println("\u001b[38;5;249m" + "setup --> " + LocalTime.now() + " :: " + message);
     }
 
     // Pink text for waiting
     public static void waiting(Object message) {
-        System.out.println("waiting --> " + LocalTime.now() + " :: " + message);
+        System.out.println("\u001b[38;5;201m" + "waiting --> " + LocalTime.now() + " :: " + message);
     }
 
     // Green text for taking an action, like starting a command
     public static void action(Object message) {
-        System.out.println("ACTION --> " + LocalTime.now() + " :: " + message);
+        System.out.println("\u001B[32m" + "ACTION --> " + LocalTime.now() + " :: " + message);
     }
 
     // Orange text for info, values, etc.
     public static void info(Object message) {
-        System.out.println("INFO --> " + LocalTime.now() + " :: " + message);
+        System.out.println("\u001B[0m" + "INFO --> " + LocalTime.now() + " :: " + message);
     }
 
     // Blue text for ending or interrupting, etc.
     public static void ending(Object message) {
-        System.out.println("ending --> " + LocalTime.now() + " :: " + message);
+        System.out.println("\u001B[34m" + "ending --> " + LocalTime.now() + " :: " + message);
     }
 
     // Yellow text for warnings
     public static void warning(Object message) {
-        System.out.println("WARNING --> " + LocalTime.now() + " :: " + message);
+        System.out.println("\u001B[33m"	+ "WARNING --> " + LocalTime.now() + " :: " + message);
     }
 
     // Red text for problems
     public static void problem(Object message) {
-        System.out.println("PROBLEM --> " + LocalTime.now() + " :: " + message);
+        System.out.println("\u001B[31m" + "PROBLEM --> " + LocalTime.now() + " :: " + message);
     }
 
     // White text for debugging
     public static void debug(Object message) {
-        System.out.println("DEBUG --> " + LocalTime.now() + " :: " + message);
+        System.out.println("\u001B[0m" + "DEBUG --> " + LocalTime.now() + " :: " + message);
     }
 
 }
