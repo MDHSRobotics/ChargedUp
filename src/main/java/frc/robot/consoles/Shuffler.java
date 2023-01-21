@@ -14,11 +14,13 @@ public class Shuffler {
     private MainTab m_mainTab;
     private DriveTab m_driveTab;
     private JoystickTab m_jstickTab;
+    private InputsTab m_inputsTab;
 
     public Shuffler() {
         ShuffleLogger.logTrivial("Constructing Shuffler...");
         m_mainTab = new MainTab();
         m_driveTab = new DriveTab();
+        m_inputsTab = new InputsTab();
         m_jstickTab = new JoystickTab();
     }
 
@@ -26,6 +28,7 @@ public class Shuffler {
         ShuffleLogger.logTrivial("Pre-Initializing Shuffler...");
         m_mainTab.preInitialize();
         m_driveTab.preInitialize();
+        m_inputsTab.preInitialize();
         m_jstickTab.preInitialize();
     }
 
@@ -33,6 +36,7 @@ public class Shuffler {
         ShuffleLogger.logTrivial("Initializing Shuffler...");
         m_mainTab.initialize();
         m_driveTab.initialize();
+        m_inputsTab.initialize();
         m_jstickTab.initialize();
     }
 
@@ -40,6 +44,7 @@ public class Shuffler {
         ShuffleLogger.logTrivial("Configuring Shuffler...");
         m_mainTab.configure();
         m_driveTab.configure();
+        m_inputsTab.configure();
         m_jstickTab.configure();
 
         setupSmartdashboard();
@@ -47,6 +52,8 @@ public class Shuffler {
 
     public void update() {
         m_mainTab.update();
+        m_inputsTab.update();
+        m_jstickTab.update();
         m_driveTab.update();
     }
 

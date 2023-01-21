@@ -28,5 +28,4 @@ public class Gyro {
         Logger.info("Gyro -> Target Angle: " + targetAngle + "; Gyro Yaw: " + angle + "; Difference: " + difference);
         return aligned;
     }
-
 }
