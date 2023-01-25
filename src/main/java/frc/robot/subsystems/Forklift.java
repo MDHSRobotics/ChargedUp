@@ -6,6 +6,8 @@ import frc.robot.consoles.Logger;
 import static frc.robot.subsystems.Devices.*;
 
 public class Forklift extends SubsystemBase {
+    
+    private static boolean m_isPistonToggled = false;
 
     public Forklift() {
         Logger.setup("Constructing Subsystem: Forklift...");
@@ -29,9 +31,18 @@ public class Forklift extends SubsystemBase {
         sparkMaxForkliftVertical.set(power);
     }
 
-    // move claw
-    public void moveClamp(double power) {
+    public void stopForklift() {
+        sparkMaxForkliftClamp.stopMotor();
+    }
+
+    // move claw using motor
+    public void moveClampMotor(double power) {
         sparkMaxForkliftClamp.set(power);
     }
 
+    // move claw using pneumatic pistons
+    public void moveClampPneumatic() {
+        m_isPistonToggled = !m_isPistonToggled;
+        clawSolenoid.set(m_isPistonToggled);
+    }
 }

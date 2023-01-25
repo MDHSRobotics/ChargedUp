@@ -5,14 +5,13 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 import frc.robot.consoles.Logger;
 import frc.robot.subsystems.Forklift;
-import frc.robot.brains.*;
 
-public class CloseClampForklift extends CommandBase {
+public class ToggleClamp extends CommandBase {
 
     private Forklift m_forklift;
 
-    public CloseClampForklift(Forklift forklift) {
-        Logger.setup("Constructing Command: CloseClamp...");
+    public ToggleClamp(Forklift forklift) {
+        Logger.setup("Constructing Command: ToggleClamp...");
 
         // Add given subsystem requirements
         m_forklift = forklift;
@@ -21,12 +20,12 @@ public class CloseClampForklift extends CommandBase {
 
     @Override
     public void initialize() {
-        Logger.action("Initializing Command: CloseClamp...");
+        Logger.action("Initializing Command: ToggleClamp...");
+        m_forklift.moveClampPneumatic();
     }
 
     @Override
     public void execute() {
-        m_forklift.moveClamp(-ForkliftBrain.getClawPower());
     }
 
     // This command continues until interrupted
@@ -38,11 +37,11 @@ public class CloseClampForklift extends CommandBase {
     @Override
     public void end(boolean interrupted) {
         if (interrupted) {
-            Logger.ending("Interrupting Command: CloseClamp...");
+            Logger.ending("Interrupting Command: ToggleClamp...");
         } else {
-            Logger.ending("Ending Command: CloseClamp...");
+            Logger.ending("Ending Command: ToggleClamp...");
         }
-
+        m_forklift.stopForklift();
     }
 
 }
