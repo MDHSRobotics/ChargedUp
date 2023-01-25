@@ -72,13 +72,13 @@ public final class SwerveConstants {
     public static final double kRearRightDriveAbsoluteEncoderOffsetRad = Units.degreesToRadians(-67.412);
 
     public static final double kTeleDriveMaxSpeedMetersPerSecond = kPhysicalMaxSpeedMetersPerSecond / 4;
-    public static final double kTeleDriveMaxAngularSpeedRadiansPerSecond = 3;//kPhysicalMaxAngularSpeedRadiansPerSecond / 9;
+    public static final double kTeleDriveMaxAngularSpeedRadiansPerSecond = 3;
     public static final double kTeleDriveMaxAccelerationUnitsPerSecond = 1;
     public static final double kTeleDriveMaxAngularAccelerationUnitsPerSecond = 1.5;
 
-    public static final double kDriveRampTime = 1.0; // units are seconds
+    public static final double kDriveRampTime = 2.0; // units are seconds
 
     public static final class OIConstants {
-        public static final double kDeadband = 0.05;
+        public static final double kDeadband = 0.1;
     }
 }

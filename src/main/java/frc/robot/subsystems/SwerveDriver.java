@@ -16,6 +16,7 @@ import frc.robot.BotSensors;
 import frc.robot.consoles.Logger;
 import frc.robot.devices.DevSwerveModule;
 import frc.robot.subsystems.constants.SwerveConstants;
+import static frc.robot.subsystems.Devices.*;
 
 public class SwerveDriver extends SubsystemBase {
     private final DevSwerveModule frontLeft = new DevSwerveModule(
@@ -72,6 +73,15 @@ public class SwerveDriver extends SubsystemBase {
 
     // Constructs new SwerveDriver
     public SwerveDriver() {
+        talonFxSwerveDriveFL.configOpenloopRamp(SwerveConstants.kDriveRampTime);
+        talonFxSwerveDriveFR.configOpenloopRamp(SwerveConstants.kDriveRampTime);
+        talonFxSwerveDriveRL.configOpenloopRamp(SwerveConstants.kDriveRampTime);
+        talonFxSwerveDriveRR.configOpenloopRamp(SwerveConstants.kDriveRampTime);
+        talonFxSwerveTurnFL.configOpenloopRamp(SwerveConstants.kDriveRampTime);
+        talonFxSwerveTurnFR.configOpenloopRamp(SwerveConstants.kDriveRampTime);
+        talonFxSwerveTurnRL.configOpenloopRamp(SwerveConstants.kDriveRampTime);
+        talonFxSwerveTurnRR.configOpenloopRamp(SwerveConstants.kDriveRampTime);
+
         frontLeft.resetEncoders();
         frontRight.resetEncoders();
         rearLeft.resetEncoders();
