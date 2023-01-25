@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.BotSubsystems;
 import frc.robot.subsystems.constants.AutoConstants;
 
-// Autonomous pathing for ball on the center
+// Autonomous pathing 2
 public class AutoCommand2 extends SequentialCommandGroup {
 
     public AutoCommand2() {
