@@ -76,7 +76,7 @@ public final class SwerveConstants {
     public static final double kTeleDriveMaxAccelerationUnitsPerSecond = 1;
     public static final double kTeleDriveMaxAngularAccelerationUnitsPerSecond = 1.5;
 
-    public static final double kDriveRampTime = 2.0; // units are seconds
+    public static final double kDriveRampTime = 0.4; // units are seconds
 
     public static final class OIConstants {
         public static final double kDeadband = 0.1;

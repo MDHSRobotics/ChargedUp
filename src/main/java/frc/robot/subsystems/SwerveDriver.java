@@ -77,10 +77,6 @@ public class SwerveDriver extends SubsystemBase {
         talonFxSwerveDriveFR.configOpenloopRamp(SwerveConstants.kDriveRampTime);
         talonFxSwerveDriveRL.configOpenloopRamp(SwerveConstants.kDriveRampTime);
         talonFxSwerveDriveRR.configOpenloopRamp(SwerveConstants.kDriveRampTime);
-        talonFxSwerveTurnFL.configOpenloopRamp(SwerveConstants.kDriveRampTime);
-        talonFxSwerveTurnFR.configOpenloopRamp(SwerveConstants.kDriveRampTime);
-        talonFxSwerveTurnRL.configOpenloopRamp(SwerveConstants.kDriveRampTime);
-        talonFxSwerveTurnRR.configOpenloopRamp(SwerveConstants.kDriveRampTime);
 
         frontLeft.resetEncoders();
         frontRight.resetEncoders();

@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.SPI;
 
 import frc.robot.consoles.Logger;
 import frc.robot.sensors.Gyro;
+import frc.robot.subsystems.SwerveDriver;
 
 // This class contains singleton instances of id mapped sensors.
 public class BotSensors {
@@ -19,7 +20,7 @@ public class BotSensors {
     public static void initializeSensors() {
         Logger.setup("Initializing BotSensors...");
         if (isReal) {
-            Gyro.initializeGyro(gyro);
+            Gyro.initializeGyro(gyro, BotSubsystems.swerveDriver);
         } else {
             Logger.setup("Skipping initializion of sensors in Simulation mode...");
         }
