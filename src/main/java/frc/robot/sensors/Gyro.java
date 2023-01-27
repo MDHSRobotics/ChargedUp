@@ -26,26 +26,4 @@ public class Gyro {
         m_swerveDriver = swerveDriver;
     }
 
-    // Returns true if the gyro yaw matches the target angle within the YAW_TOLERANCE
-    public static double yawDifference(double targetAngle) {
-        double angle = BotSensors.gyro.getRoll();
-        double difference = Math.abs(targetAngle - angle);
-        /*
-        if (difference > 180) difference = 360 - difference;
-        boolean aligned = (difference <= YAW_TOLERANCE);
-        Logger.info("Gyro -> Target Angle: " + targetAngle + "; Gyro Yaw: " + angle + "; Difference: " + difference);
-        */
-        return difference;
-    }
-
-    public static void adjustYaw(){
-        double difference = yawDifference(0);
-        if(difference > YAW_TOLERANCE){
-            m_swerveDriver.setChassisSpeed(DRIVE_SPEED*YAW_DIRECTION, 0, 0);
-        }else if(difference < -YAW_TOLERANCE){
-            m_swerveDriver.setChassisSpeed(-DRIVE_SPEED*YAW_DIRECTION, 0, 0);
-        }else {
-            m_swerveDriver.stopModules();
-        }
-    }
 }

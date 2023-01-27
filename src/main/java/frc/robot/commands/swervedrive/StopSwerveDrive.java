@@ -24,7 +24,7 @@ public class StopSwerveDrive extends CommandBase {
 
     @Override
     public void execute() {
-        m_swerveDriver.stopModules();;
+        m_swerveDriver.stopModules();
     }
 
     @Override
