@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 import frc.robot.consoles.Logger;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.BotSensors;
 
 public class ExampleCommand extends CommandBase {
 
@@ -34,7 +35,9 @@ public class ExampleCommand extends CommandBase {
     @Override
     public void execute() {
         m_subsystem.doSomething();
-        m_tries += 1;
+        //Logger.info("Gyro Yaw: " + BotSensors.gyro.getYaw());
+        Logger.info("Gyro Roll: " + BotSensors.gyro.getRoll());
+        //Logger.info("Gyro Pitch: " + BotSensors.gyro.getPitch());
     }
 
     @Override

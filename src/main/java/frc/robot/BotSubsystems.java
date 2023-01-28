@@ -26,6 +26,9 @@ public class BotSubsystems {
         Logger.setup("SwerveDriver Teleop Default Command -> Forklift...");
         forklift.setDefaultCommand(BotCommands.moveForklift);
         
+        //Logger.setup("SwerveDriver Teleop Default Command -> SwerveDrive...");
+        exampleSubsystem.setDefaultCommand(BotCommands.exampleCommand);
+        
     }
 }
  
