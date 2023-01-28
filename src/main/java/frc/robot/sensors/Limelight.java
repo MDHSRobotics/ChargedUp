@@ -21,6 +21,7 @@ public class Limelight extends SubsystemBase {
     private static NetworkTableEntry m_targetDetected = m_limelightNetworkTable.getEntry("tv"); // Checks whether limelight has valid targets
     private static NetworkTableEntry m_targetVisionCoverage = m_limelightNetworkTable.getEntry("ta"); // How many pixels of screen is target (target area)
     private static NetworkTableEntry m_ledMode = m_limelightNetworkTable.getEntry("ledMode"); // Set led state
+    private static NetworkTableEntry m_pipeline = m_limelightNetworkTable.getEntry("pipeline"); // Set pipeline
 
     private static boolean m_isAligning = false;
 
@@ -43,6 +44,10 @@ public class Limelight extends SubsystemBase {
         return m_isAligning;
     }
 
+    public static void setPipeline(int pipeline) {
+        m_pipeline.setNumber(pipeline);
+    }
+
     // Uses the limelight to find the distance in feet 
     public static double calculateDistanceToTarget() { 
         double yOffset = getYOffset(); 
@@ -51,8 +56,6 @@ public class Limelight extends SubsystemBase {
         double distance = (TARGET_HEIGHT - CAMERA_HEIGHT) / Math.tan(angleInRadians); 
         distance /= 12.0; // converts inches to feet 
 
-        return distance; 
-
-
+        return distance;
     } 
 }
