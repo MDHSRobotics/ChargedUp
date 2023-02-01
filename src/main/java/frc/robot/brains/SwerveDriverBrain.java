@@ -15,6 +15,10 @@ public class SwerveDriverBrain {
     public final static double defaultTicks = 0.;
     public final static double defaultVelocity = 0.;
 
+    public final static double defaultChargeStationP = 1.;
+    public final static double defaultChargeStationI = 0.;
+    public final static double defaultChargeStationD = 0.;
+
     //---------------------//
     // NetworkTableEntries //
     //---------------------//
@@ -48,6 +52,10 @@ public class SwerveDriverBrain {
     public static GenericEntry entryTurningEncoderMpsFR;
     public static GenericEntry entryTurningEncoderMpsRL;
     public static GenericEntry entryTurningEncoderMpsRR;
+
+    public static GenericEntry entryChargeStationSpeedP;
+    public static GenericEntry entryChargeStationSpeedI;
+    public static GenericEntry entryChargeStationSpeedD;
 
     //---------//
     // Setters //
@@ -126,6 +134,22 @@ public class SwerveDriverBrain {
             default:
                 throw new java.lang.Error(String.format("Unknown module name %s", moduleName));
         }
+    }
+
+    //---------//
+    // Getters //
+    //---------//
+
+    public static double getChargeStationP() {
+        return entryChargeStationSpeedP.getDouble(defaultChargeStationP);
+    }
+
+    public static double getChargeStationI() {
+        return entryChargeStationSpeedI.getDouble(defaultChargeStationI);
+    }
+
+    public static double getChargeStationD() {
+        return entryChargeStationSpeedD.getDouble(defaultChargeStationD);
     }
 
 }
