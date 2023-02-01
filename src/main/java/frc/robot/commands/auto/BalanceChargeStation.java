@@ -35,9 +35,9 @@ public class BalanceChargeStation extends CommandBase {
 
         // drives forward or backward based on location until robot is balanced on charge station 
         if (currentRollAngle >= 0) {
-            m_swerveDriver.setChassisSpeed(AutoConstants.kDrivePower, AutoConstants.kDrivePower, 0);
+            m_swerveDriver.setChassisSpeed(AutoConstants.kDrivePower, 0, 0);
         } else if (currentRollAngle <= -1) { 
-            m_swerveDriver.setChassisSpeed(-AutoConstants.kDrivePower, AutoConstants.kDrivePower, 0);
+            m_swerveDriver.setChassisSpeed(-AutoConstants.kDrivePower, 0 , 0);
         }
 
         // determines if robot has driven onto charge station ramp
