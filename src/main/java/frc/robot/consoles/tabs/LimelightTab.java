@@ -7,6 +7,8 @@ import frc.robot.consoles.ShuffleLogger;
 import frc.robot.BotCommands;
 import frc.robot.sensors.Limelight;
 import frc.robot.brains.SwerveDriverBrain;
+import frc.robot.commands.limelight.AlignLimelight;
+import frc.robot.commands.swervedrive.SwerveDrive;
 
 import java.util.Map;
 
@@ -28,6 +30,8 @@ public class LimelightTab {
     private SimpleWidget m_kIDistance;
     private SimpleWidget m_kDDistance;
 
+    private ComplexWidget m_AlignLimelight;
+
     // Constructor
     public LimelightTab() {
         ShuffleLogger.logTrivial("Constructing LimelightTab");
@@ -36,7 +40,7 @@ public class LimelightTab {
 
         m_commandLayout = m_tab.getLayout("Limelight Values", BuiltInLayouts.kList);
         m_commandLayout.withPosition(0, 0);
-        m_commandLayout.withSize(2, 6);
+        m_commandLayout.withSize(2, 8);
         m_commandLayout.withProperties(Map.of("Number of columns", 2));
         m_commandLayout.withProperties(Map.of("Number of rows", 3));
         m_commandLayout.withProperties(Map.of("Label position", "LEFT"));
@@ -77,7 +81,7 @@ public class LimelightTab {
 
     // Create all other Widgets
     public void initialize() {
-
+        m_AlignLimelight = m_commandLayout.add("AlignLimelight", BotCommands.alignLimelight);
     }
 
     // Configure all Widgets

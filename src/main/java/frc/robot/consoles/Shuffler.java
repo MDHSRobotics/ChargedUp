@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.shuffleboard.*;
 import frc.robot.consoles.tabs.*;
 import java.util.Map;
+import frc.robot.sensors.Limelight;
 
 // Class that wraps all of the interaction with the Shuffleboard
 
@@ -20,6 +21,7 @@ public class Shuffler {
     private ForkliftTab m_forkliftTab;
     private AutonomousTab m_autonomousTab;
     private SensorTab m_sensorTab;
+    private LimelightTab m_limelightTab;
 
     public Shuffler() {
         ShuffleLogger.logTrivial("Constructing Shuffler...");
@@ -28,6 +30,9 @@ public class Shuffler {
         m_inputsTab = new InputsTab();
         m_autonomousTab = new AutonomousTab();
         m_sensorTab = new SensorTab();
+        m_jstickTab = new JoystickTab();
+        m_limelightTab = new LimelightTab();
+
     }
 
     public void preInitialize() {
@@ -37,6 +42,8 @@ public class Shuffler {
         m_inputsTab.preInitialize();
         m_autonomousTab.preInitialize();
         m_sensorTab.preInitialize();
+        m_jstickTab.preInitialize();
+        m_limelightTab.preInitialize();
     }
 
     public void initialize() {
@@ -46,6 +53,8 @@ public class Shuffler {
         m_inputsTab.initialize();
         m_autonomousTab.initialize();
         m_sensorTab.initialize();
+        m_jstickTab.initialize();
+        m_limelightTab.initialize();
     }
 
     public void configure() {
@@ -55,6 +64,8 @@ public class Shuffler {
         m_inputsTab.configure();
         m_autonomousTab.configure();
         m_sensorTab.configure();
+        m_jstickTab.configure();
+        m_limelightTab.configure();
 
         setupSmartdashboard();
     }
@@ -66,6 +77,7 @@ public class Shuffler {
         m_autonomousTab.update();
         m_driveTab.update();
         m_sensorTab.update();
+        m_limelightTab.update();
     }
 
     // This is for stuff that can't be displayed easily in custom Shuffleboard tabs.

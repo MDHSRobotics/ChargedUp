@@ -288,11 +288,11 @@ public class SwerveDriver extends SubsystemBase {
 
     }
 
-    public static boolean getAlignment(){
+    public boolean getAlignment(){
         return isAligned;
     }
 
-    public static boolean getAtTarget(){
+    public boolean isAtTarget(){
         return atTarget;
     }
 }   
