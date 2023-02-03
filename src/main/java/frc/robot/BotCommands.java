@@ -5,6 +5,7 @@ import frc.robot.commands.auto.*;
 import frc.robot.commands.forklift.*;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.commands.swervedrive.*;
+import frc.robot.commands.limelight.*;
 
 public class BotCommands {
 
@@ -41,6 +42,9 @@ public class BotCommands {
     //Intake
     public static MoveIntake moveIntake;
 
+    // Limelight
+    public static AlignLimelight alignLimelight;
+
     // Initialize all robot commands
     public static void initializeCommands() {
 
@@ -56,6 +60,10 @@ public class BotCommands {
 
         resetAbsoluteEncoderOffsets = BotSubsystems.swerveDriver.resetAbsoluteEncoderOffsets();
         
+
+        // Limelight
+        alignLimelight = new AlignLimelight(BotSubsystems.swerveDriver);
+ 
         // Forklift
         moveForklift = new MoveForklift(BotSubsystems.forklift); 
         forkliftPickUpPosition = new ForkliftToPosition(BotSubsystems.forklift, AutoConstants.Levels.PICKUP); 

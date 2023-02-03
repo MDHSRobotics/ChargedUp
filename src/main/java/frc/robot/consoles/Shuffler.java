@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardLayout;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.shuffleboard.*;
 import java.util.Map;
+import frc.robot.sensors.Limelight;
 
 import frc.robot.BotCommands;
 import frc.robot.commands.auto.*;
