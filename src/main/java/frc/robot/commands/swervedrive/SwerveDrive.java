@@ -12,6 +12,7 @@ import frc.robot.oi.controllers.XboxPositionAccessible;
 import frc.robot.oi.movements.SwerveMovement;
 
 import frc.robot.subsystems.SwerveDriver;
+import frc.robot.subsystems.constants.SwerveConstants;
 
 import frc.robot.consoles.Shuffler;
 import edu.wpi.first.wpilibj.shuffleboard.*;
@@ -24,6 +25,7 @@ public class SwerveDrive extends CommandBase {
     private final JoystickPositionAccessible m_jstickController;
     private final XboxPositionAccessible m_xboxController;
     private final SlewRateLimiter m_forwardBackwardLimiter, m_sideToSideLimiter, m_rotationLimiter;
+    private final double m_autoAlignPower = 0.5;
     private static String m_chosenController; //jstick or xbox
 
     private double deadband;

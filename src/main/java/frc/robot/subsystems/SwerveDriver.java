@@ -1,5 +1,6 @@
 package frc.robot.subsystems;
 
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 
@@ -15,6 +16,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.BotSensors;
 import frc.robot.consoles.Logger;
 import frc.robot.devices.DevSwerveModule;
+import frc.robot.subsystems.constants.SwerveConstants;
 import static frc.robot.subsystems.Devices.*;
 
 import edu.wpi.first.math.geometry.Translation2d;
@@ -118,8 +120,6 @@ public class SwerveDriver extends SubsystemBase {
     private final SwerveDriveOdometry odometer;
 
     SwerveModulePosition[] modulePositions = new SwerveModulePosition[4];
-
-    
 
     // Constructs new SwerveDriver
     public SwerveDriver() {
