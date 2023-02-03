@@ -16,6 +16,14 @@ public class SwerveDriverBrain {
     public final static double defaultTicks = 0.;
     public final static double defaultVelocity = 0.;
 
+    public final static double defaultkPxOffset = 1.;
+    public final static double defaultkIxOffset = 0.;
+    public final static double defaultkDxOffset = 0.;
+
+    public final static double defaultkPDistance = 0.;
+    public final static double defaultkIDistance = 0.;
+    public final static double defaultkDDistance = 0.;
+
     public final static double defaultChargeStationP = 1.;
     public final static double defaultChargeStationI = 0.;
     public final static double defaultChargeStationD = 0.;
@@ -225,6 +233,27 @@ public class SwerveDriverBrain {
         entryLeftRightSpeed.setDouble(leftRight);
         entryRotationSpeed.setDouble(rotation);
 
+    }
+
+    public static void setAlignLimelightkPxOffset(double value){
+        entryAlignLimelightkPxOffset.setDouble(value);
+    }
+    public static void setAlignLimelightkIxOffset(double value){
+        entryAlignLimelightkIxOffset.setDouble(0.0);
+    }
+    public static void setAlignLimelightkDxOffset(double value){
+        entryAlignLimelightkDxOffset.setDouble(value);
+    }
+
+
+    public static void setAlignLimelightkPDistance(double value){
+        entryAlignLimelightkPDistance.setDouble(value);
+    }
+    public static void setAlignLimelightkIDistance(double value){
+        entryAlignLimelightkIDistance.setDouble(value);
+    }
+    public static void setAlignLimelightkDDistance(double value){
+        entryAlignLimelightkDDistance.setDouble(value);
     }
 
     //---------//

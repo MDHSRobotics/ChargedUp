@@ -267,14 +267,28 @@ public class SwerveDriver extends SubsystemBase {
         double distance = Limelight.calculateDistanceToTarget();
         double xOffset = Limelight.getXOffset();
 
-        PIDController m_xOffsetPidController = new PIDController(SwerveDriverBrain.getAlignLimelightkPxOffset(), SwerveDriverBrain.getAlignLimelightkIxOffset(), SwerveDriverBrain.getAlignLimelightkDxOffset());
-        PIDController m_DistancePidController = new PIDController(SwerveDriverBrain.getAlignLimelightkPDistance(), SwerveDriverBrain.getAlignLimelightkIDistance(), SwerveDriverBrain.getAlignLimelightkDDistance());
-        m_xOffsetPidController.setSetpoint(0); // Target x Offset
-        m_xOffsetPidController.setTolerance(0.05); // x Offset tolerance
+        double kPxOffset = SwerveDriverBrain.getAlignLimelightkPxOffset();
+        double kIxOffset = SwerveDriverBrain.getAlignLimelightkIxOffset();
+        double kDxOffset = SwerveDriverBrain.getAlignLimelightkDxOffset();
+
+        double kPDistance = SwerveDriverBrain.getAlignLimelightkPDistance();
+        double kIDistance = SwerveDriverBrain.getAlignLimelightkIDistance();
+        double kDDistance = SwerveDriverBrain.getAlignLimelightkDDistance();
+
+        double xOffsetSetPoint = 0.;
+        double xOffsetTolerance = 0.05;
+
+        double distanceSetPoint = 0.5;
+        double distanceTolerance = 0.05;
+
+        PIDController m_xOffsetPidController = new PIDController(kPxOffset, kIxOffset, kDxOffset);
+        PIDController m_DistancePidController = new PIDController(kPDistance, kIDistance, kDDistance);
+        m_xOffsetPidController.setSetpoint(xOffsetSetPoint); // Target x Offset
+        m_xOffsetPidController.setTolerance(xOffsetTolerance); // x Offset tolerance
         double strafeSpeed = m_xOffsetPidController.calculate(xOffset);
 
-        m_DistancePidController.setSetpoint(0.5); // Target 0.5 ft away from limelight target
-        m_DistancePidController.setTolerance(0.05); // Distance tolerance
+        m_DistancePidController.setSetpoint(distanceSetPoint); // Target 0.5 ft away from limelight target
+        m_DistancePidController.setTolerance(distanceTolerance); // Distance tolerance
         double forwardSpeed = m_DistancePidController.calculate(distance);
 
 

@@ -19,7 +19,7 @@ public class LimelightTab {
     private ShuffleboardTab m_tab;
 
     // Layouts
-    private ShuffleboardLayout m_commandLayout;
+    private ShuffleboardLayout m_pidLayout;
 
     // Widgets
     private SimpleWidget m_kPxOffset;
@@ -38,12 +38,12 @@ public class LimelightTab {
 
         m_tab = Shuffleboard.getTab("Limelight");
 
-        m_commandLayout = m_tab.getLayout("Limelight Values", BuiltInLayouts.kList);
-        m_commandLayout.withPosition(0, 0);
-        m_commandLayout.withSize(2, 8);
-        m_commandLayout.withProperties(Map.of("Number of columns", 2));
-        m_commandLayout.withProperties(Map.of("Number of rows", 3));
-        m_commandLayout.withProperties(Map.of("Label position", "LEFT"));
+        m_pidLayout = m_tab.getLayout("Limelight Values", BuiltInLayouts.kList);
+        m_pidLayout.withPosition(0, 0);
+        m_pidLayout.withSize(2, 8);
+        m_pidLayout.withProperties(Map.of("Number of columns", 2));
+        m_pidLayout.withProperties(Map.of("Number of rows", 3));
+        m_pidLayout.withProperties(Map.of("Label position", "LEFT"));
     }
 
     // Create Brain Widgets
@@ -51,37 +51,37 @@ public class LimelightTab {
 
         // PID Values for x offset pid controller
 
-        m_kPxOffset = m_commandLayout.add("kP xOffset", SwerveDriverBrain.entryAlignLimelightkPxOffset);
+        m_kPxOffset = m_pidLayout.add("kP xOffset", SwerveDriverBrain.defaultkPxOffset);
         SwerveDriverBrain.entryAlignLimelightkPxOffset = m_kPxOffset.getEntry();
         m_kPxOffset.withWidget(BuiltInWidgets.kTextView);
 
-        m_kIxOffset = m_commandLayout.add("kI xOffset", SwerveDriverBrain.entryAlignLimelightkIxOffset);
+        m_kIxOffset = m_pidLayout.add("kI xOffset", SwerveDriverBrain.defaultkIxOffset);
         SwerveDriverBrain.entryAlignLimelightkIxOffset = m_kIxOffset.getEntry();
         m_kIxOffset.withWidget(BuiltInWidgets.kTextView);
 
-        m_kDxOffset = m_commandLayout.add("kD xOffset", SwerveDriverBrain.entryAlignLimelightkDxOffset);
+        m_kDxOffset = m_pidLayout.add("kD xOffset", SwerveDriverBrain.defaultkDxOffset);
         SwerveDriverBrain.entryAlignLimelightkDxOffset = m_kDxOffset.getEntry();
         m_kDxOffset.withWidget(BuiltInWidgets.kTextView);
 
 
         // PID Values for distance pid controller
 
-        m_kPDistance = m_commandLayout.add("kP Distance", SwerveDriverBrain.entryAlignLimelightkPDistance);
+        m_kPDistance = m_pidLayout.add("kP Distance", SwerveDriverBrain.defaultkPDistance);
         SwerveDriverBrain.entryAlignLimelightkPDistance = m_kPDistance.getEntry();
         m_kPDistance.withWidget(BuiltInWidgets.kTextView);
 
-        m_kIDistance = m_commandLayout.add("kI Distance", SwerveDriverBrain.entryAlignLimelightkIDistance);
+        m_kIDistance = m_pidLayout.add("kI Distance", SwerveDriverBrain.defaultkIDistance);
         SwerveDriverBrain.entryAlignLimelightkIDistance = m_kIDistance.getEntry();
         m_kIDistance.withWidget(BuiltInWidgets.kTextView);
 
-        m_kDDistance = m_commandLayout.add("kD Distance", SwerveDriverBrain.entryAlignLimelightkDDistance);
+        m_kDDistance = m_pidLayout.add("kD Distance", SwerveDriverBrain.defaultkDDistance);
         SwerveDriverBrain.entryAlignLimelightkDDistance = m_kDDistance.getEntry();
         m_kDDistance.withWidget(BuiltInWidgets.kTextView);
     }
 
     // Create all other Widgets
     public void initialize() {
-        m_AlignLimelight = m_commandLayout.add("AlignLimelight", BotCommands.alignLimelight);
+        m_AlignLimelight = m_pidLayout.add("AlignLimelight", BotCommands.alignLimelight);
     }
 
     // Configure all Widgets
