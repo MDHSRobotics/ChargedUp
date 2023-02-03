@@ -1,5 +1,6 @@
 package frc.robot.subsystems;
 
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 
@@ -16,6 +17,7 @@ import frc.robot.BotSensors;
 import frc.robot.brains.SwerveDriverBrain;
 import frc.robot.consoles.Logger;
 import frc.robot.devices.DevSwerveModule;
+import frc.robot.sensors.Limelight;
 import frc.robot.subsystems.constants.SwerveConstants;
 import static frc.robot.subsystems.Devices.*;
 
@@ -73,6 +75,9 @@ public class SwerveDriver extends SubsystemBase {
     private final SwerveDriveOdometry odometer;
 
     SwerveModulePosition[] modulePositions = new SwerveModulePosition[4];
+
+    private static boolean atTarget = false;
+    private static boolean isAligned = false;
 
     // Constructs new SwerveDriver
     public SwerveDriver() {
@@ -232,4 +237,62 @@ public class SwerveDriver extends SubsystemBase {
         setModuleStates(moduleStates);
     }
 
+    // to convert (x,y) to angle relative to y-axis, use arctan(y/x)
+    // preferably make a method to convert rotation speeds to angle
+    // create new method taking in angle as a parameter instead of speeds
+
+    // Drive to align the Robot to a detected line at the given yaw
+    public void driveAlign(double targetYaw) {
+        // Get the correction yaw needed to align the Robot with the target yaw
+        double yaw = BotSensors.gyro.getYaw();
+        double correction = targetYaw - yaw;
+        if (correction > 180) correction = correction - 360;
+        if (correction < -180) correction = correction + 360;
+        Logger.info("SwerveDriver -> Gyro -> Target Yaw: " + targetYaw + "; Current Yaw: " + yaw + "; Correction: " + correction);
+
+        // Get the rotation speed to align the Robot with the target gyro yaw
+        double zRotation = (correction / 180) * 1.4;
+        boolean isCloseEnough = Math.abs(correction) < 10;
+        if (!isCloseEnough) {
+            if (0 < zRotation && zRotation < 0.25) zRotation = 0.25;
+            if (0 > zRotation && zRotation > -0.25) zRotation = -0.25;
+            isAligned = false;
+        }else{
+            isAligned = true;
+        }
+        setChassisSpeed(0, 0, zRotation);
+    }
+
+    public void driveLimelight() {
+        double distance = Limelight.calculateDistanceToTarget();
+        double xOffset = Limelight.getXOffset();
+
+        PIDController m_xOffsetPidController = new PIDController(SwerveDriverBrain.getAlignLimelightkPxOffset(), SwerveDriverBrain.getAlignLimelightkIxOffset(), SwerveDriverBrain.getAlignLimelightkDxOffset());
+        PIDController m_DistancePidController = new PIDController(SwerveDriverBrain.getAlignLimelightkPDistance(), SwerveDriverBrain.getAlignLimelightkIDistance(), SwerveDriverBrain.getAlignLimelightkDDistance());
+        m_xOffsetPidController.setSetpoint(0); // Target x Offset
+        m_xOffsetPidController.setTolerance(0.05); // x Offset tolerance
+        double strafeSpeed = m_xOffsetPidController.calculate(xOffset);
+
+        m_DistancePidController.setSetpoint(0.5); // Target 0.5 ft away from limelight target
+        m_DistancePidController.setTolerance(0.05); // Distance tolerance
+        double forwardSpeed = m_DistancePidController.calculate(distance);
+
+
+        setChassisSpeed(strafeSpeed, forwardSpeed, 0);
+        if (m_xOffsetPidController.atSetpoint() && m_DistancePidController.atSetpoint()){
+            stopModules();
+            atTarget = true;
+        } else {
+            atTarget = false;
+        }
+
+    }
+
+    public static boolean getAlignment(){
+        return isAligned;
+    }
+
+    public static boolean getAtTarget(){
+        return atTarget;
+    }
 }   

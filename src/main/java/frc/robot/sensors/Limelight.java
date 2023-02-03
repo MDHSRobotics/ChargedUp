@@ -1,4 +1,4 @@
-package frc.robot.sensors; 
+    package frc.robot.sensors; 
  
 import edu.wpi.first.networktables.NetworkTable; 
 import edu.wpi.first.networktables.NetworkTableEntry; 
@@ -40,8 +40,22 @@ public class Limelight extends SubsystemBase {
         m_isAligning = !m_isAligning;
     }
 
-    public boolean getAlignmentState() {
+    public static boolean getAlignmentState() {
         return m_isAligning;
+    }
+    
+    public static boolean getDetectionState() {
+        boolean targetDetected = false;
+        if (m_targetDetected.getInteger(0) == 1){
+            //Turn on light
+            targetDetected = true;
+
+        } else {
+            //Turn off light
+            targetDetected = false;
+
+        }
+        return targetDetected;
     }
 
     public static void setPipeline(int pipeline) {

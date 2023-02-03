@@ -72,6 +72,14 @@ public class SwerveDriverBrain {
     public static GenericEntry entryRLEncoderOffset;
     public static GenericEntry entryRREncoderOffset;
 
+    public static GenericEntry entryAlignLimelightkPxOffset;
+    public static GenericEntry entryAlignLimelightkIxOffset;
+    public static GenericEntry entryAlignLimelightkDxOffset;
+
+    public static GenericEntry entryAlignLimelightkPDistance;
+    public static GenericEntry entryAlignLimelightkIDistance;
+    public static GenericEntry entryAlignLimelightkDDistance;
+
     public static GenericEntry entryChargeStationSpeedP;
     public static GenericEntry entryChargeStationSpeedI;
     public static GenericEntry entryChargeStationSpeedD;
@@ -218,5 +226,34 @@ public class SwerveDriverBrain {
         entryRotationSpeed.setDouble(rotation);
 
     }
+
+    //---------//
+    // Getters //
+    //---------//
+
+    
+    public static double getAlignLimelightkPxOffset(){
+        return entryAlignLimelightkPxOffset.getDouble(0.0);
+    }
+    public static double getAlignLimelightkIxOffset(){
+        return entryAlignLimelightkIxOffset.getDouble(0.0);
+    }
+    public static double getAlignLimelightkDxOffset(){
+        return entryAlignLimelightkDxOffset.getDouble(0.0);
+    }
+
+
+    public static double getAlignLimelightkPDistance(){
+        return entryAlignLimelightkPDistance.getDouble(0.0);
+    }
+    public static double getAlignLimelightkIDistance(){
+        return entryAlignLimelightkIDistance.getDouble(0.0);
+    }
+    public static double getAlignLimelightkDDistance(){
+        return entryAlignLimelightkDDistance.getDouble(0.0);
+    }
+    //---------//
+    // Getters //
+    //---------//
 
 }
