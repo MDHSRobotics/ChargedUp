@@ -3,6 +3,7 @@ package frc.robot;
 import frc.robot.consoles.Logger;
 import frc.robot.commands.auto.*;
 import frc.robot.commands.forklift.*;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.commands.ExampleCommand;
 
 public class BotCommands {
@@ -18,7 +19,7 @@ public class BotCommands {
 
     // Forklift
     public static MoveForklift moveForklift;
-    public static ToggleClamp toggleClamp;
+    public static CommandBase toggleClamp;
 
     // Initialize all robot commands
     public static void initializeCommands() {
@@ -38,6 +39,6 @@ public class BotCommands {
         moveForklift = new MoveForklift(BotSubsystems.forklift); 
         
         // Pneumatics
-        toggleClamp = new ToggleClamp(BotSubsystems.forklift);
+        toggleClamp = BotSubsystems.forklift.toggleClampCommand();
     }
 }
