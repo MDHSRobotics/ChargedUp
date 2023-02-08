@@ -220,27 +220,4 @@ public class SwerveDriver extends SubsystemBase {
         setModuleStates(moduleStates);
     }
 
-    // to convert (x,y) to angle relative to y-axis, use arctan(y/x)
-    // preferably make a method to convert rotation speeds to angle
-    // create new method taking in angle as a parameter instead of speeds
-
-    // Drive to align the Robot to a detected line at the given yaw
-    public void driveAlign(double targetYaw) {
-        // Get the correction yaw needed to align the Robot with the target yaw
-        double yaw = BotSensors.gyro.getYaw();
-        double correction = targetYaw - yaw;
-        if (correction > 180) correction = correction - 360;
-        if (correction < -180) correction = correction + 360;
-        Logger.info("SwerveDriver -> Gyro -> Target Yaw: " + targetYaw + "; Current Yaw: " + yaw + "; Correction: " + correction);
-
-        // Get the rotation speed to align the Robot with the target gyro yaw
-        double zRotation = (correction / 180) * 1.4;
-        boolean isCloseEnough = Math.abs(correction) < 10;
-        if (!isCloseEnough) {
-            if (0 < zRotation && zRotation < 0.25) zRotation = 0.25;
-            if (0 > zRotation && zRotation > -0.25) zRotation = -0.25;
-        }
-        setChassisSpeed(0, 0, zRotation);
-    }
-
 }   

@@ -44,12 +44,12 @@ public class BalanceChargeStation extends CommandBase {
     @Override
     public void execute() {
 
-        double currentRollAngle = gyro.getRoll();
+        double currentPitchAngle = gyro.getPitch();
 
         // sets a default speed if the robot is not on the charge station yet
         if (!m_isOnChargeStation) {
             // checks if robot is on charge station
-            if (Math.abs(currentRollAngle) > 5) {
+            if (Math.abs(currentPitchAngle) > 5) {
                 m_isOnChargeStation = true;
             } else {
                 m_swerveDriver.setChassisSpeed(SwerveConstants.kMaxChargeStationBalancingPower, 0 , 0);
@@ -58,7 +58,7 @@ public class BalanceChargeStation extends CommandBase {
 
         // sets appropriate speed based on position on ramp if robot is on charge station
         if (m_isOnChargeStation) {
-            double outputScaleFactor = m_pidController.calculate(currentRollAngle);
+            double outputScaleFactor = m_pidController.calculate(currentPitchAngle);
 
             // checks if charge station is balanced
             if (m_pidController.atSetpoint()) {
