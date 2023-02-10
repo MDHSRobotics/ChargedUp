@@ -24,7 +24,6 @@ public class ButtonBindings {
         // Pneumatics
         BotControllers.xbox2.btnY.onTrue(BotCommands.toggleClamp);
 
-        BotControllers.xbox2.btnX.onTrue(BotCommands.exampleCommand);
 
     }
 

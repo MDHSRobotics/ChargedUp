@@ -14,6 +14,7 @@ public class SensorBrain {
     public static double gyroRollDefault = 0.;
     public static double gyroPitchDefault = 0.;
     public static double gyroYawDefault = 0.;
+    public static double gyroAngleDefault = 0.;
 
     //---------------------//
     // NetworkTableEntries //
@@ -22,6 +23,7 @@ public class SensorBrain {
     public static GenericEntry gyroRollEntry;
     public static GenericEntry gyroPitchEntry;
     public static GenericEntry gyroYawEntry;
+    public static GenericEntry gyroAngleEntry;
 
     //---------//
     // Getters //
@@ -39,6 +41,10 @@ public class SensorBrain {
         return gyroRollEntry.getDouble(gyroYawDefault);
     }
 
+    public static double getGyroAngle() {
+        return gyroAngleEntry.getDouble(gyroAngleDefault);
+    }
+
     //---------//
     // Setters //
     //---------//
@@ -53,5 +59,9 @@ public class SensorBrain {
 
      public static void setGyroYaw(double value) {
         gyroYawEntry.setDouble(value);
+     }
+
+     public static void setGyroAngle(double value) {
+        gyroAngleEntry.setDouble(value);
      }
 }

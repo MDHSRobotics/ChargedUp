@@ -4,13 +4,9 @@ import frc.robot.consoles.Logger;
 import frc.robot.commands.auto.*;
 import frc.robot.commands.forklift.*;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.swervedrive.*;
 
 public class BotCommands {
-
-    // Example Command to be used as a placeholder until real commands implemented
-    public static ExampleCommand exampleCommand;
 
     // Auto Command options
     public static AutoCommand1 autoCommand1;
@@ -30,9 +26,6 @@ public class BotCommands {
     public static void initializeCommands() {
 
         Logger.setup("Initializing BotCommands...");
-
-        // Re-usable Example Command
-        exampleCommand = new ExampleCommand("Default", 10);
         
         // Auto Commands 
         autoCommand1 = new AutoCommand1();

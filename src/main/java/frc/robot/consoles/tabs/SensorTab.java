@@ -2,6 +2,7 @@
 package frc.robot.consoles.tabs;
 
 import edu.wpi.first.wpilibj.shuffleboard.*;
+import frc.robot.BotSensors;
 import frc.robot.brains.SensorBrain;
 import frc.robot.consoles.ShuffleLogger;
 
@@ -18,6 +19,7 @@ public class SensorTab {
     private SimpleWidget m_rollWidget;
     private SimpleWidget m_pitchWidget;
     private SimpleWidget m_yawWidget;
+    private SimpleWidget m_angleWidget;
 
     // State flag for displaying gyro data
     private boolean m_updateGyroData;
@@ -28,11 +30,11 @@ public class SensorTab {
 
         m_tab = Shuffleboard.getTab("Sensors");
 
-        m_gyroLayout = m_tab.getLayout("Gyro", BuiltInLayouts.kGrid);
+        m_gyroLayout = m_tab.getLayout("Gyro Readings", BuiltInLayouts.kGrid);
         m_gyroLayout.withPosition(0, 0);
-        m_gyroLayout.withSize(1, 3);
-        m_gyroLayout.withProperties(Map.of("Number of columns", 1));
-        m_gyroLayout.withProperties(Map.of("Number of rows", 3));
+        m_gyroLayout.withSize(2, 2);
+        m_gyroLayout.withProperties(Map.of("Number of columns", 2));
+        m_gyroLayout.withProperties(Map.of("Number of rows", 2));
         m_gyroLayout.withProperties(Map.of("Label position", "LEFT"));
 
         m_updateGyroData = true;
@@ -54,6 +56,11 @@ public class SensorTab {
         m_yawWidget = m_gyroLayout.add("Yaw", SensorBrain.gyroYawDefault);
         SensorBrain.gyroYawEntry = m_yawWidget.getEntry();
         m_yawWidget.withWidget(BuiltInWidgets.kTextView);
+   
+        m_angleWidget = m_gyroLayout.add("Angle", SensorBrain.gyroAngleDefault);
+        SensorBrain.gyroAngleEntry = m_angleWidget.getEntry();
+        m_angleWidget.withWidget(BuiltInWidgets.kTextView);
+
     }
 
     // Create all other Widgets
@@ -68,10 +75,10 @@ public class SensorTab {
     public void update() {
 
         if (m_updateGyroData) {
-            ShuffleLogger.logTrivial("updating gyro data ...");
-            SensorBrain.setGyroPitch(1.);
-            SensorBrain.setGyroRoll(2.);
-            SensorBrain.setGyroYaw(3.);
+            SensorBrain.setGyroPitch(BotSensors.gyro.getPitch());
+            SensorBrain.setGyroRoll(BotSensors.gyro.getRoll());
+            SensorBrain.setGyroYaw(BotSensors.gyro.getYaw());
+            SensorBrain.setGyroAngle(BotSensors.gyro.getAngle());
         }
     }
 
