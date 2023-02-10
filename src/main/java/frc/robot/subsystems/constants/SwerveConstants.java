@@ -11,6 +11,8 @@ public final class SwerveConstants {
     public static final double kWheelDiameterMeters = Units.inchesToMeters(4.0);
     public static final double kPhysicalMaxSpeedMetersPerSecond = 8.0;
     public static final double kPhysicalMaxAngularSpeedRadiansPerSecond = 2.0 * 2.0 * Math.PI;
+    public static final double kMinChargeStationBalancingPower = 0.1;
+    public static final double kMaxChargeStationBalancingPower = 0.3;
 
     public static final double kTrackWidth = Units.inchesToMeters(25.0);
     // Distance between right and left wheels
@@ -66,19 +68,19 @@ public final class SwerveConstants {
           current absolute position in degrees. That number is the offset
           for this module.  Convert that value from degrees to radians below.
     */
-    public static final double kFrontLeftDriveAbsoluteEncoderOffsetRad = Units.degreesToRadians(140.713);
-    public static final double kRearLeftDriveAbsoluteEncoderOffsetRad = Units.degreesToRadians(-140.713);
-    public static final double kFrontRightDriveAbsoluteEncoderOffsetRad = Units.degreesToRadians(-166.377);
-    public static final double kRearRightDriveAbsoluteEncoderOffsetRad = Units.degreesToRadians(-67.412);
+    public static final double kFrontLeftDriveAbsoluteEncoderOffsetRad = Units.degreesToRadians(84.199); 
+    public static final double kRearLeftDriveAbsoluteEncoderOffsetRad = Units.degreesToRadians(-141.768);
+    public static final double kFrontRightDriveAbsoluteEncoderOffsetRad = Units.degreesToRadians(168.750);
+    public static final double kRearRightDriveAbsoluteEncoderOffsetRad = Units.degreesToRadians(-87.891);
 
     public static final double kTeleDriveMaxSpeedMetersPerSecond = kPhysicalMaxSpeedMetersPerSecond / 4;
-    public static final double kTeleDriveMaxAngularSpeedRadiansPerSecond = 3;//kPhysicalMaxAngularSpeedRadiansPerSecond / 9;
+    public static final double kTeleDriveMaxAngularSpeedRadiansPerSecond = 3;
     public static final double kTeleDriveMaxAccelerationUnitsPerSecond = 1;
     public static final double kTeleDriveMaxAngularAccelerationUnitsPerSecond = 1.5;
 
-    public static final double kDriveRampTime = 1.0; // units are seconds
+    public static final double kDriveRampTime = 0.4; // units are seconds
 
     public static final class OIConstants {
-        public static final double kDeadband = 0.05;
+        public static final double kDeadband = 0.1;
     }
 }
