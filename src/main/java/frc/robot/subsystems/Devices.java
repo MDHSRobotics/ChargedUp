@@ -8,6 +8,9 @@ import frc.robot.subsystems.constants.MotorIDConstants;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import frc.robot.devices.DevTalonFX;
+import com.ctre.phoenix.sensors.CANCoder;
+
 // This class contains singleton (static) instances of id mapped subsystem components.
 // If a device is not connected at initialization, it should be set to null.
 // IMPORTANT: Only ONE subsystem should control any given device.

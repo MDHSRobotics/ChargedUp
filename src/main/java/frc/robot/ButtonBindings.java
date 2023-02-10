@@ -11,12 +11,18 @@ public class ButtonBindings {
 
     }
 
-    // Configure xbox buttons
-    public static void configureXbox() {
-        Logger.setup("Configure Buttons -> Xbox Controller...");
+    // Configure xbox 1 buttons
+    public static void configureXbox1ButtonBindings() {
+        Logger.setup("Configure Buttons -> Xbox Controller 1...");
+
+    }
+
+    // Configure xbox 2 buttons
+    public static void configureXbox2ButtonBindings() {
+        Logger.setup("Configure Buttons -> Xbox Controller 2...");
 
         // Pneumatics
-        BotControllers.xbox.btnY.onTrue(BotCommands.toggleClamp);
+        BotControllers.xbox2.btnY.onTrue(BotCommands.toggleClamp);
 
     }
 

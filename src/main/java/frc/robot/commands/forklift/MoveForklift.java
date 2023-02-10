@@ -26,8 +26,8 @@ public class MoveForklift extends CommandBase {
 
     @Override
     public void execute() {
-        double extenderPower = BotControllers.xbox.xbox.getLeftY();
-        double verticalPower = BotControllers.xbox.xbox.getRightY();
+        double extenderPower = BotControllers.xbox2.xbox.getLeftY();
+        double verticalPower = BotControllers.xbox2.xbox.getRightY();
 
         m_forklift.moveArmExtender(extenderPower);
         m_forklift.moveArmVertical(verticalPower);

@@ -41,7 +41,7 @@ public class BotCommands {
         defaultAutoCommand = new DefaultAutoCommand();
 
         // SwerveDriver
-        swerveDrive = new SwerveDrive(BotSubsystems.swerveDriver, BotControllers.xbox2); 
+        swerveDrive = new SwerveDrive(BotSubsystems.swerveDriver, BotControllers.xbox1); 
         toggleDriverOrientation = new ToggleDriverOrientation(BotSubsystems.swerveDriver);
  
 
