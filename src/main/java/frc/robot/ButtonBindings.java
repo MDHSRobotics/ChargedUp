@@ -15,8 +15,8 @@ public class ButtonBindings {
     public static void configureXbox() {
         Logger.setup("Configure Buttons -> Xbox Controller...");
 
-        // SwerveDrive
-        //BotControllers.xbox.btnStart.whenPressed(BotCommands.toggleDriverOrientation);
+        // Pneumatics
+        BotControllers.xbox.btnY.onTrue(BotCommands.toggleClamp);
 
     }
 
