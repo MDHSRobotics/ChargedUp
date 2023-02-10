@@ -11,49 +11,49 @@ import frc.robot.consoles.tabs.*;
 // The Shuffler class knows about the subsystems, commands, etc. but generally not vice versa.
 public class Shuffler {
     // Tabs
-    private MainTab m_mainTab;
     private DriveTab m_driveTab;
-    private JoystickTab m_jstickTab;
     private InputsTab m_inputsTab;
+    private ForkliftTab m_forkliftTab;
+    private AutonomousTab m_autonomousTab;
 
     public Shuffler() {
         ShuffleLogger.logTrivial("Constructing Shuffler...");
-        m_mainTab = new MainTab();
+        m_forkliftTab = new ForkliftTab();
         m_driveTab = new DriveTab();
         m_inputsTab = new InputsTab();
-        m_jstickTab = new JoystickTab();
+        m_autonomousTab = new AutonomousTab();
     }
 
     public void preInitialize() {
         ShuffleLogger.logTrivial("Pre-Initializing Shuffler...");
-        m_mainTab.preInitialize();
+        m_forkliftTab.preInitialize();
         m_driveTab.preInitialize();
         m_inputsTab.preInitialize();
-        m_jstickTab.preInitialize();
+        m_autonomousTab.preInitialize();
     }
 
     public void initialize() {
         ShuffleLogger.logTrivial("Initializing Shuffler...");
-        m_mainTab.initialize();
+        m_forkliftTab.initialize();
         m_driveTab.initialize();
         m_inputsTab.initialize();
-        m_jstickTab.initialize();
+        m_autonomousTab.initialize();
     }
 
     public void configure() {
         ShuffleLogger.logTrivial("Configuring Shuffler...");
-        m_mainTab.configure();
+        m_forkliftTab.configure();
         m_driveTab.configure();
         m_inputsTab.configure();
-        m_jstickTab.configure();
+        m_autonomousTab.configure();
 
         setupSmartdashboard();
     }
 
     public void update() {
-        m_mainTab.update();
+        m_forkliftTab.update();
         m_inputsTab.update();
-        m_jstickTab.update();
+        m_autonomousTab.update();
         m_driveTab.update();
     }
 
