@@ -23,7 +23,6 @@ public class Shuffler {
         m_driveTab = new DriveTab();
         m_inputsTab = new InputsTab();
         m_autonomousTab = new AutonomousTab();
-        m_jstickTab = new JoystickTab();
         m_sensorTab = new SensorTab();
     }
 
@@ -33,7 +32,6 @@ public class Shuffler {
         m_driveTab.preInitialize();
         m_inputsTab.preInitialize();
         m_autonomousTab.preInitialize();
-        m_jstickTab.preInitialize();
         m_sensorTab.preInitialize();
     }
 
@@ -43,7 +41,6 @@ public class Shuffler {
         m_driveTab.initialize();
         m_inputsTab.initialize();
         m_autonomousTab.initialize();
-        m_jstickTab.initialize();
         m_sensorTab.initialize();
     }
 
@@ -53,7 +50,6 @@ public class Shuffler {
         m_driveTab.configure();
         m_inputsTab.configure();
         m_autonomousTab.configure();
-        m_jstickTab.configure();
         m_sensorTab.configure();
 
         setupSmartdashboard();
@@ -61,12 +57,10 @@ public class Shuffler {
 
     public void update() {
         m_forkliftTab.update();
-        m_mainTab.update();
         m_driveTab.update();
         m_inputsTab.update();
         m_autonomousTab.update();
         m_driveTab.update();
-        m_jstickTab.update();
         m_sensorTab.update();
     }
 
