@@ -3,27 +3,21 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 import frc.robot.consoles.Logger;
-import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.BotSensors;
 
 public class ExampleCommand extends CommandBase {
-
-    private final ExampleSubsystem m_subsystem;
 
     private final String m_commandName;
     private int m_tries;
     private final int m_maxTries;
 
-    public ExampleCommand(ExampleSubsystem subsystem, String commandName, int maxTries) {
+    public ExampleCommand(String commandName, int maxTries) {
         m_commandName = commandName;
         m_maxTries = maxTries;
         m_tries = 0;
 
         Logger.setup("Constructing Command: Example (" + m_commandName + ") ...");
 
-        // Add given subsystem requirements
-        m_subsystem = subsystem;
-        addRequirements(m_subsystem);
     }
 
     @Override
@@ -34,10 +28,9 @@ public class ExampleCommand extends CommandBase {
 
     @Override
     public void execute() {
-        m_subsystem.doSomething();
-        //Logger.info("Gyro Yaw: " + BotSensors.gyro.getYaw());
+        Logger.info("Gyro Yaw: " + BotSensors.gyro.getYaw());
         Logger.info("Gyro Roll: " + BotSensors.gyro.getRoll());
-        //Logger.info("Gyro Pitch: " + BotSensors.gyro.getPitch());
+        Logger.info("Gyro Pitch: " + BotSensors.gyro.getPitch());
     }
 
     @Override

@@ -32,7 +32,7 @@ public class BotCommands {
         Logger.setup("Initializing BotCommands...");
 
         // Re-usable Example Command
-        exampleCommand = new ExampleCommand(BotSubsystems.exampleSubsystem, "Default", 10);
+        exampleCommand = new ExampleCommand("Default", 10);
         
         // Auto Commands 
         autoCommand1 = new AutoCommand1();
