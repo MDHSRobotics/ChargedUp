@@ -2,14 +2,13 @@
 package frc.robot.consoles.tabs;
 
 import edu.wpi.first.wpilibj.shuffleboard.*;
-
-import frc.robot.brains.XboxBrain;
+import frc.robot.brains.SensorBrain;
 import frc.robot.consoles.ShuffleLogger;
 
 import java.util.Map;
 
 // The Shuffleboard Inputs tab.
-public class SensorsTab {
+public class SensorTab {
 
     // Tab & Layouts
     private ShuffleboardTab m_tab;
@@ -20,35 +19,41 @@ public class SensorsTab {
     private SimpleWidget m_pitchWidget;
     private SimpleWidget m_yawWidget;
 
+    // State flag for displaying gyro data
+    private boolean m_updateGyroData;
+
     // Constructor
-    public SensorsTab() {
+    public SensorTab() {
         ShuffleLogger.logTrivial("Constructing SensorsTab...");
 
         m_tab = Shuffleboard.getTab("Sensors");
 
         m_gyroLayout = m_tab.getLayout("Gyro", BuiltInLayouts.kGrid);
         m_gyroLayout.withPosition(0, 0);
-        m_gyroLayout.withSize(2, 3);
-        m_gyroLayout.withProperties(Map.of("Number of columns", 2));
+        m_gyroLayout.withSize(1, 3);
+        m_gyroLayout.withProperties(Map.of("Number of columns", 1));
         m_gyroLayout.withProperties(Map.of("Number of rows", 3));
         m_gyroLayout.withProperties(Map.of("Label position", "LEFT"));
+
+        m_updateGyroData = true;
+
+    }
 
     // Create Brain Widgets
     public void preInitialize() {
 
-        // Thumbstick - Left
-        m_pitchWidget = m_gyroLayout.add("Pitch", XboxBrain.yLeftDeadZoneDefault);
-        XboxBrain.yLeftDeadZoneEntry = m_pitchWidget.getEntry();
+        // Gyro data
+        m_pitchWidget = m_gyroLayout.add("Pitch", SensorBrain.gyroPitchDefault);
+        SensorBrain.gyroPitchEntry = m_pitchWidget.getEntry();
         m_pitchWidget.withWidget(BuiltInWidgets.kTextView);
 
-        m_xLeftDeadZoneWidget = m_xboxLeftLayout.add("X Left Dead Zone", XboxBrain.xLeftDeadZoneDefault);
-        XboxBrain.xLeftDeadZoneEntry = m_xLeftDeadZoneWidget.getEntry();
-        m_xLeftDeadZoneWidget.withWidget(BuiltInWidgets.kTextView);
-
-        m_yLeftSensitivityWidget = m_xboxLeftLayout.add("Y Left Sensitivity", XboxBrain.yLeftSensitivityDefault);
-        XboxBrain.yLeftSensitivityEntry = m_yLeftSensitivityWidget.getEntry();
-        m_yLeftSensitivityWidget.withWidget(BuiltInWidgets.kTextView);
-      
+        m_rollWidget = m_gyroLayout.add("Roll", SensorBrain.gyroRollDefault);
+        SensorBrain.gyroRollEntry = m_rollWidget.getEntry();
+        m_rollWidget.withWidget(BuiltInWidgets.kTextView);
+        
+        m_yawWidget = m_gyroLayout.add("Yaw", SensorBrain.gyroYawDefault);
+        SensorBrain.gyroYawEntry = m_yawWidget.getEntry();
+        m_yawWidget.withWidget(BuiltInWidgets.kTextView);
     }
 
     // Create all other Widgets
@@ -61,6 +66,13 @@ public class SensorsTab {
 
     // This will be called in the robotPeriodic
     public void update() {
+
+        if (m_updateGyroData) {
+            ShuffleLogger.logTrivial("updating gyro data ...");
+            SensorBrain.setGyroPitch(1.);
+            SensorBrain.setGyroRoll(2.);
+            SensorBrain.setGyroYaw(3.);
+        }
     }
 
 }
