@@ -7,8 +7,6 @@ import frc.robot.consoles.Logger;
 import static frc.robot.subsystems.Devices.*;
 
 public class Forklift extends SubsystemBase {
-    
-    private static boolean m_isPistonToggled = false;
 
     public static final double MIN_MOTOR_POWER = 0.1;
 
@@ -52,15 +50,19 @@ public class Forklift extends SubsystemBase {
     }
 
     // move claw using pneumatic pistons
-    public void moveClampPneumatic() {
-        m_isPistonToggled = !m_isPistonToggled;
-        Logger.debug("Toggling Piston to: " + m_isPistonToggled);
-        clawSolenoid.set(m_isPistonToggled);
+    public void moveClampPneumatic(boolean state) {
+        Logger.debug("Toggling Piston to: " + state);
+        clawSolenoid.set(state);
     }
 
     /** Grabs the hatch. */
-    public CommandBase toggleClampCommand() {
+    public CommandBase openClampCommand() {
         // implicitly require `this`
-        return this.runOnce(() -> moveClampPneumatic());
+        return this.runOnce(() -> moveClampPneumatic(true));
+    }
+
+    public CommandBase closeClampCommand() {
+        // implicitly require `this`
+        return this.runOnce(() -> moveClampPneumatic(false));
     }
 }
