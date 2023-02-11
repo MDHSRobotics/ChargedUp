@@ -11,9 +11,9 @@ public class ForkliftBrain {
     // Default Values //
     //----------------//
 
-    public static double extenderPowerDefault = 1;
-    public static double verticalPowerDefault = 1;
-    public static double clawPowerDefault = 1;
+    public static double extenderPowerDefault = 0;
+    public static double verticalPowerDefault = 0;
+    public static double clawPowerDefault = 0;
 
     //---------------------//
     // NetworkTableEntries //

@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.shuffleboard.*;
 
 import frc.robot.brains.SwerveDriverBrain;
 import frc.robot.consoles.ShuffleLogger;
-
+import frc.robot.consoles.Shuffler;
 import frc.robot.BotCommands;
 import frc.robot.BotSubsystems;
 import frc.robot.commands.auto.*;
@@ -19,10 +19,16 @@ public class AutonomousTab {
         // Layouts
         private ShuffleboardLayout m_commandLayout;
         private ShuffleboardLayout m_individualCommandLayout;
+        private ShuffleboardLayout m_layoutChargeStationSpeedPID;
     
         // Widgets
         private ComplexWidget m_autoCommand1, m_autoCommand2, m_autoCommand3, m_autoCommandDefault;
         private ComplexWidget m_balanceCommand, m_moveForwardCommand;
+        private SimpleWidget m_forwardTime;
+
+        private SimpleWidget m_widgetChargeStationSpeedP;
+        private SimpleWidget m_widgetChargeStationSpeedI;
+        private SimpleWidget m_widgetChargeStationSpeedD;
     
         // Constructor
         public AutonomousTab() {
@@ -30,23 +36,27 @@ public class AutonomousTab {
     
             m_tab = Shuffleboard.getTab("Autonomous");
     
-            m_commandLayout = m_tab.getLayout("Auto Commands", BuiltInLayouts.kList);
-            m_commandLayout.withPosition(0, 0);
-            m_commandLayout.withSize(2, 2);
-            m_commandLayout.withProperties(Map.of("Number of columns", 2));
-            m_commandLayout.withProperties(Map.of("Number of rows", 4));
-            m_commandLayout.withProperties(Map.of("Label position", "LEFT"));
-
-            m_individualCommandLayout = m_tab.getLayout("Individual Auto Commands", BuiltInLayouts.kList);
-            m_individualCommandLayout.withPosition(2, 0);
-            m_individualCommandLayout.withSize(2, 3);
-            m_individualCommandLayout.withProperties(Map.of("Number of columns", 2));
-            m_individualCommandLayout.withProperties(Map.of("Number of rows", 2));
-            m_individualCommandLayout.withProperties(Map.of("Label position", "LEFT"));
+            m_commandLayout = Shuffler.constructLayout(m_tab, "Auto Commands", 0, 0, 2, 2, 2, 4, "LEFT");
+            m_individualCommandLayout = Shuffler.constructLayout(m_tab, "Individual Auto Commands", 2, 0, 2, 2, 2, 2, "LEFT");
+            m_layoutChargeStationSpeedPID = Shuffler.constructLayout(m_tab, "Charge Station PID", 4, 0, 2, 2, 1, 3, "TOP");
         }
     
         // Create Brain Widgets
         public void preInitialize() {
+            // Charge Station Speed P
+            m_widgetChargeStationSpeedP = m_layoutChargeStationSpeedPID.add("Charge Station Speed P", SwerveDriverBrain.defaultChargeStationP);
+            SwerveDriverBrain.entryChargeStationSpeedP = m_widgetChargeStationSpeedP.getEntry();
+            m_widgetChargeStationSpeedP.withWidget(BuiltInWidgets.kTextView);
+
+            // Charge Station Speed I
+            m_widgetChargeStationSpeedI = m_layoutChargeStationSpeedPID.add("Charge Station Speed I", SwerveDriverBrain.defaultChargeStationI);
+            SwerveDriverBrain.entryChargeStationSpeedI = m_widgetChargeStationSpeedI.getEntry();
+            m_widgetChargeStationSpeedI.withWidget(BuiltInWidgets.kTextView);
+
+            // Charge Station Speed D
+            m_widgetChargeStationSpeedD = m_layoutChargeStationSpeedPID.add("Charge Station Speed D", SwerveDriverBrain.defaultChargeStationD);
+            SwerveDriverBrain.entryChargeStationSpeedD = m_widgetChargeStationSpeedD.getEntry();
+            m_widgetChargeStationSpeedD.withWidget(BuiltInWidgets.kTextView);
         }
     
         // Create all other Widgets

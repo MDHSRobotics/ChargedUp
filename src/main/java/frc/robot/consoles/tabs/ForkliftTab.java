@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.shuffleboard.*;
 
 import frc.robot.brains.ForkliftBrain;
 import frc.robot.consoles.ShuffleLogger;
+import frc.robot.consoles.Shuffler;
 import frc.robot.BotCommands;
 
 import java.util.Map;
@@ -13,18 +14,13 @@ public class ForkliftTab {
     // Tab & Layouts
     private ShuffleboardTab m_tab;
 
-    private ShuffleboardLayout m_deadZoneLayout;
-    private ShuffleboardLayout m_sensitivitLayout;
+    private ShuffleboardLayout m_motorPowersLayout;
+    private ShuffleboardLayout m_commandLayout;
 
-    // Dead Zones
-    private SimpleWidget m_yDeadZone;
-    private SimpleWidget m_xDeadZone;
-    private SimpleWidget m_zDeadZone;
-
-    // Sensitivity
-    private SimpleWidget m_ySensitivity;
-    private SimpleWidget m_xSensitivity;
-    private SimpleWidget m_zSensitivity;
+    // Widgets
+    private SimpleWidget extenderPower;
+    private SimpleWidget verticalPower;
+    private ComplexWidget toggleClamp;
 
     // Constructor
     public ForkliftTab() {
@@ -33,27 +29,29 @@ public class ForkliftTab {
 
         m_tab = Shuffleboard.getTab("Forklift");
 
-        m_deadZoneLayout = m_tab.getLayout("Dead Zones", BuiltInLayouts.kGrid);
-        m_deadZoneLayout.withPosition(0, 2); 
-        m_deadZoneLayout.withSize(3, 1); 
-        m_deadZoneLayout.withProperties(Map.of("Number of columns", 2)); 
-        m_deadZoneLayout.withProperties(Map.of("Number of rows", 2)); 
-        m_deadZoneLayout.withProperties(Map.of("Label position", "LEFT")); 
-
-        m_sensitivitLayout = m_tab.getLayout("Sensitivity", BuiltInLayouts.kGrid);
-        m_sensitivitLayout.withPosition(0, 2); 
-        m_sensitivitLayout.withSize(3, 1); 
-        m_sensitivitLayout.withProperties(Map.of("Number of columns", 2)); 
-        m_sensitivitLayout.withProperties(Map.of("Number of rows", 2)); 
-        m_sensitivitLayout.withProperties(Map.of("Label position", "LEFT")); 
+        m_motorPowersLayout = Shuffler.constructLayout(m_tab, "Motor Powers", 2, 0, 4, 2, 1, 2, "LEFT");
+        m_commandLayout = Shuffler.constructLayout(m_tab, "Commands", 0, 0, 2, 1, 1, 1, "LEFT");
+        
     }
 
     // Create Brain Widgets
     public void preInitialize() {
+        //Motor Powers
+        extenderPower = m_motorPowersLayout.add("Extender Power", ForkliftBrain.extenderPowerDefault);
+        ForkliftBrain.extenderPowerEntry = extenderPower.getEntry();
+        extenderPower.withWidget(BuiltInWidgets.kNumberSlider);
+        extenderPower.withProperties(Map.of("min", 0, "max", 1.0));
+
+        verticalPower = m_motorPowersLayout.add("Vertical Power", ForkliftBrain.verticalPowerDefault);
+        ForkliftBrain.verticalPowerEntry = verticalPower.getEntry();
+        verticalPower.withWidget(BuiltInWidgets.kNumberSlider);
+        verticalPower.withProperties(Map.of("min", 0, "max", 1.0));
+        
     }
 
     // Create all other Widgets
     public void initialize() {
+        toggleClamp = m_commandLayout.add("Toggle Clamp", BotCommands.toggleClamp);
     }
 
     // Configure all Widgets

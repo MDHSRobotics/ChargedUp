@@ -2,6 +2,8 @@
 package frc.robot.brains;
 
 import edu.wpi.first.networktables.GenericEntry;
+import frc.robot.BotControllers;
+import frc.robot.consoles.tabs.InputsTab;
 
 // This class contains all the shared NetworkTableEntries for the Xbox Controller,
 // their default values, and methods for retrieving their current values.
@@ -32,6 +34,9 @@ public class XboxBrain {
     public static GenericEntry xLeftSensitivityEntry;
     public static GenericEntry yRightSensitivityEntry;
     public static GenericEntry xRightSensitivityEntry;
+
+    public static GenericEntry isControllerOneConnectedEntry;
+    public static GenericEntry isControllerTwoConnectedEntry;
 
     //---------//
     // Getters //
@@ -66,7 +71,15 @@ public class XboxBrain {
     }
 
     public static double getXrightSensitivity() {
-        return xRightSensitivityEntry.getDouble(xRightSensitivityDefault);
+        return yRightSensitivityEntry.getDouble(yRightSensitivityDefault);
     }
+
+    // public static boolean getControllerOneConectedEntry() {
+    //     return isControllerOneConnectedEntry.getBoolean(BotControllers.xbox1.isConnected());
+    // }
+
+    // public static boolean getControllerTwoConectedEntry() {
+    //     return isControllerTwoConnectedEntry.getBoolean(BotControllers.xbox2.isConnected());
+    // }
 
 }

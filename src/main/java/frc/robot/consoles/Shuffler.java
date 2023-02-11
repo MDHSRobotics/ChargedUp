@@ -1,6 +1,11 @@
 package frc.robot.consoles;
 
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardLayout;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.shuffleboard.*;
 import frc.robot.consoles.tabs.*;
+import java.util.Map;
 
 // Class that wraps all of the interaction with the Shuffleboard
 
@@ -69,5 +74,16 @@ public class Shuffler {
     private void setupSmartdashboard() {
     }
 
+    //Method for easier layout construction
+    public static ShuffleboardLayout constructLayout(ShuffleboardTab tab, String title, int posX, int posY, int width, int height, int columns, int rows, String labelPosition){
+        ShuffleboardLayout layout = tab.getLayout(title, BuiltInLayouts.kList);
+        layout = tab.getLayout(title, BuiltInLayouts.kList);
+        layout.withPosition(posX, posY);
+        layout.withSize(width, height);
+        layout.withProperties(Map.of("Number of columns", columns));
+        layout.withProperties(Map.of("Number of rows", rows));
+        layout.withProperties(Map.of("Label position", labelPosition));
+        return layout;
+    }
 }
 

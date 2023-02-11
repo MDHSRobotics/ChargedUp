@@ -17,7 +17,6 @@ public class DriveTab {
     private ShuffleboardLayout m_layoutModuleFR;
     private ShuffleboardLayout m_layoutModuleRL;
     private ShuffleboardLayout m_layoutModuleRR;
-    private ShuffleboardLayout m_layoutChargeStationSpeedPID;
 
     private ShuffleboardLayout m_layoutCommands;
 
@@ -50,10 +49,6 @@ public class DriveTab {
     private SimpleWidget m_widgetTurningEncoderTicksRR;
     private SimpleWidget m_widgetTurningEncoderMpsRR;
 
-    private SimpleWidget m_widgetChargeStationSpeedP;
-    private SimpleWidget m_widgetChargeStationSpeedI;
-    private SimpleWidget m_widgetChargeStationSpeedD;
-
     // Create Brain Widgets
     public DriveTab() {
         ShuffleLogger.logCritical("Constructing DriveTab...");
@@ -63,7 +58,6 @@ public class DriveTab {
         m_layoutModuleFR = m_tab.getLayout("Top Right Module", BuiltInLayouts.kList);
         m_layoutModuleRL = m_tab.getLayout("Rear Left Module", BuiltInLayouts.kList);
         m_layoutModuleRR = m_tab.getLayout("Rear Left Module", BuiltInLayouts.kList);
-        m_layoutChargeStationSpeedPID = m_tab.getLayout("Charge Station Speed PID", BuiltInLayouts.kList);
 
         m_layoutCommands = m_tab.getLayout("Commands", BuiltInLayouts.kList);
     }
@@ -191,20 +185,7 @@ public class DriveTab {
         SwerveDriverBrain.entryTurningEncoderMpsRR = m_widgetTurningEncoderMpsRR.getEntry();
         m_widgetTurningEncoderMpsRR.withWidget(BuiltInWidgets.kTextView);
 
-        // Charge Station Speed P
-        m_widgetChargeStationSpeedP = m_layoutChargeStationSpeedPID.add("Charge Station Speed P", SwerveDriverBrain.defaultChargeStationP);
-        SwerveDriverBrain.entryChargeStationSpeedP = m_widgetChargeStationSpeedP.getEntry();
-        m_widgetChargeStationSpeedP.withWidget(BuiltInWidgets.kTextView);
 
-        // Charge Station Speed I
-        m_widgetChargeStationSpeedI = m_layoutChargeStationSpeedPID.add("Charge Station Speed I", SwerveDriverBrain.defaultChargeStationI);
-        SwerveDriverBrain.entryChargeStationSpeedI = m_widgetChargeStationSpeedI.getEntry();
-        m_widgetChargeStationSpeedI.withWidget(BuiltInWidgets.kTextView);
-
-        // Charge Station Speed D
-        m_widgetChargeStationSpeedD = m_layoutChargeStationSpeedPID.add("Charge Station Speed D", SwerveDriverBrain.defaultChargeStationD);
-        SwerveDriverBrain.entryChargeStationSpeedD = m_widgetChargeStationSpeedD.getEntry();
-        m_widgetChargeStationSpeedD.withWidget(BuiltInWidgets.kTextView);
     }
 
     // Create all other Widgets
@@ -237,12 +218,6 @@ public class DriveTab {
         m_layoutModuleRR.withProperties(Map.of("Number of columns", 2));
         m_layoutModuleRR.withProperties(Map.of("Number of rows", 4));
         m_layoutModuleRR.withProperties(Map.of("Label position", "TOP"));
-
-        m_layoutChargeStationSpeedPID.withPosition(3, 0);
-        m_layoutChargeStationSpeedPID.withSize(2, 4);
-        m_layoutChargeStationSpeedPID.withProperties(Map.of("Number of columns", 2));
-        m_layoutChargeStationSpeedPID.withProperties(Map.of("Number of rows", 4));
-        m_layoutChargeStationSpeedPID.withProperties(Map.of("Label position", "TOP"));
 
         m_layoutCommands.withPosition(0, 0);
         m_layoutCommands.withSize(2, 2);
