@@ -20,7 +20,7 @@ public class ForkliftTab {
     // Widgets
     private SimpleWidget extenderPower;
     private SimpleWidget verticalPower;
-    private ComplexWidget toggleClamp;
+    private ComplexWidget openClamp, closeClamp;
 
     // Constructor
     public ForkliftTab() {
@@ -51,7 +51,8 @@ public class ForkliftTab {
 
     // Create all other Widgets
     public void initialize() {
-        toggleClamp = m_commandLayout.add("Toggle Clamp", BotCommands.toggleClamp);
+        openClamp = m_commandLayout.add("Toggle Clamp", BotCommands.openClamp);
+        closeClamp = m_commandLayout.add("Toggle Clamp", BotCommands.closeClamp);
     }
 
     // Configure all Widgets
