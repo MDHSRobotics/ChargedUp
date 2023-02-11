@@ -19,6 +19,9 @@ public class SwerveDriverBrain {
     public final static double defaultChargeStationI = 0.;
     public final static double defaultChargeStationD = 0.;
 
+    public static String currentPositionDefault = "()";
+    public static double currentRotationDefault = 0;
+
     //---------------------//
     // NetworkTableEntries //
     //---------------------//
@@ -56,6 +59,9 @@ public class SwerveDriverBrain {
     public static GenericEntry entryChargeStationSpeedP;
     public static GenericEntry entryChargeStationSpeedI;
     public static GenericEntry entryChargeStationSpeedD;
+
+    public static GenericEntry currentPosition;
+    public static GenericEntry currentRotation;
 
     //---------//
     // Setters //

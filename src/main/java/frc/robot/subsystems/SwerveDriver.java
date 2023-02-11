@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import frc.robot.BotSensors;
+import frc.robot.brains.SwerveDriverBrain;
 import frc.robot.consoles.Logger;
 import frc.robot.devices.DevSwerveModule;
 import frc.robot.subsystems.constants.SwerveConstants;
@@ -160,6 +161,10 @@ public class SwerveDriver extends SubsystemBase {
         // Update SmartDashboard
         SmartDashboard.putNumber("Robot Heading", getHeading());
         SmartDashboard.putString("Robot Location", getPose().getTranslation().toString());
+
+        SwerveDriverBrain.currentPosition.setString(getPose().getTranslation().toString());
+        SwerveDriverBrain.currentRotation.setDouble(getHeading());
+
 
         // Update Shuffleboard
         frontLeft.setShuffleboardBrain();

@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.shuffleboard.*;
 import frc.robot.BotSubsystems;
 import frc.robot.brains.SwerveDriverBrain;
 import frc.robot.consoles.ShuffleLogger;
+import frc.robot.consoles.Shuffler;
 
 import java.util.Map;
 
@@ -19,6 +20,8 @@ public class DriveTab {
     private ShuffleboardLayout m_layoutModuleRR;
 
     private ShuffleboardLayout m_layoutCommands;
+
+    private ShuffleboardLayout m_telemetryLayout;
 
     // Widgets
     private ComplexWidget m_widgetSwerveDrive;
@@ -49,17 +52,20 @@ public class DriveTab {
     private SimpleWidget m_widgetTurningEncoderTicksRR;
     private SimpleWidget m_widgetTurningEncoderMpsRR;
 
+    private SimpleWidget m_positionWidget;
+    private SimpleWidget m_rotationWidget;
+
     // Create Brain Widgets
     public DriveTab() {
         ShuffleLogger.logCritical("Constructing DriveTab...");
 
         m_tab = Shuffleboard.getTab("Drive");
-        m_layoutModuleFL = m_tab.getLayout("Top Left Module", BuiltInLayouts.kList);
-        m_layoutModuleFR = m_tab.getLayout("Top Right Module", BuiltInLayouts.kList);
-        m_layoutModuleRL = m_tab.getLayout("Rear Left Module", BuiltInLayouts.kList);
-        m_layoutModuleRR = m_tab.getLayout("Rear Left Module", BuiltInLayouts.kList);
+        m_layoutModuleFL = Shuffler.constructLayout(m_tab, "Top Left Module", 2, 0, 2, 2, 2, 4, "LEFT");
+        m_layoutModuleFR = Shuffler.constructLayout(m_tab, "Top Right Module", 4, 0, 2, 2, 2, 4, "LEFT");
+        m_layoutModuleRL = Shuffler.constructLayout(m_tab, "Rear Left Module", 2, 2, 2, 2, 2, 4, "LEFT");
+        m_layoutModuleRR = Shuffler.constructLayout(m_tab, "Rear Right Moudle", 4, 2, 2, 2, 2, 4, "LEFT");
 
-        m_layoutCommands = m_tab.getLayout("Commands", BuiltInLayouts.kList);
+        m_telemetryLayout = Shuffler.constructLayout(m_tab, "Telemetry", 0, 0, 2, 2, 1, 2, "LEFT");
     }
 
     // Create Brain Widgets
@@ -185,6 +191,15 @@ public class DriveTab {
         SwerveDriverBrain.entryTurningEncoderMpsRR = m_widgetTurningEncoderMpsRR.getEntry();
         m_widgetTurningEncoderMpsRR.withWidget(BuiltInWidgets.kTextView);
 
+        // Current Position
+        m_positionWidget = m_telemetryLayout.add("Current Position", SwerveDriverBrain.currentPositionDefault);
+        SwerveDriverBrain.currentPosition = m_positionWidget.getEntry();
+        m_positionWidget.withWidget(BuiltInWidgets.kTextView);
+
+        m_rotationWidget = m_telemetryLayout.add("Current Rotation", SwerveDriverBrain.currentRotationDefault);
+        SwerveDriverBrain.currentRotation = m_rotationWidget.getEntry();
+        m_rotationWidget.withWidget(BuiltInWidgets.kTextView);
+
 
     }
 
@@ -195,35 +210,6 @@ public class DriveTab {
 
     // Configure all Widgets
     public void configure() {
-        m_layoutModuleFL.withPosition(3, 0);
-        m_layoutModuleFL.withSize(2, 4);
-        m_layoutModuleFL.withProperties(Map.of("Number of columns", 2));
-        m_layoutModuleFL.withProperties(Map.of("Number of rows", 4));
-        m_layoutModuleFL.withProperties(Map.of("Label position", "TOP"));
-
-        m_layoutModuleFR.withPosition(3, 0);
-        m_layoutModuleFR.withSize(2, 4);
-        m_layoutModuleFR.withProperties(Map.of("Number of columns", 2));
-        m_layoutModuleFR.withProperties(Map.of("Number of rows", 4));
-        m_layoutModuleFR.withProperties(Map.of("Label position", "TOP"));
-
-        m_layoutModuleRL.withPosition(3, 0);
-        m_layoutModuleRL.withSize(2, 4);
-        m_layoutModuleRL.withProperties(Map.of("Number of columns", 2));
-        m_layoutModuleRL.withProperties(Map.of("Number of rows", 4));
-        m_layoutModuleRL.withProperties(Map.of("Label position", "TOP"));
-
-        m_layoutModuleRR.withPosition(3, 0);
-        m_layoutModuleRR.withSize(2, 4);
-        m_layoutModuleRR.withProperties(Map.of("Number of columns", 2));
-        m_layoutModuleRR.withProperties(Map.of("Number of rows", 4));
-        m_layoutModuleRR.withProperties(Map.of("Label position", "TOP"));
-
-        m_layoutCommands.withPosition(0, 0);
-        m_layoutCommands.withSize(2, 2);
-        m_layoutCommands.withProperties(Map.of("Number of columns", 2));
-        m_layoutCommands.withProperties(Map.of("Number of rows", 2));
-        m_layoutCommands.withProperties(Map.of("Label position", "TOP"));
 
         m_widgetSwerveDrive.withPosition(3, 3);
         m_widgetSwerveDrive.withSize(3, 1);
