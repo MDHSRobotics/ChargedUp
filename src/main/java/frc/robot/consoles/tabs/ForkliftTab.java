@@ -51,8 +51,8 @@ public class ForkliftTab {
 
     // Create all other Widgets
     public void initialize() {
-        openClamp = m_commandLayout.add("Toggle Clamp", BotCommands.openClamp);
-        closeClamp = m_commandLayout.add("Toggle Clamp", BotCommands.closeClamp);
+        openClamp = m_commandLayout.add("Open Clamp", BotCommands.openClamp);
+        closeClamp = m_commandLayout.add("Close Clamp", BotCommands.closeClamp);
     }
 
     // Configure all Widgets

@@ -6,6 +6,8 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.consoles.Logger;
 import static frc.robot.subsystems.Devices.*;
 
+import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
+
 public class Forklift extends SubsystemBase {
 
     public static final double MIN_MOTOR_POWER = 0.1;
@@ -13,13 +15,20 @@ public class Forklift extends SubsystemBase {
     public Forklift() {
         Logger.setup("Constructing Subsystem: Forklift...");
 
-        sparkMaxForkliftClamp.restoreFactoryDefaults();
-        sparkMaxForkliftExtender.restoreFactoryDefaults();
+        sparkMaxForkliftVerticalTwo.restoreFactoryDefaults();
         sparkMaxForkliftVertical.restoreFactoryDefaults();
-
-        sparkMaxForkliftClamp.setSmartCurrentLimit(15);
-        sparkMaxForkliftExtender.setSmartCurrentLimit(15);
+        sparkMaxForkliftClamp.restoreFactoryDefaults();
+        talonFxForkliftExtender.configFactoryDefault();
+        talonFxForkliftExtenderTwo.configFactoryDefault();
+        
+        sparkMaxForkliftVerticalTwo.setSmartCurrentLimit(15);
         sparkMaxForkliftVertical.setSmartCurrentLimit(15);
+        sparkMaxForkliftClamp.setSmartCurrentLimit(15);
+        talonFxForkliftExtender.setCurrentLimit(15);
+        talonFxForkliftExtenderTwo.setCurrentLimit(15);
+
+        talonFxForkliftExtenderTwo.follow(talonFxForkliftExtender);
+        sparkMaxForkliftVerticalTwo.follow(sparkMaxForkliftVertical);
     } 
 
     //extend arm
@@ -28,7 +37,7 @@ public class Forklift extends SubsystemBase {
             power = 0.0;
         }
         //Logger.debug("Extender Power: " + power);
-        sparkMaxForkliftExtender.set(power);
+        talonFxForkliftExtender.set(power);
     }
 
     // move arm vertical
