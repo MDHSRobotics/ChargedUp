@@ -16,6 +16,12 @@ public class BotSensors {
     public static void initializeSensors() {
         Logger.setup("Initializing BotSensors...");
         gyro.initialize();
+        if (isReal) {
+            Limelight.setPipeline(0);
+            Limelight.setCamMode(0);
+        } else {
+            Logger.setup("Skipping initializion of sensors in Simulation mode...");
+        }
     }
 
 }

@@ -3,7 +3,8 @@
 import edu.wpi.first.networktables.NetworkTable; 
 import edu.wpi.first.networktables.NetworkTableEntry; 
 import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.wpilibj2.command.SubsystemBase; 
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.consoles.Logger; 
  
 public class Limelight extends SubsystemBase { 
     private static double averageDistance; 
@@ -22,11 +23,13 @@ public class Limelight extends SubsystemBase {
     private static NetworkTableEntry m_targetVisionCoverage = m_limelightNetworkTable.getEntry("ta"); // How many pixels of screen is target (target area)
     private static NetworkTableEntry m_ledMode = m_limelightNetworkTable.getEntry("ledMode"); // Set led state
     private static NetworkTableEntry m_pipeline = m_limelightNetworkTable.getEntry("pipeline"); // Set pipeline
+    private static NetworkTableEntry m_camMode = m_limelightNetworkTable.getEntry("camMode");
 
-    private static boolean m_isAligning = false;
+    private static boolean m_isAligning = false;    
 
     public static double getXOffset() { 
-        return m_horizontalOffset.getDouble(0.0); 
+        Logger.info("Help me " + m_horizontalOffset.getDouble(-1));
+        return m_horizontalOffset.getDouble(-1); 
     } 
     
     public static double getYOffset() { 
@@ -46,20 +49,22 @@ public class Limelight extends SubsystemBase {
     
     public static boolean getDetectionState() {
         boolean targetDetected = false;
-        if (m_targetDetected.getInteger(0) == 1){
+        if (m_targetDetected.getInteger(0) == 1) {
             //Turn on light
             targetDetected = true;
-
         } else {
             //Turn off light
             targetDetected = false;
-
         }
         return targetDetected;
     }
 
     public static void setPipeline(int pipeline) {
         m_pipeline.setNumber(pipeline);
+    }
+
+    public static void setCamMode(int cammode) {
+        m_camMode.setNumber(cammode);
     }
 
     // Uses the limelight to find the distance in feet 
@@ -72,4 +77,5 @@ public class Limelight extends SubsystemBase {
 
         return distance;
     } 
+
 }
