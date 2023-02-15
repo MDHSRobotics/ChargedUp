@@ -60,6 +60,7 @@ public class DriveTab {
         ShuffleLogger.logCritical("Constructing DriveTab...");
 
         m_tab = Shuffleboard.getTab("Drive");
+        
         m_layoutModuleFL = Shuffler.constructLayout(m_tab, "Top Left Module", 2, 0, 2, 2, 2, 4, "LEFT");
         m_layoutModuleFR = Shuffler.constructLayout(m_tab, "Top Right Module", 4, 0, 2, 2, 2, 4, "LEFT");
         m_layoutModuleRL = Shuffler.constructLayout(m_tab, "Rear Left Module", 2, 2, 2, 2, 2, 4, "LEFT");
