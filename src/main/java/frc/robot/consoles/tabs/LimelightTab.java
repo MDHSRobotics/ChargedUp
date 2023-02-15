@@ -93,21 +93,10 @@ public class LimelightTab {
         m_kDDistance.withWidget(BuiltInWidgets.kTextView);
 
         // Limelight Values
-
         m_xOffset = m_limelightLayout.add("X Offset", Limelight.getXOffset());
-        LimelightBrain.xOffsetEntry = m_xOffset.getEntry();
-        m_xOffset.withWidget(BuiltInWidgets.kTextView);
-
         m_yOffset = m_limelightLayout.add("Y Offset", Limelight.getYOffset());
-        LimelightBrain.yOffsetEntry = m_yOffset.getEntry();
-        m_yOffset.withWidget(BuiltInWidgets.kTextView);
-
         m_distance = m_limelightLayout.add("Distance", Limelight.calculateDistanceToTarget());
-        LimelightBrain.distanceEntry = m_distance.getEntry();
-        m_distance.withWidget(BuiltInWidgets.kTextView);
-
         m_validTarget = m_limelightLayout.add("Valid Target", Limelight.getDetectionState());
-        m_validTarget.withWidget(BuiltInWidgets.kBooleanBox);
 
     }
 
