@@ -2,6 +2,7 @@
 package frc.robot.brains;
 
 import edu.wpi.first.networktables.GenericEntry;
+import frc.robot.subsystems.constants.SwerveConstants;
 
 // This class contains all the shared NetworkTableEntries for the Swerve Drive Subsystem,
 // their default values, and methods for retrieving their current values.
@@ -21,6 +22,11 @@ public class SwerveDriverBrain {
 
     public static String currentPositionDefault = "()";
     public static double currentRotationDefault = 0;
+
+    public static double defaultFLEncoderOffset = SwerveConstants.kFrontLeftDriveAbsoluteEncoderOffsetRad;
+    public static double defaultFREncoderOffset = SwerveConstants.kFrontRightDriveAbsoluteEncoderOffsetRad;
+    public static double defaultRLEncoderOffset = SwerveConstants.kRearLeftDriveAbsoluteEncoderOffsetRad;
+    public static double defaultRREncoderOffset = SwerveConstants.kRearRightDriveAbsoluteEncoderOffsetRad;
 
     //---------------------//
     // NetworkTableEntries //
@@ -62,6 +68,11 @@ public class SwerveDriverBrain {
 
     public static GenericEntry currentPosition;
     public static GenericEntry currentRotation;
+
+    public static GenericEntry FLEncoderOffsetEntry;
+    public static GenericEntry FREncoderOffsetEntry;
+    public static GenericEntry RLEncoderOffsetEntry;
+    public static GenericEntry RREncoderOffsetEntry;
 
     //---------//
     // Setters //
@@ -157,5 +168,4 @@ public class SwerveDriverBrain {
     public static double getChargeStationD() {
         return entryChargeStationSpeedD.getDouble(defaultChargeStationD);
     }
-
 }

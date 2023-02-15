@@ -22,6 +22,7 @@ public class DriveTab {
     private ShuffleboardLayout m_layoutCommands;
 
     private ShuffleboardLayout m_telemetryLayout;
+    private ShuffleboardLayout m_encoderOffsetLayout;
 
     // Widgets
     private ComplexWidget m_widgetSwerveDrive;
@@ -55,18 +56,24 @@ public class DriveTab {
     private SimpleWidget m_positionWidget;
     private SimpleWidget m_rotationWidget;
 
+    private SimpleWidget m_FLEncoderOffsetWidget;
+    private SimpleWidget m_FREncoderOffsetWidget;
+    private SimpleWidget m_RLEncoderOffsetWidget;
+    private SimpleWidget m_RREncoderOffsetWidget;
+
     // Create Brain Widgets
     public DriveTab() {
         ShuffleLogger.logCritical("Constructing DriveTab...");
 
         m_tab = Shuffleboard.getTab("Drive");
-        
+
         m_layoutModuleFL = Shuffler.constructLayout(m_tab, "Top Left Module", 2, 0, 2, 2, 2, 4, "LEFT");
         m_layoutModuleFR = Shuffler.constructLayout(m_tab, "Top Right Module", 4, 0, 2, 2, 2, 4, "LEFT");
         m_layoutModuleRL = Shuffler.constructLayout(m_tab, "Rear Left Module", 2, 2, 2, 2, 2, 4, "LEFT");
         m_layoutModuleRR = Shuffler.constructLayout(m_tab, "Rear Right Moudle", 4, 2, 2, 2, 2, 4, "LEFT");
 
         m_telemetryLayout = Shuffler.constructLayout(m_tab, "Telemetry", 0, 0, 2, 2, 1, 2, "LEFT");
+        m_encoderOffsetLayout = Shuffler.constructLayout(m_tab, "Telemetry", 0, 2, 2, 2, 1, 4, "LEFT");
     }
 
     // Create Brain Widgets
@@ -201,6 +208,17 @@ public class DriveTab {
         SwerveDriverBrain.currentRotation = m_rotationWidget.getEntry();
         m_rotationWidget.withWidget(BuiltInWidgets.kTextView);
 
+        m_FLEncoderOffsetWidget = m_encoderOffsetLayout.add("FL Encoder Offset", SwerveDriverBrain.defaultFLEncoderOffset);
+        SwerveDriverBrain.FLEncoderOffsetEntry = m_FLEncoderOffsetWidget.getEntry();
+
+        m_FREncoderOffsetWidget = m_encoderOffsetLayout.add("FR Encoder Offset", SwerveDriverBrain.defaultFREncoderOffset);
+        SwerveDriverBrain.FREncoderOffsetEntry = m_FREncoderOffsetWidget.getEntry();
+
+        m_RLEncoderOffsetWidget = m_encoderOffsetLayout.add("RL Encoder Offset", SwerveDriverBrain.defaultRLEncoderOffset);
+        SwerveDriverBrain.RLEncoderOffsetEntry = m_RLEncoderOffsetWidget.getEntry();
+
+        m_RREncoderOffsetWidget = m_encoderOffsetLayout.add("RR Encoder Offset", SwerveDriverBrain.defaultRREncoderOffset);
+        SwerveDriverBrain.RREncoderOffsetEntry = m_RREncoderOffsetWidget.getEntry();
 
     }
 
