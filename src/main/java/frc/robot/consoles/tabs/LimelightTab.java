@@ -99,9 +99,11 @@ public class LimelightTab {
         m_xOffset.withWidget(BuiltInWidgets.kTextView);
 
         m_yOffset = m_limelightLayout.add("Y Offset", Limelight.getYOffset());
+        LimelightBrain.yOffsetEntry = m_yOffset.getEntry();
         m_yOffset.withWidget(BuiltInWidgets.kTextView);
 
         m_distance = m_limelightLayout.add("Distance", Limelight.calculateDistanceToTarget());
+        LimelightBrain.distanceEntry = m_distance.getEntry();
         m_distance.withWidget(BuiltInWidgets.kTextView);
 
         m_validTarget = m_limelightLayout.add("Valid Target", Limelight.getDetectionState());
@@ -121,6 +123,9 @@ public class LimelightTab {
     // This will be called in the robotPeriodic
     public void update() {
         LimelightBrain.xOffsetEntry.setDouble(Limelight.getXOffset());
+        LimelightBrain.yOffsetEntry.setDouble(Limelight.getYOffset());
+        LimelightBrain.distanceEntry.setDouble(Limelight.calculateDistanceToTarget());
+        LimelightBrain.validTargetEntry.setBoolean(Limelight.getDetectionState());
     }
 
 }

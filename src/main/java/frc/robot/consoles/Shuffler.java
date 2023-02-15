@@ -30,7 +30,6 @@ public class Shuffler {
         m_inputsTab = new InputsTab();
         m_autonomousTab = new AutonomousTab();
         m_sensorTab = new SensorTab();
-        m_jstickTab = new JoystickTab();
         m_limelightTab = new LimelightTab();
 
     }
@@ -42,7 +41,6 @@ public class Shuffler {
         m_inputsTab.preInitialize();
         m_autonomousTab.preInitialize();
         m_sensorTab.preInitialize();
-        m_jstickTab.preInitialize();
         m_limelightTab.preInitialize();
     }
 
@@ -53,7 +51,6 @@ public class Shuffler {
         m_inputsTab.initialize();
         m_autonomousTab.initialize();
         m_sensorTab.initialize();
-        m_jstickTab.initialize();
         m_limelightTab.initialize();
     }
 
@@ -64,7 +61,6 @@ public class Shuffler {
         m_inputsTab.configure();
         m_autonomousTab.configure();
         m_sensorTab.configure();
-        m_jstickTab.configure();
         m_limelightTab.configure();
 
         setupSmartdashboard();
