@@ -3,6 +3,7 @@ package frc.robot.subsystems.constants;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.util.Units;
+import frc.robot.brains.SwerveDriverBrain;
 
 public final class SwerveConstants {
     public static final double kGearRatioTurning = 12.8;
@@ -68,10 +69,15 @@ public final class SwerveConstants {
           current absolute position in degrees. That number is the offset
           for this module.  Convert that value from degrees to radians below.
     */
-    public static final double kFrontLeftDriveAbsoluteEncoderOffsetRad = Units.degreesToRadians(84.199); 
-    public static final double kRearLeftDriveAbsoluteEncoderOffsetRad = Units.degreesToRadians(-141.768);
-    public static final double kFrontRightDriveAbsoluteEncoderOffsetRad = Units.degreesToRadians(168.750);
-    public static final double kRearRightDriveAbsoluteEncoderOffsetRad = Units.degreesToRadians(-87.891);
+    public static final double kFrontLeftDriveAbsoluteEncoderOffsetRadDefault = Units.degreesToRadians(84.199); 
+    public static final double kRearLeftDriveAbsoluteEncoderOffsetRadDefault = Units.degreesToRadians(-141.768);
+    public static final double kFrontRightDriveAbsoluteEncoderOffsetRadDefault = Units.degreesToRadians(168.750);
+    public static final double kRearRightDriveAbsoluteEncoderOffsetRadDefault = Units.degreesToRadians(-87.891);
+
+    public static final double kFrontLeftDriveAbsoluteEncoderOffsetRad = SwerveDriverBrain.getFLEncoderOffset(); 
+    public static final double kRearLeftDriveAbsoluteEncoderOffsetRad = SwerveDriverBrain.getFREncoderOffset(); 
+    public static final double kFrontRightDriveAbsoluteEncoderOffsetRad = SwerveDriverBrain.getRLEncoderOffset(); 
+    public static final double kRearRightDriveAbsoluteEncoderOffsetRad = SwerveDriverBrain.getRREncoderOffset(); 
 
     public static final double kTeleDriveMaxSpeedMetersPerSecond = kPhysicalMaxSpeedMetersPerSecond / 4;
     public static final double kTeleDriveMaxAngularSpeedRadiansPerSecond = 3;

@@ -23,10 +23,10 @@ public class SwerveDriverBrain {
     public static String currentPositionDefault = "()";
     public static double currentRotationDefault = 0;
 
-    public static double defaultFLEncoderOffset = SwerveConstants.kFrontLeftDriveAbsoluteEncoderOffsetRad;
-    public static double defaultFREncoderOffset = SwerveConstants.kFrontRightDriveAbsoluteEncoderOffsetRad;
-    public static double defaultRLEncoderOffset = SwerveConstants.kRearLeftDriveAbsoluteEncoderOffsetRad;
-    public static double defaultRREncoderOffset = SwerveConstants.kRearRightDriveAbsoluteEncoderOffsetRad;
+    public static double defaultFLEncoderOffset = SwerveConstants.kFrontLeftDriveAbsoluteEncoderOffsetRadDefault;
+    public static double defaultFREncoderOffset = SwerveConstants.kFrontRightDriveAbsoluteEncoderOffsetRadDefault;
+    public static double defaultRLEncoderOffset = SwerveConstants.kRearLeftDriveAbsoluteEncoderOffsetRadDefault;
+    public static double defaultRREncoderOffset = SwerveConstants.kRearRightDriveAbsoluteEncoderOffsetRadDefault;
 
     //---------------------//
     // NetworkTableEntries //
@@ -168,4 +168,21 @@ public class SwerveDriverBrain {
     public static double getChargeStationD() {
         return entryChargeStationSpeedD.getDouble(defaultChargeStationD);
     }
+
+    public static double getFLEncoderOffset() {
+        return FLEncoderOffsetEntry.getDouble(defaultFLEncoderOffset);
+    }
+
+    public static double getFREncoderOffset() {
+        return FREncoderOffsetEntry.getDouble(defaultFREncoderOffset);
+    }
+
+    public static double getRLEncoderOffset() {
+        return RLEncoderOffsetEntry.getDouble(defaultRLEncoderOffset);
+    }
+
+    public static double getRREncoderOffset() {
+        return RREncoderOffsetEntry.getDouble(defaultRREncoderOffset);
+    }
+
 }
