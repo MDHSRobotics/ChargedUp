@@ -50,29 +50,29 @@ public class JoystickTab {
     // Create Brain Widgets
     public void preInitialize() {
         // Dead Zones
-        m_yDeadZone = m_deadZoneLayout.add("yDeadZone", JoystickBrain.yDeadZoneDefault);
-        JoystickBrain.yDeadZoneEntry = m_yDeadZone.getEntry();
+        m_yDeadZone = m_deadZoneLayout.add("yDeadZone", JoystickBrain.defaultYDeadZone);
+        JoystickBrain.entryYDeadZone = m_yDeadZone.getEntry();
         m_yDeadZone.withWidget(BuiltInWidgets.kTextView);
 
-        m_xDeadZone = m_deadZoneLayout.add("xDeadZone", JoystickBrain.xDeadZoneDefault);
-        JoystickBrain.xDeadZoneEntry = m_xDeadZone.getEntry();
+        m_xDeadZone = m_deadZoneLayout.add("xDeadZone", JoystickBrain.defaultXDeadZone);
+        JoystickBrain.entryXDeadZone = m_xDeadZone.getEntry();
         m_xDeadZone.withWidget(BuiltInWidgets.kTextView);
 
-        m_zDeadZone = m_deadZoneLayout.add("zDeadZone", JoystickBrain.zDeadZoneDefault);
-        JoystickBrain.zDeadZoneEntry = m_zDeadZone.getEntry();
+        m_zDeadZone = m_deadZoneLayout.add("zDeadZone", JoystickBrain.defaultZDeadZone);
+        JoystickBrain.entryZDeadZone = m_zDeadZone.getEntry();
         m_zDeadZone.withWidget(BuiltInWidgets.kTextView);
 
         // Sensitivity
-        m_ySensitivity = m_sensitivitLayout.add("ySensitivity", JoystickBrain.ySensitivityDefault);
-        JoystickBrain.ySensitivityEntry = m_ySensitivity.getEntry();
+        m_ySensitivity = m_sensitivitLayout.add("ySensitivity", JoystickBrain.defaultYSensitivity);
+        JoystickBrain.entryYSensitivity = m_ySensitivity.getEntry();
         m_ySensitivity.withWidget(BuiltInWidgets.kTextView);
 
-        m_xSensitivity = m_sensitivitLayout.add("xSensitivity", JoystickBrain.xSensitivityDefault);
-        JoystickBrain.xSensitivityEntry = m_xSensitivity.getEntry();
+        m_xSensitivity = m_sensitivitLayout.add("xSensitivity", JoystickBrain.defaultXSensitivity);
+        JoystickBrain.entryXSensitivity = m_xSensitivity.getEntry();
         m_xSensitivity.withWidget(BuiltInWidgets.kTextView);
 
-        m_zSensitivity = m_sensitivitLayout.add("zSensitivity", JoystickBrain.zSensitivityDefault);
-        JoystickBrain.zSensitivityEntry = m_zSensitivity.getEntry();
+        m_zSensitivity = m_sensitivitLayout.add("zSensitivity", JoystickBrain.defaultZSensitivity);
+        JoystickBrain.entryZSensitivity = m_zSensitivity.getEntry();
         m_zSensitivity.withWidget(BuiltInWidgets.kTextView);
     }
 

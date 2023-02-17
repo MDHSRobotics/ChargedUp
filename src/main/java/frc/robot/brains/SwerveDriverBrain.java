@@ -4,8 +4,8 @@ package frc.robot.brains;
 import edu.wpi.first.networktables.GenericEntry;
 import frc.robot.subsystems.constants.SwerveConstants;
 
-// This class contains all the shared NetworkTableEntries for the Swerve Drive Subsystem,
-// their default values, and methods for retrieving their current values.
+// This class contains all the shared NetworkTableEntries for the Swerve Drive,
+// their default values, and methods for retrieving their current values
 public class SwerveDriverBrain {
 
     //----------------//
@@ -23,10 +23,10 @@ public class SwerveDriverBrain {
     public static String currentPositionDefault = "()";
     public static double currentRotationDefault = 0;
 
-    public static double defaultFLEncoderOffset = SwerveConstants.kFrontLeftDriveAbsoluteEncoderOffsetRadDefault;
-    public static double defaultFREncoderOffset = SwerveConstants.kFrontRightDriveAbsoluteEncoderOffsetRadDefault;
-    public static double defaultRLEncoderOffset = SwerveConstants.kRearLeftDriveAbsoluteEncoderOffsetRadDefault;
-    public static double defaultRREncoderOffset = SwerveConstants.kRearRightDriveAbsoluteEncoderOffsetRadDefault;
+    public static double defaultFLEncoderOffset = SwerveConstants.kFrontLeftDriveAbsoluteEncoderOffsetRad;
+    public static double defaultFREncoderOffset = SwerveConstants.kFrontRightDriveAbsoluteEncoderOffsetRad;
+    public static double defaultRLEncoderOffset = SwerveConstants.kRearLeftDriveAbsoluteEncoderOffsetRad;
+    public static double defaultRREncoderOffset = SwerveConstants.kRearRightDriveAbsoluteEncoderOffsetRad;
 
     //---------------------//
     // NetworkTableEntries //
@@ -62,17 +62,49 @@ public class SwerveDriverBrain {
     public static GenericEntry entryTurningEncoderMpsRL;
     public static GenericEntry entryTurningEncoderMpsRR;
 
+    public static GenericEntry entryFLEncoderOffset;
+    public static GenericEntry entryFREncoderOffset;
+    public static GenericEntry entryRLEncoderOffset;
+    public static GenericEntry entryRREncoderOffset;
+
     public static GenericEntry entryChargeStationSpeedP;
     public static GenericEntry entryChargeStationSpeedI;
     public static GenericEntry entryChargeStationSpeedD;
 
-    public static GenericEntry currentPosition;
-    public static GenericEntry currentRotation;
+    public static GenericEntry entryCurrentPosition;
+    public static GenericEntry entryCurrentRotation;
 
-    public static GenericEntry FLEncoderOffsetEntry;
-    public static GenericEntry FREncoderOffsetEntry;
-    public static GenericEntry RLEncoderOffsetEntry;
-    public static GenericEntry RREncoderOffsetEntry;
+    //---------//
+    // Getters //
+    //---------//
+
+    public static double getFLEncoderOffset() {
+        return entryFLEncoderOffset.getDouble(defaultFLEncoderOffset);
+    }
+
+    public static double getFREncoderOffset() {
+        return entryFREncoderOffset.getDouble(defaultFREncoderOffset);
+    }
+
+    public static double getRLEncoderOffset() {
+        return entryRLEncoderOffset.getDouble(defaultRLEncoderOffset);
+    }
+
+    public static double getRREncoderOffset() {
+        return entryRREncoderOffset.getDouble(defaultRREncoderOffset);
+    }
+
+    public static double getChargeStationP() {
+        return entryChargeStationSpeedP.getDouble(defaultChargeStationP);
+    }
+
+    public static double getChargeStationI() {
+        return entryChargeStationSpeedI.getDouble(defaultChargeStationI);
+    }
+
+    public static double getChargeStationD() {
+        return entryChargeStationSpeedD.getDouble(defaultChargeStationD);
+    }
 
     //---------//
     // Setters //
@@ -151,38 +183,6 @@ public class SwerveDriverBrain {
             default:
                 throw new java.lang.Error(String.format("Unknown module name %s", moduleName));
         }
-    }
-
-    //---------//
-    // Getters //
-    //---------//
-
-    public static double getChargeStationP() {
-        return entryChargeStationSpeedP.getDouble(defaultChargeStationP);
-    }
-
-    public static double getChargeStationI() {
-        return entryChargeStationSpeedI.getDouble(defaultChargeStationI);
-    }
-
-    public static double getChargeStationD() {
-        return entryChargeStationSpeedD.getDouble(defaultChargeStationD);
-    }
-
-    public static double getFLEncoderOffset() {
-        return FLEncoderOffsetEntry.getDouble(defaultFLEncoderOffset);
-    }
-
-    public static double getFREncoderOffset() {
-        return FREncoderOffsetEntry.getDouble(defaultFREncoderOffset);
-    }
-
-    public static double getRLEncoderOffset() {
-        return RLEncoderOffsetEntry.getDouble(defaultRLEncoderOffset);
-    }
-
-    public static double getRREncoderOffset() {
-        return RREncoderOffsetEntry.getDouble(defaultRREncoderOffset);
     }
 
 }

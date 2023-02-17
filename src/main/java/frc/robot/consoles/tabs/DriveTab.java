@@ -201,24 +201,24 @@ public class DriveTab {
 
         // Current Position
         m_positionWidget = m_telemetryLayout.add("Current Position", SwerveDriverBrain.currentPositionDefault);
-        SwerveDriverBrain.currentPosition = m_positionWidget.getEntry();
+        SwerveDriverBrain.entryCurrentPosition = m_positionWidget.getEntry();
         m_positionWidget.withWidget(BuiltInWidgets.kTextView);
 
         m_rotationWidget = m_telemetryLayout.add("Current Rotation", SwerveDriverBrain.currentRotationDefault);
-        SwerveDriverBrain.currentRotation = m_rotationWidget.getEntry();
+        SwerveDriverBrain.entryCurrentRotation = m_rotationWidget.getEntry();
         m_rotationWidget.withWidget(BuiltInWidgets.kTextView);
 
         m_FLEncoderOffsetWidget = m_encoderOffsetLayout.add("FL Encoder Offset", SwerveDriverBrain.defaultFLEncoderOffset);
-        SwerveDriverBrain.FLEncoderOffsetEntry = m_FLEncoderOffsetWidget.getEntry();
+        SwerveDriverBrain.entryFLEncoderOffset = m_FLEncoderOffsetWidget.getEntry();
 
         m_FREncoderOffsetWidget = m_encoderOffsetLayout.add("FR Encoder Offset", SwerveDriverBrain.defaultFREncoderOffset);
-        SwerveDriverBrain.FREncoderOffsetEntry = m_FREncoderOffsetWidget.getEntry();
+        SwerveDriverBrain.entryFREncoderOffset = m_FREncoderOffsetWidget.getEntry();
 
         m_RLEncoderOffsetWidget = m_encoderOffsetLayout.add("RL Encoder Offset", SwerveDriverBrain.defaultRLEncoderOffset);
-        SwerveDriverBrain.RLEncoderOffsetEntry = m_RLEncoderOffsetWidget.getEntry();
+        SwerveDriverBrain.entryRLEncoderOffset = m_RLEncoderOffsetWidget.getEntry();
 
         m_RREncoderOffsetWidget = m_encoderOffsetLayout.add("RR Encoder Offset", SwerveDriverBrain.defaultRREncoderOffset);
-        SwerveDriverBrain.RREncoderOffsetEntry = m_RREncoderOffsetWidget.getEntry();
+        SwerveDriverBrain.entryRREncoderOffset = m_RREncoderOffsetWidget.getEntry();
 
     }
 

@@ -18,8 +18,16 @@ public class ShufflerBrain {
     // NetworkTableEntries //
     //---------------------//
 
-    public static GenericEntry matchTimeEntry;
+    public static GenericEntry entryMatchTime;
     public static GenericEntry entryDriveEncoderTicks;
+
+    //---------//
+    // Getters //
+    //---------//
+
+    public static double getMatchTime() {
+        return entryMatchTime.getDouble(matchTimeDefault);
+    }
 
     //---------//
     // Setters //
@@ -27,16 +35,7 @@ public class ShufflerBrain {
 
     public static void setMatchTime() {
        double matchTime = DriverStation.getMatchTime();
-       matchTimeEntry.setDouble(matchTime);
-    }
-
-    //---------//
-    // Getters //
-    //---------//
-
-    // Main Tab
-    public static double getMatchTime() {
-       return matchTimeEntry.getDouble(matchTimeDefault);
+       entryMatchTime.setDouble(matchTime);
     }
 
 }

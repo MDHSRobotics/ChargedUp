@@ -14,35 +14,29 @@ public class SensorBrain {
     public static double gyroRollDefault = 0.;
     public static double gyroPitchDefault = 0.;
     public static double gyroYawDefault = 0.;
-    public static double gyroAngleDefault = 0.;
 
     //---------------------//
     // NetworkTableEntries //
     //---------------------//
 
-    public static GenericEntry gyroRollEntry;
-    public static GenericEntry gyroPitchEntry;
-    public static GenericEntry gyroYawEntry;
-    public static GenericEntry gyroAngleEntry;
+    public static GenericEntry entryGyroRoll;
+    public static GenericEntry entryGyroPitch;
+    public static GenericEntry entryGyroYaw;
 
     //---------//
     // Getters //
     //---------//
 
     public static double getGyroRoll() {
-        return gyroRollEntry.getDouble(gyroRollDefault);
+        return entryGyroRoll.getDouble(gyroRollDefault);
     }
 
     public static double getGyroPitch() {
-        return gyroRollEntry.getDouble(gyroPitchDefault);
+        return entryGyroRoll.getDouble(gyroPitchDefault);
     }
 
     public static double getGyroYaw() {
-        return gyroRollEntry.getDouble(gyroYawDefault);
-    }
-
-    public static double getGyroAngle() {
-        return gyroAngleEntry.getDouble(gyroAngleDefault);
+        return entryGyroRoll.getDouble(gyroYawDefault);
     }
 
     //---------//
@@ -50,18 +44,15 @@ public class SensorBrain {
     //---------//
 
     public static void setGyroRoll(double value) {
-        gyroRollEntry.setDouble(value);
-     }
+        entryGyroRoll.setDouble(value);
+    }
 
-     public static void setGyroPitch(double value) {
-        gyroPitchEntry.setDouble(value);
-     }
+    public static void setGyroPitch(double value) {
+        entryGyroPitch.setDouble(value);
+    }
 
-     public static void setGyroYaw(double value) {
-        gyroYawEntry.setDouble(value);
-     }
+    public static void setGyroYaw(double value) {
+       entryGyroYaw.setDouble(value);
+    }
 
-     public static void setGyroAngle(double value) {
-        gyroAngleEntry.setDouble(value);
-     }
 }

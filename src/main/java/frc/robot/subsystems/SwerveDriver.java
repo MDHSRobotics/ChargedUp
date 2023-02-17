@@ -162,8 +162,8 @@ public class SwerveDriver extends SubsystemBase {
         SmartDashboard.putNumber("Robot Heading", getHeading());
         SmartDashboard.putString("Robot Location", getPose().getTranslation().toString());
 
-        SwerveDriverBrain.currentPosition.setString(getPose().getTranslation().toString());
-        SwerveDriverBrain.currentRotation.setDouble(getHeading());
+        SwerveDriverBrain.entryCurrentPosition.setString(getPose().getTranslation().toString());
+        SwerveDriverBrain.entryCurrentRotation.setDouble(getHeading());
 
 
         // Update Shuffleboard

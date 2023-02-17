@@ -37,13 +37,13 @@ public class ForkliftTab {
     // Create Brain Widgets
     public void preInitialize() {
         //Motor Powers
-        extenderPower = m_motorPowersLayout.add("Extender Power", ForkliftBrain.extenderPowerDefault);
-        ForkliftBrain.extenderPowerEntry = extenderPower.getEntry();
+        extenderPower = m_motorPowersLayout.add("Extender Power", ForkliftBrain.defaultExtenderPower);
+        ForkliftBrain.entryExtenderPower = extenderPower.getEntry();
         extenderPower.withWidget(BuiltInWidgets.kNumberSlider);
         extenderPower.withProperties(Map.of("min", 0, "max", 1.0));
 
-        verticalPower = m_motorPowersLayout.add("Vertical Power", ForkliftBrain.verticalPowerDefault);
-        ForkliftBrain.verticalPowerEntry = verticalPower.getEntry();
+        verticalPower = m_motorPowersLayout.add("Vertical Power", ForkliftBrain.defaultElevatorPower);
+        ForkliftBrain.entryElevatorPower = verticalPower.getEntry();
         verticalPower.withWidget(BuiltInWidgets.kNumberSlider);
         verticalPower.withProperties(Map.of("min", 0, "max", 1.0));
         

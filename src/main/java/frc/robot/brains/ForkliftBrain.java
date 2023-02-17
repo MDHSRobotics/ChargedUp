@@ -3,7 +3,7 @@ package frc.robot.brains;
 
 import edu.wpi.first.networktables.GenericEntry;
 
-// This class contains all the shared NetworkTableEntries for the Joystick,
+// This class contains all the shared NetworkTableEntries for the Forklift,
 // their default values, and methods for retrieving their current values
 public class ForkliftBrain {
 
@@ -11,47 +11,48 @@ public class ForkliftBrain {
     // Default Values //
     //----------------//
 
-    public static double extenderPowerDefault = 0;
-    public static double verticalPowerDefault = 0;
     public static double clawPowerDefault = 0;
+    public static double extenderPowerDefault = 0;
+    public static double elevatorPowerDefault = 0;
 
     //---------------------//
     // NetworkTableEntries //
     //---------------------//
 
-    public static GenericEntry extenderPowerEntry;
-    public static GenericEntry verticalPowerEntry;
-    public static GenericEntry clawPowerEntry;
-
-    //---------//
-    // Setters //
-    //---------//
-
-    public static void setExtenderPower(double value) {
-       extenderPowerEntry.setDouble(value);
-    }
-    
-    public static void setVerticalPower(double value) {
-        verticalPowerEntry.setDouble(value);
-    }
-
-    public static void setClawPower(double value) {
-        clawPowerEntry.setDouble(value);
-    }
+    public static GenericEntry entryClawPower;
+    public static GenericEntry entryExtenderPower;
+    public static GenericEntry entryElevatorPower;
 
     //---------//
     // Getters //
     //---------//
 
-    // Main Tab
-    public static double getExtenderPower() {
-       return extenderPowerEntry.getDouble(extenderPowerDefault);
-    }
-    public static double getVerticalPower() {
-        return verticalPowerEntry.getDouble(verticalPowerDefault);
-     }
     public static double getClawPower() {
-        return clawPowerEntry.getDouble(clawPowerDefault);
-     }
+        return entryClawPower.getDouble(clawPowerDefault);
+    }
+
+    public static double getExtenderPower() {
+        return entryExtenderPower.getDouble(extenderPowerDefault);
+    }
+
+    public static double getElevatorPower() {
+        return entryElevatorPower.getDouble(elevatorPowerDefault);
+    }
+
+    //---------//
+    // Setters //
+    //---------//
+
+    public static void setClawPower(double value) {
+        entryClawPower.setDouble(value);
+    }
+
+    public static void setExtenderPower(double value) {
+       entryExtenderPower.setDouble(value);
+    }
+    
+    public static void setElevatorPower(double value) {
+        entryElevatorPower.setDouble(value);
+    }
 
 }
