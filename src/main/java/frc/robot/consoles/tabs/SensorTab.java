@@ -44,7 +44,7 @@ public class SensorTab {
         m_pitchWidget = m_gyroLayout.add("Pitch", SensorBrain.gyroPitchDefault);
         SensorBrain.entryGyroPitch = m_pitchWidget.getEntry();
 
-        m_rollWidget = m_gyroLayout.add("Roll", SensorBrain.defaultGyroRoll);
+        m_rollWidget = m_gyroLayout.add("Roll", SensorBrain.gyroRollDefault);
         SensorBrain.entryGyroRoll = m_rollWidget.getEntry();
         
         m_yawWidget = m_gyroLayout.add("Yaw", SensorBrain.gyroYawDefault);
