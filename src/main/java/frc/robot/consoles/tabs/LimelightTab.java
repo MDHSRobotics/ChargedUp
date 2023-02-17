@@ -4,6 +4,7 @@ package frc.robot.consoles.tabs;
 import edu.wpi.first.wpilibj.shuffleboard.*;
 
 import frc.robot.consoles.ShuffleLogger;
+import frc.robot.consoles.Shuffler;
 import frc.robot.BotCommands;
 import frc.robot.sensors.Limelight;
 import frc.robot.brains.LimelightBrain;
@@ -45,19 +46,9 @@ public class LimelightTab {
 
         m_tab = Shuffleboard.getTab("Limelight");
 
-        m_pidLayout = m_tab.getLayout("Limelight PID Values", BuiltInLayouts.kList);
-        m_pidLayout.withPosition(0, 0);
-        m_pidLayout.withSize(2, 3);
-        m_pidLayout.withProperties(Map.of("Number of columns", 2));
-        m_pidLayout.withProperties(Map.of("Number of rows", 3));
-        m_pidLayout.withProperties(Map.of("Label position", "LEFT"));
+        m_pidLayout = Shuffler.constructLayout(m_tab, "Limelight PID Values", 0, 0, 2, 3, 1, 3, "LEFT");
+        m_limelightLayout = Shuffler.constructLayout(m_tab, "Limelight Values", 2, 0, 2, 2, 1, 4, "LEFT");
 
-        m_limelightLayout = m_tab.getLayout("Limelight Values", BuiltInLayouts.kList);
-        m_limelightLayout.withPosition(2, 0);
-        m_limelightLayout.withSize(2, 2);
-        m_limelightLayout.withProperties(Map.of("Number of columns", 2));
-        m_limelightLayout.withProperties(Map.of("Number of rows", 3));
-        m_limelightLayout.withProperties(Map.of("Label position", "LEFT"));
     }
 
     // Create Brain Widgets
@@ -93,10 +84,16 @@ public class LimelightTab {
         m_kDDistance.withWidget(BuiltInWidgets.kTextView);
 
         // Limelight Values
-        m_xOffset = m_limelightLayout.add("X Offset", Limelight.getXOffset());
-        m_yOffset = m_limelightLayout.add("Y Offset", Limelight.getYOffset());
-        m_distance = m_limelightLayout.add("Distance", Limelight.calculateDistanceToTarget());
-        m_validTarget = m_limelightLayout.add("Valid Target", Limelight.getDetectionState());
+        LimelightBrain.xOffsetEntry = m_limelightLayout.add("X Offset", LimelightBrain.xOffsetEntryDefault).getEntry();
+        LimelightBrain.yOffsetEntry = m_limelightLayout.add("Y Offset", LimelightBrain.yOffsetEntryDefault).getEntry();
+        LimelightBrain.distanceEntry = m_limelightLayout.add("Distance", LimelightBrain.distanceEntryDefault).getEntry();
+        LimelightBrain.validTargetEntry = m_limelightLayout.add("Valid Target", LimelightBrain.validTargetEntryDefault).getEntry();
+        //m_yOffset = m_limelightLayout.add("Y Offset", 0);
+        //LimelightBrain.yOffsetEntry = m_yOffset.getEntry();
+        // m_distance = m_limelightLayout.add("Distance", 0);
+        // LimelightBrain.distanceEntry = m_distance.getEntry();
+        // m_validTarget = m_limelightLayout.add("Valid Target", 0);
+        // LimelightBrain.validTargetEntry = m_validTarget.getEntry();
 
     }
 
