@@ -28,7 +28,6 @@ public class Limelight extends SubsystemBase {
     private static boolean m_isAligning = false;    
 
     public static double getXOffset() { 
-        Logger.info("Help me " + m_horizontalOffset.getDouble(-1));
         return m_horizontalOffset.getDouble(-1); 
     } 
     
