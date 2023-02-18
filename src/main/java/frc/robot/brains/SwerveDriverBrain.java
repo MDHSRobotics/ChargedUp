@@ -20,8 +20,13 @@ public class SwerveDriverBrain {
     public final static double defaultChargeStationI = 0.;
     public final static double defaultChargeStationD = 0.;
 
-    public static String currentPositionDefault = "()";
-    public static double currentRotationDefault = 0;
+    public final static String defaultCurrentPosition = "()";
+    public final static double defaultCurrentRotation = 0;
+
+    public final static double defaultDeadBand = 0.1;
+    public final static double defaultForwardBackwardSpeed = 10;
+    public final static double defaultLeftRightSpeed = 8;
+    public final static double defaultRotationSpeed = 4.0 * Math.PI;
 
     public static double defaultFLEncoderOffset = SwerveConstants.kFrontLeftDriveAbsoluteEncoderOffsetRad;
     public static double defaultFREncoderOffset = SwerveConstants.kFrontRightDriveAbsoluteEncoderOffsetRad;
@@ -74,6 +79,11 @@ public class SwerveDriverBrain {
     public static GenericEntry entryCurrentPosition;
     public static GenericEntry entryCurrentRotation;
 
+    public static GenericEntry entryDeadBand;
+    public static GenericEntry entryForwardBackwardSpeed;
+    public static GenericEntry entryLeftRightSpeed;
+    public static GenericEntry entryRotationSpeed;
+
     //---------//
     // Getters //
     //---------//
@@ -104,6 +114,22 @@ public class SwerveDriverBrain {
 
     public static double getChargeStationD() {
         return entryChargeStationSpeedD.getDouble(defaultChargeStationD);
+    }
+
+    public static double getDeadband(){
+        return entryDeadBand.getDouble(defaultDeadBand);
+    }
+
+    public static double getForwardBackwardSpeed(){
+        return entryForwardBackwardSpeed.getDouble(defaultForwardBackwardSpeed);
+    }
+    
+    public static double getLeftRightSpeed(){
+        return entryLeftRightSpeed.getDouble(defaultLeftRightSpeed);
+    }
+
+    public static double getRotationSpeed(){
+        return entryRotationSpeed.getDouble(defaultRotationSpeed);
     }
 
     //---------//

@@ -6,20 +6,23 @@ import frc.robot.brains.SwerveDriverBrain;
 import frc.robot.consoles.ShuffleLogger;
 import frc.robot.consoles.Shuffler;
 
+import java.util.Map;
+
 // The Shuffleboard Drive tab.
 public class DriveTab {
 
     // Tab & Layouts
     private ShuffleboardTab m_tab;
+
     private ShuffleboardLayout m_layoutModuleFL;
     private ShuffleboardLayout m_layoutModuleFR;
     private ShuffleboardLayout m_layoutModuleRL;
     private ShuffleboardLayout m_layoutModuleRR;
 
-    private ShuffleboardLayout m_layoutCommands;
-
     private ShuffleboardLayout m_telemetryLayout;
     private ShuffleboardLayout m_encoderOffsetLayout;
+
+    private ShuffleboardLayout m_preferencesLayout;
 
     // Widgets
     private SimpleWidget m_widgetDrivePowerFL;
@@ -56,19 +59,26 @@ public class DriveTab {
     private SimpleWidget m_RLEncoderOffsetWidget;
     private SimpleWidget m_RREncoderOffsetWidget;
 
+    private SimpleWidget m_widgetDeadBand;
+    private SimpleWidget m_widgetForwardBackwardSpeed;
+    private SimpleWidget m_widgetLeftRightSpeed;
+    private SimpleWidget m_widgetRotationSpeed;
+
     // Create Brain Widgets
     public DriveTab() {
         ShuffleLogger.logCritical("Constructing DriveTab...");
 
         m_tab = Shuffleboard.getTab("Drive");
 
-        m_layoutModuleFL = Shuffler.constructLayout(m_tab, "Top Left Module", 5, 0, 4, 4, 2, 4, "LEFT");
-        m_layoutModuleFR = Shuffler.constructLayout(m_tab, "Top Right Module", 9, 0, 4, 4, 2, 4, "LEFT");
-        m_layoutModuleRL = Shuffler.constructLayout(m_tab, "Rear Left Module", 5, 4, 4, 4, 2, 4, "LEFT");
-        m_layoutModuleRR = Shuffler.constructLayout(m_tab, "Rear Right Moudle", 9, 4, 4, 4, 2, 4, "LEFT");
+        m_layoutModuleFL = Shuffler.constructLayout(m_tab, "Top Left Module", 7, 0, 4, 4, 2, 4, "LEFT");
+        m_layoutModuleFR = Shuffler.constructLayout(m_tab, "Top Right Module", 11, 0, 4, 4, 2, 4, "LEFT");
+        m_layoutModuleRL = Shuffler.constructLayout(m_tab, "Rear Left Module", 7, 4, 4, 4, 2, 4, "LEFT");
+        m_layoutModuleRR = Shuffler.constructLayout(m_tab, "Rear Right Moudle", 11, 4, 4, 4, 2, 4, "LEFT");
 
-        m_telemetryLayout = Shuffler.constructLayout(m_tab, "Telemetry", 0, 0, 5, 2, 1, 2, "LEFT");
-        m_encoderOffsetLayout = Shuffler.constructLayout(m_tab, "Encoder Offsets", 0, 2, 5, 3, 1, 4, "LEFT");
+        m_telemetryLayout = Shuffler.constructLayout(m_tab, "Telemetry", 0, 0, 7, 2, 1, 2, "LEFT");
+        m_encoderOffsetLayout = Shuffler.constructLayout(m_tab, "Encoder Offsets", 0, 2, 7, 2, 1, 4, "LEFT");
+
+        m_preferencesLayout = Shuffler.constructLayout(m_tab, "Driver Preferences", 0, 4, 7, 4, 2, 2, "LEFT");
     }
 
     // Create Brain Widgets
@@ -195,10 +205,10 @@ public class DriveTab {
         m_widgetTurningEncoderMpsRR.withWidget(BuiltInWidgets.kTextView);
 
         // Current Position
-        m_positionWidget = m_telemetryLayout.add("Current Position", SwerveDriverBrain.currentPositionDefault);
+        m_positionWidget = m_telemetryLayout.add("Current Position", SwerveDriverBrain.defaultCurrentPosition);
         SwerveDriverBrain.entryCurrentPosition = m_positionWidget.getEntry();
 
-        m_rotationWidget = m_telemetryLayout.add("Current Rotation", SwerveDriverBrain.currentRotationDefault);
+        m_rotationWidget = m_telemetryLayout.add("Current Rotation", SwerveDriverBrain.defaultCurrentRotation);
         SwerveDriverBrain.entryCurrentRotation = m_rotationWidget.getEntry();
 
         m_FLEncoderOffsetWidget = m_encoderOffsetLayout.add("FL Encoder Offset", SwerveDriverBrain.defaultFLEncoderOffset);
@@ -212,6 +222,27 @@ public class DriveTab {
 
         m_RREncoderOffsetWidget = m_encoderOffsetLayout.add("RR Encoder Offset", SwerveDriverBrain.defaultRREncoderOffset);
         SwerveDriverBrain.entryRREncoderOffset = m_RREncoderOffsetWidget.getEntry();
+
+        m_widgetDeadBand = m_preferencesLayout.add("DeadBand", SwerveDriverBrain.defaultDeadBand);
+        SwerveDriverBrain.entryDeadBand = m_widgetDeadBand.getEntry();
+        m_widgetDeadBand.withWidget(BuiltInWidgets.kNumberSlider);
+        m_widgetDeadBand.withProperties(Map.of("min", 0, "max", 1.0));
+
+        m_widgetForwardBackwardSpeed = m_preferencesLayout.add(" Max Forward Backward Speed", SwerveDriverBrain.defaultForwardBackwardSpeed);
+        SwerveDriverBrain.entryForwardBackwardSpeed = m_widgetForwardBackwardSpeed.getEntry();
+        m_widgetForwardBackwardSpeed.withWidget(BuiltInWidgets.kNumberSlider);
+        m_widgetForwardBackwardSpeed.withProperties(Map.of("min", 0, "max", 20));
+
+        m_widgetLeftRightSpeed = m_preferencesLayout.add("Max Left Right Speed", SwerveDriverBrain.defaultLeftRightSpeed);
+        SwerveDriverBrain.entryLeftRightSpeed = m_widgetLeftRightSpeed.getEntry();
+        m_widgetLeftRightSpeed.withWidget(BuiltInWidgets.kNumberSlider);
+        m_widgetLeftRightSpeed.withProperties(Map.of("min", 0, "max", 20));
+
+        m_widgetRotationSpeed = m_preferencesLayout.add("Max Rotation Speed", SwerveDriverBrain.defaultRotationSpeed);
+        SwerveDriverBrain.entryRotationSpeed = m_widgetRotationSpeed.getEntry();
+        m_widgetRotationSpeed.withWidget(BuiltInWidgets.kNumberSlider);
+        m_widgetRotationSpeed.withProperties(Map.of("min", 0, "max", Math.PI * 8.0));
+        
 
     }
 

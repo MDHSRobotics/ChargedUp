@@ -3,7 +3,7 @@ package frc.robot.commands.swervedrive;
 import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-
+import frc.robot.brains.SwerveDriverBrain;
 import frc.robot.consoles.Logger;
 
 import frc.robot.oi.controllers.JoystickPositionAccessible;
@@ -22,6 +22,11 @@ public class SwerveDrive extends CommandBase {
     private final XboxPositionAccessible m_xboxController;
     private final SlewRateLimiter m_forwardBackwardLimiter, m_sideToSideLimiter, m_rotationLimiter;
     private static String m_chosenController; //jstick or xbox
+
+    private double brainDeadband;
+    private double brainForwardBackwardSpeed;
+    private double brainLeftRightSpeed;
+    private double brainRotationSpeed;
 
     public SwerveDrive (SwerveDriver swerveDriver, JoystickPositionAccessible controller) {
         Logger.setup("Constructing Command: SwerveDrive...");
@@ -54,6 +59,11 @@ public class SwerveDrive extends CommandBase {
     @Override
     public void initialize() {
         Logger.action("Initializing Command: SwerveDrive...");
+        
+        brainDeadband = SwerveDriverBrain.getDeadband();
+        brainForwardBackwardSpeed = SwerveDriverBrain.getForwardBackwardSpeed();
+        brainLeftRightSpeed = SwerveDriverBrain.getLeftRightSpeed();
+        brainRotationSpeed = SwerveDriverBrain.getRotationSpeed();
     }
 
     @Override
@@ -74,20 +84,20 @@ public class SwerveDrive extends CommandBase {
         SmartDashboard.putString("10: Joystick input", String.format("X = %.2f; Y = %.2f, Turn = %.2f", forwardBackwardSpeed, sideToSideSpeed, rotationSpeed));
 
         // 2. Apply deadband
-        double forwardBackwardSpeed2 = Math.abs(forwardBackwardSpeed) > OIConstants.kDeadband ? forwardBackwardSpeed : 0.0;
-        double sideToSideSpeed2 = Math.abs(sideToSideSpeed) > OIConstants.kDeadband ? sideToSideSpeed : 0.0;
-        double rotationSpeed2 = Math.abs(rotationSpeed) > OIConstants.kDeadband ? rotationSpeed : 0.0;
+        double forwardBackwardSpeed2 = Math.abs(forwardBackwardSpeed) > brainDeadband ? forwardBackwardSpeed : 0.0;
+        double sideToSideSpeed2 = Math.abs(sideToSideSpeed) > brainDeadband ? sideToSideSpeed : 0.0;
+        double rotationSpeed2 = Math.abs(rotationSpeed) > brainDeadband ? rotationSpeed : 0.0;
 
         SmartDashboard.putString("09: Apply deadpan", String.format("X = %.2f; Y = %.2f, Turn = %.2f", forwardBackwardSpeed2, sideToSideSpeed2, rotationSpeed2));
 
         // 3. Make the driving smoother
-        double forwardBackwardSpeed3 = m_forwardBackwardLimiter.calculate(forwardBackwardSpeed2) * SwerveConstants.kTeleDriveMaxSpeedMetersPerSecond;
-        double sideToSideSpeed3 = m_sideToSideLimiter.calculate(sideToSideSpeed2) * SwerveConstants.kTeleDriveMaxSpeedMetersPerSecond;
-        double rotationSpeed3 = m_rotationLimiter.calculate(rotationSpeed2) * SwerveConstants.kTeleDriveMaxAngularSpeedRadiansPerSecond;
+        double forwardBackwardSpeed3 = m_forwardBackwardLimiter.calculate(forwardBackwardSpeed2) * brainForwardBackwardSpeed;
+        double sideToSideSpeed3 = m_sideToSideLimiter.calculate(sideToSideSpeed2) * brainLeftRightSpeed;
+        double rotationSpeed3 = m_rotationLimiter.calculate(rotationSpeed2) * brainRotationSpeed;
 
         SmartDashboard.putString("08: Chassis velocity", String.format("X = %.2f; Y = %.2f, Turn = %.2f", forwardBackwardSpeed3, sideToSideSpeed3, rotationSpeed3));
 
-        // 5. Output each module states to wheels
+        // 4. Output each module states to wheels
         m_swerveDriver.setChassisSpeed(forwardBackwardSpeed3, -sideToSideSpeed3, rotationSpeed3);
     }
 
