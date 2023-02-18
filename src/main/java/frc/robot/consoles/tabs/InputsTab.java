@@ -70,36 +70,36 @@ public class InputsTab {
 
         //Thumbstick - Left
         m_yLeftDeadZoneWidget = m_xboxLeftLayout.add("Y Left Dead Zone", XboxBrain.yLeftDeadZoneDefault);
-        XboxBrain.yLeftDeadZoneEntry = m_yLeftDeadZoneWidget.getEntry();
+        XboxBrain.entryYLeftDeadZone = m_yLeftDeadZoneWidget.getEntry();
         m_yLeftDeadZoneWidget.withWidget(BuiltInWidgets.kTextView);
 
         m_xLeftDeadZoneWidget = m_xboxLeftLayout.add("X Left Dead Zone", XboxBrain.xLeftDeadZoneDefault);
-        XboxBrain.xLeftDeadZoneEntry = m_xLeftDeadZoneWidget.getEntry();
+        XboxBrain.entryXLeftDeadZone = m_xLeftDeadZoneWidget.getEntry();
         m_xLeftDeadZoneWidget.withWidget(BuiltInWidgets.kTextView);
 
         m_yLeftSensitivityWidget = m_xboxLeftLayout.add("Y Left Sensitivity", XboxBrain.yLeftSensitivityDefault);
-        XboxBrain.yLeftSensitivityEntry = m_yLeftSensitivityWidget.getEntry();
+        XboxBrain.entryYLeftSensitivity = m_yLeftSensitivityWidget.getEntry();
         m_yLeftSensitivityWidget.withWidget(BuiltInWidgets.kTextView);
 
         m_xLeftSensitivityWidget = m_xboxLeftLayout.add("X Left Sensitivity", XboxBrain.xLeftSensitivityDefault);
-        XboxBrain.xLeftSensitivityEntry = m_xLeftSensitivityWidget.getEntry();
+        XboxBrain.entryXLeftSensitivity = m_xLeftSensitivityWidget.getEntry();
         m_xLeftSensitivityWidget.withWidget(BuiltInWidgets.kTextView);
 
         // Thumbstick - Right
         m_yRightDeadZoneWidget = m_xboxRightLayout.add("Y Right Dead Zone", XboxBrain.yRightDeadZoneDefault);
-        XboxBrain.yRightDeadZoneEntry = m_yRightDeadZoneWidget.getEntry();
+        XboxBrain.entryYRightDeadZone = m_yRightDeadZoneWidget.getEntry();
         m_yRightDeadZoneWidget.withWidget(BuiltInWidgets.kTextView);
 
         m_xRightDeadZoneWidget = m_xboxRightLayout.add("X Right Dead Zone", XboxBrain.xRightDeadZoneDefault);
-        XboxBrain.xRightDeadZoneEntry = m_xRightDeadZoneWidget.getEntry();
+        XboxBrain.entryXRightDeadZone = m_xRightDeadZoneWidget.getEntry();
         m_xRightDeadZoneWidget.withWidget(BuiltInWidgets.kTextView);
 
         m_yRightSensitivityWidget = m_xboxRightLayout.add("Y Right Sensitivity", XboxBrain.yRightSensitivityDefault);
-        XboxBrain.yRightSensitivityEntry = m_yRightSensitivityWidget.getEntry();
+        XboxBrain.entryYRightSensitivity = m_yRightSensitivityWidget.getEntry();
         m_yRightSensitivityWidget.withWidget(BuiltInWidgets.kTextView);
 
         m_xRightSensitivityWidget = m_xboxRightLayout.add("X Right Sensitivity", XboxBrain.xRightSensitivityDefault);
-        XboxBrain.xRightSensitivityEntry = m_xRightSensitivityWidget.getEntry();
+        XboxBrain.entryXRightSensitivity = m_xRightSensitivityWidget.getEntry();
         m_xRightSensitivityWidget.withWidget(BuiltInWidgets.kTextView);
     }
 
