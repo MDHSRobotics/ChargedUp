@@ -31,7 +31,7 @@ public class SensorTab {
 
         m_tab = Shuffleboard.getTab("Sensors");
 
-        m_gyroLayout = Shuffler.constructLayout(m_tab, "Gyroscope", 0, 0, 2, 2, 3, 0, "LEFT");
+        m_gyroLayout = Shuffler.constructLayout(m_tab, "Gyroscope", 0, 0, 3, 3, 1, 3, "LEFT");
 
         m_updateGyroData = true;
 
@@ -63,10 +63,10 @@ public class SensorTab {
     // This will be called in the robotPeriodic
     public void update() {
 
-
         SensorBrain.setGyroPitch(BotSensors.gyro.getPitch());
         SensorBrain.setGyroRoll(BotSensors.gyro.getRoll());
         SensorBrain.setGyroYaw(BotSensors.gyro.getYaw());
+
     }
 
 }

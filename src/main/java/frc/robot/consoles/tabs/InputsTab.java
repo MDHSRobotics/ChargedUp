@@ -47,22 +47,12 @@ public class InputsTab {
 
         m_tab = Shuffleboard.getTab("Inputs");
 
-        m_controllerOneLayout = Shuffler.constructLayout(m_tab, "Controller One", 0, 0, 2, 2, 1, 2, "LEFT");
-        m_controllerTwoLayout = Shuffler.constructLayout(m_tab, "Controllers Two", 2, 0, 2, 2, 1, 2, "LEFT");
+        m_controllerOneLayout = Shuffler.constructLayout(m_tab, "Controller One", 0, 0, 3, 2, 1, 1, "LEFT");
+        m_controllerTwoLayout = Shuffler.constructLayout(m_tab, "Controller Two", 3, 0, 3, 2, 1, 1, "LEFT");
 
-        m_xboxLeftLayout = m_tab.getLayout("XBOX Left Thumbstick", BuiltInLayouts.kGrid);
-        m_xboxLeftLayout.withPosition(0, 1);
-        m_xboxLeftLayout.withSize(3, 1);
-        m_xboxLeftLayout.withProperties(Map.of("Number of columns", 2));
-        m_xboxLeftLayout.withProperties(Map.of("Number of rows", 2));
-        m_xboxLeftLayout.withProperties(Map.of("Label position", "LEFT"));
+        m_xboxLeftLayout = Shuffler.constructLayout(m_tab, "XBOX Left Thumbstick", 0, 2, 3, 3, 1, 4, "LEFT");
+        m_xboxRightLayout = Shuffler.constructLayout(m_tab, "XBOX Right Thumbstick", 3, 2, 3, 3, 1, 4, "LEFT");
 
-        m_xboxRightLayout = m_tab.getLayout("XBOX Right Thumbstick", BuiltInLayouts.kGrid);
-        m_xboxRightLayout.withPosition(0, 2);
-        m_xboxRightLayout.withSize(3, 1);
-        m_xboxRightLayout.withProperties(Map.of("Number of columns", 2));
-        m_xboxRightLayout.withProperties(Map.of("Number of rows", 2));
-        m_xboxRightLayout.withProperties(Map.of("Label position", "LEFT"));
     }
 
     // Create Brain Widgets

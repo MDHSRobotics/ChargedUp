@@ -29,8 +29,8 @@ public class ForkliftTab {
 
         m_tab = Shuffleboard.getTab("Forklift");
 
-        m_motorPowersLayout = Shuffler.constructLayout(m_tab, "Motor Powers", 2, 0, 4, 2, 1, 2, "LEFT");
-        m_commandLayout = Shuffler.constructLayout(m_tab, "Commands", 0, 0, 2, 1, 1, 1, "LEFT");
+        m_motorPowersLayout = Shuffler.constructLayout(m_tab, "Motor Powers", 4, 0, 8, 3, 1, 2, "LEFT");
+        m_commandLayout = Shuffler.constructLayout(m_tab, "Commands", 0, 0, 4, 2, 1, 2, "LEFT");
         
     }
 
