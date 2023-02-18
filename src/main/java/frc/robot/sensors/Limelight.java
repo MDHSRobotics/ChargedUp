@@ -3,10 +3,8 @@
 import edu.wpi.first.networktables.NetworkTable; 
 import edu.wpi.first.networktables.NetworkTableEntry; 
 import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.consoles.Logger; 
  
-public class Limelight extends SubsystemBase { 
+public class Limelight { 
     private static double averageDistance; 
     private static int sampleSize = 20; 
     private static double[] averageDistanceSamples = new double[sampleSize]; 

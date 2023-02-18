@@ -9,10 +9,6 @@ import frc.robot.BotCommands;
 import frc.robot.sensors.Limelight;
 import frc.robot.brains.LimelightBrain;
 import frc.robot.brains.SwerveDriverBrain;
-import frc.robot.commands.limelight.AlignLimelight;
-import frc.robot.commands.swervedrive.SwerveDrive;
-
-import java.util.Map;
 
 // The Shuffleboard Main tab.
 public class LimelightTab {
@@ -38,7 +34,7 @@ public class LimelightTab {
     private SimpleWidget m_validTarget;
     private SimpleWidget m_distance;
 
-    private ComplexWidget m_AlignLimelight;
+    private ComplexWidget m_positionLimelight;
 
     // Constructor
     public LimelightTab() {
@@ -57,30 +53,30 @@ public class LimelightTab {
         // PID Values for x offset pid controller
 
         m_kPxOffset = m_pidLayout.add("kP xOffset", SwerveDriverBrain.defaultkPxOffset);
-        SwerveDriverBrain.entryAlignLimelightkPxOffset = m_kPxOffset.getEntry();
+        SwerveDriverBrain.entryPositionLimelightkPxOffset = m_kPxOffset.getEntry();
         m_kPxOffset.withWidget(BuiltInWidgets.kTextView);
 
         m_kIxOffset = m_pidLayout.add("kI xOffset", SwerveDriverBrain.defaultkIxOffset);
-        SwerveDriverBrain.entryAlignLimelightkIxOffset = m_kIxOffset.getEntry();
+        SwerveDriverBrain.entryPositionLimelightkIxOffset = m_kIxOffset.getEntry();
         m_kIxOffset.withWidget(BuiltInWidgets.kTextView);
 
         m_kDxOffset = m_pidLayout.add("kD xOffset", SwerveDriverBrain.defaultkDxOffset);
-        SwerveDriverBrain.entryAlignLimelightkDxOffset = m_kDxOffset.getEntry();
+        SwerveDriverBrain.entryPositionLimelightkDxOffset = m_kDxOffset.getEntry();
         m_kDxOffset.withWidget(BuiltInWidgets.kTextView);
 
 
         // PID Values for distance pid controller
 
         m_kPDistance = m_pidLayout.add("kP Distance", SwerveDriverBrain.defaultkPDistance);
-        SwerveDriverBrain.entryAlignLimelightkPDistance = m_kPDistance.getEntry();
+        SwerveDriverBrain.entryPositionLimelightkPDistance = m_kPDistance.getEntry();
         m_kPDistance.withWidget(BuiltInWidgets.kTextView);
 
         m_kIDistance = m_pidLayout.add("kI Distance", SwerveDriverBrain.defaultkIDistance);
-        SwerveDriverBrain.entryAlignLimelightkIDistance = m_kIDistance.getEntry();
+        SwerveDriverBrain.entryPositionLimelightkIDistance = m_kIDistance.getEntry();
         m_kIDistance.withWidget(BuiltInWidgets.kTextView);
 
         m_kDDistance = m_pidLayout.add("kD Distance", SwerveDriverBrain.defaultkDDistance);
-        SwerveDriverBrain.entryAlignLimelightkDDistance = m_kDDistance.getEntry();
+        SwerveDriverBrain.entryPositionLimelightkDDistance = m_kDDistance.getEntry();
         m_kDDistance.withWidget(BuiltInWidgets.kTextView);
 
         // Limelight Values
@@ -99,7 +95,7 @@ public class LimelightTab {
 
     // Create all other Widgets
     public void initialize() {
-        m_AlignLimelight = m_pidLayout.add("AlignLimelight", BotCommands.alignLimelight);
+        m_positionLimelight = m_pidLayout.add("PositionLimelight", BotCommands.positionLimelight);
     }
 
     // Configure all Widgets

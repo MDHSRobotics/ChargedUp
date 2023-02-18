@@ -43,7 +43,7 @@ public class BotCommands {
     public static MoveIntake moveIntake;
 
     // Limelight
-    public static AlignLimelight alignLimelight;
+    public static PositionLimelight positionLimelight;
 
     // Initialize all robot commands
     public static void initializeCommands() {
@@ -62,7 +62,7 @@ public class BotCommands {
         
 
         // Limelight
-        alignLimelight = new AlignLimelight(BotSubsystems.swerveDriver);
+        positionLimelight = new PositionLimelight(BotSubsystems.swerveDriver);
  
         // Forklift
         moveForklift = new MoveForklift(BotSubsystems.forklift); 
