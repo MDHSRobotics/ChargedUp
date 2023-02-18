@@ -148,6 +148,30 @@ public class SwerveDriverBrain {
         return entryRotationSpeed.getDouble(defaultRotationSpeed);
     }
 
+    public static double getAlignLimelightkPxOffset(){
+        return entryAlignLimelightkPxOffset.getDouble(0.0);
+    }
+    
+    public static double getAlignLimelightkIxOffset(){
+        return entryAlignLimelightkIxOffset.getDouble(0.0);
+    }
+
+    public static double getAlignLimelightkDxOffset(){
+        return entryAlignLimelightkDxOffset.getDouble(0.0);
+    }
+
+    public static double getAlignLimelightkPDistance(){
+        return entryAlignLimelightkPDistance.getDouble(0.0);
+    }
+
+    public static double getAlignLimelightkIDistance(){
+        return entryAlignLimelightkIDistance.getDouble(0.0);
+    }
+
+    public static double getAlignLimelightkDDistance(){
+        return entryAlignLimelightkDDistance.getDouble(0.0);
+    }
+
     //---------//
     // Setters //
     //---------//
@@ -244,7 +268,6 @@ public class SwerveDriverBrain {
     public static void setAlignLimelightkDxOffset(double value){
         entryAlignLimelightkDxOffset.setDouble(value);
     }
-
 
     public static void setAlignLimelightkPDistance(double value){
         entryAlignLimelightkPDistance.setDouble(value);
