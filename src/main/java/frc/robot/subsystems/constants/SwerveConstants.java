@@ -10,14 +10,14 @@ public final class SwerveConstants {
     public static final double kGearRatioDriving = 8.16;
     public static final double kPTurning = 0.5;
     public static final double kWheelDiameterMeters = Units.inchesToMeters(4.0);
-    public static final double kPhysicalMaxSpeedMetersPerSecond = 8.0;
+    public static final double kPhysicalMaxSpeedMetersPerSecond = 10.0;
     public static final double kPhysicalMaxAngularSpeedRadiansPerSecond = 2.0 * 2.0 * Math.PI;
     public static final double kMinChargeStationBalancingPower = 0.1;
     public static final double kMaxChargeStationBalancingPower = 0.3;
 
-    public static final double kTrackWidth = Units.inchesToMeters(25.0);
+    public static final double kTrackWidth = Units.inchesToMeters(18.0);
     // Distance between right and left wheels
-    public static final double kWheelBase = Units.inchesToMeters(25.0);
+    public static final double kWheelBase = Units.inchesToMeters(23.0);
     // Distance between front and back wheels
     public static final SwerveDriveKinematics kDriveKinematics = new SwerveDriveKinematics(
             new Translation2d(kWheelBase / 2, -kTrackWidth / 2),
@@ -69,10 +69,10 @@ public final class SwerveConstants {
           current absolute position in degrees. That number is the offset
           for this module.  Convert that value from degrees to radians below.
     */
-    public static final double kFrontLeftDriveAbsoluteEncoderOffsetRad = Units.degreesToRadians(84.199); 
-    public static final double kRearLeftDriveAbsoluteEncoderOffsetRad = Units.degreesToRadians(-141.768);
-    public static final double kFrontRightDriveAbsoluteEncoderOffsetRad = Units.degreesToRadians(168.750);
-    public static final double kRearRightDriveAbsoluteEncoderOffsetRad = Units.degreesToRadians(-87.891);
+    public static final double kFrontLeftDriveAbsoluteEncoderOffsetRad = Units.degreesToRadians(-56.250000); 
+    public static final double kRearLeftDriveAbsoluteEncoderOffsetRad = Units.degreesToRadians(21.093750);
+    public static final double kFrontRightDriveAbsoluteEncoderOffsetRad = Units.degreesToRadians(-88.857422);
+    public static final double kRearRightDriveAbsoluteEncoderOffsetRad = Units.degreesToRadians(94.394531);
 
 	//TODO: can't use SwerveDriveBrain getters here because NetworkTableEntries aren't initialized yet
     // public static final double kFrontLeftDriveAbsoluteEncoderOffsetRad = SwerveDriverBrain.getFLEncoderOffset(); 
