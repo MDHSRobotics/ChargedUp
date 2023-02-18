@@ -20,7 +20,7 @@ public class SwerveDriverBrain {
     public final static double defaultkIxOffset = 0.;
     public final static double defaultkDxOffset = 0.;
 
-    public final static double defaultkPDistance = 0.;
+    public final static double defaultkPDistance = 1.;
     public final static double defaultkIDistance = 0.;
     public final static double defaultkDDistance = 0.;
 
@@ -80,13 +80,13 @@ public class SwerveDriverBrain {
     public static GenericEntry entryRLEncoderOffset;
     public static GenericEntry entryRREncoderOffset;
 
-    public static GenericEntry entryAlignLimelightkPxOffset;
-    public static GenericEntry entryAlignLimelightkIxOffset;
-    public static GenericEntry entryAlignLimelightkDxOffset;
+    public static GenericEntry entryPositionLimelightkPxOffset;
+    public static GenericEntry entryPositionLimelightkIxOffset;
+    public static GenericEntry entryPositionLimelightkDxOffset;
 
-    public static GenericEntry entryAlignLimelightkPDistance;
-    public static GenericEntry entryAlignLimelightkIDistance;
-    public static GenericEntry entryAlignLimelightkDDistance;
+    public static GenericEntry entryPositionLimelightkPDistance;
+    public static GenericEntry entryPositionLimelightkIDistance;
+    public static GenericEntry entryPositionLimelightkDDistance;
 
     public static GenericEntry entryChargeStationSpeedP;
     public static GenericEntry entryChargeStationSpeedI;
@@ -148,28 +148,28 @@ public class SwerveDriverBrain {
         return entryRotationSpeed.getDouble(defaultRotationSpeed);
     }
 
-    public static double getAlignLimelightkPxOffset(){
-        return entryAlignLimelightkPxOffset.getDouble(0.0);
+    public static double getPositionLimelightkPxOffset(){
+        return entryPositionLimelightkPxOffset.getDouble(0.0);
     }
     
-    public static double getAlignLimelightkIxOffset(){
-        return entryAlignLimelightkIxOffset.getDouble(0.0);
+    public static double getPositionLimelightkIxOffset(){
+        return entryPositionLimelightkIxOffset.getDouble(0.0);
     }
 
-    public static double getAlignLimelightkDxOffset(){
-        return entryAlignLimelightkDxOffset.getDouble(0.0);
+    public static double getPositionLimelightkDxOffset(){
+        return entryPositionLimelightkDxOffset.getDouble(0.0);
     }
 
-    public static double getAlignLimelightkPDistance(){
-        return entryAlignLimelightkPDistance.getDouble(0.0);
+    public static double getPositionLimelightkPDistance(){
+        return entryPositionLimelightkPDistance.getDouble(0.0);
     }
 
-    public static double getAlignLimelightkIDistance(){
-        return entryAlignLimelightkIDistance.getDouble(0.0);
+    public static double getPositionLimelightkIDistance(){
+        return entryPositionLimelightkIDistance.getDouble(0.0);
     }
 
-    public static double getAlignLimelightkDDistance(){
-        return entryAlignLimelightkDDistance.getDouble(0.0);
+    public static double getPositionLimelightkDDistance(){
+        return entryPositionLimelightkDDistance.getDouble(0.0);
     }
 
     //---------//
@@ -262,21 +262,21 @@ public class SwerveDriverBrain {
     public static void setAlignLimelightkPxOffset(double value){
         entryAlignLimelightkPxOffset.setDouble(value);
     }
-    public static void setAlignLimelightkIxOffset(double value){
-        entryAlignLimelightkIxOffset.setDouble(0.0);
+    public static void setPositionLimelightkIxOffset(double value){
+        entryPositionLimelightkIxOffset.setDouble(0.0);
     }
-    public static void setAlignLimelightkDxOffset(double value){
-        entryAlignLimelightkDxOffset.setDouble(value);
+    public static void setPositionLimelightkDxOffset(double value){
+        entryPositionLimelightkDxOffset.setDouble(value);
     }
 
-    public static void setAlignLimelightkPDistance(double value){
-        entryAlignLimelightkPDistance.setDouble(value);
+    public static void setPositionLimelightkPDistance(double value){
+        entryPositionLimelightkPDistance.setDouble(value);
     }
-    public static void setAlignLimelightkIDistance(double value){
-        entryAlignLimelightkIDistance.setDouble(value);
+    public static void setPositionLimelightkIDistance(double value){
+        entryPositionLimelightkIDistance.setDouble(value);
     }
-    public static void setAlignLimelightkDDistance(double value){
-        entryAlignLimelightkDDistance.setDouble(value);
+    public static void setPositionLimelightkDDistance(double value){
+        entryPositionLimelightkDDistance.setDouble(value);
     }
 
     //---------//

@@ -9,6 +9,8 @@ import frc.robot.BotCommands;
 import frc.robot.BotSubsystems;
 import frc.robot.commands.auto.*;
 import frc.robot.commands.swervedrive.TimedSwerve;
+import frc.robot.commands.limelight.PositionLimelight;
+import frc.robot.commands.swervedrive.AlignGyro;
 
 public class AutonomousTab {
 
@@ -23,6 +25,8 @@ public class AutonomousTab {
         // Widgets
         private ComplexWidget m_placeCubeInner, m_placeCubeOuter, m_ejectCubeInner, m_ejectCubeOuter, m_autoCommandDefault;
         private ComplexWidget m_balanceCommand, m_moveForwardCommand, m_ejectCube, m_liftForklift, m_placeCube;
+        private ComplexWidget m_autoCommand1, m_autoCommand2, m_autoCommand3, m_autoCommandDefault;
+        private ComplexWidget m_balanceCommand, m_moveForwardCommand, m_alignGyroCommand, m_positionLimelightCommand;
         private SimpleWidget m_forwardTime;
 
         private SimpleWidget m_widgetChargeStationSpeedP;
@@ -72,6 +76,11 @@ public class AutonomousTab {
             m_ejectCube = m_individualCommandLayout.add("Eject Cube", new EjectCube(BotSubsystems.intake, 1));
             m_liftForklift = m_individualCommandLayout.add("Lift Forklift", new LiftForklift(BotSubsystems.forklift, 150, 60));
             m_placeCube = m_individualCommandLayout.add("Place Cube", new PlaceCube());
+            m_balanceCommand = m_individualCommandLayout.add("Balance Charge Station", new BalanceChargeStation(BotSubsystems.swerveDriver));
+            m_moveForwardCommand = m_individualCommandLayout.add("Move Forward", new MoveForward(2));
+            m_alignGyroCommand = m_individualCommandLayout.add("Align Gyro", new AlignGyro(BotSubsystems.swerveDriver, 0));
+            m_positionLimelightCommand = m_individualCommandLayout.add("Position Limelight", new PositionLimelight(BotSubsystems.swerveDriver));
+
         }
     
         // Configure all Widgets

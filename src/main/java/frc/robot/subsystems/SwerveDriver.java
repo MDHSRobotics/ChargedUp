@@ -17,7 +17,6 @@ import frc.robot.BotSensors;
 import frc.robot.brains.SwerveDriverBrain;
 import frc.robot.consoles.Logger;
 import frc.robot.devices.DevSwerveModule;
-import frc.robot.sensors.Limelight;
 import frc.robot.subsystems.constants.SwerveConstants;
 import static frc.robot.subsystems.Devices.*;
 
@@ -75,9 +74,6 @@ public class SwerveDriver extends SubsystemBase {
     private final SwerveDriveOdometry odometer;
 
     SwerveModulePosition[] modulePositions = new SwerveModulePosition[4];
-
-    private static boolean atTarget = false;
-    private static boolean isAligned = false;
 
     // Constructs new SwerveDriver
     public SwerveDriver() {
@@ -237,76 +233,4 @@ public class SwerveDriver extends SubsystemBase {
         setModuleStates(moduleStates);
     }
 
-    // to convert (x,y) to angle relative to y-axis, use arctan(y/x)
-    // preferably make a method to convert rotation speeds to angle
-    // create new method taking in angle as a parameter instead of speeds
-
-    // Drive to align the Robot to a detected line at the given yaw
-    public void driveAlign(double targetYaw) {
-        // Get the correction yaw needed to align the Robot with the target yaw
-        double yaw = BotSensors.gyro.getYaw();
-        double correction = targetYaw - yaw;
-        if (correction > 180) correction = correction - 360;
-        if (correction < -180) correction = correction + 360;
-        Logger.info("SwerveDriver -> Gyro -> Target Yaw: " + targetYaw + "; Current Yaw: " + yaw + "; Correction: " + correction);
-
-        // Get the rotation speed to align the Robot with the target gyro yaw
-        double zRotation = (correction / 180) * 1.4;
-        boolean isCloseEnough = Math.abs(correction) < 10;
-        if (!isCloseEnough) {
-            if (0 < zRotation && zRotation < 0.25) zRotation = 0.25;
-            if (0 > zRotation && zRotation > -0.25) zRotation = -0.25;
-            isAligned = false;
-        }else{
-            isAligned = true;
-        }
-        setChassisSpeed(0, 0, zRotation);
-    }
-
-    public void driveLimelight() {
-        double distance = Limelight.calculateDistanceToTarget();
-        double xOffset = Limelight.getXOffset();
-
-        double kPxOffset = SwerveDriverBrain.getAlignLimelightkPxOffset();
-        double kIxOffset = SwerveDriverBrain.getAlignLimelightkIxOffset();
-        double kDxOffset = SwerveDriverBrain.getAlignLimelightkDxOffset();
-
-        double kPDistance = SwerveDriverBrain.getAlignLimelightkPDistance();
-        double kIDistance = SwerveDriverBrain.getAlignLimelightkIDistance();
-        double kDDistance = SwerveDriverBrain.getAlignLimelightkDDistance();
-
-        double xOffsetSetPoint = 0.;
-        double xOffsetTolerance = 0.05;
-
-        double distanceSetPoint = 0.5;
-        double distanceTolerance = 0.05;
-
-        PIDController m_xOffsetPidController = new PIDController(kPxOffset, kIxOffset, kDxOffset);
-        PIDController m_DistancePidController = new PIDController(kPDistance, kIDistance, kDDistance);
-        m_xOffsetPidController.setSetpoint(xOffsetSetPoint); // Target x Offset
-        m_xOffsetPidController.setTolerance(xOffsetTolerance); // x Offset tolerance
-        double strafeSpeed = m_xOffsetPidController.calculate(xOffset);
-
-        m_DistancePidController.setSetpoint(distanceSetPoint); // Target 0.5 ft away from limelight target
-        m_DistancePidController.setTolerance(distanceTolerance); // Distance tolerance
-        double forwardSpeed = m_DistancePidController.calculate(distance);
-
-
-        setChassisSpeed(strafeSpeed, forwardSpeed, 0);
-        if (m_xOffsetPidController.atSetpoint() && m_DistancePidController.atSetpoint()){
-            stopModules();
-            atTarget = true;
-        } else {
-            atTarget = false;
-        }
-
-    }
-
-    public boolean getAlignment(){
-        return isAligned;
-    }
-
-    public boolean isAtTarget(){
-        return atTarget;
-    }
 }   
