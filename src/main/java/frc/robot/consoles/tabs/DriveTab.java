@@ -2,12 +2,9 @@
 package frc.robot.consoles.tabs;
 
 import edu.wpi.first.wpilibj.shuffleboard.*;
-import frc.robot.BotSubsystems;
 import frc.robot.brains.SwerveDriverBrain;
 import frc.robot.consoles.ShuffleLogger;
 import frc.robot.consoles.Shuffler;
-
-import java.util.Map;
 
 // The Shuffleboard Drive tab.
 public class DriveTab {
@@ -25,8 +22,6 @@ public class DriveTab {
     private ShuffleboardLayout m_encoderOffsetLayout;
 
     // Widgets
-    private ComplexWidget m_widgetSwerveDrive;
-
     private SimpleWidget m_widgetDrivePowerFL;
     private SimpleWidget m_widgetTurningPowerFL;
     private SimpleWidget m_widgetDrivePowerFR;
@@ -224,17 +219,10 @@ public class DriveTab {
 
     // Create all other Widgets
     public void initialize() {
-        m_widgetSwerveDrive = m_tab.add("Swerve Drive", BotSubsystems.swerveDriver);
     }
 
     // Configure all Widgets
     public void configure() {
-
-        m_widgetSwerveDrive.withPosition(3, 3);
-        m_widgetSwerveDrive.withSize(3, 1);
-        m_widgetSwerveDrive.withProperties(Map.of("Number of columns", 2));
-        m_widgetSwerveDrive.withProperties(Map.of("Number of rows", 2));
-        m_widgetSwerveDrive.withProperties(Map.of("Label position", "TOP"));
     }
 
     // This will be called in the robotPeriodic
