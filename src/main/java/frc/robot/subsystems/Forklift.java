@@ -41,7 +41,7 @@ public class Forklift extends SubsystemBase {
     }
 
     // move arm vertical
-    public void moveArmVertical(double power) {
+    public void moveArmElevator(double power) {
         if(Math.abs(power) < MIN_MOTOR_POWER){
             power = 0.0;
         }

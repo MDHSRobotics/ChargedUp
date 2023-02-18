@@ -15,12 +15,17 @@ public class ForkliftTab {
     private ShuffleboardTab m_tab;
 
     private ShuffleboardLayout m_motorPowersLayout;
+    private ShuffleboardLayout m_motorSpeedsLayout;
     private ShuffleboardLayout m_commandLayout;
 
     // Widgets
-    private SimpleWidget extenderPower;
-    private SimpleWidget verticalPower;
     private ComplexWidget openClamp, closeClamp;
+
+    private SimpleWidget m_widgetExtenderPower;
+    private SimpleWidget m_widgetElevatorPower;
+
+    private SimpleWidget m_widgetExtenderSpeed;
+    private SimpleWidget m_widgetElevatorSpeed;
 
     // Constructor
     public ForkliftTab() {
@@ -29,24 +34,34 @@ public class ForkliftTab {
 
         m_tab = Shuffleboard.getTab("Forklift");
 
-        m_motorPowersLayout = Shuffler.constructLayout(m_tab, "Motor Powers", 4, 0, 8, 3, 1, 2, "LEFT");
         m_commandLayout = Shuffler.constructLayout(m_tab, "Commands", 0, 0, 4, 2, 1, 2, "LEFT");
-        
+        m_motorPowersLayout = Shuffler.constructLayout(m_tab, "Motor Powers", 4, 0, 8, 3, 1, 2, "LEFT");
+        m_motorSpeedsLayout = Shuffler.constructLayout(m_tab, "Motor Speeds", 4, 3, 8, 3, 1, 2, "LEFT");
     }
 
     // Create Brain Widgets
     public void preInitialize() {
         //Motor Powers
-        extenderPower = m_motorPowersLayout.add("Extender Power", ForkliftBrain.extenderPowerDefault);
-        ForkliftBrain.entryExtenderPower = extenderPower.getEntry();
-        extenderPower.withWidget(BuiltInWidgets.kNumberSlider);
-        extenderPower.withProperties(Map.of("min", 0, "max", 1.0));
+        m_widgetExtenderPower = m_motorPowersLayout.add("Extender Power", ForkliftBrain.defaultExtenderPower);
+        ForkliftBrain.entryExtenderPower = m_widgetExtenderPower.getEntry();
+        m_widgetExtenderPower.withWidget(BuiltInWidgets.kNumberSlider);
+        m_widgetExtenderPower.withProperties(Map.of("min", 0, "max", 1.0));
 
-        verticalPower = m_motorPowersLayout.add("Vertical Power", ForkliftBrain.elevatorPowerDefault);
-        ForkliftBrain.entryElevatorPower = verticalPower.getEntry();
-        verticalPower.withWidget(BuiltInWidgets.kNumberSlider);
-        verticalPower.withProperties(Map.of("min", 0, "max", 1.0));
+        m_widgetElevatorPower = m_motorPowersLayout.add("Elevator Power", ForkliftBrain.defaultElevatorPower);
+        ForkliftBrain.entryElevatorPower = m_widgetElevatorPower.getEntry();
+        m_widgetElevatorPower.withWidget(BuiltInWidgets.kNumberSlider);
+        m_widgetElevatorPower.withProperties(Map.of("min", 0, "max", 1.0));
         
+        //Motor Speeds
+        m_widgetExtenderSpeed = m_motorSpeedsLayout.add("Extender Speed", ForkliftBrain.defaultExtenderSpeed);
+        ForkliftBrain.entryExtenderSpeed = m_widgetExtenderSpeed.getEntry();
+        m_widgetExtenderSpeed.withWidget(BuiltInWidgets.kNumberSlider);
+        m_widgetExtenderSpeed.withProperties(Map.of("min", 0, "max", 1.0));
+
+        m_widgetElevatorSpeed = m_motorSpeedsLayout.add("Elevator Speed", ForkliftBrain.defaultElevatorSpeed);
+        ForkliftBrain.entryElevatorSpeed = m_widgetElevatorPower.getEntry();
+        m_widgetElevatorSpeed.withWidget(BuiltInWidgets.kNumberSlider);
+        m_widgetElevatorSpeed.withProperties(Map.of("min", 0, "max", 1.0));
     }
 
     // Create all other Widgets

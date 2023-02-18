@@ -11,48 +11,44 @@ public class ForkliftBrain {
     // Default Values //
     //----------------//
 
-    public static double clawPowerDefault = 0;
-    public static double extenderPowerDefault = 0;
-    public static double elevatorPowerDefault = 0;
+    public static double defaultExtenderPower = 0;
+    public static double defaultElevatorPower = 0;
+
+    public static double defaultExtenderSpeed = 1;
+    public static double defaultElevatorSpeed = 1;
 
     //---------------------//
     // NetworkTableEntries //
     //---------------------//
 
-    public static GenericEntry entryClawPower;
     public static GenericEntry entryExtenderPower;
     public static GenericEntry entryElevatorPower;
+
+    public static GenericEntry entryExtenderSpeed;
+    public static GenericEntry entryElevatorSpeed;
 
     //---------//
     // Getters //
     //---------//
 
-    public static double getClawPower() {
-        return entryClawPower.getDouble(clawPowerDefault);
-    }
-
     public static double getExtenderPower() {
-        return entryExtenderPower.getDouble(extenderPowerDefault);
+        return entryExtenderPower.getDouble(defaultExtenderPower);
     }
 
     public static double getElevatorPower() {
-        return entryElevatorPower.getDouble(elevatorPowerDefault);
+        return entryElevatorPower.getDouble(defaultElevatorPower);
+    }
+
+    public static double getExtenderSpeed(){
+        return entryExtenderSpeed.getDouble(defaultExtenderSpeed);
+    }
+
+    public static double getElevatorSpeed(){
+        return entryElevatorSpeed.getDouble(defaultElevatorSpeed);
     }
 
     //---------//
     // Setters //
     //---------//
-
-    public static void setClawPower(double value) {
-        entryClawPower.setDouble(value);
-    }
-
-    public static void setExtenderPower(double value) {
-       entryExtenderPower.setDouble(value);
-    }
-    
-    public static void setElevatorPower(double value) {
-        entryElevatorPower.setDouble(value);
-    }
 
 }
