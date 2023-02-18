@@ -6,22 +6,29 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.consoles.Logger;
 import static frc.robot.subsystems.Devices.*;
 
+import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
+
 public class Forklift extends SubsystemBase {
-    
-    private static boolean m_isPistonToggled = false;
 
     public static final double MIN_MOTOR_POWER = 0.1;
 
     public Forklift() {
         Logger.setup("Constructing Subsystem: Forklift...");
 
-        sparkMaxForkliftClamp.restoreFactoryDefaults();
-        sparkMaxForkliftExtender.restoreFactoryDefaults();
+        sparkMaxForkliftVerticalTwo.restoreFactoryDefaults();
         sparkMaxForkliftVertical.restoreFactoryDefaults();
-
-        sparkMaxForkliftClamp.setSmartCurrentLimit(15);
-        sparkMaxForkliftExtender.setSmartCurrentLimit(15);
+        sparkMaxForkliftClamp.restoreFactoryDefaults();
+        talonFxForkliftExtender.configFactoryDefault();
+        talonFxForkliftExtenderTwo.configFactoryDefault();
+        
+        sparkMaxForkliftVerticalTwo.setSmartCurrentLimit(15);
         sparkMaxForkliftVertical.setSmartCurrentLimit(15);
+        sparkMaxForkliftClamp.setSmartCurrentLimit(15);
+        talonFxForkliftExtender.setCurrentLimit(15);
+        talonFxForkliftExtenderTwo.setCurrentLimit(15);
+
+        talonFxForkliftExtenderTwo.follow(talonFxForkliftExtender);
+        sparkMaxForkliftVerticalTwo.follow(sparkMaxForkliftVertical);
     } 
 
     //extend arm
@@ -30,7 +37,7 @@ public class Forklift extends SubsystemBase {
             power = 0.0;
         }
         //Logger.debug("Extender Power: " + power);
-        sparkMaxForkliftExtender.set(power);
+        talonFxForkliftExtender.set(power);
     }
 
     // move arm vertical
@@ -52,15 +59,19 @@ public class Forklift extends SubsystemBase {
     }
 
     // move claw using pneumatic pistons
-    public void moveClampPneumatic() {
-        m_isPistonToggled = !m_isPistonToggled;
-        Logger.debug("Toggling Piston to: " + m_isPistonToggled);
-        clawSolenoid.set(m_isPistonToggled);
+    public void moveClampPneumatic(boolean state) {
+        Logger.debug("Toggling Piston to: " + state);
+        clawSolenoid.set(state);
     }
 
     /** Grabs the hatch. */
-    public CommandBase toggleClampCommand() {
+    public CommandBase openClampCommand() {
         // implicitly require `this`
-        return this.runOnce(() -> moveClampPneumatic());
+        return this.runOnce(() -> moveClampPneumatic(true));
+    }
+
+    public CommandBase closeClampCommand() {
+        // implicitly require `this`
+        return this.runOnce(() -> moveClampPneumatic(false));
     }
 }

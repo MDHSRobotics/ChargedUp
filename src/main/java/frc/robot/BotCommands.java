@@ -20,7 +20,8 @@ public class BotCommands {
 
     // Forklift
     public static MoveForklift moveForklift;
-    public static CommandBase toggleClamp;
+    public static CommandBase openClamp;
+    public static CommandBase closeClamp;
 
     // Initialize all robot commands
     public static void initializeCommands() {
@@ -41,6 +42,7 @@ public class BotCommands {
         moveForklift = new MoveForklift(BotSubsystems.forklift); 
         
         // Pneumatics
-        toggleClamp = BotSubsystems.forklift.toggleClampCommand();
+        openClamp = BotSubsystems.forklift.openClampCommand();
+        closeClamp = BotSubsystems.forklift.closeClampCommand();
     }
 }

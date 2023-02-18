@@ -3,9 +3,8 @@ package frc.robot.subsystems.constants;
 public class MotorIDConstants {
     
     // SparkMax Controllers
-
-    public static final int motorIdHorizontalExtender = 16;
-    public static final int motorIdVerticalExtender = 17;
+    public static final int motorIDVerticalExtender = 16;
+    public static final int motorIdVerticalExtenderTwo = 17;
     public static final int motorIdClaw = 18;
 
     // Talon Controllers
@@ -17,5 +16,8 @@ public class MotorIDConstants {
     public static final int motorIdTurnFR = 29;
     public static final int motorIdTurnRL = 32;
     public static final int motorIdTurnRR = 30;
+
+    public static final int motorIdHorizontalExtender = 18;
+    public static final int motorIdHorizontalExtenderTwo = 19;
 
 }

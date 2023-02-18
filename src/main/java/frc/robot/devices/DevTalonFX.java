@@ -1,6 +1,7 @@
 
 package frc.robot.devices;
 
+import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
 import static frc.robot.RobotManager.isSim;
@@ -80,6 +81,10 @@ public class DevTalonFX extends WPI_TalonFX {
         // Generate fictitious position numbers
         double position = 4096.;
         return position;
+    }
+
+    public void setCurrentLimit(double currentLimit) {
+        configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(true, currentLimit,0,0), 0);
     }
 
 }
