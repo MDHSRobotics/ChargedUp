@@ -12,7 +12,7 @@ public class ShufflerBrain {
     // Default Values //
     //----------------//
 
-    public static double matchTimeDefault = 0;
+    public static double defaultMatchTime = 0;
 
     //---------------------//
     // NetworkTableEntries //
@@ -26,7 +26,7 @@ public class ShufflerBrain {
     //---------//
 
     public static double getMatchTime() {
-        return entryMatchTime.getDouble(matchTimeDefault);
+        return entryMatchTime.getDouble(defaultMatchTime);
     }
 
     //---------//

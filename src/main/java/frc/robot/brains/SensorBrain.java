@@ -11,9 +11,9 @@ public class SensorBrain {
     // Default Values //
     //----------------//
 
-    public static double gyroRollDefault = 0.;
-    public static double gyroPitchDefault = 0.;
-    public static double gyroYawDefault = 0.;
+    public static double defaultGyroRoll = 0.;
+    public static double defaultGyroPitch = 0.;
+    public static double defaultGyroYaw = 0.;
 
     //---------------------//
     // NetworkTableEntries //
@@ -28,15 +28,15 @@ public class SensorBrain {
     //---------//
 
     public static double getGyroRoll() {
-        return entryGyroRoll.getDouble(gyroRollDefault);
+        return entryGyroRoll.getDouble(defaultGyroRoll);
     }
 
     public static double getGyroPitch() {
-        return entryGyroRoll.getDouble(gyroPitchDefault);
+        return entryGyroRoll.getDouble(defaultGyroPitch);
     }
 
     public static double getGyroYaw() {
-        return entryGyroRoll.getDouble(gyroYawDefault);
+        return entryGyroRoll.getDouble(defaultGyroYaw);
     }
 
     //---------//

@@ -33,8 +33,8 @@ public class Devices {
 
     public static CANCoder canCoderFL = new CANCoder(1);
     public static CANCoder canCoderFR = new CANCoder(3);
-    public static CANCoder canCoderRL = new CANCoder(4);
-    public static CANCoder canCoderRR = new CANCoder(2);
+    public static CANCoder canCoderRL = new CANCoder(2);
+    public static CANCoder canCoderRR = new CANCoder(4);
 
     //Forklift
     public static DevTalonFX talonFxForkliftExtender = new DevTalonFX("talonFxForkliftExtender",MotorIDConstants.motorIdHorizontalExtender);

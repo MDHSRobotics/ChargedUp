@@ -11,13 +11,13 @@ public class JoystickBrain {
     // Default Values //
     //----------------//
 
-    public static double xDeadZoneDefault = .1;
-    public static double yDeadZoneDefault = .1;
-    public static double zDeadZoneDefault = .1;
+    public static double defaultXDeadZone = .1;
+    public static double defaulyYDeadZone = .1;
+    public static double defaultZDeadZone = .1;
 
-    public static double xSensitivityDefault = .5;
-    public static double ySensitivityDefault = .5;
-    public static double zSensitivityDefault = .5;
+    public static double defaultXSensitivity = .5;
+    public static double defaultYSensitivity = .5;
+    public static double defaultZSensitivity = .5;
 
     //---------------------//
     // NetworkTableEntries //
@@ -35,27 +35,27 @@ public class JoystickBrain {
     // Getters //
     //---------//
     public static double getXdeadZone() {
-        return entryXDeadZone.getDouble(xDeadZoneDefault);
+        return entryXDeadZone.getDouble(defaultXDeadZone);
     }
 
     public static double getYdeadZone() {
-        return entryYDeadZone.getDouble(yDeadZoneDefault);
+        return entryYDeadZone.getDouble(defaulyYDeadZone);
     }
 
     public static double getZdeadZone() {
-        return entryZDeadZone.getDouble(zDeadZoneDefault);
+        return entryZDeadZone.getDouble(defaultZDeadZone);
     }
 
     public static double getXsensitivity() {
-        return entryXSensitivity.getDouble(xSensitivityDefault);
+        return entryXSensitivity.getDouble(defaultXSensitivity);
     }
 
     public static double getYsensitivity() {
-        return entryYSensitivity.getDouble(ySensitivityDefault);
+        return entryYSensitivity.getDouble(defaultYSensitivity);
     }
 
     public static double getZsensitivity() {
-        return entryZSensitivity.getDouble(zSensitivityDefault);
+        return entryZSensitivity.getDouble(defaultZSensitivity);
     }
 
 }

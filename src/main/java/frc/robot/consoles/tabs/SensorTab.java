@@ -41,13 +41,13 @@ public class SensorTab {
     public void preInitialize() {
 
         // Gyro data
-        m_pitchWidget = m_gyroLayout.add("Pitch", SensorBrain.gyroPitchDefault);
+        m_pitchWidget = m_gyroLayout.add("Pitch", SensorBrain.defaultGyroPitch);
         SensorBrain.entryGyroPitch = m_pitchWidget.getEntry();
 
-        m_rollWidget = m_gyroLayout.add("Roll", SensorBrain.gyroRollDefault);
+        m_rollWidget = m_gyroLayout.add("Roll", SensorBrain.defaultGyroRoll);
         SensorBrain.entryGyroRoll = m_rollWidget.getEntry();
         
-        m_yawWidget = m_gyroLayout.add("Yaw", SensorBrain.gyroYawDefault);
+        m_yawWidget = m_gyroLayout.add("Yaw", SensorBrain.defaultGyroYaw);
         SensorBrain.entryGyroYaw = m_yawWidget.getEntry();
 
     }
