@@ -69,10 +69,10 @@ public final class SwerveConstants {
           current absolute position in degrees. That number is the offset
           for this module.  Convert that value from degrees to radians below.
     */
-    public static final double kFrontLeftDriveAbsoluteEncoderOffsetRad = Units.degreesToRadians(-56.250000); 
-    public static final double kRearLeftDriveAbsoluteEncoderOffsetRad = Units.degreesToRadians(21.093750);
-    public static final double kFrontRightDriveAbsoluteEncoderOffsetRad = Units.degreesToRadians(-88.857422);
-    public static final double kRearRightDriveAbsoluteEncoderOffsetRad = Units.degreesToRadians(94.394531);
+    public static final double kFrontLeftDriveAbsoluteEncoderOffsetRad = Units.degreesToRadians(-57.832031); 
+    public static final double kRearLeftDriveAbsoluteEncoderOffsetRad = Units.degreesToRadians(-5.273438);
+    public static final double kFrontRightDriveAbsoluteEncoderOffsetRad = Units.degreesToRadians(-81.914062);
+    public static final double kRearRightDriveAbsoluteEncoderOffsetRad = Units.degreesToRadians(77.958984);
 
 	//TODO: can't use SwerveDriveBrain getters here because NetworkTableEntries aren't initialized yet
     // public static final double kFrontLeftDriveAbsoluteEncoderOffsetRad = SwerveDriverBrain.getFLEncoderOffset(); 

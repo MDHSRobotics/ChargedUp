@@ -19,6 +19,8 @@ import frc.robot.devices.DevSwerveModule;
 import frc.robot.subsystems.constants.SwerveConstants;
 import static frc.robot.subsystems.Devices.*;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+
 public class SwerveDriver extends SubsystemBase {
     private final DevSwerveModule frontLeft = new DevSwerveModule(
         "Front Left",
@@ -78,6 +80,11 @@ public class SwerveDriver extends SubsystemBase {
         talonFxSwerveDriveFR.configOpenloopRamp(SwerveConstants.kDriveRampTime);
         talonFxSwerveDriveRL.configOpenloopRamp(SwerveConstants.kDriveRampTime);
         talonFxSwerveDriveRR.configOpenloopRamp(SwerveConstants.kDriveRampTime);
+
+        talonFxSwerveDriveFL.setNeutralMode(NeutralMode.Brake);
+        talonFxSwerveDriveFR.setNeutralMode(NeutralMode.Brake);
+        talonFxSwerveDriveRL.setNeutralMode(NeutralMode.Brake);
+        talonFxSwerveDriveRR.setNeutralMode(NeutralMode.Brake);
 
         frontLeft.resetEncoders();
         frontRight.resetEncoders();

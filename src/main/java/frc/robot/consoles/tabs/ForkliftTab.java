@@ -16,6 +16,7 @@ public class ForkliftTab {
 
     private ShuffleboardLayout m_motorPowersLayout;
     private ShuffleboardLayout m_motorSpeedsLayout;
+    private ShuffleboardLayout m_motorEncodersLayout;
     private ShuffleboardLayout m_commandLayout;
 
     // Widgets
@@ -27,6 +28,9 @@ public class ForkliftTab {
     private SimpleWidget m_widgetExtenderSpeed;
     private SimpleWidget m_widgetElevatorSpeed;
 
+    private SimpleWidget m_widgetExtenderEncoder;
+    private SimpleWidget m_widgetElevatorEncoder;
+
     // Constructor
     public ForkliftTab() {
 
@@ -37,6 +41,7 @@ public class ForkliftTab {
         m_commandLayout = Shuffler.constructLayout(m_tab, "Commands", 0, 0, 4, 2, 1, 2, "LEFT");
         m_motorPowersLayout = Shuffler.constructLayout(m_tab, "Motor Powers", 4, 0, 8, 3, 1, 2, "LEFT");
         m_motorSpeedsLayout = Shuffler.constructLayout(m_tab, "Motor Speeds", 4, 3, 8, 3, 1, 2, "LEFT");
+        m_motorEncodersLayout = Shuffler.constructLayout(m_tab, "Motor Encoders", 0, 2, 4, 2, 1, 2, "LEFT");
     }
 
     // Create Brain Widgets
@@ -59,9 +64,15 @@ public class ForkliftTab {
         m_widgetExtenderSpeed.withProperties(Map.of("min", 0, "max", 1.0));
 
         m_widgetElevatorSpeed = m_motorSpeedsLayout.add("Elevator Speed", ForkliftBrain.defaultElevatorSpeed);
-        ForkliftBrain.entryElevatorSpeed = m_widgetElevatorPower.getEntry();
+        ForkliftBrain.entryElevatorSpeed = m_widgetElevatorSpeed.getEntry();
         m_widgetElevatorSpeed.withWidget(BuiltInWidgets.kNumberSlider);
         m_widgetElevatorSpeed.withProperties(Map.of("min", 0, "max", 1.0));
+
+        m_widgetExtenderEncoder = m_motorEncodersLayout.add("Extender Encoder", ForkliftBrain.defaultExtenderEncoder);
+        ForkliftBrain.entryExtenderEncoder = m_widgetExtenderEncoder.getEntry();
+
+        m_widgetElevatorEncoder = m_motorEncodersLayout.add("Elevator Encoder", ForkliftBrain.defaultElevatorEncoder);
+        ForkliftBrain.entryElevatorEncoder = m_widgetElevatorEncoder.getEntry();
     }
 
     // Create all other Widgets

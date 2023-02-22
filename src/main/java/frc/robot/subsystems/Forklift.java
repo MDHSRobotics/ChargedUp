@@ -2,7 +2,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-
+import frc.robot.brains.ForkliftBrain;
 import frc.robot.consoles.Logger;
 import static frc.robot.subsystems.Devices.*;
 
@@ -15,21 +15,25 @@ public class Forklift extends SubsystemBase {
     public Forklift() {
         Logger.setup("Constructing Subsystem: Forklift...");
 
-        sparkMaxForkliftVerticalTwo.restoreFactoryDefaults();
-        sparkMaxForkliftVertical.restoreFactoryDefaults();
-        sparkMaxForkliftClamp.restoreFactoryDefaults();
+        sparkMaxForkliftElevatorTwo.restoreFactoryDefaults();
+        sparkMaxForkliftElevator.restoreFactoryDefaults();
         talonFxForkliftExtender.configFactoryDefault();
         talonFxForkliftExtenderTwo.configFactoryDefault();
         
-        sparkMaxForkliftVerticalTwo.setSmartCurrentLimit(15);
-        sparkMaxForkliftVertical.setSmartCurrentLimit(15);
-        sparkMaxForkliftClamp.setSmartCurrentLimit(15);
+        sparkMaxForkliftElevatorTwo.setSmartCurrentLimit(15);
+        sparkMaxForkliftElevator.setSmartCurrentLimit(15);
         talonFxForkliftExtender.setCurrentLimit(15);
         talonFxForkliftExtenderTwo.setCurrentLimit(15);
 
         talonFxForkliftExtenderTwo.follow(talonFxForkliftExtender);
-        sparkMaxForkliftVerticalTwo.follow(sparkMaxForkliftVertical);
+        sparkMaxForkliftElevatorTwo.follow(sparkMaxForkliftElevator);
     } 
+
+    @Override
+    public void periodic() {
+        ForkliftBrain.setElevatorEncoder(sparkMaxForkliftElevator.getEncoder().getPosition());
+        ForkliftBrain.setExtenderEncoder(talonFxForkliftExtender.getSelectedSensorPosition());
+    }
 
     //extend arm
     public void moveArmExtender(double power) {
@@ -46,16 +50,7 @@ public class Forklift extends SubsystemBase {
             power = 0.0;
         }
         //Logger.debug("Vertical Power: " + power);
-        sparkMaxForkliftVertical.set(power);
-    }
-
-    public void stopForklift() {
-        sparkMaxForkliftClamp.stopMotor();
-    }
-
-    // move claw using motor
-    public void moveClampMotor(double power) {
-        sparkMaxForkliftClamp.set(power);
+        sparkMaxForkliftElevator.set(power);
     }
 
     // move claw using pneumatic pistons
@@ -64,14 +59,17 @@ public class Forklift extends SubsystemBase {
         clawSolenoid.set(state);
     }
 
-    /** Grabs the hatch. */
+    //Open the clamp
     public CommandBase openClampCommand() {
         // implicitly require `this`
         return this.runOnce(() -> moveClampPneumatic(true));
     }
 
+    //Close the clamp
     public CommandBase closeClampCommand() {
         // implicitly require `this`
         return this.runOnce(() -> moveClampPneumatic(false));
     }
+
+    
 }

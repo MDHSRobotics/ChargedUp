@@ -37,10 +37,10 @@ public class Devices {
     public static CANCoder canCoderRR = new CANCoder(4);
 
     //Forklift
-    public static DevTalonFX talonFxForkliftExtender = new DevTalonFX("talonFxForkliftExtender",MotorIDConstants.motorIdHorizontalExtender);
-    public static DevTalonFX talonFxForkliftExtenderTwo = new DevTalonFX("talonFxForkliftExtenderTwo",MotorIDConstants.motorIdHorizontalExtenderTwo);
-    public static CANSparkMax sparkMaxForkliftVertical = new CANSparkMax(MotorIDConstants.motorIDVerticalExtender, MotorType.kBrushless);
-    public static CANSparkMax sparkMaxForkliftVerticalTwo = new CANSparkMax(MotorIDConstants.motorIdVerticalExtenderTwo, MotorType.kBrushless);
+    public static DevTalonFX talonFxForkliftExtender = new DevTalonFX("talonFxForkliftExtender",MotorIDConstants.motorIdExtender);
+    public static DevTalonFX talonFxForkliftExtenderTwo = new DevTalonFX("talonFxForkliftExtenderTwo",MotorIDConstants.motorIdExtenderTwo);
+    public static CANSparkMax sparkMaxForkliftElevator = new CANSparkMax(MotorIDConstants.motorIDElevator, MotorType.kBrushless);
+    public static CANSparkMax sparkMaxForkliftElevatorTwo = new CANSparkMax(MotorIDConstants.motorIdElevatorTwo, MotorType.kBrushless);
     public static CANSparkMax sparkMaxForkliftClamp = new CANSparkMax(MotorIDConstants.motorIdClaw, MotorType.kBrushless);
     
     //Pneumatics

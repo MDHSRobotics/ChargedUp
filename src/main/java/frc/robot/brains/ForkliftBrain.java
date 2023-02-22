@@ -17,6 +17,9 @@ public class ForkliftBrain {
     public static double defaultExtenderSpeed = 1;
     public static double defaultElevatorSpeed = 1;
 
+    public static double defaultExtenderEncoder = 0;
+    public static double defaultElevatorEncoder = 0;
+
     //---------------------//
     // NetworkTableEntries //
     //---------------------//
@@ -26,6 +29,9 @@ public class ForkliftBrain {
 
     public static GenericEntry entryExtenderSpeed;
     public static GenericEntry entryElevatorSpeed;
+
+    public static GenericEntry entryExtenderEncoder;
+    public static GenericEntry entryElevatorEncoder;
 
     //---------//
     // Getters //
@@ -47,8 +53,24 @@ public class ForkliftBrain {
         return entryElevatorSpeed.getDouble(defaultElevatorSpeed);
     }
 
+    public static double getExtenderEncoder(){
+        return entryExtenderEncoder.getDouble(defaultExtenderEncoder);
+    }
+
+    public static double getElevatorEncoder(){
+        return entryElevatorEncoder.getDouble(defaultElevatorEncoder);
+    }
+
     //---------//
     // Setters //
     //---------//
+
+    public static void setExtenderEncoder(double value) {
+        entryExtenderEncoder.setDouble(value);
+    }
+
+    public static void setElevatorEncoder(double value) {
+        entryElevatorEncoder.setDouble(value);
+    }
 
 }
