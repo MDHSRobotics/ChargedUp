@@ -21,14 +21,15 @@ public class AutonomousTab {
         private ShuffleboardLayout m_commandLayout;
         private ShuffleboardLayout m_individualCommandLayout;
         private ShuffleboardLayout m_layoutChargeStationSpeedPID;
+        private ShuffleboardLayout m_autoTestLayout;
     
         // Widgets
         private ComplexWidget m_placeCubeInner, m_placeCubeOuter, m_ejectCubeInner, m_ejectCubeOuter, m_autoCommandDefault;
         private ComplexWidget m_balanceCommand, m_moveForwardCommand, m_ejectCube, m_liftForklift, m_placeCube;
         private ComplexWidget m_autoCommand1, m_autoCommand2, m_autoCommand3, m_autoCommandDefault;
         private ComplexWidget m_balanceCommand, m_moveForwardCommand, m_alignGyroCommand, m_positionLimelightCommand;
-        private SimpleWidget m_forwardTime;
-
+        
+        private SimpleWidget m_widgetBalancePower, m_widgetForwardTime;
         private SimpleWidget m_widgetChargeStationSpeedP;
         private SimpleWidget m_widgetChargeStationSpeedI;
         private SimpleWidget m_widgetChargeStationSpeedD;
@@ -40,13 +41,15 @@ public class AutonomousTab {
             m_tab = Shuffleboard.getTab("Autonomous");
     
             m_commandLayout = Shuffler.constructLayout(m_tab, "Auto Commands", 0, 0, 4, 4, 1, 4, "LEFT");
-            m_individualCommandLayout = Shuffler.constructLayout(m_tab, "Individual Auto Commands", 4, 0, 4, 4, 1, 2, "LEFT");
+            m_individualCommandLayout = Shuffler.constructLayout(m_tab, "Individual Auto Commands", 0, 4, 4, 4, 1, 2, "LEFT");
+            m_autoTestLayout = Shuffler.constructLayout(m_tab, "Auto Test", 4, 0, 3, 4, 1, 1, "LEFT");
 
-            m_layoutChargeStationSpeedPID = Shuffler.constructLayout(m_tab, "Charge Station PID", 0, 4, 3, 4, 1, 3, "TOP");
+            m_layoutChargeStationSpeedPID = Shuffler.constructLayout(m_tab, "Charge Station PID", 4, 4, 3, 4, 1, 3, "TOP");
         }
     
         // Create Brain Widgets
         public void preInitialize() {
+
             // Charge Station Speed P
             m_widgetChargeStationSpeedP = m_layoutChargeStationSpeedPID.add("Charge Station Speed P", SwerveDriverBrain.defaultChargeStationP);
             SwerveDriverBrain.entryChargeStationSpeedP = m_widgetChargeStationSpeedP.getEntry();
@@ -61,6 +64,17 @@ public class AutonomousTab {
             m_widgetChargeStationSpeedD = m_layoutChargeStationSpeedPID.add("Charge Station Speed D", SwerveDriverBrain.defaultChargeStationD);
             SwerveDriverBrain.entryChargeStationSpeedD = m_widgetChargeStationSpeedD.getEntry();
             m_widgetChargeStationSpeedD.withWidget(BuiltInWidgets.kTextView);
+
+            // Balance Power
+            m_widgetBalancePower = m_autoTestLayout.add("Balance Power", SwerveDriverBrain.defaultBalancePower);
+            SwerveDriverBrain.entryBalancePower = m_widgetBalancePower.getEntry();
+            m_widgetBalancePower.withWidget(BuiltInWidgets.kTextView);
+
+            // Foward Time
+            m_widgetForwardTime = m_autoTestLayout.add("Forward Time", SwerveDriverBrain.defaultForwardTime);
+            SwerveDriverBrain.entryForwardTime = m_widgetForwardTime.getEntry();
+            m_widgetForwardTime.withWidget(BuiltInWidgets.kTextView);
+
         }
     
         // Create all other Widgets
@@ -78,8 +92,6 @@ public class AutonomousTab {
             m_placeCube = m_individualCommandLayout.add("Place Cube", new PlaceCube());
             m_balanceCommand = m_individualCommandLayout.add("Balance Charge Station", new BalanceChargeStation(BotSubsystems.swerveDriver));
             m_moveForwardCommand = m_individualCommandLayout.add("Move Forward", new MoveForward(2));
-            m_alignGyroCommand = m_individualCommandLayout.add("Align Gyro", new AlignGyro(BotSubsystems.swerveDriver, 0));
-            m_positionLimelightCommand = m_individualCommandLayout.add("Position Limelight", new PositionLimelight(BotSubsystems.swerveDriver));
 
         }
     

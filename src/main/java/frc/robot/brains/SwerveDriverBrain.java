@@ -36,6 +36,9 @@ public class SwerveDriverBrain {
     public final static double defaultLeftRightSpeed = 1;
     public final static double defaultRotationSpeed = 1.5;
 
+    public final static double defaultBalancePower = 0.3;
+    public final static double defaultForwardTime = 5;
+
     public static double defaultFLEncoderOffset = SwerveConstants.kFrontLeftDriveAbsoluteEncoderOffsetRad;
     public static double defaultFREncoderOffset = SwerveConstants.kFrontRightDriveAbsoluteEncoderOffsetRad;
     public static double defaultRLEncoderOffset = SwerveConstants.kRearLeftDriveAbsoluteEncoderOffsetRad;
@@ -99,6 +102,9 @@ public class SwerveDriverBrain {
     public static GenericEntry entryForwardBackwardSpeed;
     public static GenericEntry entryLeftRightSpeed;
     public static GenericEntry entryRotationSpeed;
+
+    public static GenericEntry entryBalancePower;
+    public static GenericEntry entryForwardTime;
 
     //---------//
     // Getters //
@@ -170,6 +176,14 @@ public class SwerveDriverBrain {
 
     public static double getPositionLimelightkDDistance(){
         return entryPositionLimelightkDDistance.getDouble(0.0);
+    }
+
+    public static double getBalancePower() {
+        return entryBalancePower.getDouble(defaultBalancePower);
+    }
+
+    public static double getForwardTime() {
+        return entryForwardTime.getDouble(defaultForwardTime);
     }
 
     //---------//

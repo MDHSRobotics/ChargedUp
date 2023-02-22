@@ -12,7 +12,7 @@ public final class SwerveConstants {
     public static final double kPhysicalMaxSpeedMetersPerSecond = 10.0;
     public static final double kPhysicalMaxAngularSpeedRadiansPerSecond = 2.0 * 2.0 * Math.PI;
     public static final double kMinChargeStationBalancingPower = 0.1;
-    public static final double kMaxChargeStationBalancingPower = 0.3;
+    public static double kMaxChargeStationBalancingPower = 5;
 
     public static final double kTrackWidth = Units.inchesToMeters(18.0);
     // Distance between right and left wheels
