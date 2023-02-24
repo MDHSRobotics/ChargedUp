@@ -226,22 +226,22 @@ public class DriveTab {
         m_widgetDeadBand = m_preferencesLayout.add("DeadBand", SwerveDriverBrain.defaultDeadBand);
         SwerveDriverBrain.entryDeadBand = m_widgetDeadBand.getEntry();
         m_widgetDeadBand.withWidget(BuiltInWidgets.kNumberSlider);
-        m_widgetDeadBand.withProperties(Map.of("min", 0, "max", 1.0));
+        m_widgetDeadBand.withProperties(Map.of("min", 0, "max", 0.5));
 
         m_widgetForwardBackwardSpeed = m_preferencesLayout.add(" Max Forward Backward Speed", SwerveDriverBrain.defaultForwardBackwardSpeed);
         SwerveDriverBrain.entryForwardBackwardSpeed = m_widgetForwardBackwardSpeed.getEntry();
         m_widgetForwardBackwardSpeed.withWidget(BuiltInWidgets.kNumberSlider);
-        m_widgetForwardBackwardSpeed.withProperties(Map.of("min", 0, "max", 20));
+        m_widgetForwardBackwardSpeed.withProperties(Map.of("min", 0, "max", 5));
 
         m_widgetLeftRightSpeed = m_preferencesLayout.add("Max Left Right Speed", SwerveDriverBrain.defaultLeftRightSpeed);
         SwerveDriverBrain.entryLeftRightSpeed = m_widgetLeftRightSpeed.getEntry();
         m_widgetLeftRightSpeed.withWidget(BuiltInWidgets.kNumberSlider);
-        m_widgetLeftRightSpeed.withProperties(Map.of("min", 0, "max", 20));
+        m_widgetLeftRightSpeed.withProperties(Map.of("min", 0, "max", 5));
 
         m_widgetRotationSpeed = m_preferencesLayout.add("Max Rotation Speed", SwerveDriverBrain.defaultRotationSpeed);
         SwerveDriverBrain.entryRotationSpeed = m_widgetRotationSpeed.getEntry();
         m_widgetRotationSpeed.withWidget(BuiltInWidgets.kNumberSlider);
-        m_widgetRotationSpeed.withProperties(Map.of("min", 0, "max", Math.PI * 8.0));
+        m_widgetRotationSpeed.withProperties(Map.of("min", 0, "max", 10));
         
 
     }

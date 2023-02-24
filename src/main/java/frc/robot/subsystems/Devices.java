@@ -37,7 +37,7 @@ public class Devices {
     public static CANCoder canCoderRR = new CANCoder(4);
 
     //Forklift
-    public static DevTalonFX talonFxForkliftExtender = new DevTalonFX("talonFxForkliftExtender",MotorIDConstants.motorIdExtender);
+    public static CANSparkMax sparkMaxForkliftExtender = new CANSparkMax(MotorIDConstants.motorIDElevator, MotorType.kBrushless);
     public static DevTalonFX talonFxForkliftExtenderTwo = new DevTalonFX("talonFxForkliftExtenderTwo",MotorIDConstants.motorIdExtenderTwo);
     public static CANSparkMax sparkMaxForkliftElevator = new CANSparkMax(MotorIDConstants.motorIDElevator, MotorType.kBrushless);
     public static CANSparkMax sparkMaxForkliftElevatorTwo = new CANSparkMax(MotorIDConstants.motorIdElevatorTwo, MotorType.kBrushless);
@@ -45,5 +45,5 @@ public class Devices {
     
     //Pneumatics
     public static Compressor pcmCompressor = new Compressor(0, PneumaticsModuleType.CTREPCM);
-    public static Solenoid clawSolenoid = new Solenoid(PneumaticsModuleType.REVPH, 0);
+    public static Solenoid clawSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, 7);
 } 

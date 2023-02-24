@@ -80,6 +80,7 @@ public final class SwerveConstants {
     // public static final double kFrontRightDriveAbsoluteEncoderOffsetRad = SwerveDriverBrain.getRLEncoderOffset(); 
     // public static final double kRearRightDriveAbsoluteEncoderOffsetRad = SwerveDriverBrain.getRREncoderOffset(); 
 
+    //TODO: Remove these after confirm the shuffleboard values work
     public static final double kTeleDriveMaxSpeedMetersPerSecond = kPhysicalMaxSpeedMetersPerSecond / 4;
     public static final double kTeleDriveMaxAngularSpeedRadiansPerSecond = 3;
     public static final double kTeleDriveMaxAccelerationUnitsPerSecond = 1;

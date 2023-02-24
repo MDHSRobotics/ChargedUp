@@ -5,8 +5,10 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.brains.ForkliftBrain;
 import frc.robot.consoles.Logger;
 import static frc.robot.subsystems.Devices.*;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 
 import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
+import com.revrobotics.CANSparkMax.IdleMode;
 
 public class Forklift extends SubsystemBase {
 
@@ -17,22 +19,29 @@ public class Forklift extends SubsystemBase {
 
         sparkMaxForkliftElevatorTwo.restoreFactoryDefaults();
         sparkMaxForkliftElevator.restoreFactoryDefaults();
-        talonFxForkliftExtender.configFactoryDefault();
+        sparkMaxForkliftExtender.restoreFactoryDefaults();
         talonFxForkliftExtenderTwo.configFactoryDefault();
         
         sparkMaxForkliftElevatorTwo.setSmartCurrentLimit(15);
         sparkMaxForkliftElevator.setSmartCurrentLimit(15);
-        talonFxForkliftExtender.setCurrentLimit(15);
+        sparkMaxForkliftExtender.setSmartCurrentLimit(15);
         talonFxForkliftExtenderTwo.setCurrentLimit(15);
 
-        talonFxForkliftExtenderTwo.follow(talonFxForkliftExtender);
+        sparkMaxForkliftElevatorTwo.setIdleMode(IdleMode.kBrake);
+        sparkMaxForkliftElevator.setIdleMode(IdleMode.kBrake);
+        sparkMaxForkliftExtender.setIdleMode(IdleMode.kBrake);
+        talonFxForkliftExtenderTwo.setNeutralMode(NeutralMode.Brake);
+
+        
+
+        //talonFxForkliftExtenderTwo.follow(sparkMaxForkliftExtender);
         sparkMaxForkliftElevatorTwo.follow(sparkMaxForkliftElevator);
     } 
 
     @Override
     public void periodic() {
         ForkliftBrain.setElevatorEncoder(sparkMaxForkliftElevator.getEncoder().getPosition());
-        ForkliftBrain.setExtenderEncoder(talonFxForkliftExtender.getSelectedSensorPosition());
+        //ForkliftBrain.setExtenderEncoder(sparkMaxForkliftExtender.getSelectedSensorPosition());
     }
 
     //extend arm
@@ -41,7 +50,7 @@ public class Forklift extends SubsystemBase {
             power = 0.0;
         }
         //Logger.debug("Extender Power: " + power);
-        talonFxForkliftExtender.set(power);
+        sparkMaxForkliftExtender.set(power);
     }
 
     // move arm vertical
@@ -62,12 +71,14 @@ public class Forklift extends SubsystemBase {
     //Open the clamp
     public CommandBase openClampCommand() {
         // implicitly require `this`
+        Logger.info("Opening Clamp");
         return this.runOnce(() -> moveClampPneumatic(true));
     }
 
     //Close the clamp
     public CommandBase closeClampCommand() {
         // implicitly require `this`
+        Logger.info("Closing Clamp");
         return this.runOnce(() -> moveClampPneumatic(false));
     }
 
