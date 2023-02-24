@@ -34,6 +34,7 @@ public class JoystickBrain {
     //---------//
     // Getters //
     //---------//
+    
     public static double getXdeadZone() {
         return entryXDeadZone.getDouble(defaultXDeadZone);
     }

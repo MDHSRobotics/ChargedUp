@@ -1,8 +1,6 @@
 
 package frc.robot;
 
-import static frc.robot.RobotManager.isReal;
-
 import frc.robot.consoles.Logger;
 import frc.robot.sensors.DevGyro;
 

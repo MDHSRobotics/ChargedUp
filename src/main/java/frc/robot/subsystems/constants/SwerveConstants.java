@@ -3,7 +3,6 @@ package frc.robot.subsystems.constants;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.util.Units;
-import frc.robot.brains.SwerveDriverBrain;
 
 public final class SwerveConstants {
     public static final double kGearRatioTurning = 12.8;
@@ -80,15 +79,8 @@ public final class SwerveConstants {
     // public static final double kFrontRightDriveAbsoluteEncoderOffsetRad = SwerveDriverBrain.getRLEncoderOffset(); 
     // public static final double kRearRightDriveAbsoluteEncoderOffsetRad = SwerveDriverBrain.getRREncoderOffset(); 
 
-    //TODO: Remove these after confirm the shuffleboard values work
-    public static final double kTeleDriveMaxSpeedMetersPerSecond = kPhysicalMaxSpeedMetersPerSecond / 4;
-    public static final double kTeleDriveMaxAngularSpeedRadiansPerSecond = 3;
     public static final double kTeleDriveMaxAccelerationUnitsPerSecond = 1;
     public static final double kTeleDriveMaxAngularAccelerationUnitsPerSecond = 1.5;
 
     public static final double kDriveRampTime = 0.4; // units are seconds
-
-    public static final class OIConstants {
-        public static final double kDeadband = 0.1;
-    }
 }

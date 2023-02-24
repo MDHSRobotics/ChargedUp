@@ -9,8 +9,6 @@ import frc.robot.consoles.Shuffler;
 
 import frc.robot.BotControllers;
 
-import java.util.Map;
-
 // The Shuffleboard Inputs tab.
 public class InputsTab {
 

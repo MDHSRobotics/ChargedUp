@@ -7,8 +7,6 @@ import frc.robot.brains.SensorBrain;
 import frc.robot.consoles.ShuffleLogger;
 import frc.robot.consoles.Shuffler;
 
-import java.util.Map;
-
 // The Shuffleboard Inputs tab.
 public class SensorTab {
 

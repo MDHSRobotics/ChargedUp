@@ -50,7 +50,7 @@ public class Forklift extends SubsystemBase {
             power = 0.0;
         }
         //Logger.debug("Extender Power: " + power);
-        sparkMaxForkliftExtender.set(power);
+        sparkMaxForkliftExtender.set(-power);
     }
 
     // move arm vertical

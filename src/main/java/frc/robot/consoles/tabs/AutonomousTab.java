@@ -9,8 +9,6 @@ import frc.robot.BotCommands;
 import frc.robot.BotSubsystems;
 import frc.robot.commands.auto.*;
 
-import java.util.Map;
-
 public class AutonomousTab {
 
         // Tab & Layouts

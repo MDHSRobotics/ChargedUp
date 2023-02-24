@@ -12,8 +12,6 @@ import frc.robot.oi.movements.SwerveMovement;
 
 import frc.robot.subsystems.SwerveDriver;
 import frc.robot.subsystems.constants.SwerveConstants;
-import frc.robot.subsystems.constants.SwerveConstants.OIConstants;
-
 
 public class SwerveDrive extends CommandBase {
 

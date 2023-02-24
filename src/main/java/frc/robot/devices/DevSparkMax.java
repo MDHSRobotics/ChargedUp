@@ -2,10 +2,8 @@
 package frc.robot.devices;
 
 import com.revrobotics.CANSparkMax; 
-import com.revrobotics.CANSparkMaxLowLevel.MotorType; 
 
 import static frc.robot.RobotManager.isSim;
-import static frc.robot.RobotManager.isReal;
 
 // This class is a wrapper around TalonFX in order to handle cases where the
 // Talon controller and associated motor are not physically connected.  This
