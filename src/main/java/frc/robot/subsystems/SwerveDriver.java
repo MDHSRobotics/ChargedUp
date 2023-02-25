@@ -213,8 +213,8 @@ public class SwerveDriver extends SubsystemBase {
         odometer.update(getRotation2d(), modulePositions);
 
         // Update SmartDashboard
-        SmartDashboard.putNumber("Robot Heading", getHeading());
-        SmartDashboard.putString("Robot Location", getPose().getTranslation().toString());
+        //SmartDashboard.putNumber("Robot Heading", getHeading());
+        //SmartDashboard.putString("Robot Location", getPose().getTranslation().toString());
 
 
         // Update Shuffleboard
