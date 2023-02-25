@@ -7,6 +7,7 @@ public class BotSubsystems {
 
     public static SwerveDriver swerveDriver;
     public static Forklift forklift;
+    public static Intake intake;
 
     public static void initializeSubsystems() {
         Logger.setup("Initializing BotSubsystems...");
@@ -14,6 +15,7 @@ public class BotSubsystems {
 
         swerveDriver = new SwerveDriver();
         forklift = new Forklift();
+        intake = new Intake();
     }
 
     public static void setTeleopDefaultCommands() {
@@ -25,6 +27,10 @@ public class BotSubsystems {
         // Forklift
         Logger.setup("SwerveDriver Teleop Default Command -> Forklift...");
         forklift.setDefaultCommand(BotCommands.moveForklift);
+
+        // Intake
+        Logger.setup("SwerveDriver Teleop Default Command -> Intake...");
+        intake.setDefaultCommand(BotCommands.moveIntake);
        
     }
 }

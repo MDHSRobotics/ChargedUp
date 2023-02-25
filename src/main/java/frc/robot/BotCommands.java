@@ -23,6 +23,9 @@ public class BotCommands {
     public static CommandBase openClamp;
     public static CommandBase closeClamp;
 
+    //Intake
+    public static MoveIntake moveIntake;
+
     // Initialize all robot commands
     public static void initializeCommands() {
 
@@ -40,6 +43,9 @@ public class BotCommands {
  
         // Forklift
         moveForklift = new MoveForklift(BotSubsystems.forklift); 
+
+        //Intake
+        moveIntake = new MoveIntake(BotSubsystems.intake);
         
         // Pneumatics
         openClamp = BotSubsystems.forklift.openClampCommand();

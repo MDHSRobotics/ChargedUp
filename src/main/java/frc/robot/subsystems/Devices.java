@@ -41,6 +41,10 @@ public class Devices {
     public static CANSparkMax sparkMaxForkliftElevator = new CANSparkMax(MotorIDConstants.motorIDElevator, MotorType.kBrushless);
     public static CANSparkMax sparkMaxForkliftElevatorTwo = new CANSparkMax(MotorIDConstants.motorIdElevatorTwo, MotorType.kBrushless);
     
+    //Intake
+    public static CANSparkMax sparkMaxIntake = new CANSparkMax(MotorIDConstants.motorIdIntake, MotorType.kBrushless);
+    public static CANSparkMax sparkMaxIntakeTwo = new CANSparkMax(MotorIDConstants.motorIdIntakeTwo, MotorType.kBrushless);
+
     //Pneumatics
     public static Compressor pcmCompressor = new Compressor(0, PneumaticsModuleType.CTREPCM);
     public static Solenoid clawSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, 7);
