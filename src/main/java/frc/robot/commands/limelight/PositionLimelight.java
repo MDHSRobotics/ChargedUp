@@ -28,6 +28,8 @@ public class PositionLimelight extends CommandBase {
     public void initialize() {
         Logger.action("Initializing Command: PositionLimelight ...");
 
+        Limelight.setPipeline(0);
+
         double kPxOffset = SwerveDriverBrain.getPositionLimelightkPxOffset();
         double kIxOffset = SwerveDriverBrain.getPositionLimelightkIxOffset();
         double kDxOffset = SwerveDriverBrain.getPositionLimelightkDxOffset();
@@ -73,6 +75,7 @@ public class PositionLimelight extends CommandBase {
         if (m_xOffsetPidController.atSetpoint() && m_distancePidController.atSetpoint()){
             m_swerveDriver.stopModules();
             atTarget = true;
+            Limelight.setPipeline(1);
         } else {
             atTarget = false;
         }
