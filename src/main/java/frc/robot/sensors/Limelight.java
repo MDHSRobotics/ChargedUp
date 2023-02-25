@@ -13,7 +13,7 @@ public class Limelight {
     private static final double TARGET_HEIGHT = 24.0; //height to the center of target(in) h2
     private static final double CAMERA_ANGLE = 35.0;// angle of the camera(deg) a1 
 
-    private static NetworkTable m_limelightNetworkTable = NetworkTableInstance.getDefault().getTable("limelight"); 
+    private static NetworkTable m_limelightNetworkTable = NetworkTableInstance.getDefault().getTable("limelight-mdrobot"); 
     
     private static NetworkTableEntry m_horizontalOffset = m_limelightNetworkTable.getEntry("tx"); // Checks horizontal offset from crosshair to target
     private static NetworkTableEntry m_verticalOffset = m_limelightNetworkTable.getEntry("ty"); // Checks vertical offset from crosshair to target

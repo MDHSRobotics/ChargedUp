@@ -29,11 +29,7 @@ public class LimelightTab {
     private SimpleWidget m_kIDistance;
     private SimpleWidget m_kDDistance;
 
-    private SimpleWidget m_xOffset;
-    private SimpleWidget m_yOffset;
-    private SimpleWidget m_validTarget;
-    private SimpleWidget m_distance;
-
+    private ComplexWidget m_cameraFeed;
     private ComplexWidget m_positionLimelight;
 
     // Constructor
@@ -42,8 +38,8 @@ public class LimelightTab {
 
         m_tab = Shuffleboard.getTab("Limelight");
 
-        m_pidLayout = Shuffler.constructLayout(m_tab, "Limelight PID Values", 0, 0, 2, 3, 1, 3, "LEFT");
-        m_limelightLayout = Shuffler.constructLayout(m_tab, "Limelight Values", 2, 0, 2, 2, 1, 4, "LEFT");
+        m_pidLayout = Shuffler.constructLayout(m_tab, "Limelight PID Values", 0, 0, 4, 6, 1, 3, "LEFT");
+        m_limelightLayout = Shuffler.constructLayout(m_tab, "Limelight Values", 4, 0, 4, 4, 1, 4, "LEFT");
 
     }
 
@@ -83,13 +79,12 @@ public class LimelightTab {
         LimelightBrain.xOffsetEntry = m_limelightLayout.add("X Offset", LimelightBrain.xOffsetEntryDefault).getEntry();
         LimelightBrain.yOffsetEntry = m_limelightLayout.add("Y Offset", LimelightBrain.yOffsetEntryDefault).getEntry();
         LimelightBrain.distanceEntry = m_limelightLayout.add("Distance", LimelightBrain.distanceEntryDefault).getEntry();
-        LimelightBrain.validTargetEntry = m_limelightLayout.add("Valid Target", LimelightBrain.validTargetEntryDefault).getEntry();
-        //m_yOffset = m_limelightLayout.add("Y Offset", 0);
-        //LimelightBrain.yOffsetEntry = m_yOffset.getEntry();
-        // m_distance = m_limelightLayout.add("Distance", 0);
-        // LimelightBrain.distanceEntry = m_distance.getEntry();
-        // m_validTarget = m_limelightLayout.add("Valid Target", 0);
-        // LimelightBrain.validTargetEntry = m_validTarget.getEntry();
+        LimelightBrain.validTargetEntry = m_limelightLayout.add("Valid Target", LimelightBrain.validTargetEntryDefault).getEntry();       
+        
+        m_cameraFeed = m_tab.add("Camera Food", LimelightBrain.limelightCamera);
+        m_cameraFeed.withPosition(8, 0);
+        m_cameraFeed.withSize(7, 7);
+        m_cameraFeed.withWidget(BuiltInWidgets.kCameraStream);
 
     }
 
