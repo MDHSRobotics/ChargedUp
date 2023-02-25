@@ -8,14 +8,15 @@ public class BotSubsystems {
     public static SwerveDriver swerveDriver;
     public static Forklift forklift;
     public static Intake intake;
+    public static Lighter lighter;
 
     public static void initializeSubsystems() {
         Logger.setup("Initializing BotSubsystems...");
     
-
         swerveDriver = new SwerveDriver();
         forklift = new Forklift();
         intake = new Intake();
+        lighter = new Lighter(20);
     }
 
     public static void setTeleopDefaultCommands() {

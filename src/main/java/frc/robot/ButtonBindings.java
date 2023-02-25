@@ -25,6 +25,9 @@ public class ButtonBindings {
         BotControllers.xbox2.btnBumperLeft.onTrue(BotCommands.openClamp);
         BotControllers.xbox2.btnBumperRight.onTrue(BotCommands.closeClamp);
 
+        // Ligheter
+        BotControllers.xbox2.btnA.onTrue((BotCommands.setDefaultColor));
+
     }
 
 }

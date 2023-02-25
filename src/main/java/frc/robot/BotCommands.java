@@ -3,6 +3,7 @@ package frc.robot;
 import frc.robot.consoles.Logger;
 import frc.robot.commands.auto.*;
 import frc.robot.commands.forklift.*;
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.commands.swervedrive.*;
 
@@ -25,6 +26,9 @@ public class BotCommands {
 
     //Intake
     public static MoveIntake moveIntake;
+
+    // Lighter
+    public static CommandBase setDefaultColor;
 
     // Initialize all robot commands
     public static void initializeCommands() {
@@ -50,5 +54,8 @@ public class BotCommands {
         // Pneumatics
         openClamp = BotSubsystems.forklift.openClampCommand();
         closeClamp = BotSubsystems.forklift.closeClampCommand();
+
+        // Lighter 
+        setDefaultColor = BotSubsystems.lighter.setDefaultColorCommand();
     }
 }
