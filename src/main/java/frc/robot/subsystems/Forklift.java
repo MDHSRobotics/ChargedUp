@@ -5,14 +5,17 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.brains.ForkliftBrain;
 import frc.robot.consoles.Logger;
 import static frc.robot.subsystems.Devices.*;
-import com.ctre.phoenix.motorcontrol.NeutralMode;
 
-import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
 import com.revrobotics.CANSparkMax.IdleMode;
 
 public class Forklift extends SubsystemBase {
 
     public static final double MIN_MOTOR_POWER = 0.1;
+
+    public static final double ELEVATOR_MIN = 0;
+    public static final double ELEVATOR_MAX = 30;
+    public static final double EXTENDER_MIN = 0;
+    public static final double EXTENDER_MAX = 100;
 
     public Forklift() {
         Logger.setup("Constructing Subsystem: Forklift...");
@@ -40,20 +43,28 @@ public class Forklift extends SubsystemBase {
 
     //extend arm
     public void moveArmExtender(double power) {
-        if(Math.abs(power) < MIN_MOTOR_POWER){
-            power = 0.0;
-        }
+        //Apply Deadband
+        double extenderPower = Math.abs(power) >= MIN_MOTOR_POWER ? power : 0;
+
+        //Apply Motor Softstop
+        double extenderPower2 = (sparkMaxForkliftExtender.getEncoder().getPosition() > EXTENDER_MIN && extenderPower < 0) || 
+                                (sparkMaxForkliftExtender.getEncoder().getPosition() < EXTENDER_MAX && extenderPower > 0) ? extenderPower : 0;
+
         //Logger.debug("Extender Power: " + power);
-        sparkMaxForkliftExtender.set(-power);
+        sparkMaxForkliftExtender.set(-extenderPower2);
     }
 
     // move arm vertical
     public void moveArmElevator(double power) {
-        if(Math.abs(power) < MIN_MOTOR_POWER){
-            power = 0.0;
-        }
+        //Apply Deadband
+        double elevatorPower = Math.abs(power) >= MIN_MOTOR_POWER ? power : 0;
+
+        //Apply Motor Softstop
+        double elevatorPower2 = (sparkMaxForkliftElevator.getEncoder().getPosition() > ELEVATOR_MIN && elevatorPower < 0) || 
+                                (sparkMaxForkliftElevator.getEncoder().getPosition() < ELEVATOR_MAX && elevatorPower > 0) ? elevatorPower : 0;
+
         //Logger.debug("Vertical Power: " + power);
-        sparkMaxForkliftElevator.set(power);
+        sparkMaxForkliftElevator.set(elevatorPower2);
     }
 
     // move claw using pneumatic pistons
