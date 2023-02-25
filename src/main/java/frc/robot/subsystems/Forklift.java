@@ -20,28 +20,22 @@ public class Forklift extends SubsystemBase {
         sparkMaxForkliftElevatorTwo.restoreFactoryDefaults();
         sparkMaxForkliftElevator.restoreFactoryDefaults();
         sparkMaxForkliftExtender.restoreFactoryDefaults();
-        talonFxForkliftExtenderTwo.configFactoryDefault();
         
         sparkMaxForkliftElevatorTwo.setSmartCurrentLimit(15);
         sparkMaxForkliftElevator.setSmartCurrentLimit(15);
         sparkMaxForkliftExtender.setSmartCurrentLimit(15);
-        talonFxForkliftExtenderTwo.setCurrentLimit(15);
 
         sparkMaxForkliftElevatorTwo.setIdleMode(IdleMode.kBrake);
         sparkMaxForkliftElevator.setIdleMode(IdleMode.kBrake);
         sparkMaxForkliftExtender.setIdleMode(IdleMode.kBrake);
-        talonFxForkliftExtenderTwo.setNeutralMode(NeutralMode.Brake);
 
-        
-
-        //talonFxForkliftExtenderTwo.follow(sparkMaxForkliftExtender);
         sparkMaxForkliftElevatorTwo.follow(sparkMaxForkliftElevator);
     } 
 
     @Override
     public void periodic() {
         ForkliftBrain.setElevatorEncoder(sparkMaxForkliftElevator.getEncoder().getPosition());
-        //ForkliftBrain.setExtenderEncoder(sparkMaxForkliftExtender.getSelectedSensorPosition());
+        ForkliftBrain.setExtenderEncoder(sparkMaxForkliftExtender.getEncoder().getPosition());
     }
 
     //extend arm

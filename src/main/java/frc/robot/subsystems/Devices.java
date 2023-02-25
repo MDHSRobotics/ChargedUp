@@ -38,10 +38,8 @@ public class Devices {
 
     //Forklift
     public static CANSparkMax sparkMaxForkliftExtender = new CANSparkMax(MotorIDConstants.motorIdExtender, MotorType.kBrushless);
-    public static DevTalonFX talonFxForkliftExtenderTwo = new DevTalonFX("talonFxForkliftExtenderTwo",MotorIDConstants.motorIdExtenderTwo);
     public static CANSparkMax sparkMaxForkliftElevator = new CANSparkMax(MotorIDConstants.motorIDElevator, MotorType.kBrushless);
     public static CANSparkMax sparkMaxForkliftElevatorTwo = new CANSparkMax(MotorIDConstants.motorIdElevatorTwo, MotorType.kBrushless);
-    public static CANSparkMax sparkMaxForkliftClamp = new CANSparkMax(MotorIDConstants.motorIdClaw, MotorType.kBrushless);
     
     //Pneumatics
     public static Compressor pcmCompressor = new Compressor(0, PneumaticsModuleType.CTREPCM);

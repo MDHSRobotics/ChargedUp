@@ -5,7 +5,6 @@ public class MotorIDConstants {
     // SparkMax Controllers
     public static final int motorIDElevator = 14;
     public static final int motorIdElevatorTwo = 15;
-    public static final int motorIdClaw = 18;
 
     // Talon Controllers
     public static final int motorIdDriveFL = 31;
@@ -18,6 +17,4 @@ public class MotorIDConstants {
     public static final int motorIdTurnRR = 30;
 
     public static final int motorIdExtender = 23;
-    public static final int motorIdExtenderTwo = 24;
-
 }
