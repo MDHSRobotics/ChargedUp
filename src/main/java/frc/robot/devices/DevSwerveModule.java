@@ -108,18 +108,18 @@ public class DevSwerveModule {
         // Note that this will be -180 to +180, as configured in the constructor above
         double absEncoderPositionDegrees = m_canCoder.getAbsolutePosition();
        
-        SmartDashboard.putNumber("Absolute Encoder Raw Angle (Degrees): " + m_name, absEncoderPositionDegrees);
+        //SmartDashboard.putNumber("Absolute Encoder Raw Angle (Degrees): " + m_name, absEncoderPositionDegrees);
         
 
         double absEncoderPositionRad = Units.degreesToRadians(absEncoderPositionDegrees);
 
-        SmartDashboard.putNumber("Absolute Encoder Raw Angle (Radians): " + m_name, absEncoderPositionRad);
+        //SmartDashboard.putNumber("Absolute Encoder Raw Angle (Radians): " + m_name, absEncoderPositionRad);
 
 
         // Apply the offset of the absolute encoder
         absEncoderPositionRad -= m_absoluteEncoderOffsetRad;
 
-        SmartDashboard.putNumber("Absolute Encoder Angle Without Offset (Radians): " + m_name, absEncoderPositionRad);
+        //SmartDashboard.putNumber("Absolute Encoder Angle Without Offset (Radians): " + m_name, absEncoderPositionRad);
         
         // Negate the angle if needed
         return absEncoderPositionRad * (m_absoluteEncoderReversed ? -1.0 : 1.0);
@@ -155,8 +155,8 @@ public class DevSwerveModule {
         m_turningMotor.setSelectedSensorPosition(initialAbsoluteEncoderPositionTicks);
 
         // Report absolute encoder info to SmartDashboard
-        SmartDashboard.putNumber("Absolute Encoder Angle (Radians): " + m_name, initialAbsoluteEncoderPositionRad);
-        SmartDashboard.putNumber("Absolute Encoder Angle (Ticks): " + m_name, initialAbsoluteEncoderPositionTicks);
+        //SmartDashboard.putNumber("Absolute Encoder Angle (Radians): " + m_name, initialAbsoluteEncoderPositionRad);
+        //SmartDashboard.putNumber("Absolute Encoder Angle (Ticks): " + m_name, initialAbsoluteEncoderPositionTicks);
     }
 
     public SwerveModuleState getState() {
@@ -164,13 +164,13 @@ public class DevSwerveModule {
     }
 
     public void setDesiredState(SwerveModuleState state) {
-        SmartDashboard.putString("04: Desaturated Desired State: " + m_name, state.toString());
+        //SmartDashboard.putString("04: Desaturated Desired State: " + m_name, state.toString());
 
         if (Math.abs(state.speedMetersPerSecond) < 0.001) {
             stop();
 
-            SmartDashboard.putString("03: Swerve State: " + m_name, "STOPPED");
-            SmartDashboard.putString("03: Swerve Power: " + m_name, "STOPPED");
+            //SmartDashboard.putString("03: Swerve State: " + m_name, "STOPPED");
+            //SmartDashboard.putString("03: Swerve Power: " + m_name, "STOPPED");
 
             // SmartDashboard.delete("02: Swerve Optimized State: " + m_name);
             // SmartDashboard.delete("01: Swerve Power: " + m_name);
@@ -182,12 +182,12 @@ public class DevSwerveModule {
         }
 
         state = SwerveModuleState.optimize(state, getState().angle);
-        SmartDashboard.putString("02: Swerve Optimized State: " + m_name, state.toString());
+        //SmartDashboard.putString("02: Swerve Optimized State: " + m_name, state.toString());
 
         double drivePower = state.speedMetersPerSecond;
         double turningPower = m_turningPidController.calculate(getTurningPositionRadians(), state.angle.getRadians());
 
-        SmartDashboard.putString("01: Swerve Power: " + m_name, String.format("Drive = %.2f; Turning = %.2f", drivePower, turningPower));
+        //SmartDashboard.putString("01: Swerve Power: " + m_name, String.format("Drive = %.2f; Turning = %.2f", drivePower, turningPower));
 
         SwerveDriverBrain.setModuleDrivePower(m_name, drivePower);
         SwerveDriverBrain.setModuleTurningPower(m_name, turningPower);
