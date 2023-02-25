@@ -10,6 +10,8 @@ public class MotorIDConstants {
     public static final int motorIdIntake = 18;
     public static final int motorIdIntakeTwo = 19;
 
+    public static final int motorIdClawLift = 20;
+
     // Talon Controllers
     public static final int motorIdDriveFL = 31;
     public static final int motorIdDriveFR = 25;

@@ -24,9 +24,9 @@ public class SwerveDriverBrain {
     public final static double defaultCurrentRotation = 0;
 
     public final static double defaultDeadBand = 0.1;
-    public final static double defaultForwardBackwardSpeed = 2.5;
-    public final static double defaultLeftRightSpeed = 1.5;
-    public final static double defaultRotationSpeed = 3;
+    public final static double defaultForwardBackwardSpeed = 2;
+    public final static double defaultLeftRightSpeed = 1;
+    public final static double defaultRotationSpeed = 1.5;
 
     public static double defaultFLEncoderOffset = SwerveConstants.kFrontLeftDriveAbsoluteEncoderOffsetRad;
     public static double defaultFREncoderOffset = SwerveConstants.kFrontRightDriveAbsoluteEncoderOffsetRad;

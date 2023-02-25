@@ -22,7 +22,7 @@ public class Intake extends SubsystemBase {
         sparkMaxIntake.setIdleMode(IdleMode.kBrake);
         sparkMaxIntakeTwo.setIdleMode(IdleMode.kBrake);
 
-        sparkMaxIntakeTwo.follow(sparkMaxIntake);
+        sparkMaxIntakeTwo.follow(sparkMaxIntake, true);
     } 
 
     @Override

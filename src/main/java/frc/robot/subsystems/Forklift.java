@@ -6,16 +6,17 @@ import frc.robot.brains.ForkliftBrain;
 import frc.robot.consoles.Logger;
 import static frc.robot.subsystems.Devices.*;
 
+import com.revrobotics.SparkMaxPIDController;
 import com.revrobotics.CANSparkMax.IdleMode;
 
 public class Forklift extends SubsystemBase {
 
     public static final double MIN_MOTOR_POWER = 0.1;
 
-    public static final double ELEVATOR_MIN = 0;
-    public static final double ELEVATOR_MAX = 30;
-    public static final double EXTENDER_MIN = 0;
-    public static final double EXTENDER_MAX = 100;
+    public static final double ELEVATOR_MIN = 7;
+    public static final double ELEVATOR_MAX = -16;
+    public static final double EXTENDER_MIN = -15;
+    public static final double EXTENDER_MAX = 120;
 
     public Forklift() {
         Logger.setup("Constructing Subsystem: Forklift...");
@@ -23,14 +24,17 @@ public class Forklift extends SubsystemBase {
         sparkMaxForkliftElevatorTwo.restoreFactoryDefaults();
         sparkMaxForkliftElevator.restoreFactoryDefaults();
         sparkMaxForkliftExtender.restoreFactoryDefaults();
+        sparkMaxClawLift.restoreFactoryDefaults();
         
         sparkMaxForkliftElevatorTwo.setSmartCurrentLimit(15);
         sparkMaxForkliftElevator.setSmartCurrentLimit(15);
         sparkMaxForkliftExtender.setSmartCurrentLimit(15);
+        sparkMaxClawLift.setSmartCurrentLimit(15);
 
         sparkMaxForkliftElevatorTwo.setIdleMode(IdleMode.kBrake);
         sparkMaxForkliftElevator.setIdleMode(IdleMode.kBrake);
         sparkMaxForkliftExtender.setIdleMode(IdleMode.kBrake);
+        sparkMaxClawLift.setIdleMode(IdleMode.kBrake);
 
         sparkMaxForkliftElevatorTwo.follow(sparkMaxForkliftElevator);
     } 
@@ -51,7 +55,7 @@ public class Forklift extends SubsystemBase {
                                 (sparkMaxForkliftExtender.getEncoder().getPosition() < EXTENDER_MAX && extenderPower > 0) ? extenderPower : 0;
 
         //Logger.debug("Extender Power: " + power);
-        sparkMaxForkliftExtender.set(-extenderPower2);
+        sparkMaxForkliftExtender.set(-extenderPower);
     }
 
     // move arm vertical
@@ -60,11 +64,11 @@ public class Forklift extends SubsystemBase {
         double elevatorPower = Math.abs(power) >= MIN_MOTOR_POWER ? power : 0;
 
         //Apply Motor Softstop
-        double elevatorPower2 = (sparkMaxForkliftElevator.getEncoder().getPosition() > ELEVATOR_MIN && elevatorPower < 0) || 
-                                (sparkMaxForkliftElevator.getEncoder().getPosition() < ELEVATOR_MAX && elevatorPower > 0) ? elevatorPower : 0;
+        double elevatorPower2 = (sparkMaxForkliftElevator.getEncoder().getPosition() < ELEVATOR_MIN && elevatorPower < 0) || 
+                                (sparkMaxForkliftElevator.getEncoder().getPosition() > ELEVATOR_MAX && elevatorPower > 0) ? elevatorPower : 0;
 
         //Logger.debug("Vertical Power: " + power);
-        sparkMaxForkliftElevator.set(elevatorPower2);
+        sparkMaxForkliftElevator.set(elevatorPower);
     }
 
     // move claw using pneumatic pistons
@@ -87,5 +91,9 @@ public class Forklift extends SubsystemBase {
         return this.runOnce(() -> moveClampPneumatic(false));
     }
 
+    //Move the claw up and down
+    public void moveClaw(double power){
+        sparkMaxClawLift.set(power);
+    }
     
 }

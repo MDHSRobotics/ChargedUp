@@ -40,6 +40,7 @@ public class Devices {
     public static CANSparkMax sparkMaxForkliftExtender = new CANSparkMax(MotorIDConstants.motorIdExtender, MotorType.kBrushless);
     public static CANSparkMax sparkMaxForkliftElevator = new CANSparkMax(MotorIDConstants.motorIDElevator, MotorType.kBrushless);
     public static CANSparkMax sparkMaxForkliftElevatorTwo = new CANSparkMax(MotorIDConstants.motorIdElevatorTwo, MotorType.kBrushless);
+    public static CANSparkMax sparkMaxClawLift = new CANSparkMax(MotorIDConstants.motorIdClawLift, MotorType.kBrushless);
     
     //Intake
     public static CANSparkMax sparkMaxIntake = new CANSparkMax(MotorIDConstants.motorIdIntake, MotorType.kBrushless);
