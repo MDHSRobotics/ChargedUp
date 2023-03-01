@@ -46,18 +46,16 @@ public class RobotManager {
     public static void initialize() {
         Logger.setup("Initializing RobotManager...");
 
-        // Pre-intialize the Shuffler
+        // Pre-intialize and intialize and configure the Shuffler
         botShuffler = new Shuffler();
         botShuffler.preInitialize();
+        botShuffler.initialize();
+        botShuffler.configure();   
 
         // Initialize BotSensors, BotSubsystems, BotCommands, and TestCommands
         BotSensors.initializeSensors();
         BotSubsystems.initializeSubsystems();
         BotCommands.initializeCommands();
-
-        // Intialize and configure the Shuffler
-        botShuffler.initialize();
-        botShuffler.configure();    
 
         // Setup SmartDashboard
         setupSmartDashboard();

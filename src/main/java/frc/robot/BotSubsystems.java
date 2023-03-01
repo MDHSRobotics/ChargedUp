@@ -16,7 +16,7 @@ public class BotSubsystems {
         swerveDriver = new SwerveDriver();
         forklift = new Forklift();
         intake = new Intake();
-        lighter = new Lighter(20);
+        lighter = new Lighter(79);
     }
 
     public static void setTeleopDefaultCommands() {
@@ -26,12 +26,16 @@ public class BotSubsystems {
         swerveDriver.setDefaultCommand(BotCommands.swerveDrive); 
 
         // Forklift
-        Logger.setup("SwerveDriver Teleop Default Command -> Forklift...");
+        Logger.setup("Forklift Teleop Default Command -> Forklift...");
         forklift.setDefaultCommand(BotCommands.moveForklift);
 
         // Intake
-        Logger.setup("SwerveDriver Teleop Default Command -> Intake...");
+        Logger.setup("Intake Teleop Default Command -> Intake...");
         intake.setDefaultCommand(BotCommands.moveIntake);
+
+        // Lighter
+        Logger.setup("Lighter Teleop Default Command -> Lighter...");
+        //lighter.setDefaultCommand(BotCommands.setDefaultColor);
        
     }
 }
