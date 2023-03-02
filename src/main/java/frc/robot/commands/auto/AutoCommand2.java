@@ -9,6 +9,16 @@ public class AutoCommand2 extends SequentialCommandGroup {
     
         addCommands(
 
+            //Lift the forklift before moving forward
+            new LiftForklift(),
+
+            //Move forward to be over the pole
+            new Move(1,1),
+
+            //Open the claw
+
+            //Drive backward to go outside the community
+            new Move(3,-1)
         );
 
     }

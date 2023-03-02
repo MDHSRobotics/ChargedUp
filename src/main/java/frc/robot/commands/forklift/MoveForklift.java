@@ -41,7 +41,7 @@ public class MoveForklift extends CommandBase {
 
         double clawPower = BotControllers.xbox2.xbox.getLeftTriggerAxis() - BotControllers.xbox2.xbox.getRightTriggerAxis();
 
-        m_forklift.moveClaw(clawPower/4);
+        m_forklift.moveClaw(clawPower);
     }
 
     // This command continues until interrupted

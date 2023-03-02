@@ -66,7 +66,7 @@ public class AutonomousTab {
             m_autoCommandDefault = m_commandLayout.add("Default", BotCommands.defaultAutoCommand);
 
             m_balanceCommand = m_individualCommandLayout.add("Balance Charge Station", new BalanceChargeStation(BotSubsystems.swerveDriver));
-            m_moveForwardCommand = m_individualCommandLayout.add("Move Forward", new MoveForward(2));
+            m_moveForwardCommand = m_individualCommandLayout.add("Move Forward", new Move(2,1));
         }
     
         // Configure all Widgets

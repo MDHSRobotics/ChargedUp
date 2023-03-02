@@ -6,12 +6,12 @@ import frc.robot.BotSubsystems;
 import frc.robot.commands.swervedrive.TimedSwerve;
 import frc.robot.subsystems.constants.AutoConstants; 
 
-public class MoveForward extends SequentialCommandGroup {
+public class Move extends SequentialCommandGroup {
 
-    public MoveForward(double seconds) {
+    public Move(double seconds, double xSpeed) {
 
         addCommands(
-                new TimedSwerve(BotSubsystems.swerveDriver, AutoConstants.kDrivePower, 0.0, 0.0, seconds)
+                new TimedSwerve(BotSubsystems.swerveDriver, xSpeed * AutoConstants.kDrivePower, 0.0, 0.0, seconds)
         );
         
     }

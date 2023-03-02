@@ -7,7 +7,7 @@ public class DefaultAutoCommand extends SequentialCommandGroup {
     public DefaultAutoCommand() {
     
         addCommands(
-            new MoveForward(3)
+            new Move(3,1)
         );
 
     }
