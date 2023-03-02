@@ -20,6 +20,8 @@ public class ForkliftBrain {
     public static double defaultExtenderEncoder = 0;
     public static double defaultElevatorEncoder = 0;
 
+    public static boolean defaultSoftStopEnabled = true;
+
     //---------------------//
     // NetworkTableEntries //
     //---------------------//
@@ -32,6 +34,8 @@ public class ForkliftBrain {
 
     public static GenericEntry entryExtenderEncoder;
     public static GenericEntry entryElevatorEncoder;
+
+    public static GenericEntry entrySoftStopEnabled;
 
     //---------//
     // Getters //
@@ -61,6 +65,10 @@ public class ForkliftBrain {
         return entryElevatorEncoder.getDouble(defaultElevatorEncoder);
     }
 
+    public static boolean getSoftStopEnabled(){
+        return entrySoftStopEnabled.getBoolean(defaultSoftStopEnabled);
+    }
+
     //---------//
     // Setters //
     //---------//
@@ -71,6 +79,10 @@ public class ForkliftBrain {
 
     public static void setElevatorEncoder(double value) {
         entryElevatorEncoder.setDouble(value);
+    }
+
+    public static void setSoftStopEnabled(boolean value) {
+        entrySoftStopEnabled.setBoolean(value);
     }
 
 }

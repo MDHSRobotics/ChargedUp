@@ -22,6 +22,9 @@ public class BotCommands {
     public static MoveForklift moveForklift;
     public static CommandBase openClamp;
     public static CommandBase closeClamp;
+    public static CommandBase enableSoftStop;
+    public static CommandBase disableSoftStop;
+    public static CommandBase resetEncoders;
 
     //Intake
     public static MoveIntake moveIntake;
@@ -43,6 +46,10 @@ public class BotCommands {
  
         // Forklift
         moveForklift = new MoveForklift(BotSubsystems.forklift); 
+
+        enableSoftStop = BotSubsystems.forklift.enableSoftStop();
+        disableSoftStop = BotSubsystems.forklift.disableSoftStop();
+        resetEncoders = BotSubsystems.forklift.resetEncoders();
 
         //Intake
         moveIntake = new MoveIntake(BotSubsystems.intake);
