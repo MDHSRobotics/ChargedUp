@@ -14,7 +14,7 @@ public class ForkliftTab {
     // Tab & Layouts
     private ShuffleboardTab m_tab;
 
-    private ShuffleboardLayout m_motorPowersLayout;
+    private ShuffleboardLayout m_motorSoftStopLayout;
     private ShuffleboardLayout m_motorSpeedsLayout;
     private ShuffleboardLayout m_motorEncodersLayout;
     private ShuffleboardLayout m_commandLayout;
@@ -24,8 +24,8 @@ public class ForkliftTab {
     private ComplexWidget openClamp, closeClamp;
     private ComplexWidget enableSoftStop, disableSoftStop, resetEncoders;
 
-    private SimpleWidget m_widgetExtenderPower;
-    private SimpleWidget m_widgetElevatorPower;
+    private SimpleWidget m_widgetExtenderSoftStop;
+    private SimpleWidget m_widgetElevatorSoftStop;
 
     private SimpleWidget m_widgetExtenderSpeed;
     private SimpleWidget m_widgetElevatorSpeed;
@@ -43,24 +43,24 @@ public class ForkliftTab {
         m_tab = Shuffleboard.getTab("Forklift");
 
         m_commandLayout = Shuffler.constructLayout(m_tab, "Commands", 0, 0, 4, 2, 1, 2, "LEFT");
-        m_motorPowersLayout = Shuffler.constructLayout(m_tab, "Motor Powers", 4, 0, 8, 3, 1, 2, "LEFT");
-        m_motorSpeedsLayout = Shuffler.constructLayout(m_tab, "Motor Speeds", 4, 3, 8, 3, 1, 2, "LEFT");
+        m_motorSoftStopLayout = Shuffler.constructLayout(m_tab, "Motor Soft Stops", 4, 4, 8, 3, 1, 2, "LEFT");
+        m_motorSpeedsLayout = Shuffler.constructLayout(m_tab, "Motor Speeds", 4, 0, 8, 3, 1, 2, "LEFT");
         m_motorEncodersLayout = Shuffler.constructLayout(m_tab, "Motor Encoders", 0, 2, 4, 2, 1, 2, "LEFT");
         m_softStopLayout = Shuffler.constructLayout(m_tab, "Soft Stop", 0, 4, 4, 4, 1, 2, "LEFT");
     }
 
     // Create Brain Widgets
     public void preInitialize() {
-        //Motor Powers
-        m_widgetExtenderPower = m_motorPowersLayout.add("Extender Power", ForkliftBrain.defaultExtenderPower);
-        ForkliftBrain.entryExtenderPower = m_widgetExtenderPower.getEntry();
-        m_widgetExtenderPower.withWidget(BuiltInWidgets.kNumberSlider);
-        m_widgetExtenderPower.withProperties(Map.of("min", 0, "max", 1.0));
+        //Motor Soft Stops
+        m_widgetExtenderSoftStop = m_motorSoftStopLayout.add("Extender Soft Stop", ForkliftBrain.defaultExtenderSoftStop);
+        ForkliftBrain.entryExtenderSoftStop = m_widgetExtenderSoftStop.getEntry();
+        m_widgetExtenderSoftStop.withWidget(BuiltInWidgets.kNumberSlider);
+        m_widgetExtenderSoftStop.withProperties(Map.of("min", 0, "max", 200.0));
 
-        m_widgetElevatorPower = m_motorPowersLayout.add("Elevator Power", ForkliftBrain.defaultElevatorPower);
-        ForkliftBrain.entryElevatorPower = m_widgetElevatorPower.getEntry();
-        m_widgetElevatorPower.withWidget(BuiltInWidgets.kNumberSlider);
-        m_widgetElevatorPower.withProperties(Map.of("min", 0, "max", 1.0));
+        m_widgetElevatorSoftStop = m_motorSoftStopLayout.add("Elevator Soft Stop", ForkliftBrain.defaultElevatorSoftStop);
+        ForkliftBrain.entryElevatorSoftStop = m_widgetElevatorSoftStop.getEntry();
+        m_widgetElevatorSoftStop.withWidget(BuiltInWidgets.kNumberSlider);
+        m_widgetElevatorSoftStop.withProperties(Map.of("min", 0, "max", 100.0));
         
         //Motor Speeds
         m_widgetExtenderSpeed = m_motorSpeedsLayout.add("Extender Speed", ForkliftBrain.defaultExtenderSpeed);

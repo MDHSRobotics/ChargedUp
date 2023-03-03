@@ -29,6 +29,8 @@ public class MoveForklift extends CommandBase {
         
         brainExtenderSpeed = ForkliftBrain.getExtenderSpeed();
         brainElevatorSpeed = ForkliftBrain.getElevatorSpeed();
+
+        m_forklift.setSoftStops(ForkliftBrain.getExtenderSoftStop(), ForkliftBrain.getElevatorSoftStop());
     }
 
     @Override

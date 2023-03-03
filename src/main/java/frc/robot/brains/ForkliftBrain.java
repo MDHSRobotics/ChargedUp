@@ -11,14 +11,14 @@ public class ForkliftBrain {
     // Default Values //
     //----------------//
 
-    public static double defaultExtenderPower = 0;
-    public static double defaultElevatorPower = 0;
-
     public static double defaultExtenderSpeed = 1;
     public static double defaultElevatorSpeed = 1;
 
     public static double defaultExtenderEncoder = 0;
     public static double defaultElevatorEncoder = 0;
+
+    public static double defaultExtenderSoftStop = 135;
+    public static double defaultElevatorSoftStop = 23;
 
     public static boolean defaultSoftStopEnabled = true;
 
@@ -26,28 +26,20 @@ public class ForkliftBrain {
     // NetworkTableEntries //
     //---------------------//
 
-    public static GenericEntry entryExtenderPower;
-    public static GenericEntry entryElevatorPower;
-
     public static GenericEntry entryExtenderSpeed;
     public static GenericEntry entryElevatorSpeed;
 
     public static GenericEntry entryExtenderEncoder;
     public static GenericEntry entryElevatorEncoder;
 
+    public static GenericEntry entryExtenderSoftStop;
+    public static GenericEntry entryElevatorSoftStop;
+
     public static GenericEntry entrySoftStopEnabled;
 
     //---------//
     // Getters //
     //---------//
-
-    public static double getExtenderPower() {
-        return entryExtenderPower.getDouble(defaultExtenderPower);
-    }
-
-    public static double getElevatorPower() {
-        return entryElevatorPower.getDouble(defaultElevatorPower);
-    }
 
     public static double getExtenderSpeed(){
         return entryExtenderSpeed.getDouble(defaultExtenderSpeed);
@@ -67,6 +59,14 @@ public class ForkliftBrain {
 
     public static boolean getSoftStopEnabled(){
         return entrySoftStopEnabled.getBoolean(defaultSoftStopEnabled);
+    }
+
+    public static double getExtenderSoftStop(){
+        return entryExtenderSoftStop.getDouble(defaultExtenderSoftStop);
+    }
+
+    public static double getElevatorSoftStop(){
+        return entryElevatorSoftStop.getDouble(defaultElevatorSoftStop);
     }
 
     //---------//

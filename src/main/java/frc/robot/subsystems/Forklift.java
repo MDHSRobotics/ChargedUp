@@ -74,9 +74,10 @@ public class Forklift extends SubsystemBase {
         //Apply Motor Softstop
         double elevatorPower2 = elevatorPower;
         if(m_isSoftStopEnabled){
-            elevatorPower2 = (getElevatorEncoder() < elevatorMin && elevatorPower < 0) || 
-                             (getElevatorEncoder() > elevatorMax && elevatorPower > 0) ? elevatorPower : 0;
+            elevatorPower2 = (getElevatorEncoder() > elevatorMin && elevatorPower < 0) || 
+                             (getElevatorEncoder() < elevatorMax && elevatorPower > 0) ? elevatorPower : 0;
         }
+        
         //Logger.debug("Vertical Power: " + power);
         sparkMaxForkliftElevator.set(elevatorPower2);
     }
@@ -107,12 +108,19 @@ public class Forklift extends SubsystemBase {
         sparkMaxClawLift.stopMotor();
     }
 
+    //Get the motor encoders
     public double getElevatorEncoder(){
         return sparkMaxForkliftElevator.getEncoder().getPosition();
     }
 
     public double getExtenderEncoder(){
         return sparkMaxForkliftExtender.getEncoder().getPosition();
+    }
+
+    public void setSoftStops(double extender, double elevator){
+        Logger.info("Setting SoftStops to: " + extender + " and " + elevator);
+        elevatorMax = elevator;
+        extenderMax = extender;
     }
 
     /* One Line Commands */

@@ -19,7 +19,7 @@ public class LiftForklift extends CommandBase {
     private boolean m_isExtenderAtTarget = false;
 
     public LiftForklift(Forklift forklift, double targetExtenderPosition, double targetElevatorPosition) {
-        Logger.setup("Constructing Command: LiftForlift...");
+        Logger.setup("Constructing Command: Lift Forklift...");
 
         // Add given subsystem requirements
         m_forklift = forklift;
