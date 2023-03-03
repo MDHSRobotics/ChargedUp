@@ -79,14 +79,14 @@ public class SwerveDrive extends CommandBase {
         double sideToSideSpeed = joystickMovement.sideToSideSpeed;
         double rotationSpeed = joystickMovement.rotationSideToSideSpeed;
 
-        SmartDashboard.putString("10: Joystick input", String.format("X = %.2f; Y = %.2f, Turn = %.2f", forwardBackwardSpeed, sideToSideSpeed, rotationSpeed));
+        //SmartDashboard.putString("10: Joystick input", String.format("X = %.2f; Y = %.2f, Turn = %.2f", forwardBackwardSpeed, sideToSideSpeed, rotationSpeed));
 
         // 2. Apply deadband
         double forwardBackwardSpeed2 = Math.abs(forwardBackwardSpeed) > brainDeadband ? forwardBackwardSpeed : 0.0;
         double sideToSideSpeed2 = Math.abs(sideToSideSpeed) > brainDeadband ? sideToSideSpeed : 0.0;
         double rotationSpeed2 = Math.abs(rotationSpeed) > brainDeadband ? rotationSpeed : 0.0;
 
-        SmartDashboard.putString("09: Apply deadpan", String.format("X = %.2f; Y = %.2f, Turn = %.2f", forwardBackwardSpeed2, sideToSideSpeed2, rotationSpeed2));
+        //SmartDashboard.putString("09: Apply deadpan", String.format("X = %.2f; Y = %.2f, Turn = %.2f", forwardBackwardSpeed2, sideToSideSpeed2, rotationSpeed2));
 
         // 3. Make the driving smoother
         double forwardBackwardSpeed3 = m_forwardBackwardLimiter.calculate(forwardBackwardSpeed2) * brainForwardBackwardSpeed;

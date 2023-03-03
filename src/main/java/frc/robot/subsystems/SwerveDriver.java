@@ -188,10 +188,10 @@ public class SwerveDriver extends SubsystemBase {
     }
 
     public void setModuleStates(SwerveModuleState[] desiredStates) {
-        SmartDashboard.putString("05: Front Left Desired State", desiredStates[0].toString());
-        SmartDashboard.putString("05: Front Right Desired State", desiredStates[1].toString());
-        SmartDashboard.putString("05: Rear Left Desired State", desiredStates[2].toString());
-        SmartDashboard.putString("05: Rear Right Desired State", desiredStates[3].toString());
+        //SmartDashboard.putString("05: Front Left Desired State", desiredStates[0].toString());
+        //SmartDashboard.putString("05: Front Right Desired State", desiredStates[1].toString());
+        //SmartDashboard.putString("05: Rear Left Desired State", desiredStates[2].toString());
+        //SmartDashboard.putString("05: Rear Right Desired State", desiredStates[3].toString());
 
         SwerveDriveKinematics.desaturateWheelSpeeds(desiredStates, SwerveConstants.kPhysicalMaxSpeedMetersPerSecond);
 
@@ -208,10 +208,10 @@ public class SwerveDriver extends SubsystemBase {
 
     //Set chassis speeds
     public void setChassisSpeed(double xSpeed, double ySpeed, double turningSpeed, boolean fieldOriented) {
-        SmartDashboard.putString("07: xSpeed", "" + xSpeed);
-        SmartDashboard.putString("07: ySpeed", "" + ySpeed);
-        SmartDashboard.putString("07: turningSpeed", "" + turningSpeed);
-        SmartDashboard.putString("07: fieldOriented", "" + fieldOriented);
+        //SmartDashboard.putString("07: xSpeed", "" + xSpeed);
+        //SmartDashboard.putString("07: ySpeed", "" + ySpeed);
+        //SmartDashboard.putString("07: turningSpeed", "" + turningSpeed);
+        //SmartDashboard.putString("07: fieldOriented", "" + fieldOriented);
         // Construct desired chassis speeds
         ChassisSpeeds chassisSpeeds;
 
@@ -224,7 +224,7 @@ public class SwerveDriver extends SubsystemBase {
             chassisSpeeds = new ChassisSpeeds(-xSpeed, ySpeed, -turningSpeed);
         }
 
-        SmartDashboard.putString("06: Chassis Speeeds", chassisSpeeds.toString());
+        //SmartDashboard.putString("06: Chassis Speeeds", chassisSpeeds.toString());
         // Convert chassis speeds to individual module states
         SwerveModuleState[] moduleStates = SwerveConstants.kDriveKinematics.toSwerveModuleStates(chassisSpeeds);
 
