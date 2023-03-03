@@ -1,8 +1,79 @@
 package frc.robot.commands.auto;
 
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class LiftForklift extends SequentialCommandGroup{
-    
-    
+import frc.robot.consoles.Logger;
+import frc.robot.subsystems.Forklift;
+
+public class LiftForklift extends CommandBase {
+
+    private Forklift m_forklift;
+
+    private double m_elevatorEncoderPosition = 0;
+    private double m_extenderEncoderPosition = 0;
+
+    private double m_targetElevatorPosition;
+    private double m_targetExtenderPosition;
+
+    private boolean m_isElevatorAtTarget = false;
+    private boolean m_isExtenderAtTarget = false;
+
+    public LiftForklift(Forklift forklift, double targetExtenderPosition, double targetElevatorPosition) {
+        Logger.setup("Constructing Command: LiftForlift...");
+
+        // Add given subsystem requirements
+        m_forklift = forklift;
+        m_targetElevatorPosition = targetElevatorPosition;
+        m_targetExtenderPosition = targetExtenderPosition;
+        addRequirements(m_forklift);
+    }
+
+    @Override
+    public void initialize() {
+        Logger.action("Initializing Command: Lift Forklift...");
+        m_forklift.disableSoftStop();
+    }
+
+    @Override
+    public void execute() {
+        //Get encoder positions in the command
+        m_extenderEncoderPosition = m_forklift.getExtenderEncoder();
+        m_elevatorEncoderPosition = m_forklift.getElevatorEncoder();
+
+        //move the elevator up first to the target position\
+        if(!m_isElevatorAtTarget){
+            if(m_elevatorEncoderPosition >= m_targetElevatorPosition){
+                m_isElevatorAtTarget = true;
+                m_forklift.stopMotors();
+            }else{
+                m_forklift.moveArmElevator(0.5);
+            }
+        }else{
+            //move the extender up second to the target position
+            if(m_extenderEncoderPosition >= m_targetExtenderPosition){
+                m_isExtenderAtTarget = true;
+                m_forklift.stopMotors();
+            }else{
+                m_forklift.moveArmExtender(0.5);
+            }
+        }
+
+    }
+
+    // This command continues until interrupted
+    @Override
+    public boolean isFinished() {
+        return (m_isExtenderAtTarget && m_isElevatorAtTarget);
+    }
+
+    @Override
+    public void end(boolean interrupted) {
+        if (interrupted) {
+            Logger.ending("Interrupting Command: Lift Forklift... ");
+        } else {
+            Logger.ending("Ending Command: Lift Forklift... ");
+        }
+        m_forklift.stopMotors();
+    }
+
 }

@@ -20,7 +20,7 @@ public class AutonomousTab {
         private ShuffleboardLayout m_layoutChargeStationSpeedPID;
     
         // Widgets
-        private ComplexWidget m_autoCommand1, m_autoCommand2, m_autoCommand3, m_autoCommandDefault;
+        private ComplexWidget m_placeCubeInner, m_placeCubeOuter, m_ejectCubeInner, m_ejectCubeOuter, m_autoCommandDefault;
         private ComplexWidget m_balanceCommand, m_moveForwardCommand;
         private SimpleWidget m_forwardTime;
 
@@ -60,9 +60,10 @@ public class AutonomousTab {
     
         // Create all other Widgets
         public void initialize() {
-            m_autoCommand1 = m_commandLayout.add("Auto 1", BotCommands.autoCommand1);
-            m_autoCommand2 = m_commandLayout.add("Auto 2", BotCommands.autoCommand2);
-            m_autoCommand3 = m_commandLayout.add("Auto 3", BotCommands.autoCommand3);
+            m_placeCubeInner = m_commandLayout.add("Place Cube Inner", BotCommands.placeCubeInner);
+            m_placeCubeOuter = m_commandLayout.add("Place Cube Outer", BotCommands.placeCubeOuter);
+            m_ejectCubeInner = m_commandLayout.add("Eject Cube Inner", BotCommands.ejectCubeInner);
+            m_ejectCubeOuter = m_commandLayout.add("Eject Cube Outer", BotCommands.ejectCubeOuter);
             m_autoCommandDefault = m_commandLayout.add("Default", BotCommands.defaultAutoCommand);
 
             m_balanceCommand = m_individualCommandLayout.add("Balance Charge Station", new BalanceChargeStation(BotSubsystems.swerveDriver));

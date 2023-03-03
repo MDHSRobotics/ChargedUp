@@ -57,6 +57,7 @@ public class MoveForklift extends CommandBase {
         } else {
             Logger.ending("Ending Command: MoveForklift...");
         }
+        m_forklift.stopMotors();
     }
 
 }

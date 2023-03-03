@@ -12,12 +12,12 @@ public class Forklift extends SubsystemBase {
 
     private static final double MIN_MOTOR_POWER = 0.1;
 
-    private static double elevatorMin = 0;
-    private static double elevatorMax = -23;
-    private static double extenderMin = 0;
-    private static double extenderMax = 135;
+    private static double elevatorMin = 0.;
+    private static double elevatorMax = 23.;
+    private static double extenderMin = 0.;
+    private static double extenderMax = 135.;
 
-    public boolean isSoftStopEnabled;
+    private boolean m_isSoftStopEnabled;
 
     public Forklift() {
         Logger.setup("Constructing Subsystem: Forklift...");
@@ -37,15 +37,17 @@ public class Forklift extends SubsystemBase {
         sparkMaxForkliftExtender.setIdleMode(IdleMode.kBrake);
         sparkMaxClawLift.setIdleMode(IdleMode.kBrake);
 
+        sparkMaxForkliftExtender.setInverted(true);
+
         sparkMaxForkliftElevatorTwo.follow(sparkMaxForkliftElevator);
     }
 
     @Override
     public void periodic() {
-        ForkliftBrain.setElevatorEncoder(sparkMaxForkliftElevator.getEncoder().getPosition());
-        ForkliftBrain.setExtenderEncoder(sparkMaxForkliftExtender.getEncoder().getPosition());
+        ForkliftBrain.setElevatorEncoder(getElevatorEncoder());
+        ForkliftBrain.setExtenderEncoder(getExtenderEncoder());
 
-        ForkliftBrain.setSoftStopEnabled(isSoftStopEnabled);
+        ForkliftBrain.setSoftStopEnabled(m_isSoftStopEnabled);
     }
 
     //extend arm
@@ -55,13 +57,13 @@ public class Forklift extends SubsystemBase {
 
         //Apply Motor Softstop
         double extenderPower2 = extenderPower;
-        if(isSoftStopEnabled){
-            extenderPower2 = (sparkMaxForkliftExtender.getEncoder().getPosition() > extenderMin && extenderPower < 0) || 
-                             (sparkMaxForkliftExtender.getEncoder().getPosition() < extenderMax && extenderPower > 0) ? extenderPower : 0;
+        if(m_isSoftStopEnabled){
+            extenderPower2 = (getExtenderEncoder() > extenderMin && extenderPower < 0) || 
+                             (getExtenderEncoder() < extenderMax && extenderPower > 0) ? extenderPower : 0;
         }
 
         //Logger.debug("Extender Power: " + power);
-        sparkMaxForkliftExtender.set(-extenderPower2);
+        sparkMaxForkliftExtender.set(extenderPower2);
     }
 
     // move arm vertical
@@ -71,9 +73,9 @@ public class Forklift extends SubsystemBase {
 
         //Apply Motor Softstop
         double elevatorPower2 = elevatorPower;
-        if(isSoftStopEnabled){
-            elevatorPower2 = (sparkMaxForkliftElevator.getEncoder().getPosition() < elevatorMin && elevatorPower < 0) || 
-                             (sparkMaxForkliftElevator.getEncoder().getPosition() > elevatorMax && elevatorPower > 0) ? elevatorPower : 0;
+        if(m_isSoftStopEnabled){
+            elevatorPower2 = (getElevatorEncoder() < elevatorMin && elevatorPower < 0) || 
+                             (getElevatorEncoder() > elevatorMax && elevatorPower > 0) ? elevatorPower : 0;
         }
         //Logger.debug("Vertical Power: " + power);
         sparkMaxForkliftElevator.set(elevatorPower2);
@@ -90,10 +92,27 @@ public class Forklift extends SubsystemBase {
         sparkMaxClawLift.set(power);
     }
 
-    public void resetMotorEncoders(){
+    //Reset the encoders
+    private void resetMotorEncoders(){
         Logger.info("Resetting Motor Encoders");
         sparkMaxForkliftElevator.getEncoder().setPosition(0);
         sparkMaxForkliftExtender.getEncoder().setPosition(0);
+    }
+
+    //Stop all of the motors
+    public void stopMotors(){
+        sparkMaxForkliftElevator.stopMotor();
+        sparkMaxForkliftElevatorTwo.stopMotor();
+        sparkMaxForkliftExtender.stopMotor();
+        sparkMaxClawLift.stopMotor();
+    }
+
+    public double getElevatorEncoder(){
+        return sparkMaxForkliftElevator.getEncoder().getPosition();
+    }
+
+    public double getExtenderEncoder(){
+        return sparkMaxForkliftExtender.getEncoder().getPosition();
     }
 
     /* One Line Commands */
@@ -114,12 +133,12 @@ public class Forklift extends SubsystemBase {
 
     public CommandBase enableSoftStop() {
         Logger.info("Enabling Soft Stop");
-        return this.runOnce(() -> isSoftStopEnabled = true);
+        return this.runOnce(() -> m_isSoftStopEnabled = true);
     }
 
     public CommandBase disableSoftStop() {
         Logger.info("Disabling Soft Stop");
-        return this.runOnce(() -> isSoftStopEnabled = false);
+        return this.runOnce(() -> m_isSoftStopEnabled = false);
     }
 
     public CommandBase resetEncoders() {

@@ -9,9 +9,10 @@ import frc.robot.commands.swervedrive.*;
 public class BotCommands {
 
     // Auto Command options
-    public static AutoCommand1 autoCommand1;
-    public static AutoCommand2 autoCommand2;
-    public static AutoCommand3 autoCommand3;
+    public static AutoPlaceCubeInner placeCubeInner;
+    public static AutoPlaceCubeOuter placeCubeOuter;
+    public static AutoEjectCubeInner ejectCubeInner;
+    public static AutoEjectCubeOuter ejectCubeOuter;
     public static DefaultAutoCommand defaultAutoCommand;
 
     // SwerveDriver
@@ -33,12 +34,6 @@ public class BotCommands {
     public static void initializeCommands() {
 
         Logger.setup("Initializing BotCommands...");
-        
-        // Auto Commands 
-        autoCommand1 = new AutoCommand1();
-        autoCommand2 = new AutoCommand2();
-        autoCommand3 = new AutoCommand3();
-        defaultAutoCommand = new DefaultAutoCommand();
 
         // SwerveDriver
         swerveDrive = new SwerveDrive(BotSubsystems.swerveDriver, BotControllers.xbox1); 
@@ -57,5 +52,12 @@ public class BotCommands {
         // Pneumatics
         openClamp = BotSubsystems.forklift.openClampCommand();
         closeClamp = BotSubsystems.forklift.closeClampCommand();
+
+        // Auto Commands 
+        placeCubeInner = new AutoPlaceCubeInner();
+        placeCubeOuter = new AutoPlaceCubeOuter();
+        ejectCubeInner = new AutoEjectCubeInner();
+        ejectCubeOuter = new AutoEjectCubeOuter();
+        defaultAutoCommand = new DefaultAutoCommand();
     }
 }
