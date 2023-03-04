@@ -13,9 +13,9 @@ public class Forklift extends SubsystemBase {
     private static final double MIN_MOTOR_POWER = 0.1;
 
     private static double elevatorMin = 0.;
-    private static double elevatorMax = 23.;
+    private static double elevatorMax = -66.;
     private static double extenderMin = 0.;
-    private static double extenderMax = 135.;
+    private static double extenderMax = -158.;
 
     private boolean m_isSoftStopEnabled;
 
@@ -58,8 +58,8 @@ public class Forklift extends SubsystemBase {
         //Apply Motor Softstop
         double extenderPower2 = extenderPower;
         if(m_isSoftStopEnabled){
-            extenderPower2 = (getExtenderEncoder() > extenderMin && extenderPower < 0) || 
-                             (getExtenderEncoder() < extenderMax && extenderPower > 0) ? extenderPower : 0;
+            extenderPower2 = (Math.abs(getExtenderEncoder()) > extenderMin && extenderPower > 0) || 
+                             (Math.abs(getExtenderEncoder()) < extenderMax && extenderPower < 0) ? extenderPower : 0;
         }
 
         //Logger.debug("Extender Power: " + power);
@@ -74,10 +74,10 @@ public class Forklift extends SubsystemBase {
         //Apply Motor Softstop
         double elevatorPower2 = elevatorPower;
         if(m_isSoftStopEnabled){
-            elevatorPower2 = (getElevatorEncoder() > elevatorMin && elevatorPower < 0) || 
-                             (getElevatorEncoder() < elevatorMax && elevatorPower > 0) ? elevatorPower : 0;
+            elevatorPower2 = (Math.abs(getElevatorEncoder()) > elevatorMin && elevatorPower > 0) || 
+                             (Math.abs(getElevatorEncoder()) < elevatorMax && elevatorPower < 0) ? elevatorPower : 0;
         }
-        
+
         //Logger.debug("Vertical Power: " + power);
         sparkMaxForkliftElevator.set(elevatorPower2);
     }
