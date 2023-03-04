@@ -30,7 +30,7 @@ public class EjectCube extends CommandBase{
 
     @Override
     public void execute(){
-        m_intake.moveIntake(1);
+        m_intake.moveIntake(-1);
     }
 
     @Override

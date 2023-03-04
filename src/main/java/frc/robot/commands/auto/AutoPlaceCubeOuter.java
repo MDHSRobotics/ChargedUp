@@ -18,7 +18,7 @@ public class AutoPlaceCubeOuter extends SequentialCommandGroup {
             new PlaceCube(),
 
             //Drive backward to go outside the community
-            new TimedSwerve(BotSubsystems.swerveDriver, -1, 0, 0, 3)
+            new TimedSwerve(BotSubsystems.swerveDriver, -0.3, 0, 0, 1.2)
         );
 
     }

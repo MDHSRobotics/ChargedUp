@@ -15,13 +15,13 @@ public class AutoEjectCubeOuter extends SequentialCommandGroup {
         addCommands(
 
             //Eject cube in the outer grids
-            new EjectCube(BotSubsystems.intake, 1),
+            new EjectCube(BotSubsystems.intake, 0.5),
 
             //Move to the side of the field to clear the charge station
-            new TimedSwerve(BotSubsystems.swerveDriver, sidetoSideSpeed, 0, 0, 0.5),
+            new TimedSwerve(BotSubsystems.swerveDriver, sidetoSideSpeed, 0, 0, 0.4),
             
             //Drive outside the community
-            new TimedSwerve(BotSubsystems.swerveDriver, -1, 0, 0, 3)
+            new TimedSwerve(BotSubsystems.swerveDriver, 0, 0.3, 0, 4.0)
         );
 
     }

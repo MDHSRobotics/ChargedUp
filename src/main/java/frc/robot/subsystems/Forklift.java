@@ -151,10 +151,15 @@ public class Forklift extends SubsystemBase {
         m_extenderPIDController.setReference(position, CANSparkMax.ControlType.kPosition);
     }
 
-    public boolean areMotorsAtPosition(double elevatorTarget, double extenderTarget){
-        return (Math.abs(getExtenderEncoder() - extenderTarget) < MOTOR_POSITION_TOLERANCE);
-        // (Math.abs(getElevatorEncoder() - elevatorTarget) < MOTOR_POSITION_TOLERANCE)
+    public boolean isElevatorAtPosition(double target){
+        return (Math.abs(getElevatorEncoder() - target) < MOTOR_POSITION_TOLERANCE);
     }
+
+    public boolean isExtenderAtPosition(double target){
+        return (Math.abs(getExtenderEncoder() - target) < MOTOR_POSITION_TOLERANCE);
+    }
+
+    
 
     /* One Line Commands */
 

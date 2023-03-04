@@ -67,8 +67,8 @@ public class BotCommands {
         placeCubeInner = new AutoPlaceCubeInner();
         placeCubeOuter = new AutoPlaceCubeOuter();
         ejectCubeInner = new AutoEjectCubeInner();
-        ejectCubeOuterLeft = new AutoEjectCubeOuter(-1);
-        ejectCubeOuterRight = new AutoEjectCubeOuter(1);
+        ejectCubeOuterLeft = new AutoEjectCubeOuter(-0.3);
+        ejectCubeOuterRight = new AutoEjectCubeOuter(0.3);
         defaultAutoCommand = new DefaultAutoCommand();
     }
 }

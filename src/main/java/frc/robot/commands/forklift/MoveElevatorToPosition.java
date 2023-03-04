@@ -6,23 +6,25 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.consoles.Logger;
 import frc.robot.subsystems.Forklift;
 
-public class ForkliftPickUpPosition extends CommandBase {
+public class MoveElevatorToPosition extends CommandBase {
 
     private Forklift m_forklift; 
+    private double m_targetPosition;
 
-    public ForkliftPickUpPosition(Forklift forklift) {
-        Logger.setup("Constructing Command: ForkliftPickUpPosition...");
+    public MoveElevatorToPosition(Forklift forklift, double targetPosition) {
+        Logger.setup("Constructing Command: MoveElevatorToPosition...");
 
         // Add given subsystem requirements
         m_forklift = forklift;
+        m_targetPosition = targetPosition;
         addRequirements(m_forklift);
     }
 
     @Override
     public void initialize() {
-        Logger.action("Initializing Command: ForkliftPickUpPosition...");
+        Logger.action("Initializing Command: MoveElevatorToPosition...");
         //m_forklift.moveElevatorToPosition(0);
-        m_forklift.moveExtenderToPosition(0);
+        m_forklift.moveExtenderToPosition(m_targetPosition);
         
     }
 
@@ -33,7 +35,7 @@ public class ForkliftPickUpPosition extends CommandBase {
     // This command continues until interrupted
     @Override
     public boolean isFinished() {
-        return m_forklift.isElevatorAtPosition(0);
+        return m_forklift.isElevatorAtPosition(m_targetPosition);
     }
 
     @Override
