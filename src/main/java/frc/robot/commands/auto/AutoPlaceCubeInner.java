@@ -17,7 +17,7 @@ public class AutoPlaceCubeInner extends SequentialCommandGroup {
             new PlaceCube(),
 
             //Balance on the charge station
-            new BalanceChargeStation(BotSubsystems.swerveDriver)
+            new BalanceChargeStation(BotSubsystems.swerveDriver, false)
         );
 
     }

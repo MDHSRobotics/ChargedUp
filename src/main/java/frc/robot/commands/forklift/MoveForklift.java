@@ -41,7 +41,7 @@ public class MoveForklift extends CommandBase {
         m_forklift.moveArmExtender(extenderPower * brainExtenderSpeed);
         m_forklift.moveArmElevator(elevatorPower * brainElevatorSpeed);
 
-        double clawPower = BotControllers.xbox2.xbox.getLeftTriggerAxis() - BotControllers.xbox2.xbox.getRightTriggerAxis();
+        double clawPower = BotControllers.xbox2.xbox.getRightTriggerAxis() - BotControllers.xbox2.xbox.getLeftTriggerAxis();
 
         m_forklift.moveClaw(clawPower);
     }

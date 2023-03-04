@@ -13,6 +13,9 @@ public class AutoEjectCubeInner extends SequentialCommandGroup {
     
         addCommands(
 
+            //Eject Cube in the center
+            new EjectCube(BotSubsystems.intake, 1),
+
             //Balance on the charge station
             new BalanceChargeStation(BotSubsystems.swerveDriver)
             

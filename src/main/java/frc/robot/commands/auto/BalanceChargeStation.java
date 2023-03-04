@@ -17,12 +17,14 @@ public class BalanceChargeStation extends CommandBase {
 
     private boolean m_isOnChargeStation;
     private boolean m_isBalanced;
+    private boolean m_isSideways;
 
-    public BalanceChargeStation(SwerveDriver swerveDriver) {
+    public BalanceChargeStation(SwerveDriver swerveDriver, boolean isSideways) {
         Logger.setup("Constructing Command: BalanceChargeStation...");
 
         // Add given subsystem requirements
         m_swerveDriver = swerveDriver;
+        m_isSideways = isSideways;
         m_pidController = new PIDController(0,0,0);
         addRequirements(m_swerveDriver);
     }
@@ -45,21 +47,30 @@ public class BalanceChargeStation extends CommandBase {
     @Override
     public void execute() {
 
-        double currentPitchAngle = gyro.getPitch();
+        double currentAngle;
+        double xSpeed = 0.;
+        double ySpeed = 0.;
+        if(m_isSideways){
+            currentAngle = gyro.getRoll();
+            ySpeed = 1.;
+        }else{
+            currentAngle = gyro.getPitch();
+            xSpeed = 1.;
+        }
 
         // sets a default speed if the robot is not on the charge station yet
         if (!m_isOnChargeStation) {
             // checks if robot is on charge station
-            if (Math.abs(currentPitchAngle) > 5) {
+            if (Math.abs(currentAngle) > 5) {
                 m_isOnChargeStation = true;
             } else {
-                m_swerveDriver.setChassisSpeed(SwerveConstants.kMaxChargeStationBalancingPower, 0 , 0);
+                m_swerveDriver.setChassisSpeed(SwerveConstants.kMaxChargeStationBalancingPower * xSpeed, SwerveConstants.kMaxChargeStationBalancingPower * ySpeed , 0);
             }
         } 
 
         // sets appropriate speed based on position on ramp if robot is on charge station
         if (m_isOnChargeStation) {
-            double outputScaleFactor = m_pidController.calculate(currentPitchAngle);
+            double outputScaleFactor = m_pidController.calculate(currentAngle);
 
             // checks if charge station is balanced
             if (m_pidController.atSetpoint()) {
@@ -74,7 +85,7 @@ public class BalanceChargeStation extends CommandBase {
                 }
     
                 // drives forward or backward based on location until robot is balanced on charge station 
-                m_swerveDriver.setChassisSpeed(robotSpeed, 0 , 0);
+                m_swerveDriver.setChassisSpeed(robotSpeed * xSpeed, robotSpeed * ySpeed , 0);
             }
         }
     } 

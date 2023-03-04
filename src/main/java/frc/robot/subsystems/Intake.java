@@ -33,5 +33,9 @@ public class Intake extends SubsystemBase {
         double intakePower = Math.abs(power) >= MIN_MOTOR_POWER ? power : 0;
         sparkMaxIntake.set(intakePower);
     }
+
+    public void stopIntake(){
+        sparkMaxIntake.set(0);
+    }
     
 }

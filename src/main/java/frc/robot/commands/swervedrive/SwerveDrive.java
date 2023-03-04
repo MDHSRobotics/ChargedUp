@@ -59,13 +59,15 @@ public class SwerveDrive extends CommandBase {
         Logger.action("Initializing Command: SwerveDrive...");
         
         brainDeadband = SwerveDriverBrain.getDeadband();
-        brainForwardBackwardSpeed = SwerveDriverBrain.getForwardBackwardSpeed();
-        brainLeftRightSpeed = SwerveDriverBrain.getLeftRightSpeed();
-        brainRotationSpeed = SwerveDriverBrain.getRotationSpeed();
     }
 
     @Override
     public void execute() {
+
+        brainForwardBackwardSpeed = SwerveDriverBrain.getForwardBackwardSpeed();
+        brainLeftRightSpeed = SwerveDriverBrain.getLeftRightSpeed();
+        brainRotationSpeed = SwerveDriverBrain.getRotationSpeed();
+
         // 1. Get real-time joystick inputs
         SwerveMovement joystickMovement;
 

@@ -73,7 +73,8 @@ public class RobotManager {
         autoCommandChooser.setDefaultOption("Place Cube Outer", BotCommands.placeCubeOuter);
         autoCommandChooser.addOption("Place Cube Inner", BotCommands.placeCubeInner);
         autoCommandChooser.addOption("Eject Cube Inner", BotCommands.ejectCubeInner);
-        autoCommandChooser.addOption("Eject Cube Outer", BotCommands.ejectCubeOuter);
+        autoCommandChooser.addOption("Eject Cube Outer Left", BotCommands.ejectCubeOuterLeft);
+        autoCommandChooser.addOption("Eject Cube Outer Right", BotCommands.ejectCubeOuterRight);
         autoCommandChooser.addOption("Testing Auto Command", BotCommands.defaultAutoCommand);
 
         // Put the chooser on the dashboard

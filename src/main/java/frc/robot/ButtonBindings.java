@@ -15,6 +15,10 @@ public class ButtonBindings {
     public static void configureXbox1ButtonBindings() {
         Logger.setup("Configure Buttons -> Xbox Controller 1...");
 
+        //Change Speed
+        BotControllers.xbox1.btnY.onTrue(BotCommands.speedUpDrive);
+        BotControllers.xbox1.btnA.onTrue(BotCommands.slowDownDrive);
+
     }
 
     // Configure xbox 2 buttons
@@ -24,6 +28,15 @@ public class ButtonBindings {
         // Pneumatics
         BotControllers.xbox2.btnBumperLeft.onTrue(BotCommands.openClamp);
         BotControllers.xbox2.btnBumperRight.onTrue(BotCommands.closeClamp);
+
+        //Reset to default command
+        BotControllers.xbox2.btnY.onTrue(BotCommands.moveForklift);
+
+        //Reset the encoders
+        BotControllers.xbox2.btnX.onTrue(BotCommands.resetEncoders);
+
+        //Autonomous Movements
+        BotControllers.xbox2.btnA.onTrue(BotCommands.forkliftPickUpPosition);
 
     }
 

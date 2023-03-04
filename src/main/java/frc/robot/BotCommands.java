@@ -12,15 +12,20 @@ public class BotCommands {
     public static AutoPlaceCubeInner placeCubeInner;
     public static AutoPlaceCubeOuter placeCubeOuter;
     public static AutoEjectCubeInner ejectCubeInner;
-    public static AutoEjectCubeOuter ejectCubeOuter;
+    public static AutoEjectCubeOuter ejectCubeOuterLeft;
+    public static AutoEjectCubeOuter ejectCubeOuterRight;
     public static DefaultAutoCommand defaultAutoCommand;
 
     // SwerveDriver
     public static SwerveDrive swerveDrive;
     public static ToggleDriverOrientation toggleDriverOrientation;
 
+    public static ChangeDriveSpeed speedUpDrive;
+    public static ChangeDriveSpeed slowDownDrive;
+
     // Forklift
     public static MoveForklift moveForklift;
+    public static ForkliftPickUpPosition forkliftPickUpPosition;
     public static CommandBase openClamp;
     public static CommandBase closeClamp;
     public static CommandBase enableSoftStop;
@@ -38,13 +43,18 @@ public class BotCommands {
         // SwerveDriver
         swerveDrive = new SwerveDrive(BotSubsystems.swerveDriver, BotControllers.xbox1); 
         toggleDriverOrientation = new ToggleDriverOrientation(BotSubsystems.swerveDriver);
- 
+
+        speedUpDrive = new ChangeDriveSpeed(1);
+        slowDownDrive = new ChangeDriveSpeed(0);
+        
         // Forklift
         moveForklift = new MoveForklift(BotSubsystems.forklift); 
+        forkliftPickUpPosition = new ForkliftPickUpPosition(BotSubsystems.forklift); 
 
         enableSoftStop = BotSubsystems.forklift.enableSoftStop();
         disableSoftStop = BotSubsystems.forklift.disableSoftStop();
         resetEncoders = BotSubsystems.forklift.resetEncoders();
+        
 
         //Intake
         moveIntake = new MoveIntake(BotSubsystems.intake);
@@ -57,7 +67,8 @@ public class BotCommands {
         placeCubeInner = new AutoPlaceCubeInner();
         placeCubeOuter = new AutoPlaceCubeOuter();
         ejectCubeInner = new AutoEjectCubeInner();
-        ejectCubeOuter = new AutoEjectCubeOuter();
+        ejectCubeOuterLeft = new AutoEjectCubeOuter(-1);
+        ejectCubeOuterRight = new AutoEjectCubeOuter(1);
         defaultAutoCommand = new DefaultAutoCommand();
     }
 }

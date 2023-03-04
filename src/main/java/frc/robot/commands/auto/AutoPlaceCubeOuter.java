@@ -1,6 +1,8 @@
 package frc.robot.commands.auto;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.BotSubsystems;
+import frc.robot.commands.swervedrive.TimedSwerve;
 
 /* Autonomous pathing 2
 
@@ -16,7 +18,7 @@ public class AutoPlaceCubeOuter extends SequentialCommandGroup {
             new PlaceCube(),
 
             //Drive backward to go outside the community
-            new Move(3,-1)
+            new TimedSwerve(BotSubsystems.swerveDriver, -1, 0, 0, 3)
         );
 
     }

@@ -211,4 +211,12 @@ public class SwerveDriverBrain {
         }
     }
 
+    public static void setDriveSpeed(double forwardBackward, double leftRight, double rotation){
+
+        entryForwardBackwardSpeed.setDouble(forwardBackward);
+        entryLeftRightSpeed.setDouble(leftRight);
+        entryRotationSpeed.setDouble(rotation);
+
+    }
+
 }
