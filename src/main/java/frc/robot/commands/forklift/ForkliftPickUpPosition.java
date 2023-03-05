@@ -1,49 +1,19 @@
 
 package frc.robot.commands.forklift;
 
-import edu.wpi.first.wpilibj2.command.CommandBase;
-
-import frc.robot.consoles.Logger;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.BotSubsystems;
 import frc.robot.subsystems.Forklift;
 
-public class ForkliftPickUpPosition extends CommandBase {
-
-    private Forklift m_forklift; 
+public class ForkliftPickUpPosition extends SequentialCommandGroup {
 
     public ForkliftPickUpPosition(Forklift forklift) {
-        Logger.setup("Constructing Command: ForkliftPickUpPosition...");
 
-        // Add given subsystem requirements
-        m_forklift = forklift;
-        addRequirements(m_forklift);
-    }
+        addCommands(
 
-    @Override
-    public void initialize() {
-        Logger.action("Initializing Command: ForkliftPickUpPosition...");
-        //m_forklift.moveElevatorToPosition(0);
-        m_forklift.moveExtenderToPosition(0);
-        
-    }
+                new MoveExtenderToPosition(BotSubsystems.forklift, 0),
 
-    @Override
-    public void execute() {
-    }
-
-    // This command continues until interrupted
-    @Override
-    public boolean isFinished() {
-        return m_forklift.isElevatorAtPosition(0);
-    }
-
-    @Override
-    public void end(boolean interrupted) {
-        if (interrupted) {
-            Logger.ending("Interrupting Command: ForkliftPickUpPosition...");
-        } else {
-            Logger.ending("Ending Command: ForkliftPickUpPosition...");
-        }
-        m_forklift.stopMotors();
+                new MoveElevatorToPosition(BotSubsystems.forklift, 0));
     }
 
 }
