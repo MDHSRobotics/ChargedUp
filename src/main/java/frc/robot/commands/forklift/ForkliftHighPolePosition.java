@@ -11,9 +11,11 @@ public class ForkliftHighPolePosition extends SequentialCommandGroup {
 
         addCommands(
 
-                new MoveExtenderToPosition(BotSubsystems.forklift, 100),
+            new MoveElevatorToPosition(BotSubsystems.forklift, -68),
 
-                new MoveElevatorToPosition(BotSubsystems.forklift, 68));
+            new MoveExtenderToPosition(BotSubsystems.forklift, -100)
+
+        );
 
     }
 

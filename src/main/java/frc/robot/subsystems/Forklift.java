@@ -48,15 +48,15 @@ public class Forklift extends SubsystemBase {
         sparkMaxForkliftElevatorTwo.follow(sparkMaxForkliftElevator);
 
         m_elevatorPIDController = sparkMaxForkliftElevator.getPIDController();
-        m_elevatorPIDController.setP(0.02);
-        m_elevatorPIDController.setI(0.0);
-        m_elevatorPIDController.setD(0.0);
-        m_elevatorPIDController.setSmartMotionMaxVelocity(0.05, 0);
+        m_elevatorPIDController.setP(0.03);
+        m_elevatorPIDController.setI(0.0000001);
+        m_elevatorPIDController.setD(0.0001);
+        m_elevatorPIDController.setSmartMotionMaxVelocity(0.07, 0);
 
         m_extenderPIDController = sparkMaxForkliftExtender.getPIDController();
-        m_extenderPIDController.setP(0.05);
-        m_extenderPIDController.setI(0.0);
-        m_extenderPIDController.setD(0.0);
+        m_extenderPIDController.setP(0.03);
+        m_extenderPIDController.setI(0.0000001);
+        m_extenderPIDController.setD(0.0001);
     }
 
     @Override
@@ -143,6 +143,7 @@ public class Forklift extends SubsystemBase {
 
     //Move the elevator to a set position, return if it is within the tolerance of the position
     public void moveElevatorToPosition(double position){
+        Logger.debug("Moving elevator to position" + position);
         m_elevatorPIDController.setReference(position, CANSparkMax.ControlType.kPosition);
     }
 

@@ -25,7 +25,7 @@ public class MoveIntake extends CommandBase{
 
     @Override
     public void execute() {
-        double intakePower = BotControllers.xbox1.xbox.getLeftTriggerAxis() - BotControllers.xbox1.xbox.getRightTriggerAxis();
+        double intakePower = BotControllers.xbox1.xbox.getRightTriggerAxis() - BotControllers.xbox1.xbox.getLeftTriggerAxis();
 
         m_intake.moveIntake(intakePower);
     }

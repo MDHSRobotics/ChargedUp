@@ -23,7 +23,6 @@ public class MoveExtenderToPosition extends CommandBase {
     @Override
     public void initialize() {
         Logger.action("Initializing Command: MoveExtenderToPosition...");
-        // m_forklift.moveElevatorToPosition(0);
         m_forklift.moveExtenderToPosition(m_targetPosition);
 
     }

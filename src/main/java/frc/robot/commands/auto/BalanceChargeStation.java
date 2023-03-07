@@ -94,7 +94,7 @@ public class BalanceChargeStation extends CommandBase {
             if(-currentAngle > 11){
                 m_swerveDriver.setChassisSpeed(0.3, 0, 0);
             }else{
-                m_swerveDriver.setChassisSpeed(0.2/15 * (-currentAngle), 0, 0);
+                m_swerveDriver.setChassisSpeed(0.2/20 * (-currentAngle), 0, 0);
             }
                 //if(Math.abs(currentAngle) < 6.0){
             //    m_isBalanced = true;

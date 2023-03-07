@@ -30,13 +30,14 @@ public class ButtonBindings {
         BotControllers.xbox2.btnBumperRight.onTrue(BotCommands.closeClamp);
 
         //Reset to default command
-        BotControllers.xbox2.btnY.onTrue(BotCommands.moveForklift);
+        BotControllers.xbox2.btnB.onTrue(BotCommands.moveForklift);
 
         //Reset the encoders
         BotControllers.xbox2.btnX.onTrue(BotCommands.resetEncoders);
 
         //Autonomous Movements
         BotControllers.xbox2.btnA.onTrue(BotCommands.forkliftPickUpPosition);
+        BotControllers.xbox2.btnY.onTrue(BotCommands.forkliftHighPolePosition);
 
     }
 
