@@ -3,6 +3,7 @@ package frc.robot.commands.auto;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.BotSubsystems;
 import frc.robot.commands.swervedrive.TimedSwerve;
+import frc.robot.subsystems.constants.AutoConstants;
 
 /* Autonomous pathing 3
 
@@ -21,7 +22,7 @@ public class AutoEjectCubeOuter extends SequentialCommandGroup {
             new TimedSwerve(BotSubsystems.swerveDriver, sidetoSideSpeed, 0, 0, 0.4),
             
             //Drive outside the community
-            new TimedSwerve(BotSubsystems.swerveDriver, 0, 0.3, 0, 4.0)
+            new TimedSwerve(BotSubsystems.swerveDriver, 0, AutoConstants.kDrivePower, 0, 4.0)
         );
 
     }

@@ -17,7 +17,7 @@ public final class AutoConstants {
     
     // General pathing constants
     public static final double kDefaultDriveTimeSeconds = 2;
-    public static final double kDrivePower = 0.5;
+    public static final double kDrivePower = 0.3;
     public static final double kChargeStationRampAngle = 11;
 
     //------------//

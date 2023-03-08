@@ -17,7 +17,7 @@ public class ForkliftBrain {
     public static double defaultExtenderEncoder = 0;
     public static double defaultElevatorEncoder = 0;
 
-    public static double defaultExtenderSoftStop = 158;
+    public static double defaultExtenderSoftStop = 120;
     public static double defaultElevatorSoftStop = 66;
 
     public static boolean defaultSoftStopEnabled = true;

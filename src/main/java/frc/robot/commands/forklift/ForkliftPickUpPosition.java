@@ -11,9 +11,10 @@ public class ForkliftPickUpPosition extends SequentialCommandGroup {
 
         addCommands(
 
-                new MoveExtenderToPosition(BotSubsystems.forklift, 0),
+            new MoveExtenderToPosition(BotSubsystems.forklift, 0),
 
-                new MoveElevatorToPosition(BotSubsystems.forklift, 0));
+            new MoveElevatorToPosition(BotSubsystems.forklift, 0)
+        );
     }
 
 }

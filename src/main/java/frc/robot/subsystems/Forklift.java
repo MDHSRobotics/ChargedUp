@@ -153,6 +153,7 @@ public class Forklift extends SubsystemBase {
     }
 
     public boolean isElevatorAtPosition(double target){
+        Logger.info(Math.abs(getElevatorEncoder() - target));
         return (Math.abs(getElevatorEncoder() - target) < MOTOR_POSITION_TOLERANCE);
     }
 

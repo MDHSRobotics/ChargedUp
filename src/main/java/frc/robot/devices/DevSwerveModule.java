@@ -108,7 +108,7 @@ public class DevSwerveModule {
         // Note that this will be -180 to +180, as configured in the constructor above
         double absEncoderPositionDegrees = m_canCoder.getAbsolutePosition();
        
-        //SmartDashboard.putNumber("Absolute Encoder Raw Angle (Degrees): " + m_name, absEncoderPositionDegrees);
+        SmartDashboard.putNumber("Absolute Encoder Raw Angle (Degrees): " + m_name, absEncoderPositionDegrees);
         
 
         double absEncoderPositionRad = Units.degreesToRadians(absEncoderPositionDegrees);

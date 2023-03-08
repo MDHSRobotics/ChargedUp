@@ -34,7 +34,7 @@ public class MoveElevatorToPosition extends CommandBase {
     // This command continues until interrupted
     @Override
     public boolean isFinished() {
-        return m_forklift.isElevatorAtPosition(m_targetPosition);
+        return m_forklift.isElevatorAtPosition(-m_targetPosition);
     }
 
     @Override

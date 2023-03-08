@@ -34,7 +34,7 @@ public class MoveExtenderToPosition extends CommandBase {
     // This command continues until interrupted
     @Override
     public boolean isFinished() {
-        return m_forklift.isExtenderAtPosition(m_targetPosition);
+        return m_forklift.isExtenderAtPosition(-m_targetPosition);
     }
 
     @Override

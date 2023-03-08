@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.brains.SwerveDriverBrain;
 import frc.robot.consoles.Logger;
 import frc.robot.subsystems.SwerveDriver;
+import frc.robot.subsystems.constants.AutoConstants;
 import frc.robot.subsystems.constants.SwerveConstants;
 
 import static frc.robot.BotSensors.gyro;
@@ -65,7 +66,7 @@ public class BalanceChargeStation extends CommandBase {
             if (Math.abs(currentAngle) > 13.0) {
                 m_isOnChargeStation = true;
             } else {
-                m_swerveDriver.setChassisSpeed(SwerveConstants.kMaxChargeStationBalancingPower * xSpeed, SwerveConstants.kMaxChargeStationBalancingPower * ySpeed , 0);
+                m_swerveDriver.setChassisSpeed(SwerveConstants.kMaxChargeStationBalancingPower * -xSpeed, SwerveConstants.kMaxChargeStationBalancingPower * ySpeed , 0);
             }
         } 
 
@@ -92,13 +93,10 @@ public class BalanceChargeStation extends CommandBase {
         */
         if(m_isOnChargeStation){
             if(-currentAngle > 11){
-                m_swerveDriver.setChassisSpeed(0.3, 0, 0);
+                m_swerveDriver.setChassisSpeed(SwerveConstants.kMaxChargeStationBalancingPower * -xSpeed, SwerveConstants.kMaxChargeStationBalancingPower * ySpeed, 0);
             }else{
-                m_swerveDriver.setChassisSpeed(0.2/20 * (-currentAngle), 0, 0);
+                m_swerveDriver.setChassisSpeed(SwerveConstants.kMinChargeStationBalancingPower * xSpeed * (-currentAngle), SwerveConstants.kMinChargeStationBalancingPower * ySpeed * (currentAngle), 0);
             }
-                //if(Math.abs(currentAngle) < 6.0){
-            //    m_isBalanced = true;
-            //}
         }
     } 
 

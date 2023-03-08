@@ -40,7 +40,7 @@ public class LiftForklift extends CommandBase {
         m_extenderEncoderPosition = m_forklift.getExtenderEncoder();
         m_elevatorEncoderPosition = m_forklift.getElevatorEncoder();
 
-        //move the elevator up first to the target position\
+        //move the elevator up first to the target position
         if(!m_isElevatorAtTarget){
             if(m_elevatorEncoderPosition >= m_targetElevatorPosition){
                 m_isElevatorAtTarget = true;
