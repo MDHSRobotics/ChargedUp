@@ -9,12 +9,13 @@ import frc.robot.commands.swervedrive.*;
 public class BotCommands {
 
     // Auto Command options
-    public static AutoPlaceCubeInner placeCubeInner;
-    public static AutoPlaceCubeOuter placeCubeOuter;
-    public static AutoEjectCubeInner ejectCubeInner;
-    public static AutoEjectCubeOuter ejectCubeOuterLeft;
-    public static AutoEjectCubeOuter ejectCubeOuterRight;
-    public static DefaultAutoCommand defaultAutoCommand;
+    public static CommandBase placeCubeInner;
+    public static CommandBase placeCubeLeft;
+    public static CommandBase placeCubeRight;
+    public static CommandBase ejectCubeInner;
+    public static CommandBase ejectCubeLeft;
+    public static CommandBase ejectCubeRight;
+    public static CommandBase defaultAutoCommand;
 
     // SwerveDriver
     public static SwerveDrive swerveDrive;
@@ -66,11 +67,12 @@ public class BotCommands {
         closeClamp = BotSubsystems.forklift.closeClampCommand();
 
         // Auto Commands 
-        placeCubeInner = new AutoPlaceCubeInner();
-        placeCubeOuter = new AutoPlaceCubeOuter();
-        ejectCubeInner = new AutoEjectCubeInner();
-        ejectCubeOuterLeft = new AutoEjectCubeOuter(-0.3);
-        ejectCubeOuterRight = new AutoEjectCubeOuter(0.3);
+        placeCubeInner = new AutoFactory("Center", "Top");
+        placeCubeLeft = new AutoFactory("Left", "Top");
+        placeCubeRight = new AutoFactory("Right", "Top");
+        ejectCubeInner = new AutoFactory("Center", "Bottom");
+        ejectCubeLeft = new AutoFactory("Left", "Bottom");
+        ejectCubeRight = new AutoFactory("Right", "Bottom");
         defaultAutoCommand = new DefaultAutoCommand();
     }
 }

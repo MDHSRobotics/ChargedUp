@@ -21,7 +21,7 @@ public class AutonomousTab {
         private ShuffleboardLayout m_layoutChargeStationSpeedPID;
     
         // Widgets
-        private ComplexWidget m_placeCubeInner, m_placeCubeOuter, m_ejectCubeInner, m_ejectCubeOuter, m_autoCommandDefault;
+        private ComplexWidget m_placeCubeInner, m_placeCubeLeft, m_ejectCubeInner, m_ejectCubeLeft, m_ejectCubeRight, m_placeCubeRight, m_autoCommandDefault;
         private ComplexWidget m_balanceCommand, m_moveForwardCommand, m_ejectCube, m_liftForklift, m_placeCube;
         private SimpleWidget m_forwardTime;
 
@@ -62,10 +62,11 @@ public class AutonomousTab {
         // Create all other Widgets
         public void initialize() {
             m_placeCubeInner = m_commandLayout.add("Place Cube Inner", BotCommands.placeCubeInner);
-            m_placeCubeOuter = m_commandLayout.add("Place Cube Outer", BotCommands.placeCubeOuter);
+            m_placeCubeLeft = m_commandLayout.add("Place Cube Left", BotCommands.placeCubeLeft);
+            m_placeCubeRight = m_commandLayout.add("Place Cube Right", BotCommands.placeCubeRight);
             m_ejectCubeInner = m_commandLayout.add("Eject Cube Inner", BotCommands.ejectCubeInner);
-            m_ejectCubeOuter = m_commandLayout.add("Eject Cube Outer Left", BotCommands.ejectCubeOuterLeft);
-            m_ejectCubeOuter = m_commandLayout.add("Eject Cube Outer Right", BotCommands.ejectCubeOuterRight);
+            m_ejectCubeLeft = m_commandLayout.add("Eject Cube Left", BotCommands.ejectCubeLeft);
+            m_ejectCubeRight = m_commandLayout.add("Eject Cube Right", BotCommands.ejectCubeRight);
             m_autoCommandDefault = m_commandLayout.add("Default", BotCommands.defaultAutoCommand);
 
             m_balanceCommand = m_individualCommandLayout.add("Balance Charge Station", new BalanceChargeStation(BotSubsystems.swerveDriver, false));

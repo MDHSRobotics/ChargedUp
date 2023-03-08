@@ -31,7 +31,7 @@ public class TimedSwerve extends CommandBase {
 
     @Override
     public void initialize() {
-        Logger.action("Initializing Command: TimedSwerve...");
+        Logger.action(String.format("Initializing Command: TimedSwerve (xSpeed=%.2f, ySpeed=%.2f, turningSpeed=%.2f, time=%.1f) ...", m_xSpeed, m_ySpeed, m_turningSpeed, m_targetTime));
         m_timer.reset();
         m_timer.start();
     }
