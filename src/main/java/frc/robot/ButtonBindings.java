@@ -25,10 +25,6 @@ public class ButtonBindings {
     public static void configureXbox2ButtonBindings() {
         Logger.setup("Configure Buttons -> Xbox Controller 2...");
 
-        // Pneumatics
-        BotControllers.xbox2.btnBumperLeft.onTrue(BotCommands.openClamp);
-        BotControllers.xbox2.btnBumperRight.onTrue(BotCommands.closeClamp);
-
         //Reset to default command
         BotControllers.xbox2.btnB.onTrue(BotCommands.moveForklift);
 
