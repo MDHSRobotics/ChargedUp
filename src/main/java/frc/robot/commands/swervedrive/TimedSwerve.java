@@ -6,7 +6,12 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.consoles.Logger;
 import frc.robot.subsystems.SwerveDriver;
 
+import static frc.robot.BotSensors.gyro;
+
 public class TimedSwerve extends CommandBase {
+
+    private final double CORRECTION_TOLERANCE = 1;
+    private final double CORRECTION_SPEED = 0.1;
 
     private SwerveDriver m_swerveDriver;
     private double m_xSpeed;
@@ -14,6 +19,7 @@ public class TimedSwerve extends CommandBase {
     private double m_turningSpeed;
     private double m_targetTime;
     private Timer m_timer;
+    private double m_startingHeading;
 
 
     public TimedSwerve(SwerveDriver swerveDriver, double xSpeed, double ySpeed, double turningSpeed,  double timeInSeconds) {
@@ -34,10 +40,23 @@ public class TimedSwerve extends CommandBase {
         Logger.action(String.format("Initializing Command: TimedSwerve (xSpeed=%.2f, ySpeed=%.2f, turningSpeed=%.2f, time=%.1f) ...", m_xSpeed, m_ySpeed, m_turningSpeed, m_targetTime));
         m_timer.reset();
         m_timer.start();
+
+        m_startingHeading = gyro.getYaw();
+
     }
 
     @Override
     public void execute() {
+        double yawDifference = m_startingHeading - gyro.getYaw();
+        if(yawDifference < -CORRECTION_TOLERANCE){
+            m_turningSpeed = CORRECTION_SPEED;
+        }else if(yawDifference > CORRECTION_TOLERANCE){
+            m_turningSpeed = -CORRECTION_SPEED;
+        }else{
+            m_turningSpeed = 0;
+        }
+        Logger.info("Current Yaw: " + gyro.getYaw() + " Yaw Difference: " + yawDifference + " Initial Yaw: " + m_startingHeading + " Turning Speed: " + m_turningSpeed);
+
         m_swerveDriver.setChassisSpeed(m_xSpeed, m_ySpeed, m_turningSpeed);
 
     }

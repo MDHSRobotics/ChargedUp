@@ -6,7 +6,6 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.brains.SwerveDriverBrain;
 import frc.robot.consoles.Logger;
 import frc.robot.subsystems.SwerveDriver;
-import frc.robot.subsystems.constants.AutoConstants;
 import frc.robot.subsystems.constants.SwerveConstants;
 
 import static frc.robot.BotSensors.gyro;
