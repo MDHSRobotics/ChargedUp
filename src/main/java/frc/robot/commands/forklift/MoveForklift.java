@@ -46,17 +46,18 @@ public class MoveForklift extends CommandBase {
         clampLiftPower = BotControllers.xbox2.btnBumperLeft.getAsBoolean() ? 1. : 0.;
         clampLiftPower = BotControllers.xbox2.btnBumperRight.getAsBoolean() ? -1. : clampLiftPower;
 
-        m_forklift.moveClaw(clampLiftPower);
+        double clawPower = BotControllers.xbox2.xbox.getLeftTriggerAxis() - BotControllers.xbox2.xbox.getRightTriggerAxis();
+        m_forklift.moveClaw(clawPower);
 
         //Open the clamp if the left trigger is on, close the clamp if the right trigger is on
-        boolean toggleClamp = false;
+        /*boolean toggleClamp = false;
         if(BotControllers.xbox2.xbox.getLeftTriggerAxis() > 0.9){
             toggleClamp = true;
             m_forklift.moveClampPneumatic(true);
         }else if(BotControllers.xbox2.xbox.getRightTriggerAxis() > 0.9){
             toggleClamp = false;
             m_forklift.moveClampPneumatic(false);
-        }
+        }*/
 
         //Logger.info("Claw power: " + clampLiftPower + " Extender Power: " + extenderPower + " Elevator Power: " + elevatorPower + " Clamp: " + toggleClamp);
         

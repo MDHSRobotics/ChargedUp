@@ -50,12 +50,12 @@ public class TimedSwerve extends CommandBase {
         double yawDifference = m_startingHeading - gyro.getYaw();
         double newTurningSpeed = m_turningSpeed;
         if(yawDifference < -CORRECTION_TOLERANCE){
-            newTurningSpeed += CORRECTION_SPEED;
-        }else if(yawDifference > CORRECTION_TOLERANCE){
             newTurningSpeed -= CORRECTION_SPEED;
+        }else if(yawDifference > CORRECTION_TOLERANCE){
+            newTurningSpeed += CORRECTION_SPEED;
         }
 
-        Logger.info("Current Yaw: " + gyro.getYaw() + " Yaw Difference: " + yawDifference + " Initial Yaw: " + m_startingHeading + " Turning Speed: " + m_turningSpeed);
+        Logger.info("Current Yaw: " + gyro.getYaw() + " Yaw Difference: " + yawDifference + " Initial Yaw: " + m_startingHeading + " Turning Speed: " + newTurningSpeed);
 
         m_swerveDriver.setChassisSpeed(m_xSpeed, m_ySpeed, newTurningSpeed);
 
