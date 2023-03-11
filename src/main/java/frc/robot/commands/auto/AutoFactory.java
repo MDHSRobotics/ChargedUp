@@ -56,7 +56,7 @@ public class AutoFactory extends SequentialCommandGroup {
                     // The robot is initially positioned sideways, pointing toward the right
                     x1Speed = sideToSideSpeed;
                     y1Speed = 0.;
-                    time1 = .4;
+                    time1 = .5;
                     x2Speed = 0.;
                     y2Speed = backingSpeed;
                     time2 = 4.0;
