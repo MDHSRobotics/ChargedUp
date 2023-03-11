@@ -71,9 +71,10 @@ public class BalanceChargeStation extends CommandBase {
         }
             
 
-        Logger.info("Is on Charge Station: " + m_isOnChargeStation + " Balanced: " + m_isBalanced + " Angle: " + currentAngle);
+        //Logger.info("Is on Charge Station: " + m_isOnChargeStation + " Balanced: " + m_isBalanced + " Angle: " + currentAngle);
         // sets a default speed if the robot is not on the charge station yet
         if (!m_isOnChargeStation) {
+            Logger.info("Driving to Charge station, Angle: " + currentAngle);
             // checks if robot is on charge station
             if (Math.abs(currentAngle) > 13.0) {
                 m_isOnChargeStation = true;
@@ -105,8 +106,10 @@ public class BalanceChargeStation extends CommandBase {
         */
         if(m_isOnChargeStation){
             if(-currentAngle > 11){
+                Logger.info("Driving up the charge station, Angle: " + currentAngle);
                 m_swerveDriver.setChassisSpeed(SwerveConstants.kMaxChargeStationBalancingPower * -xSpeed, SwerveConstants.kMaxChargeStationBalancingPower * -ySpeed, 0);
             }else{
+                Logger.info("Balancing on the charge station, Angle: " + currentAngle);
                 m_swerveDriver.setChassisSpeed(SwerveConstants.kMinChargeStationBalancingPower * xSpeed * (-currentAngle), SwerveConstants.kMinChargeStationBalancingPower * ySpeed * (currentAngle), 0);
             }
         }
