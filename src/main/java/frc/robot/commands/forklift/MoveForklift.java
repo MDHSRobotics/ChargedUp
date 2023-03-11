@@ -15,6 +15,9 @@ public class MoveForklift extends CommandBase {
     private double brainExtenderSpeed;
     private double brainElevatorSpeed;
 
+    //False: Jason, True: TJ
+    private boolean preferences = true;
+
     public MoveForklift(Forklift forklift) {
         Logger.setup("Constructing Command: MoveForklift...");
 
@@ -47,17 +50,23 @@ public class MoveForklift extends CommandBase {
         clampLiftPower = BotControllers.xbox2.btnBumperRight.getAsBoolean() ? -1. : clampLiftPower;
 
         double clawPower = BotControllers.xbox2.xbox.getLeftTriggerAxis() - BotControllers.xbox2.xbox.getRightTriggerAxis();
-        m_forklift.moveClaw(clawPower);
+        if(preferences){
+            m_forklift.moveClaw(clawPower);
+        }else{
+            m_forklift.moveClaw(clampLiftPower);
+        }
 
         //Open the clamp if the left trigger is on, close the clamp if the right trigger is on
-        /*boolean toggleClamp = false;
-        if(BotControllers.xbox2.xbox.getLeftTriggerAxis() > 0.9){
-            toggleClamp = true;
-            m_forklift.moveClampPneumatic(true);
-        }else if(BotControllers.xbox2.xbox.getRightTriggerAxis() > 0.9){
-            toggleClamp = false;
-            m_forklift.moveClampPneumatic(false);
-        }*/
+        if(!preferences){
+            boolean toggleClamp = false;
+            if(BotControllers.xbox2.xbox.getLeftTriggerAxis() > 0.9){
+                toggleClamp = true;
+                m_forklift.moveClampPneumatic(true);
+            }else if(BotControllers.xbox2.xbox.getRightTriggerAxis() > 0.9){
+                toggleClamp = false;
+                m_forklift.moveClampPneumatic(false);
+            }
+        } 
 
         //Logger.info("Claw power: " + clampLiftPower + " Extender Power: " + extenderPower + " Elevator Power: " + elevatorPower + " Clamp: " + toggleClamp);
         
