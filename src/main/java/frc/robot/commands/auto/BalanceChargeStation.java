@@ -79,7 +79,7 @@ public class BalanceChargeStation extends CommandBase {
             if (Math.abs(currentAngle) > 13.0) {
                 m_isOnChargeStation = true;
             } else {
-                m_swerveDriver.setChassisSpeed(SwerveConstants.kMaxChargeStationBalancingPower * -xSpeed, SwerveConstants.kMaxChargeStationBalancingPower * ySpeed, 0.1);
+                m_swerveDriver.setChassisSpeed(SwerveConstants.kMaxChargeStationBalancingPower * -xSpeed, SwerveConstants.kMaxChargeStationBalancingPower * ySpeed, 0);
             }
         } 
 
