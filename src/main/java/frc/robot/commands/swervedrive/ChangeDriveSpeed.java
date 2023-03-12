@@ -23,7 +23,7 @@ public class ChangeDriveSpeed extends CommandBase{
     @Override
     public void execute(){
         if(m_speed == 1){
-            SwerveDriverBrain.setDriveSpeed(2.0, 1.0,1.5);
+            SwerveDriverBrain.setDriveSpeed(2.2, 1.2,2.0);
         }else{
             SwerveDriverBrain.setDriveSpeed(0.5, 0.4, 0.95);
         }
