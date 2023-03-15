@@ -234,9 +234,21 @@ public class SwerveDriver extends SubsystemBase {
         setModuleStates(moduleStates);
     }
 
+    public void lockWheels(){
+        frontLeft.setTurningWheelPosition(-45);
+        frontRight.setTurningWheelPosition(45);
+        rearLeft.setTurningWheelPosition(45);
+        rearRight.setTurningWheelPosition(-45);
+    }
+
     public CommandBase toggleOrientationCommand() {
         Logger.info("Toggling Orientation");
         return this.runOnce(() -> ToggleOrientation());
+    }
+
+    public CommandBase lockWheelsCommand(){
+        Logger.info("Locking Wheels");
+        return this.runOnce(() -> lockWheels());
     }
 
 }   

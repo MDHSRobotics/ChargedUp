@@ -25,6 +25,7 @@ public class BotCommands {
     public static ChangeDriveSpeed slowDownDrive;
 
     public static CommandBase toggleOrientation;
+    public static CommandBase lockWheels;
 
     // Forklift
     public static MoveForklift moveForklift;
@@ -53,6 +54,8 @@ public class BotCommands {
         slowDownDrive = new ChangeDriveSpeed(0);
 
         toggleOrientation = BotSubsystems.swerveDriver.toggleOrientationCommand();
+
+        lockWheels = BotSubsystems.swerveDriver.lockWheelsCommand();
         
         // Forklift
         moveForklift = new MoveForklift(BotSubsystems.forklift); 

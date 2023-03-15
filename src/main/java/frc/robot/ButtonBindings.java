@@ -22,6 +22,9 @@ public class ButtonBindings {
         //Toggle Feild Orientated Driving
         BotControllers.xbox1.btnB.onTrue(BotCommands.toggleOrientation);
 
+        //Lock the wheels
+        BotControllers.xbox1.btnX.onTrue(BotCommands.lockWheels);
+
     }
 
     // Configure xbox 2 buttons

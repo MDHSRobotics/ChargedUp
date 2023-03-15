@@ -5,9 +5,9 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.BotSubsystems;
 import frc.robot.subsystems.Forklift;
 
-public class ForkliftHighPolePosition extends SequentialCommandGroup {
+public class ForkliftHighLevelPosition extends SequentialCommandGroup {
 
-    public ForkliftHighPolePosition(Forklift forklift) {
+    public ForkliftHighLevelPosition(Forklift forklift) {
 
         addCommands(
 

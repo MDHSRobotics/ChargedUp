@@ -2,6 +2,7 @@ package frc.robot.devices;
 
 import frc.robot.subsystems.utils.EncoderTranslator;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration; 
 import com.ctre.phoenix.sensors.AbsoluteSensorRange;
@@ -16,6 +17,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import frc.robot.brains.SwerveDriverBrain;
 import frc.robot.subsystems.constants.SwerveConstants;
+
+import frc.robot.subsystems.utils.EncoderTranslator;
 
 
 public class DevSwerveModule {
@@ -32,6 +35,8 @@ public class DevSwerveModule {
     private final CANCoder m_canCoder;
     private final EncoderTranslator m_drivingEncoderTranslate;
     private final EncoderTranslator m_turningEncoderTranslate;
+
+    private EncoderTranslator m_encoderTranslator;
 
     public DevSwerveModule(String moduleName, DevTalonFX driveTalon, DevTalonFX steerTalon, CANCoder canCoder,
             boolean driveMotorReversed, boolean turningMotorReversed, double absoluteEncoderOffset, boolean absoluteEncoderReversed) {
@@ -77,6 +82,8 @@ public class DevSwerveModule {
         // Group the contents of the module together in SmartDashboard
         SendableRegistry.setName(m_driveMotor, "Module " + m_name, "Drive Motor");
         SendableRegistry.setName(m_turningMotor, "Module " + m_name, "Turning Motor");
+
+        m_encoderTranslator = new EncoderTranslator("TalonFX", 1, 12.8);
     }
 
     public double getDrivePositionMeters() {
@@ -206,6 +213,10 @@ public class DevSwerveModule {
 
     public void setShuffleboardBrain() {
         SwerveDriverBrain.setModuleEncoderReadings(m_name, getEncoderReadings());
+    }
+
+    public void setTurningWheelPosition(double angle){
+        m_turningMotor.set(ControlMode.Position, m_encoderTranslator.degrees_to_ticks(angle + Math.toDegrees(m_absoluteEncoderOffsetRad)));
     }
 
 }
