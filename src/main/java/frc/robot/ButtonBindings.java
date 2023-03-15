@@ -19,6 +19,9 @@ public class ButtonBindings {
         BotControllers.xbox1.btnY.onTrue(BotCommands.speedUpDrive);
         BotControllers.xbox1.btnA.onTrue(BotCommands.slowDownDrive);
 
+        //Toggle Feild Orientated Driving
+        BotControllers.xbox1.btnB.onTrue(BotCommands.toggleOrientation);
+
     }
 
     // Configure xbox 2 buttons
@@ -29,11 +32,12 @@ public class ButtonBindings {
         BotControllers.xbox2.btnB.onTrue(BotCommands.moveForklift);
 
         //Reset the encoders
-        BotControllers.xbox2.btnX.onTrue(BotCommands.resetEncoders);
+        BotControllers.xbox2.btnDpadDown.onTrue(BotCommands.resetEncoders);
 
         //Autonomous Movements
         BotControllers.xbox2.btnA.onTrue(BotCommands.forkliftPickUpPosition);
-        BotControllers.xbox2.btnY.onTrue(BotCommands.forkliftHighPolePosition);
+        BotControllers.xbox2.btnY.onTrue(BotCommands.forkliftHighLevelPosition);
+        BotControllers.xbox2.btnX.onTrue(BotCommands.forkliftMediumLevelPosition);
 
         // Pneumatics
         //BotControllers.xbox2.btnBumperLeft.onTrue(BotCommands.openClamp);

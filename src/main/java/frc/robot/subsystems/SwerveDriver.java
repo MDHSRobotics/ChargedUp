@@ -21,6 +21,8 @@ import static frc.robot.subsystems.Devices.*;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 
+import edu.wpi.first.wpilibj2.command.CommandBase;
+
 public class SwerveDriver extends SubsystemBase {
     private final DevSwerveModule frontLeft = new DevSwerveModule(
         "Front Left",
@@ -230,6 +232,11 @@ public class SwerveDriver extends SubsystemBase {
 
         // Output each module states to wheels
         setModuleStates(moduleStates);
+    }
+
+    public CommandBase toggleOrientationCommand() {
+        Logger.info("Toggling Orientation");
+        return this.runOnce(() -> ToggleOrientation());
     }
 
 }   

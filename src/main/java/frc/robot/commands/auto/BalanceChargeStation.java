@@ -82,28 +82,7 @@ public class BalanceChargeStation extends CommandBase {
                 m_swerveDriver.setChassisSpeed(SwerveConstants.kMaxChargeStationBalancingPower * -xSpeed, SwerveConstants.kMaxChargeStationBalancingPower * ySpeed, 0);
             }
         } 
-
-        // sets appropriate speed based on position on ramp if robot is on charge station
-        /*if (m_isOnChargeStation) {
-            double outputScaleFactor = m_pidController.calculate(currentAngle);
-
-            // checks if charge station is balanced
-            if (m_pidController.atSetpoint()) {
-                m_isBalanced = true;
-                m_swerveDriver.stopModules();
-            } else {
-                double robotSpeed = outputScaleFactor * SwerveConstants.kMaxChargeStationBalancingPower;
-            
-                // sets power output to 0.1 if current speed is too slow
-                if (Math.abs(robotSpeed) < SwerveConstants.kMinChargeStationBalancingPower) {
-                    robotSpeed = SwerveConstants.kMinChargeStationBalancingPower * Math.signum(robotSpeed);
-                }
-    
-                // drives forward or backward based on location until robot is balanced on charge station 
-                m_swerveDriver.setChassisSpeed(robotSpeed * xSpeed, robotSpeed * ySpeed , 0);
-            }
-        }
-        */
+        
         if(m_isOnChargeStation){
             if(-currentAngle > 11){
                 Logger.info("Driving up the charge station, Angle: " + currentAngle);

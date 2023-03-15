@@ -24,10 +24,13 @@ public class BotCommands {
     public static ChangeDriveSpeed speedUpDrive;
     public static ChangeDriveSpeed slowDownDrive;
 
+    public static CommandBase toggleOrientation;
+
     // Forklift
     public static MoveForklift moveForklift;
     public static ForkliftPickUpPosition forkliftPickUpPosition;
-    public static ForkliftHighPolePosition forkliftHighPolePosition;
+    public static ForkliftHighLevelPosition forkliftHighLevelPosition;
+    public static ForkliftMediumLevelPosition forkliftMediumLevelPosition;
     public static CommandBase openClamp;
     public static CommandBase closeClamp;
     public static CommandBase enableSoftStop;
@@ -48,11 +51,14 @@ public class BotCommands {
 
         speedUpDrive = new ChangeDriveSpeed(1);
         slowDownDrive = new ChangeDriveSpeed(0);
+
+        toggleOrientation = BotSubsystems.swerveDriver.toggleOrientationCommand();
         
         // Forklift
         moveForklift = new MoveForklift(BotSubsystems.forklift); 
         forkliftPickUpPosition = new ForkliftPickUpPosition(BotSubsystems.forklift); 
-        forkliftHighPolePosition = new ForkliftHighPolePosition(BotSubsystems.forklift);
+        forkliftHighLevelPosition = new ForkliftHighLevelPosition(BotSubsystems.forklift);
+        forkliftMediumLevelPosition = new ForkliftMediumLevelPosition(BotSubsystems.forklift);
 
         enableSoftStop = BotSubsystems.forklift.enableSoftStop();
         disableSoftStop = BotSubsystems.forklift.disableSoftStop();
