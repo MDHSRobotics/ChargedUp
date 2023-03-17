@@ -22,6 +22,15 @@ public class ForkliftBrain {
 
     public static boolean defaultSoftStopEnabled = true;
 
+    public static double defaultElevatorPickupPosition = 0;
+    public static double defaultElevatorMediumPosition = 68;
+    public static double defaultElevatorHighPosition = 80;
+
+    public static double defaultExtenderPickupPosition = 0;
+    public static double defaultExtenderMediumPosition = 90;
+    public static double defaultExtenderHighPosition = 100;
+
+
     //---------------------//
     // NetworkTableEntries //
     //---------------------//
@@ -78,27 +87,27 @@ public class ForkliftBrain {
     }
 
     public static double getElevatorPickupPosition(){
-        return elevatorPickupPosition.getDouble(0);
+        return elevatorPickupPosition.getDouble(defaultElevatorPickupPosition);
     }
 
     public static double getElevatorMediumPosition(){
-        return elevatorMediumPosition.getDouble(0);
+        return elevatorMediumPosition.getDouble(defaultElevatorMediumPosition);
     }
 
     public static double getElevatorHighPosition(){
-        return elevatorHighPosition.getDouble(0);
+        return elevatorHighPosition.getDouble(defaultElevatorHighPosition);
     }
 
     public static double getExtenderPickupPosition(){
-        return extenderPickupPosition.getDouble(0);
+        return extenderPickupPosition.getDouble(defaultExtenderPickupPosition);
     }
 
     public static double getExtenderMediumPosition(){
-        return extenderMediumPosition.getDouble(0);
+        return extenderMediumPosition.getDouble(defaultExtenderMediumPosition);
     }
 
     public static double getExtenderHighPosition(){
-        return extenderHighPosition.getDouble(0);
+        return extenderHighPosition.getDouble(defaultExtenderHighPosition);
     }
 
     //---------//

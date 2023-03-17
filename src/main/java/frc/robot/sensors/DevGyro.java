@@ -64,8 +64,9 @@ public class DevGyro {
 
     public double getYaw() {
         double value;
+        //for this season we can start sideways, so add 90 degrees, but if we arent we start backwards so we add 180 degrees
         if (isReal) {
-            value = isSideways ? m_ahrsGyro.getYaw() + 90.0 : m_ahrsGyro.getYaw();
+            value = isSideways ? m_ahrsGyro.getYaw() + 90.0 : m_ahrsGyro.getYaw() + 180;
         } else {
             value = 30.;
         }

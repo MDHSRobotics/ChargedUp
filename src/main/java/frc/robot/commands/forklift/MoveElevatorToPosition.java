@@ -30,14 +30,16 @@ public class MoveElevatorToPosition extends CommandBase {
         Logger.action("Initializing Command: MoveElevatorToPosition...");
         switch(m_level){
             case PICKUP:
-                targetPosition = ForkliftBrain.getElevatorPickupPosition();
+                targetPosition = -ForkliftBrain.getElevatorPickupPosition();
                 break;
             case MEDIUM:
-                targetPosition = ForkliftBrain.getElevatorMediumPosition();
+                targetPosition = -ForkliftBrain.getElevatorMediumPosition();
                 break;
             case HIGH:
-                targetPosition = ForkliftBrain.getElevatorHighPosition();
+                targetPosition = -ForkliftBrain.getElevatorHighPosition();
                 break;
+            default:
+                throw new java.lang.Error("Unkown Elevator Position; should be {PICKUP, MEDIUM, HIGH}");
         }
         m_forklift.moveArmElevator(targetPosition);
 

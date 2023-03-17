@@ -10,7 +10,7 @@ public class PlaceCube extends SequentialCommandGroup{
     private final double FULL_SPEED = 1.0;
     private final double DROP_CLAW_TIME = 0.2;
     private final double DRIVE_FORWARD_TIME = 0.8;
-    private final double DRIVE_BACKWARD_TIME = -0.6;
+    private final double DRIVE_BACKWARD_TIME = 0.6;
 
     public PlaceCube(){
 

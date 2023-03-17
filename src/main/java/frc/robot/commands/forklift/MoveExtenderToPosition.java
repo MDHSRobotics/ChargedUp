@@ -29,14 +29,16 @@ public class MoveExtenderToPosition extends CommandBase {
         Logger.action("Initializing Command: MoveExtenderToPosition...");
         switch(m_level){
             case PICKUP:
-                targetPosition = ForkliftBrain.getExtenderPickupPosition();
+                targetPosition = -ForkliftBrain.getExtenderPickupPosition();
                 break;
             case MEDIUM:
-                targetPosition = ForkliftBrain.getExtenderMediumPosition();
+                targetPosition = -ForkliftBrain.getExtenderMediumPosition();
                 break;
             case HIGH:
-                targetPosition = ForkliftBrain.getExtenderHighPosition();
+                targetPosition = -ForkliftBrain.getExtenderHighPosition();
                 break;
+            default:
+                throw new java.lang.Error("Unkown Extender Position; should be {PICKUP, MEDIUM, HIGH}");
         }
         m_forklift.moveExtenderToPosition(targetPosition);
 
