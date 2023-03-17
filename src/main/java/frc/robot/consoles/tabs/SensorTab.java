@@ -13,12 +13,22 @@ public class SensorTab {
     // Tab & Layouts
     private ShuffleboardTab m_tab;
     private ShuffleboardLayout m_gyroLayout;
+    private ShuffleboardLayout m_colorSensorLayout;
+    private ShuffleboardLayout m_cubeDetectedLayout;
+    private ShuffleboardLayout m_coneDetectedLayout;
 
     // Gyro Widgets
     private SimpleWidget m_rollWidget;
     private SimpleWidget m_pitchWidget;
     private SimpleWidget m_yawWidget;
-    private SimpleWidget m_angleWidget;
+
+    // Color Sensor Widgets
+    private SimpleWidget m_targetDistanceWidget;
+    private SimpleWidget m_redValueWidget;
+    private SimpleWidget m_greenValueWidget;
+    private SimpleWidget m_blueValueWidget;
+    private SimpleWidget m_cubeInRangeWidget;
+    private SimpleWidget m_coneInRangeWidget;
 
     // State flag for displaying gyro data
     private boolean m_updateGyroData;
@@ -30,6 +40,7 @@ public class SensorTab {
         m_tab = Shuffleboard.getTab("Sensors");
 
         m_gyroLayout = Shuffler.constructLayout(m_tab, "Gyroscope", 0, 0, 3, 3, 1, 3, "LEFT");
+        m_colorSensorLayout = Shuffler.constructLayout(m_tab, "Color Sensor", 3, 0, 3, 3, 1, 3, "LEFT");
 
         m_updateGyroData = true;
 
@@ -48,10 +59,29 @@ public class SensorTab {
         m_yawWidget = m_gyroLayout.add("Yaw", SensorBrain.defaultGyroYaw);
         SensorBrain.entryGyroYaw = m_yawWidget.getEntry();
 
+        // Color sensor data 
+        m_targetDistanceWidget = m_colorSensorLayout.add("Target Distance", SensorBrain.defaultTargetDistance);
+        SensorBrain.entryTargetDistance =  m_targetDistanceWidget.getEntry();
+
+        m_redValueWidget =  m_colorSensorLayout.add("Red Value", SensorBrain.defaultRedValue);
+        SensorBrain.entryRedValue = m_redValueWidget.getEntry();
+
+        m_greenValueWidget =  m_colorSensorLayout.add("Green Value", SensorBrain.defaultGreenValue);
+        SensorBrain.entryGreenValue = m_greenValueWidget.getEntry();
+
+        m_blueValueWidget =  m_colorSensorLayout.add("Blue Value", SensorBrain.defaultBlueValue);
+        SensorBrain.entryBlueValue = m_blueValueWidget.getEntry();
+
     }
 
     // Create all other Widgets
     public void initialize() {
+        //Objects in range
+        m_cubeInRangeWidget = m_cubeDetectedLayout.add("Cube Detected", false);
+        SensorBrain.entryCubeInRange = m_cubeInRangeWidget.getEntry(); 
+
+        m_coneInRangeWidget = m_coneDetectedLayout.add("Cone Detected", false);
+        SensorBrain.entryConeInRange = m_coneInRangeWidget.getEntry(); 
     }
 
     // Configure all Widgets
@@ -64,6 +94,11 @@ public class SensorTab {
         SensorBrain.setGyroPitch(BotSensors.gyro.getPitch());
         SensorBrain.setGyroRoll(BotSensors.gyro.getRoll());
         SensorBrain.setGyroYaw(BotSensors.gyro.getYaw());
+
+        SensorBrain.setTargetDistance((BotSensors.colorSensor.getProximity()));
+        SensorBrain.setRedValue(BotSensors.colorSensor.getRed());
+        SensorBrain.setGreenValue(BotSensors.colorSensor.getGreen());
+        SensorBrain.setBlueValue(BotSensors.colorSensor.getBlue());
 
     }
 
