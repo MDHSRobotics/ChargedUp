@@ -3,6 +3,7 @@ package frc.robot.consoles.tabs;
 
 import edu.wpi.first.wpilibj.shuffleboard.*;
 import frc.robot.BotSensors;
+import frc.robot.BotSubsystems;
 import frc.robot.brains.SensorBrain;
 import frc.robot.consoles.ShuffleLogger;
 import frc.robot.consoles.Shuffler;
@@ -41,6 +42,8 @@ public class SensorTab {
 
         m_gyroLayout = Shuffler.constructLayout(m_tab, "Gyroscope", 0, 0, 3, 3, 1, 3, "LEFT");
         m_colorSensorLayout = Shuffler.constructLayout(m_tab, "Color Sensor", 3, 0, 3, 3, 1, 3, "LEFT");
+        m_cubeDetectedLayout = Shuffler.constructLayout(m_tab, "Cube Detected", 6, 0, 3, 3, 1, 3, "LEFT");
+        m_coneDetectedLayout = Shuffler.constructLayout(m_tab, "Cone Detected", 9, 0, 3, 3, 1, 3, "LEFT");
 
         m_updateGyroData = true;
 
@@ -99,6 +102,9 @@ public class SensorTab {
         SensorBrain.setRedValue(BotSensors.colorSensor.getRed());
         SensorBrain.setGreenValue(BotSensors.colorSensor.getGreen());
         SensorBrain.setBlueValue(BotSensors.colorSensor.getBlue());
+
+        SensorBrain.setConeInRange(BotSubsystems.forklift.isConeInRange());
+        SensorBrain.setCubeInRange(BotSubsystems.forklift.isCubeInRange());
 
     }
 

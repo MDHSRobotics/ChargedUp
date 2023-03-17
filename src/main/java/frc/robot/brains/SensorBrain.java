@@ -100,4 +100,12 @@ public class SensorBrain {
         entryBlueValue.setInteger(value);   
     }
 
+    public static void setCubeInRange(boolean value){
+        entryCubeInRange.setBoolean(value);
+    }
+
+    public static void setConeInRange(boolean value){
+        entryConeInRange.setBoolean(value);
+    }
+
 }

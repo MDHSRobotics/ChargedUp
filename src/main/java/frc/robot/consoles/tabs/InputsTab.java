@@ -37,8 +37,6 @@ public class InputsTab {
     private SimpleWidget m_controllerOneConnectedWidget;
     private SimpleWidget m_controllerTwoConnectedWidget;
 
-    private SimpleWidget m_joystickWidget;
-
     // Constructor
     public InputsTab() {
         ShuffleLogger.logTrivial("Constructing InputsTab...");
