@@ -1,7 +1,7 @@
 package frc.robot.consoles.tabs;
 
 import edu.wpi.first.wpilibj.shuffleboard.*;
-
+import frc.robot.BotSubsystems;
 import frc.robot.brains.*;
 import frc.robot.consoles.ShuffleLogger;
 import frc.robot.consoles.Shuffler;
@@ -26,6 +26,8 @@ public class MainTab {
     private SimpleWidget m_cubeInRangeWidget;
     private SimpleWidget m_coneInRangeWidget;
 
+    private SimpleWidget m_fieldOrientedWidget;
+
     private ComplexWidget m_cameraFeed;
 
     public static VideoSource limelightCamera = new HttpCamera("limelight-mdrobot", "http://10.41.41.11:5801/", HttpCameraKind.kMJPGStreamer);
@@ -39,11 +41,15 @@ public class MainTab {
         m_forkliftEncodersLayout = Shuffler.constructLayout(m_tab, "Forklift Encoders", 8, 0, 4, 2, 1, 2, "LEFT");
         m_objectsInRangeLayout = Shuffler.constructLayout(m_tab, "Objects In Range", 8, 2, 4, 4, 2, 1, "LEFT");
 
-        
     }
 
     // Create Brain Widgets
     public void preInitialize() {
+
+        m_cameraFeed = m_tab.add("Camera Feed", limelightCamera);
+        m_cameraFeed.withPosition(0, 0);
+        m_cameraFeed.withSize(8, 8);
+        m_cameraFeed.withWidget(BuiltInWidgets.kCameraStream);
 
         m_widgetExtenderEncoder = m_forkliftEncodersLayout.add("Extender Encoder", ForkliftBrain.defaultExtenderEncoder);
         ForkliftBrain.entryExtenderEncoder = m_widgetExtenderEncoder.getEntry();
@@ -51,10 +57,6 @@ public class MainTab {
         m_widgetElevatorEncoder = m_forkliftEncodersLayout.add("Elevator Encoder", ForkliftBrain.defaultElevatorEncoder);
         ForkliftBrain.entryElevatorEncoder = m_widgetElevatorEncoder.getEntry();
 
-        m_cameraFeed = m_tab.add("Camera Feed", limelightCamera);
-        m_cameraFeed.withPosition(0, 0);
-        m_cameraFeed.withSize(8, 8);
-        m_cameraFeed.withWidget(BuiltInWidgets.kCameraStream);
     }
 
     // Create all other Widgets
@@ -65,6 +67,10 @@ public class MainTab {
 
         m_coneInRangeWidget = m_objectsInRangeLayout.add("Cone Detected", false);
         SensorBrain.entryConeInRange = m_coneInRangeWidget.getEntry();
+
+        m_fieldOrientedWidget = m_tab.add("Field Oriented", false);
+        SwerveDriverBrain.entryFieldOrientedEntry = m_fieldOrientedWidget.getEntry();
+        m_fieldOrientedWidget.withPosition(12, 0);
     }
 
     // Configure all Widgets
@@ -73,6 +79,7 @@ public class MainTab {
 
     // This will be called in the robotPeriodic
     public void update() {
+        SwerveDriverBrain.setFieldOriented(BotSubsystems.swerveDriver.fieldRelative);
     }
 }
 

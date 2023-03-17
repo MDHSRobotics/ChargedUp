@@ -16,11 +16,11 @@ public class ButtonBindings {
         Logger.setup("Configure Buttons -> Xbox Controller 1...");
 
         //Change Speed
-        BotControllers.xbox1.btnY.onTrue(BotCommands.speedUpDrive);
-        BotControllers.xbox1.btnA.onTrue(BotCommands.slowDownDrive);
+        BotControllers.xbox1.btnA.onTrue(BotCommands.speedUpDrive);
+        BotControllers.xbox1.btnB.onTrue(BotCommands.slowDownDrive);
 
         //Toggle Feild Orientated Driving
-        BotControllers.xbox1.btnB.onTrue(BotCommands.toggleOrientation);
+        BotControllers.xbox1.btnY.onTrue(BotCommands.toggleOrientation);
 
         //Lock the wheels
         BotControllers.xbox1.btnX.onTrue(BotCommands.lockWheels);

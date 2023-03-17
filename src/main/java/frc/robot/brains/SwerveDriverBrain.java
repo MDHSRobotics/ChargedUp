@@ -84,6 +84,8 @@ public class SwerveDriverBrain {
     public static GenericEntry entryLeftRightSpeed;
     public static GenericEntry entryRotationSpeed;
 
+    public static GenericEntry entryFieldOrientedEntry;
+
     //---------//
     // Getters //
     //---------//
@@ -217,6 +219,10 @@ public class SwerveDriverBrain {
         entryLeftRightSpeed.setDouble(leftRight);
         entryRotationSpeed.setDouble(rotation);
 
+    }
+
+    public static void setFieldOriented(boolean value){
+        entryFieldOrientedEntry.setBoolean(value);
     }
 
 }

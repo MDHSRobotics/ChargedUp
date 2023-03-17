@@ -56,7 +56,7 @@ public class ForkliftTab {
         m_motorSpeedsLayout = Shuffler.constructLayout(m_tab, "Motor Speeds", 4, 0, 6, 3, 1, 2, "LEFT");
         m_motorEncodersLayout = Shuffler.constructLayout(m_tab, "Motor Encoders", 0, 2, 4, 2, 1, 2, "LEFT");
         m_softStopLayout = Shuffler.constructLayout(m_tab, "Soft Stop", 0, 4, 4, 4, 1, 2, "LEFT");
-        m_positionsLayout = Shuffler.constructLayout(m_tab, "Positions", 11, 0, 8, 8, 0, 0, "TOP");
+        m_positionsLayout = Shuffler.constructLayout(m_tab, "Positions", 10, 0, 9, 8, 0, 0, "TOP");
     }
 
     // Create Brain Widgets

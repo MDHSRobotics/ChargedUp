@@ -74,7 +74,6 @@ public class SensorTab {
 
         m_blueValueWidget =  m_colorSensorLayout.add("Blue Value", SensorBrain.defaultBlueValue);
         SensorBrain.entryBlueValue = m_blueValueWidget.getEntry();
-
     }
 
     // Create all other Widgets
