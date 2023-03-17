@@ -1,7 +1,9 @@
 package frc.robot.subsystems;
 
+import edu.wpi.first.math.spline.CubicHermiteSpline;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.BotSensors;
 import frc.robot.brains.ForkliftBrain;
 import frc.robot.consoles.Logger;
 import static frc.robot.subsystems.Devices.*;
@@ -161,7 +163,31 @@ public class Forklift extends SubsystemBase {
         return (Math.abs(getExtenderEncoder() - target) < MOTOR_POSITION_TOLERANCE);
     }
 
-    
+    //returns whether or not the cone/cube is in range
+    public boolean isCubeInRange() {
+
+        boolean isCubeInRange =  false;
+        int distance = BotSensors.colorSensor.getProximity();
+
+        if (distance > 400) {
+            isCubeInRange =  true;
+        }
+
+        return isCubeInRange;
+    }
+
+    public boolean isConeInRange() {
+
+        boolean isConeInRange =  false;
+        int distance = BotSensors.colorSensor.getProximity();
+
+        if (distance > 600) {
+            isConeInRange =  true;
+        }
+
+        return isConeInRange;
+    }
+
 
     /* One Line Commands */
 

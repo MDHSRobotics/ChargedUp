@@ -14,16 +14,21 @@ public class SensorTab {
     private ShuffleboardTab m_tab;
     private ShuffleboardLayout m_gyroLayout;
     private ShuffleboardLayout m_colorSensorLayout;
+    private ShuffleboardLayout m_cubeDetectedLayout;
+    private ShuffleboardLayout m_coneDetectedLayout;
 
     // Gyro Widgets
     private SimpleWidget m_rollWidget;
     private SimpleWidget m_pitchWidget;
     private SimpleWidget m_yawWidget;
 
+    // Color Sensor Widgets
     private SimpleWidget m_targetDistanceWidget;
     private SimpleWidget m_redValueWidget;
     private SimpleWidget m_greenValueWidget;
     private SimpleWidget m_blueValueWidget;
+    private SimpleWidget m_cubeInRangeWidget;
+    private SimpleWidget m_coneInRangeWidget;
 
     // State flag for displaying gyro data
     private boolean m_updateGyroData;
@@ -71,6 +76,12 @@ public class SensorTab {
 
     // Create all other Widgets
     public void initialize() {
+        //Objects in range
+        m_cubeInRangeWidget = m_cubeDetectedLayout.add("Cube Detected", false);
+        SensorBrain.entryCubeInRange = m_cubeInRangeWidget.getEntry(); 
+
+        m_coneInRangeWidget = m_coneDetectedLayout.add("Cone Detected", false);
+        SensorBrain.entryConeInRange = m_coneInRangeWidget.getEntry(); 
     }
 
     // Configure all Widgets

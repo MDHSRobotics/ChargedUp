@@ -33,6 +33,9 @@ public class SensorBrain {
     public static GenericEntry entryGreenValue;
     public static GenericEntry entryBlueValue;
 
+    public static GenericEntry entryCubeInRange;
+    public static GenericEntry entryConeInRange;
+
     //---------//
     // Getters //
     //---------//
