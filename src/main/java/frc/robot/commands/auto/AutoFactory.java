@@ -9,6 +9,9 @@ import frc.robot.commands.swervedrive.TimedSwerve;
 */
 public class AutoFactory extends SequentialCommandGroup {
 
+    private final double SIDEWAYS_TIME = 0.5;
+    private final double DRIVE_OUT_TIME = 4.0;
+
     public AutoFactory(String location, String cubePlacement) {
 
         Boolean isSideways;
@@ -19,7 +22,7 @@ public class AutoFactory extends SequentialCommandGroup {
             case "Bottom":
 
                 //Eject Cube in the center
-                addCommands(new EjectCube(BotSubsystems.intake, 1.));
+                addCommands(new EjectCube(BotSubsystems.intake, AutoConstants.DEFAULT_EJECT_CUBE_TIME));
                 isSideways = true;       
                 break;
 
@@ -46,9 +49,9 @@ public class AutoFactory extends SequentialCommandGroup {
             case "Right":
                 // We're located on the right or left so back out of community area
 
-                double backingSpeed = 0.3;
+                double backingSpeed = AutoConstants.DEFAULT_DRIVE_SPEED;
                 // The side to side direction is opposite for Left and Right placements
-                double sideToSideSpeed = (location == "Left") ? -0.3 : 0.3;
+                double sideToSideSpeed = (location == "Left") ? -AutoConstants.DEFAULT_DRIVE_SPEED : AutoConstants.DEFAULT_DRIVE_SPEED;
 
                 double x1Speed, y1Speed, time1;
                 double x2Speed, y2Speed, time2;
@@ -56,19 +59,19 @@ public class AutoFactory extends SequentialCommandGroup {
                     // The robot is initially positioned sideways, pointing toward the right
                     x1Speed = sideToSideSpeed;
                     y1Speed = 0.;
-                    time1 = .5;
+                    time1 = SIDEWAYS_TIME;
                     x2Speed = 0.;
                     y2Speed = backingSpeed;
-                    time2 = 4.0;
+                    time2 = DRIVE_OUT_TIME;
                 
                 }   else {
                     // The robot is initially positioned toward the wall
                     x1Speed = 0.;
                     y1Speed = sideToSideSpeed;
-                    time1 = .4;
+                    time1 = SIDEWAYS_TIME;
                     x2Speed = -backingSpeed;
                     y2Speed = 0.;
-                    time2 = 4.0;
+                    time2 = DRIVE_OUT_TIME;
                 }
 
                 //Move to the side of the field to clear the charge station

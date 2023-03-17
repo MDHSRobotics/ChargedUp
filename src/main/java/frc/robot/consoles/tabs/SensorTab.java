@@ -4,7 +4,6 @@ package frc.robot.consoles.tabs;
 import edu.wpi.first.wpilibj.shuffleboard.*;
 import frc.robot.BotSensors;
 import frc.robot.brains.SensorBrain;
-import frc.robot.consoles.Logger;
 import frc.robot.consoles.ShuffleLogger;
 import frc.robot.consoles.Shuffler;
 

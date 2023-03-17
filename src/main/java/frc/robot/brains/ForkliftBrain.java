@@ -37,6 +37,14 @@ public class ForkliftBrain {
 
     public static GenericEntry entrySoftStopEnabled;
 
+    public static GenericEntry elevatorPickupPosition;
+    public static GenericEntry elevatorMediumPosition;
+    public static GenericEntry elevatorHighPosition;
+
+    public static GenericEntry extenderPickupPosition;
+    public static GenericEntry extenderMediumPosition;
+    public static GenericEntry extenderHighPosition;
+
     //---------//
     // Getters //
     //---------//
@@ -67,6 +75,30 @@ public class ForkliftBrain {
 
     public static double getElevatorSoftStop(){
         return entryElevatorSoftStop.getDouble(defaultElevatorSoftStop);
+    }
+
+    public static double getElevatorPickupPosition(){
+        return elevatorPickupPosition.getDouble(0);
+    }
+
+    public static double getElevatorMediumPosition(){
+        return elevatorMediumPosition.getDouble(0);
+    }
+
+    public static double getElevatorHighPosition(){
+        return elevatorHighPosition.getDouble(0);
+    }
+
+    public static double getExtenderPickupPosition(){
+        return extenderPickupPosition.getDouble(0);
+    }
+
+    public static double getExtenderMediumPosition(){
+        return extenderMediumPosition.getDouble(0);
+    }
+
+    public static double getExtenderHighPosition(){
+        return extenderHighPosition.getDouble(0);
     }
 
     //---------//

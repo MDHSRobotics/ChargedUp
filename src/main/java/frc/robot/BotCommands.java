@@ -29,9 +29,9 @@ public class BotCommands {
 
     // Forklift
     public static MoveForklift moveForklift;
-    public static ForkliftPickUpPosition forkliftPickUpPosition;
-    public static ForkliftHighLevelPosition forkliftHighLevelPosition;
-    public static ForkliftMediumLevelPosition forkliftMediumLevelPosition;
+    public static ForkliftToPosition forkliftPickUpPosition;
+    public static ForkliftToPosition forkliftHighLevelPosition;
+    public static ForkliftToPosition forkliftMediumLevelPosition;
     public static CommandBase openClamp;
     public static CommandBase closeClamp;
     public static CommandBase enableSoftStop;
@@ -59,9 +59,9 @@ public class BotCommands {
         
         // Forklift
         moveForklift = new MoveForklift(BotSubsystems.forklift); 
-        forkliftPickUpPosition = new ForkliftPickUpPosition(BotSubsystems.forklift); 
-        forkliftHighLevelPosition = new ForkliftHighLevelPosition(BotSubsystems.forklift);
-        forkliftMediumLevelPosition = new ForkliftMediumLevelPosition(BotSubsystems.forklift);
+        forkliftPickUpPosition = new ForkliftToPosition(BotSubsystems.forklift, AutoConstants.Levels.PICKUP); 
+        forkliftMediumLevelPosition = new ForkliftToPosition(BotSubsystems.forklift, AutoConstants.Levels.MEDIUM);
+        forkliftHighLevelPosition = new ForkliftToPosition(BotSubsystems.forklift, AutoConstants.Levels.HIGH);
 
         enableSoftStop = BotSubsystems.forklift.enableSoftStop();
         disableSoftStop = BotSubsystems.forklift.disableSoftStop();

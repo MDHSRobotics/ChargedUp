@@ -8,7 +8,6 @@ import frc.robot.consoles.Shuffler;
 import frc.robot.BotCommands;
 import frc.robot.BotSubsystems;
 import frc.robot.commands.auto.*;
-import frc.robot.commands.swervedrive.TimedSwerve;
 
 public class AutonomousTab {
 
@@ -71,7 +70,6 @@ public class AutonomousTab {
 
             m_balanceCommand = m_individualCommandLayout.add("Balance Charge Station", new BalanceChargeStation(BotSubsystems.swerveDriver, false));
             m_ejectCube = m_individualCommandLayout.add("Eject Cube", new EjectCube(BotSubsystems.intake, 1));
-            m_liftForklift = m_individualCommandLayout.add("Lift Forklift", new LiftForklift(BotSubsystems.forklift, 150, 60));
             m_placeCube = m_individualCommandLayout.add("Place Cube", new PlaceCube());
         }
     

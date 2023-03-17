@@ -11,8 +11,6 @@ public final class SwerveConstants {
     public static final double kWheelDiameterMeters = Units.inchesToMeters(4.0);
     public static final double kPhysicalMaxSpeedMetersPerSecond = 10.0;
     public static final double kPhysicalMaxAngularSpeedRadiansPerSecond = 2.0 * 2.0 * Math.PI;
-    public static final double kMinChargeStationBalancingPower = 0.008;
-    public static final double kMaxChargeStationBalancingPower = 0.3;
 
     public static final double kTrackWidth = Units.inchesToMeters(18.0);
     // Distance between right and left wheels
@@ -69,15 +67,9 @@ public final class SwerveConstants {
           for this module.  Convert that value from degrees to radians below.
     */
     public static final double kFrontLeftDriveAbsoluteEncoderOffsetRad = Units.degreesToRadians(-26.279297); 
-    public static final double kRearLeftDriveAbsoluteEncoderOffsetRad = Units.degreesToRadians(31.728516);
     public static final double kFrontRightDriveAbsoluteEncoderOffsetRad = Units.degreesToRadians(-98.613281);
+    public static final double kRearLeftDriveAbsoluteEncoderOffsetRad = Units.degreesToRadians(31.728516);
     public static final double kRearRightDriveAbsoluteEncoderOffsetRad = Units.degreesToRadians(-138.603516);
-
-	//TODO: can't use SwerveDriveBrain getters here because NetworkTableEntries aren't initialized yet
-    // public static final double kFrontLeftDriveAbsoluteEncoderOffsetRad = SwerveDriverBrain.getFLEncoderOffset(); 
-    // public static final double kRearLeftDriveAbsoluteEncoderOffsetRad = SwerveDriverBrain.getFREncoderOffset(); 
-    // public static final double kFrontRightDriveAbsoluteEncoderOffsetRad = SwerveDriverBrain.getRLEncoderOffset(); 
-    // public static final double kRearRightDriveAbsoluteEncoderOffsetRad = SwerveDriverBrain.getRREncoderOffset(); 
 
     public static final double kTeleDriveMaxAccelerationUnitsPerSecond = 1;
     public static final double kTeleDriveMaxAngularAccelerationUnitsPerSecond = 1.5;

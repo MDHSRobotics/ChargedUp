@@ -5,10 +5,12 @@ import frc.robot.BotSubsystems;
 
 public class DefaultAutoCommand extends SequentialCommandGroup {
 
+    private final double EJECT_TIME = 1.0;
+
     public DefaultAutoCommand() {
     
         addCommands(
-            new EjectCube(BotSubsystems.intake, 1)
+            new EjectCube(BotSubsystems.intake, EJECT_TIME)
         );
 
     }

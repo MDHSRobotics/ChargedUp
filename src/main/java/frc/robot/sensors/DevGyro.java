@@ -9,10 +9,14 @@ import edu.wpi.first.wpilibj.SPI;
 import static frc.robot.RobotManager.isReal;
 import frc.robot.consoles.Logger;
 
+import edu.wpi.first.wpilibj2.command.CommandBase;
+
 // This class contains methods for obtaining useful gyro readings.
 public class DevGyro {
 
     private AHRS m_ahrsGyro;
+
+    private boolean isSideways = false;
 
     public DevGyro() {
 
@@ -61,7 +65,7 @@ public class DevGyro {
     public double getYaw() {
         double value;
         if (isReal) {
-            value = m_ahrsGyro.getYaw();
+            value = isSideways ? m_ahrsGyro.getYaw() + 90.0 : m_ahrsGyro.getYaw();
         } else {
             value = 30.;
         }
@@ -86,5 +90,9 @@ public class DevGyro {
             value = new Rotation2d(50.);
         }
         return value;
+    }
+
+    public void setSideways() {
+        isSideways = true;
     }
 }

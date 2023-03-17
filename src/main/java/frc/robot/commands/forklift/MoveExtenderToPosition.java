@@ -5,25 +5,40 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 import frc.robot.consoles.Logger;
 import frc.robot.subsystems.Forklift;
+import frc.robot.brains.ForkliftBrain;
+import frc.robot.commands.auto.AutoConstants;
 
 public class MoveExtenderToPosition extends CommandBase {
 
     private Forklift m_forklift;
-    private double m_targetPosition;
+    private AutoConstants.Levels m_level;
 
-    public MoveExtenderToPosition(Forklift forklift, double targetPosition) {
+    private double targetPosition;
+
+    public MoveExtenderToPosition(Forklift forklift, AutoConstants.Levels level) {
         Logger.setup("Constructing Command: MoveExtenderToPosition...");
 
         // Add given subsystem requirements
         m_forklift = forklift;
-        m_targetPosition = targetPosition;
+        m_level = level;
         addRequirements(m_forklift);
     }
 
     @Override
     public void initialize() {
         Logger.action("Initializing Command: MoveExtenderToPosition...");
-        m_forklift.moveExtenderToPosition(m_targetPosition);
+        switch(m_level){
+            case PICKUP:
+                targetPosition = ForkliftBrain.getExtenderPickupPosition();
+                break;
+            case MEDIUM:
+                targetPosition = ForkliftBrain.getExtenderMediumPosition();
+                break;
+            case HIGH:
+                targetPosition = ForkliftBrain.getExtenderHighPosition();
+                break;
+        }
+        m_forklift.moveExtenderToPosition(targetPosition);
 
     }
 
@@ -34,7 +49,7 @@ public class MoveExtenderToPosition extends CommandBase {
     // This command continues until interrupted
     @Override
     public boolean isFinished() {
-        return m_forklift.isExtenderAtPosition(-m_targetPosition);
+        return m_forklift.isExtenderAtPosition(-targetPosition);
     }
 
     @Override

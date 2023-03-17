@@ -2,7 +2,7 @@ package frc.robot.commands.auto;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-
+import frc.robot.BotSensors;
 import frc.robot.consoles.Logger;
 import frc.robot.subsystems.Intake;
 
@@ -26,6 +26,7 @@ public class EjectCube extends CommandBase{
         Logger.action("Initializing Command: Eject Cube...");
         m_timer.reset();
         m_timer.start();
+        BotSensors.gyro.setSideways();
     }
 
     @Override
