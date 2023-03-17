@@ -61,6 +61,7 @@ public class Robot extends TimedRobot {
 
         // Update the Shuffleboard
         RobotManager.botShuffler.update();
+        
     }
 
     /**

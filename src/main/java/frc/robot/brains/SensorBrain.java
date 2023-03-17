@@ -14,6 +14,11 @@ public class SensorBrain {
     public static double defaultGyroRoll = 0.;
     public static double defaultGyroPitch = 0.;
     public static double defaultGyroYaw = 0.;
+    
+    public static double defaultTargetDistance = 0.;
+    public static int defaultRedValue = 0;
+    public static int defaultGreenValue = 0;
+    public static int defaultBlueValue = 0;
 
     //---------------------//
     // NetworkTableEntries //
@@ -22,6 +27,11 @@ public class SensorBrain {
     public static GenericEntry entryGyroRoll;
     public static GenericEntry entryGyroPitch;
     public static GenericEntry entryGyroYaw;
+
+    public static GenericEntry entryTargetDistance;
+    public static GenericEntry entryRedValue;
+    public static GenericEntry entryGreenValue;
+    public static GenericEntry entryBlueValue;
 
     //---------//
     // Getters //
@@ -39,6 +49,22 @@ public class SensorBrain {
         return entryGyroRoll.getDouble(defaultGyroYaw);
     }
 
+    public static double getTargetDistance() {
+        return entryTargetDistance.getDouble(defaultTargetDistance);
+    }
+
+    public static double getRedValue() {
+        return entryRedValue.getInteger(defaultRedValue);
+    }
+
+    public static double getGreenValue() {
+        return entryRedValue.getInteger(defaultRedValue);
+    }
+
+    public static double getBlueValue() {
+        return entryRedValue.getInteger(defaultRedValue);
+    }
+
     //---------//
     // Setters //
     //---------//
@@ -53,6 +79,22 @@ public class SensorBrain {
 
     public static void setGyroYaw(double value) {
        entryGyroYaw.setDouble(value);
+    }
+
+    public static void setTargetDistance(double value) {
+        entryTargetDistance.setDouble(value);
+    }
+
+    public static void setRedValue(int value) {
+        entryRedValue.setInteger(value);
+    }
+
+    public static void setGreenValue(int value) {
+        entryGreenValue.setInteger(value);    
+    }
+
+    public static void setBlueValue(int value) {
+        entryBlueValue.setInteger(value);   
     }
 
 }
