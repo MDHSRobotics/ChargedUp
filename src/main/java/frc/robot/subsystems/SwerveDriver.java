@@ -220,7 +220,7 @@ public class SwerveDriver extends SubsystemBase {
         if (fieldOriented) {
             // Relative to field
             chassisSpeeds = ChassisSpeeds.fromFieldRelativeSpeeds(
-                    xSpeed, ySpeed, turningSpeed, getRotation2d());
+                    -xSpeed, ySpeed, -turningSpeed, getRotation2d());
         } else {
             // Relative to robot
             chassisSpeeds = new ChassisSpeeds(-xSpeed, ySpeed, -turningSpeed);

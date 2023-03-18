@@ -52,10 +52,10 @@ public class MainTab {
         m_cameraFeed.withWidget(BuiltInWidgets.kCameraStream);
 
         m_widgetExtenderEncoder = m_forkliftEncodersLayout.add("Extender Encoder", ForkliftBrain.defaultExtenderEncoder);
-        ForkliftBrain.entryExtenderEncoder = m_widgetExtenderEncoder.getEntry();
+        //ForkliftBrain.entryExtenderEncoder = m_widgetExtenderEncoder.getEntry();
 
         m_widgetElevatorEncoder = m_forkliftEncodersLayout.add("Elevator Encoder", ForkliftBrain.defaultElevatorEncoder);
-        ForkliftBrain.entryElevatorEncoder = m_widgetElevatorEncoder.getEntry();
+        //ForkliftBrain.entryElevatorEncoder = m_widgetElevatorEncoder.getEntry();
 
     }
 

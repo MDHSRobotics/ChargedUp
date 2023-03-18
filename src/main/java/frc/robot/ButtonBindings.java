@@ -43,8 +43,8 @@ public class ButtonBindings {
         BotControllers.xbox2.btnX.onTrue(BotCommands.forkliftMediumLevelPosition);
 
         // Pneumatics
-        //BotControllers.xbox2.btnBumperLeft.onTrue(BotCommands.openClamp);
-        //BotControllers.xbox2.btnBumperRight.onTrue(BotCommands.closeClamp);
+        BotControllers.xbox2.btnBumperLeft.onTrue(BotCommands.openClamp);
+        BotControllers.xbox2.btnBumperRight.onTrue(BotCommands.closeClamp);
 
     }
 

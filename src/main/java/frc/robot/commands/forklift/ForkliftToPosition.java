@@ -11,12 +11,21 @@ public class ForkliftToPosition extends SequentialCommandGroup {
     
 
     public ForkliftToPosition(Forklift forklift, AutoConstants.Levels level) {
-        addCommands(
+        if(level == AutoConstants.Levels.PICKUP){
+            addCommands(
 
-            new MoveExtenderToPosition(BotSubsystems.forklift, level),
-            new MoveElevatorToPosition(BotSubsystems.forklift, level)
-            
-        );
+                new MoveExtenderToPosition(BotSubsystems.forklift, level),
+                new MoveElevatorToPosition(BotSubsystems.forklift, level)
+                
+            );
+        }else{
+            addCommands(
+
+                new MoveElevatorToPosition(BotSubsystems.forklift, level),
+                new MoveExtenderToPosition(BotSubsystems.forklift, level)
+                
+            );
+        }
     }
 
 }

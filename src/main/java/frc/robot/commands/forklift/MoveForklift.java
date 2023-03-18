@@ -16,7 +16,7 @@ public class MoveForklift extends CommandBase {
     private double brainElevatorSpeed;
 
     //False: Jason, True: TJ
-    private boolean preferences = false;
+    private boolean preferences = true;
 
     public MoveForklift(Forklift forklift) {
         Logger.setup("Constructing Command: MoveForklift...");

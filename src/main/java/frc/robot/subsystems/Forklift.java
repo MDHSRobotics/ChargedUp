@@ -16,6 +16,8 @@ public class Forklift extends SubsystemBase {
     private static final double MIN_MOTOR_POWER = 0.1;
     private static final double MOTOR_POSITION_TOLERANCE = 3.0;
 
+    private final double GREEN_BIAS = 100;
+
     private static double elevatorMin = 0.;
     private static double elevatorMax = -66.;
     private static double extenderMin = 0.;
@@ -167,8 +169,11 @@ public class Forklift extends SubsystemBase {
 
         boolean isCubeInRange =  false;
         int distance = BotSensors.colorSensor.getProximity();
+        int blue = BotSensors.colorSensor.getBlue();
+        int red = BotSensors.colorSensor.getRed();
+        int green = BotSensors.colorSensor.getGreen();
 
-        if (distance > 400) {
+        if (blue > green - GREEN_BIAS && blue > red) {
             isCubeInRange =  true;
         }
 
@@ -179,8 +184,11 @@ public class Forklift extends SubsystemBase {
 
         boolean isConeInRange =  false;
         int distance = BotSensors.colorSensor.getProximity();
+        int blue = BotSensors.colorSensor.getBlue();
+        int red = BotSensors.colorSensor.getRed();
+        int green = BotSensors.colorSensor.getGreen();
 
-        if (distance > 600) {
+        if (red > blue && green > blue && distance > 60) {
             isConeInRange =  true;
         }
 
