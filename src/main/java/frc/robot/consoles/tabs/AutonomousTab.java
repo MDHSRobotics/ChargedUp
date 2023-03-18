@@ -34,10 +34,10 @@ public class AutonomousTab {
     
             m_tab = Shuffleboard.getTab("Autonomous");
     
-            m_commandLayout = Shuffler.constructLayout(m_tab, "Auto Commands", 0, 0, 4, 4, 1, 4, "LEFT");
+            m_commandLayout = Shuffler.constructLayout(m_tab, "Auto Commands", 0, 0, 4, 5, 1, 5, "LEFT");
             m_individualCommandLayout = Shuffler.constructLayout(m_tab, "Individual Auto Commands", 4, 0, 4, 4, 1, 2, "LEFT");
 
-            m_layoutChargeStationSpeedPID = Shuffler.constructLayout(m_tab, "Charge Station PID", 0, 4, 3, 4, 1, 3, "TOP");
+            m_layoutChargeStationSpeedPID = Shuffler.constructLayout(m_tab, "Charge Station PID", 0, 5, 3, 4, 1, 3, "TOP");
         }
     
         // Create Brain Widgets
