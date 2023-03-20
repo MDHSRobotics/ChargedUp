@@ -33,8 +33,8 @@ public class SensorBrain {
     public static GenericEntry entryGreenValue;
     public static GenericEntry entryBlueValue;
 
-    public static GenericEntry entryCubeInRange;
-    public static GenericEntry entryConeInRange;
+    public static GenericEntry entryObjectInRange;
+    public static GenericEntry entryColor;
 
     //---------//
     // Getters //
@@ -100,12 +100,12 @@ public class SensorBrain {
         entryBlueValue.setInteger(value);   
     }
 
-    public static void setCubeInRange(boolean value){
-        entryCubeInRange.setBoolean(value);
+    public static void setObjectInRange(boolean value){
+        entryObjectInRange.setBoolean(value);
     }
 
-    public static void setConeInRange(boolean value){
-        entryConeInRange.setBoolean(value);
+    public static void setColor(boolean value){
+        entryColor.setBoolean(value);
     }
 
 }

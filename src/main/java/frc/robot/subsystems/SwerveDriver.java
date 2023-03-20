@@ -129,7 +129,7 @@ public class SwerveDriver extends SubsystemBase {
     }
 
     public double getHeading() {
-        return Math.IEEEremainder(-BotSensors.gyro.getAngle(), 360);
+        return Math.IEEEremainder(BotSensors.gyro.getAngle(), 360);
     }
 
     // Returns the current rotation2D

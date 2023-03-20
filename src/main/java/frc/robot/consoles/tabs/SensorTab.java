@@ -7,6 +7,8 @@ import frc.robot.BotSubsystems;
 import frc.robot.brains.SensorBrain;
 import frc.robot.consoles.ShuffleLogger;
 import frc.robot.consoles.Shuffler;
+import edu.wpi.first.wpilibj.util.Color;
+import java.util.Map;
 
 // The Shuffleboard Inputs tab.
 public class SensorTab {
@@ -28,11 +30,8 @@ public class SensorTab {
     private SimpleWidget m_redValueWidget;
     private SimpleWidget m_greenValueWidget;
     private SimpleWidget m_blueValueWidget;
-    private SimpleWidget m_cubeInRangeWidget;
-    private SimpleWidget m_coneInRangeWidget;
-
-    // State flag for displaying gyro data
-    private boolean m_updateGyroData;
+    private SimpleWidget m_inRangeWidget;
+    private SimpleWidget m_colorWidget;
 
     // Constructor
     public SensorTab() {
@@ -44,8 +43,6 @@ public class SensorTab {
         m_colorSensorLayout = Shuffler.constructLayout(m_tab, "Color Sensor", 3, 0, 3, 3, 1, 3, "LEFT");
         m_cubeDetectedLayout = Shuffler.constructLayout(m_tab, "Cube Detected", 6, 0, 3, 3, 1, 3, "LEFT");
         m_coneDetectedLayout = Shuffler.constructLayout(m_tab, "Cone Detected", 9, 0, 3, 3, 1, 3, "LEFT");
-
-        m_updateGyroData = true;
 
     }
 
@@ -79,11 +76,10 @@ public class SensorTab {
     // Create all other Widgets
     public void initialize() {
         //Objects in range
-        m_cubeInRangeWidget = m_cubeDetectedLayout.add("Cube Detected", false);
-        SensorBrain.entryCubeInRange = m_cubeInRangeWidget.getEntry(); 
+        m_inRangeWidget = m_cubeDetectedLayout.add("Object in range", false);
+        SensorBrain.entryObjectInRange = m_inRangeWidget.getEntry(); 
 
-        m_coneInRangeWidget = m_coneDetectedLayout.add("Cone Detected", false);
-        SensorBrain.entryConeInRange = m_coneInRangeWidget.getEntry(); 
+        m_colorWidget = m_coneDetectedLayout.add("Color", true);
     }
 
     // Configure all Widgets
@@ -102,9 +98,8 @@ public class SensorTab {
         SensorBrain.setGreenValue(BotSensors.colorSensor.getGreen());
         SensorBrain.setBlueValue(BotSensors.colorSensor.getBlue());
 
-        SensorBrain.setConeInRange(BotSubsystems.forklift.isConeInRange());
-        SensorBrain.setCubeInRange(BotSubsystems.forklift.isCubeInRange());
-
+        SensorBrain.setObjectInRange(BotSubsystems.forklift.isInRange());
+        
     }
 
 }

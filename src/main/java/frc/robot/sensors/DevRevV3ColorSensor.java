@@ -14,10 +14,8 @@ public class DevRevV3ColorSensor extends ColorSensorV3  {
 
     private final ColorMatch m_colorMatcher = new ColorMatch();
 
-    private final Color kBlueTarget = new Color(0.143, 0.427, 0.429);
-    private final Color kGreenTarget = new Color(0.197, 0.561, 0.240);
-    private final Color kRedTarget = new Color(0.561, 0.232, 0.114);
-    private final Color kYellowTarget = new Color(0.361, 0.524, 0.113);
+    private final Color kCubeTarget = new Color(85/255, 36/255, 183/255);
+    private final Color kConeTarget = new Color(229/255, 214/255, 14/255);
 
     public DevRevV3ColorSensor() {
         super(I2C.Port.kOnboard);
@@ -35,32 +33,28 @@ public class DevRevV3ColorSensor extends ColorSensorV3  {
             Logger.setup("Skipping initializion of color sensor in Simulation mode...");
         }
 
-        m_colorMatcher.addColorMatch(kBlueTarget);
-        m_colorMatcher.addColorMatch(kGreenTarget);
-        m_colorMatcher.addColorMatch(kRedTarget);
-        m_colorMatcher.addColorMatch(kYellowTarget);   
+        m_colorMatcher.addColorMatch(kCubeTarget);
+        m_colorMatcher.addColorMatch(kConeTarget); 
         
     }
 
     public String getMatchedColor(){
         Color detectedColor = getColor();
+        Logger.info(detectedColor);
 
         String colorString;
         
         ColorMatchResult match = m_colorMatcher.matchClosestColor(detectedColor);
+        //Logger.info(match.color);
 
-        if (match.color == kBlueTarget) {
-        colorString = "Blue";
-        } else if (match.color == kRedTarget) {
-        colorString = "Red";
-        } else if (match.color == kGreenTarget) {
-        colorString = "Green";
-        } else if (match.color == kYellowTarget) {
-        colorString = "Yellow";
+        if (match.color == kCubeTarget) {
+        colorString = "Cube";
+        } else if (match.color == kConeTarget) {
+        colorString = "Cone";
         } else {
         colorString = "Unknown";
         }
-        return "";
+        return colorString;
     }
 
 }

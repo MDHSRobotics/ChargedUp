@@ -23,11 +23,11 @@ public class ForkliftBrain {
     public static boolean defaultSoftStopEnabled = true;
 
     public static double defaultElevatorPickupPosition = 0;
-    public static double defaultElevatorMediumPosition = 68;
-    public static double defaultElevatorHighPosition = 80;
+    public static double defaultElevatorMediumPosition = 51;
+    public static double defaultElevatorHighPosition = 75;
 
     public static double defaultExtenderPickupPosition = 0;
-    public static double defaultExtenderMediumPosition = 90;
+    public static double defaultExtenderMediumPosition = 60;
     public static double defaultExtenderHighPosition = 100;
 
 

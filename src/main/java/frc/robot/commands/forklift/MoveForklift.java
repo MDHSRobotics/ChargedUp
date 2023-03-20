@@ -58,12 +58,9 @@ public class MoveForklift extends CommandBase {
 
         //Open the clamp if the left trigger is on, close the clamp if the right trigger is on
         if(!preferences){
-            boolean toggleClamp = false;
             if(BotControllers.xbox2.xbox.getLeftTriggerAxis() > 0.9){
-                toggleClamp = true;
                 m_forklift.moveClampPneumatic(true);
             }else if(BotControllers.xbox2.xbox.getRightTriggerAxis() > 0.9){
-                toggleClamp = false;
                 m_forklift.moveClampPneumatic(false);
             }
         } 

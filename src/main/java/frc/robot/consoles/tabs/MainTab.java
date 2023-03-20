@@ -61,12 +61,12 @@ public class MainTab {
 
     // Create all other Widgets
     public void initialize() {
-                //Objects in range
+        //Objects in range
         m_cubeInRangeWidget = m_objectsInRangeLayout.add("Cube Detected", false);
-        SensorBrain.entryCubeInRange = m_cubeInRangeWidget.getEntry(); 
+        SensorBrain.entryObjectInRange = m_cubeInRangeWidget.getEntry(); 
 
         m_coneInRangeWidget = m_objectsInRangeLayout.add("Cone Detected", false);
-        SensorBrain.entryConeInRange = m_coneInRangeWidget.getEntry();
+        SensorBrain.entryColor = m_coneInRangeWidget.getEntry();
 
         m_fieldOrientedWidget = m_tab.add("Field Oriented", false);
         SwerveDriverBrain.entryFieldOrientedEntry = m_fieldOrientedWidget.getEntry();

@@ -146,7 +146,7 @@ public class Forklift extends SubsystemBase {
 
     //Move the elevator to a set position, return if it is within the tolerance of the position
     public void moveElevatorToPosition(double position){
-        Logger.debug("Moving elevator to position" + position);
+        //Logger.debug("Moving elevator to position" + position);
         m_elevatorPIDController.setReference(position, CANSparkMax.ControlType.kPosition);
     }
 
@@ -173,9 +173,13 @@ public class Forklift extends SubsystemBase {
         int red = BotSensors.colorSensor.getRed();
         int green = BotSensors.colorSensor.getGreen();
 
-        if (blue > green - GREEN_BIAS && blue > red) {
+        if (blue > red && distance > 70) {
             isCubeInRange =  true;
         }
+        
+        /*if(BotSensors.colorSensor.getMatchedColor().equals("Cube")){
+            isCubeInRange = true;
+        }*/
 
         return isCubeInRange;
     }
@@ -191,8 +195,20 @@ public class Forklift extends SubsystemBase {
         if (red > blue && green > blue && distance > 60) {
             isConeInRange =  true;
         }
+        /*if(BotSensors.colorSensor.getMatchedColor().equals("Cone")){
+            isConeInRange = true;
+        }*/
 
         return isConeInRange;
+    }
+
+    public boolean isInRange(){
+        int distance = BotSensors.colorSensor.getProximity();
+        boolean isInRange = false;
+        if(distance > 100){
+            isInRange = true;
+        }
+        return isInRange;
     }
 
 
