@@ -2,6 +2,7 @@
 package frc.robot.consoles.tabs;
 
 import edu.wpi.first.wpilibj.shuffleboard.*;
+import frc.robot.BotCommands;
 import frc.robot.brains.SwerveDriverBrain;
 import frc.robot.consoles.ShuffleLogger;
 import frc.robot.consoles.Shuffler;
@@ -20,9 +21,10 @@ public class DriveTab {
     private ShuffleboardLayout m_layoutModuleRR;
 
     private ShuffleboardLayout m_telemetryLayout;
-    private ShuffleboardLayout m_encoderOffsetLayout;
 
     private ShuffleboardLayout m_preferencesLayout;
+
+    private ShuffleboardLayout m_encoderOffsetLayout;
 
     // Widgets
     private SimpleWidget m_widgetDrivePowerFL;
@@ -54,15 +56,17 @@ public class DriveTab {
     private SimpleWidget m_positionWidget;
     private SimpleWidget m_rotationWidget;
 
+    private SimpleWidget m_widgetDeadBand;
+    private SimpleWidget m_widgetForwardBackwardSpeed;
+    private SimpleWidget m_widgetLeftRightSpeed;
+    private SimpleWidget m_widgetRotationSpeed;
+
     private SimpleWidget m_FLEncoderOffsetWidget;
     private SimpleWidget m_FREncoderOffsetWidget;
     private SimpleWidget m_RLEncoderOffsetWidget;
     private SimpleWidget m_RREncoderOffsetWidget;
 
-    private SimpleWidget m_widgetDeadBand;
-    private SimpleWidget m_widgetForwardBackwardSpeed;
-    private SimpleWidget m_widgetLeftRightSpeed;
-    private SimpleWidget m_widgetRotationSpeed;
+    private ComplexWidget m_widgetUpdateAbsoluteEncoderOffsets;
 
     // Create Brain Widgets
     public DriveTab() {
@@ -76,9 +80,9 @@ public class DriveTab {
         m_layoutModuleRR = Shuffler.constructLayout(m_tab, "Rear Right Moudle", 11, 4, 4, 4, 2, 4, "LEFT");
 
         m_telemetryLayout = Shuffler.constructLayout(m_tab, "Telemetry", 0, 0, 7, 2, 1, 2, "LEFT");
-        m_encoderOffsetLayout = Shuffler.constructLayout(m_tab, "Encoder Offsets", 0, 2, 7, 2, 1, 4, "LEFT");
 
         m_preferencesLayout = Shuffler.constructLayout(m_tab, "Driver Preferences", 0, 4, 7, 4, 2, 2, "LEFT");
+        m_encoderOffsetLayout = Shuffler.constructLayout(m_tab, "Encoder Offset", 0, 2, 7, 2, 2, 3, "LEFT");
     }
 
     // Create Brain Widgets
@@ -211,18 +215,7 @@ public class DriveTab {
         m_rotationWidget = m_telemetryLayout.add("Current Rotation", SwerveDriverBrain.defaultCurrentRotation);
         SwerveDriverBrain.entryCurrentRotation = m_rotationWidget.getEntry();
 
-        m_FLEncoderOffsetWidget = m_encoderOffsetLayout.add("FL Encoder Offset", SwerveDriverBrain.defaultFLEncoderOffset);
-        SwerveDriverBrain.entryFLEncoderOffset = m_FLEncoderOffsetWidget.getEntry();
-
-        m_FREncoderOffsetWidget = m_encoderOffsetLayout.add("FR Encoder Offset", SwerveDriverBrain.defaultFREncoderOffset);
-        SwerveDriverBrain.entryFREncoderOffset = m_FREncoderOffsetWidget.getEntry();
-
-        m_RLEncoderOffsetWidget = m_encoderOffsetLayout.add("RL Encoder Offset", SwerveDriverBrain.defaultRLEncoderOffset);
-        SwerveDriverBrain.entryRLEncoderOffset = m_RLEncoderOffsetWidget.getEntry();
-
-        m_RREncoderOffsetWidget = m_encoderOffsetLayout.add("RR Encoder Offset", SwerveDriverBrain.defaultRREncoderOffset);
-        SwerveDriverBrain.entryRREncoderOffset = m_RREncoderOffsetWidget.getEntry();
-
+        //Deadband and speeds
         m_widgetDeadBand = m_preferencesLayout.add("DeadBand", SwerveDriverBrain.defaultDeadBand);
         SwerveDriverBrain.entryDeadBand = m_widgetDeadBand.getEntry();
         m_widgetDeadBand.withWidget(BuiltInWidgets.kNumberSlider);
@@ -242,12 +235,24 @@ public class DriveTab {
         SwerveDriverBrain.entryRotationSpeed = m_widgetRotationSpeed.getEntry();
         m_widgetRotationSpeed.withWidget(BuiltInWidgets.kNumberSlider);
         m_widgetRotationSpeed.withProperties(Map.of("min", 0, "max", 10));
-        
 
+        m_FLEncoderOffsetWidget = m_encoderOffsetLayout.addPersistent("FL Encoder Offset", SwerveDriverBrain.defaultFLEncoderOffset);
+        SwerveDriverBrain.entryAbsoluteEncoderOffsetDegreesFL = m_FLEncoderOffsetWidget.getEntry();
+
+        m_FREncoderOffsetWidget = m_encoderOffsetLayout.addPersistent("FR Encoder Offset", SwerveDriverBrain.defaultFREncoderOffset);
+        SwerveDriverBrain.entryAbsoluteEncoderOffsetDegreesFR = m_FREncoderOffsetWidget.getEntry();
+
+        m_RLEncoderOffsetWidget = m_encoderOffsetLayout.addPersistent("RL Encoder Offset", SwerveDriverBrain.defaultRLEncoderOffset);
+        SwerveDriverBrain.entryAbsoluteEncoderOffsetDegreesRL = m_RLEncoderOffsetWidget.getEntry();
+
+        m_RREncoderOffsetWidget = m_encoderOffsetLayout.addPersistent("RR Encoder Offset", SwerveDriverBrain.defaultRREncoderOffset);
+        SwerveDriverBrain.entryAbsoluteEncoderOffsetDegreesRR = m_RREncoderOffsetWidget.getEntry();
+        
     }
 
     // Create all other Widgets
     public void initialize() {
+        m_widgetUpdateAbsoluteEncoderOffsets = m_encoderOffsetLayout.add("Update Absoulte Encoder Offsets", BotCommands.resetAbsoluteEncoderOffsets);
     }
 
     // Configure all Widgets

@@ -7,7 +7,6 @@ import frc.robot.BotSubsystems;
 import frc.robot.brains.SensorBrain;
 import frc.robot.consoles.ShuffleLogger;
 import frc.robot.consoles.Shuffler;
-import edu.wpi.first.wpilibj.util.Color;
 import java.util.Map;
 
 // The Shuffleboard Inputs tab.
@@ -99,6 +98,8 @@ public class SensorTab {
         SensorBrain.setBlueValue(BotSensors.colorSensor.getBlue());
 
         SensorBrain.setObjectInRange(BotSubsystems.forklift.isInRange());
+
+        //m_colorWidget.withProperties(Map.of("Color When True",BotSensors.colorSensor.getHexColor()));
         
     }
 

@@ -2,7 +2,7 @@
 package frc.robot.brains;
 
 import edu.wpi.first.networktables.GenericEntry;
-import frc.robot.subsystems.constants.SwerveConstants;
+import edu.wpi.first.networktables.NetworkTableEntry;
 
 // This class contains all the shared NetworkTableEntries for the Swerve Drive,
 // their default values, and methods for retrieving their current values
@@ -28,10 +28,10 @@ public class SwerveDriverBrain {
     public final static double defaultLeftRightSpeed = 1;
     public final static double defaultRotationSpeed = 2.;
 
-    public static double defaultFLEncoderOffset = SwerveConstants.kFrontLeftDriveAbsoluteEncoderOffsetRad;
-    public static double defaultFREncoderOffset = SwerveConstants.kFrontRightDriveAbsoluteEncoderOffsetRad;
-    public static double defaultRLEncoderOffset = SwerveConstants.kRearLeftDriveAbsoluteEncoderOffsetRad;
-    public static double defaultRREncoderOffset = SwerveConstants.kRearRightDriveAbsoluteEncoderOffsetRad;
+    public static double defaultFLEncoderOffset = -34.893;
+    public static double defaultFREncoderOffset = -93.604;
+    public static double defaultRLEncoderOffset = -131.045;
+    public static double defaultRREncoderOffset = -169.805;
 
     //---------------------//
     // NetworkTableEntries //
@@ -67,11 +67,6 @@ public class SwerveDriverBrain {
     public static GenericEntry entryTurningEncoderMpsRL;
     public static GenericEntry entryTurningEncoderMpsRR;
 
-    public static GenericEntry entryFLEncoderOffset;
-    public static GenericEntry entryFREncoderOffset;
-    public static GenericEntry entryRLEncoderOffset;
-    public static GenericEntry entryRREncoderOffset;
-
     public static GenericEntry entryChargeStationSpeedP;
     public static GenericEntry entryChargeStationSpeedI;
     public static GenericEntry entryChargeStationSpeedD;
@@ -86,25 +81,14 @@ public class SwerveDriverBrain {
 
     public static GenericEntry entryFieldOrientedEntry;
 
+    public static GenericEntry entryAbsoluteEncoderOffsetDegreesFL;
+    public static GenericEntry entryAbsoluteEncoderOffsetDegreesFR;
+    public static GenericEntry entryAbsoluteEncoderOffsetDegreesRL;
+    public static GenericEntry entryAbsoluteEncoderOffsetDegreesRR;
+
     //---------//
     // Getters //
     //---------//
-
-    public static double getFLEncoderOffset() {
-        return entryFLEncoderOffset.getDouble(defaultFLEncoderOffset);
-    }
-
-    public static double getFREncoderOffset() {
-        return entryFREncoderOffset.getDouble(defaultFREncoderOffset);
-    }
-
-    public static double getRLEncoderOffset() {
-        return entryRLEncoderOffset.getDouble(defaultRLEncoderOffset);
-    }
-
-    public static double getRREncoderOffset() {
-        return entryRREncoderOffset.getDouble(defaultRREncoderOffset);
-    }
 
     public static double getChargeStationP() {
         return entryChargeStationSpeedP.getDouble(defaultChargeStationP);
@@ -132,6 +116,23 @@ public class SwerveDriverBrain {
 
     public static double getRotationSpeed(){
         return entryRotationSpeed.getDouble(defaultRotationSpeed);
+    }
+
+    public static double getAbsoluteEncoderOffset(String moduleName){
+        double offset;
+        if(moduleName.equals("Front Left")){
+            offset = entryAbsoluteEncoderOffsetDegreesFL.getDouble(0);
+        }else if(moduleName.equals("Front Right")){
+            offset = entryAbsoluteEncoderOffsetDegreesFR.getDouble(0);
+        }else if(moduleName.equals("Rear Left")){
+            offset = entryAbsoluteEncoderOffsetDegreesRL.getDouble(0);
+        }else if(moduleName.equals("Rear Right")){
+            offset = entryAbsoluteEncoderOffsetDegreesRR.getDouble(0);
+        }else{
+            throw new java.lang.Error(String.format("Unkown Module Name %s",moduleName));
+        }
+        return offset;
+        
     }
 
     //---------//
@@ -224,5 +225,13 @@ public class SwerveDriverBrain {
     public static void setFieldOriented(boolean value){
         entryFieldOrientedEntry.setBoolean(value);
     }
+
+    public static void setAbsoulteEncoderOffsets(double FLOffset, double FROffset, double RLOffset, double RROffset){
+        entryAbsoluteEncoderOffsetDegreesFL.setDouble(FLOffset);
+        entryAbsoluteEncoderOffsetDegreesFR.setDouble(FROffset);
+        entryAbsoluteEncoderOffsetDegreesRL.setDouble(RLOffset);
+        entryAbsoluteEncoderOffsetDegreesRR.setDouble(RROffset);
+    }
+
 
 }

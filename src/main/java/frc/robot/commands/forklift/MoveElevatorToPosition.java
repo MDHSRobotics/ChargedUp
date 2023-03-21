@@ -41,8 +41,7 @@ public class MoveElevatorToPosition extends CommandBase {
             default:
                 throw new java.lang.Error("Unkown Elevator Position; should be {PICKUP, MEDIUM, HIGH}");
         }
-        Logger.info(targetPosition);
-        m_forklift.moveArmElevator(targetPosition);
+        m_forklift.moveElevatorToPosition(targetPosition);
 
     }
 

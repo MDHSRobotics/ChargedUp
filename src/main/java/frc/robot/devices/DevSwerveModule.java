@@ -19,6 +19,7 @@ import frc.robot.brains.SwerveDriverBrain;
 import frc.robot.subsystems.constants.SwerveConstants;
 
 import frc.robot.subsystems.utils.EncoderTranslator;
+import frc.robot.consoles.Logger;
 
 
 public class DevSwerveModule {
@@ -30,7 +31,7 @@ public class DevSwerveModule {
     private final PIDController m_turningPidController;
 
     private final boolean m_absoluteEncoderReversed;
-    private final double m_absoluteEncoderOffsetRad;
+    private double m_absoluteEncoderOffsetRad;
 
     private final CANCoder m_canCoder;
     private final EncoderTranslator m_drivingEncoderTranslate;
@@ -39,12 +40,12 @@ public class DevSwerveModule {
     private EncoderTranslator m_encoderTranslator;
 
     public DevSwerveModule(String moduleName, DevTalonFX driveTalon, DevTalonFX steerTalon, CANCoder canCoder,
-            boolean driveMotorReversed, boolean turningMotorReversed, double absoluteEncoderOffset, boolean absoluteEncoderReversed) {
-
-        m_absoluteEncoderOffsetRad = absoluteEncoderOffset;
-        m_absoluteEncoderReversed = absoluteEncoderReversed;
+            boolean driveMotorReversed, boolean turningMotorReversed, boolean absoluteEncoderReversed) {
 
         m_name = moduleName;
+        
+        m_absoluteEncoderReversed = absoluteEncoderReversed;
+        setAbsoluteEncoderOffset();
 
         m_driveMotor = driveTalon;
         m_turningMotor = steerTalon;
@@ -132,6 +133,14 @@ public class DevSwerveModule {
         return absEncoderPositionRad * (m_absoluteEncoderReversed ? -1.0 : 1.0);
     }
 
+    /**
+     * Get this module's cancoder position in degrees
+     * @return the cancoder's absolute position in degrees
+     */
+    public double getCanCoderAbsolutePosition(){
+        return m_canCoder.getAbsolutePosition();
+    }
+
     // Get array of encoder readings:
     // [0] - drive motor (ticks)
     // [1] - drive motor position (meters)
@@ -217,6 +226,11 @@ public class DevSwerveModule {
 
     public void setTurningWheelPosition(double angle){
         m_turningMotor.set(ControlMode.Position, m_encoderTranslator.degrees_to_ticks(angle + Math.toDegrees(m_absoluteEncoderOffsetRad)));
+    }
+
+    public void setAbsoluteEncoderOffset(){
+        m_absoluteEncoderOffsetRad = Math.toRadians(SwerveDriverBrain.getAbsoluteEncoderOffset(m_name));
+        Logger.info(m_absoluteEncoderOffsetRad);
     }
 
 }

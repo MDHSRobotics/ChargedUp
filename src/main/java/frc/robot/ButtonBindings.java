@@ -36,6 +36,7 @@ public class ButtonBindings {
 
         //Reset the encoders
         BotControllers.xbox2.btnDpadDown.onTrue(BotCommands.resetEncoders);
+        BotControllers.xbox2.btnDpadUp.onTrue(BotCommands.cycleFlipper);
 
         //Autonomous Movements
         BotControllers.xbox2.btnA.onTrue(BotCommands.forkliftPickUpPosition);

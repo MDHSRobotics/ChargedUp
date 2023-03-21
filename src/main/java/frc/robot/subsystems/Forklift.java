@@ -146,7 +146,6 @@ public class Forklift extends SubsystemBase {
 
     //Move the elevator to a set position, return if it is within the tolerance of the position
     public void moveElevatorToPosition(double position){
-        //Logger.debug("Moving elevator to position" + position);
         m_elevatorPIDController.setReference(position, CANSparkMax.ControlType.kPosition);
     }
 

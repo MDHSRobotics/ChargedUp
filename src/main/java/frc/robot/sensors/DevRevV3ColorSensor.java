@@ -2,6 +2,7 @@ package frc.robot.sensors;
 
 import com.revrobotics.ColorSensorV3;
 import com.revrobotics.ColorMatchResult;
+import com.kauailabs.navx.frc.AHRS;
 import com.revrobotics.ColorMatch;
 
 import edu.wpi.first.wpilibj.util.Color;
@@ -18,7 +19,7 @@ public class DevRevV3ColorSensor extends ColorSensorV3  {
     private final Color kConeTarget = new Color(229/255, 214/255, 14/255);
 
     public DevRevV3ColorSensor() {
-        super(I2C.Port.kOnboard);
+        super(I2C.Port.kMXP);
     }
 
     public void initialize() {
@@ -39,22 +40,25 @@ public class DevRevV3ColorSensor extends ColorSensorV3  {
     }
 
     public String getMatchedColor(){
-        Color detectedColor = getColor();
-        Logger.info(detectedColor);
 
         String colorString;
-        
-        ColorMatchResult match = m_colorMatcher.matchClosestColor(detectedColor);
-        //Logger.info(match.color);
+        Color color = getHexColor();
 
-        if (match.color == kCubeTarget) {
-        colorString = "Cube";
-        } else if (match.color == kConeTarget) {
-        colorString = "Cone";
+        if (color == kCubeTarget) {
+            colorString = "Cube";
+        } else if (color == kConeTarget) {
+            colorString = "Cone";
         } else {
-        colorString = "Unknown";
+            colorString = "Unknown";
         }
         return colorString;
+    }
+
+    public Color getHexColor(){
+        Color detectedColor = getColor();
+        
+        ColorMatchResult match = m_colorMatcher.matchClosestColor(detectedColor);
+        return match.color;
     }
 
 }

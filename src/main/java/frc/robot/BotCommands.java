@@ -27,6 +27,8 @@ public class BotCommands {
     public static CommandBase toggleOrientation;
     public static CommandBase lockWheels;
 
+    public static CommandBase resetAbsoluteEncoderOffsets;
+
     // Forklift
     public static MoveForklift moveForklift;
     public static ForkliftToPosition forkliftPickUpPosition;
@@ -37,6 +39,8 @@ public class BotCommands {
     public static CommandBase enableSoftStop;
     public static CommandBase disableSoftStop;
     public static CommandBase resetEncoders;
+
+    public static CycleFlipper cycleFlipper;
 
     //Intake
     public static MoveIntake moveIntake;
@@ -56,6 +60,8 @@ public class BotCommands {
         toggleOrientation = BotSubsystems.swerveDriver.toggleOrientationCommand();
 
         lockWheels = BotSubsystems.swerveDriver.lockWheelsCommand();
+
+        resetAbsoluteEncoderOffsets = BotSubsystems.swerveDriver.resetAbsoluteEncoderOffsets();
         
         // Forklift
         moveForklift = new MoveForklift(BotSubsystems.forklift); 
@@ -66,6 +72,8 @@ public class BotCommands {
         enableSoftStop = BotSubsystems.forklift.enableSoftStop();
         disableSoftStop = BotSubsystems.forklift.disableSoftStop();
         resetEncoders = BotSubsystems.forklift.resetEncoders();
+
+        cycleFlipper = new CycleFlipper(BotSubsystems.flipper);
         
 
         //Intake

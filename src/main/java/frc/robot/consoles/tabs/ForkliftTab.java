@@ -22,8 +22,8 @@ public class ForkliftTab {
     private ShuffleboardLayout m_positionsLayout;
 
     // Widgets
-    private ComplexWidget openClamp, closeClamp;
-    private ComplexWidget enableSoftStop, disableSoftStop, resetEncoders;
+    private ComplexWidget m_widgetOpenClamp, m_widgetCloseClamp;
+    private ComplexWidget m_widgetEnableSoftStop, m_widgetDisableSoftStop, m_widgetResetEncoders;
 
     private SimpleWidget m_widgetExtenderSoftStop;
     private SimpleWidget m_widgetElevatorSoftStop;
@@ -126,12 +126,12 @@ public class ForkliftTab {
 
     // Create all other Widgets
     public void initialize() {
-        openClamp = m_commandLayout.add("Open Clamp", BotCommands.openClamp);
-        closeClamp = m_commandLayout.add("Close Clamp", BotCommands.closeClamp);
+        m_widgetOpenClamp = m_commandLayout.add("Open Clamp", BotCommands.openClamp);
+        m_widgetCloseClamp = m_commandLayout.add("Close Clamp", BotCommands.closeClamp);
 
-        enableSoftStop = m_softStopLayout.add("Enable", BotCommands.enableSoftStop);
-        disableSoftStop = m_softStopLayout.add("Disable", BotCommands.disableSoftStop);
-        resetEncoders = m_softStopLayout.add("Reset Encoders", BotCommands.resetEncoders);
+        m_widgetEnableSoftStop = m_softStopLayout.add("Enable", BotCommands.enableSoftStop);
+        m_widgetDisableSoftStop = m_softStopLayout.add("Disable", BotCommands.disableSoftStop);
+        m_widgetResetEncoders = m_softStopLayout.add("Reset Encoders", BotCommands.resetEncoders);
     }
 
     // Configure all Widgets

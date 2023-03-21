@@ -31,7 +31,6 @@ public class SwerveDriver extends SubsystemBase {
         Devices.canCoderFL,
         SwerveConstants.kFrontLeftDriveMotorReversed,
         SwerveConstants.kFrontLeftTurningMotorReversed,
-        SwerveConstants.kFrontLeftDriveAbsoluteEncoderOffsetRad,
         SwerveConstants.kFrontLeftDriveAbsoluteEncoderReversed);
 
     private final DevSwerveModule frontRight = new DevSwerveModule(
@@ -41,7 +40,6 @@ public class SwerveDriver extends SubsystemBase {
         Devices.canCoderFR,
         SwerveConstants.kFrontRightDriveMotorReversed,
         SwerveConstants.kFrontRightTurningMotorReversed,
-        SwerveConstants.kFrontRightDriveAbsoluteEncoderOffsetRad,
         SwerveConstants.kFrontRightDriveAbsoluteEncoderReversed);
 
     private final DevSwerveModule rearLeft = new DevSwerveModule(
@@ -51,7 +49,6 @@ public class SwerveDriver extends SubsystemBase {
         Devices.canCoderRL,
         SwerveConstants.kRearLeftDriveMotorReversed,
         SwerveConstants.kRearLeftTurningMotorReversed,
-        SwerveConstants.kRearLeftDriveAbsoluteEncoderOffsetRad,
         SwerveConstants.kRearLeftDriveAbsoluteEncoderReversed);
 
     private final DevSwerveModule rearRight = new DevSwerveModule(
@@ -61,7 +58,6 @@ public class SwerveDriver extends SubsystemBase {
         Devices.canCoderRR,
         SwerveConstants.kRearRightDriveMotorReversed,
         SwerveConstants.kRearRightTurningMotorReversed,
-        SwerveConstants.kRearRightDriveAbsoluteEncoderOffsetRad,
         SwerveConstants.kRearRightDriveAbsoluteEncoderReversed);
 
     // Switch between robot and field relative control
@@ -234,11 +230,23 @@ public class SwerveDriver extends SubsystemBase {
         setModuleStates(moduleStates);
     }
 
-    public void lockWheels(){
+    private void lockWheels(){
         frontLeft.setTurningWheelPosition(-45);
         frontRight.setTurningWheelPosition(45);
         rearLeft.setTurningWheelPosition(45);
         rearRight.setTurningWheelPosition(-45);
+    }
+
+    private void updateAbsoluteEncoderOffsets(){
+        SwerveDriverBrain.setAbsoulteEncoderOffsets(
+            frontLeft.getCanCoderAbsolutePosition(),
+            frontRight.getCanCoderAbsolutePosition(),
+            rearLeft.getCanCoderAbsolutePosition(),
+            rearRight.getCanCoderAbsolutePosition());
+        frontLeft.setAbsoluteEncoderOffset();
+        frontRight.setAbsoluteEncoderOffset();
+        rearLeft.setAbsoluteEncoderOffset();
+        rearRight.setAbsoluteEncoderOffset();
     }
 
     public CommandBase toggleOrientationCommand() {
@@ -249,6 +257,11 @@ public class SwerveDriver extends SubsystemBase {
     public CommandBase lockWheelsCommand(){
         Logger.info("Locking Wheels");
         return this.runOnce(() -> lockWheels());
+    }
+
+    public CommandBase resetAbsoluteEncoderOffsets(){
+        Logger.info("Reseting Encoder Offsets");
+        return this.runOnce(() -> updateAbsoluteEncoderOffsets());
     }
 
 }   
