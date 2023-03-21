@@ -31,7 +31,7 @@ public class EjectCube extends CommandBase{
 
     @Override
     public void execute(){
-        m_intake.moveIntake(-1);
+        m_intake.move("sparkMaxIntake", -1);;
     }
 
     @Override
@@ -53,6 +53,6 @@ public class EjectCube extends CommandBase{
         } else {
             Logger.ending(String.format("Ending Command: Eject Cube... Current Time: %.2f", currentTime));
         }
-        m_intake.stopIntake();
+        m_intake.stopAllMotors();
     }
 }

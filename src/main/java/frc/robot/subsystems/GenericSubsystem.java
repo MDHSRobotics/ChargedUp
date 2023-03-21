@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.Solenoid;
 import com.revrobotics.SparkMaxPIDController;
 
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 
 import java.util.Map;
@@ -179,6 +180,19 @@ public class GenericSubsystem extends SubsystemBase {
             m_sparkMaxMap.get(motor).stopMotor();
         } else if (motor.substring(0, 7).equals("talonFx")) {
             m_talonFxMap.get(motor).stopMotor();
+        }
+    }
+
+    /**
+     * Stops all sparkMax and TalonFX motors.
+     */
+    public void stopAllMotors(){
+        for (Map.Entry<String, CANSparkMax> motor : m_sparkMaxMap.entrySet()) {
+            motor.getValue().stopMotor();
+        }
+
+        for (Map.Entry<String, DevTalonFX>  motor : m_talonFxMap.entrySet()) {
+            motor.getValue().stopMotor();
         }
     }
 

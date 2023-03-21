@@ -1,6 +1,5 @@
 package frc.robot;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import frc.robot.consoles.Logger;
