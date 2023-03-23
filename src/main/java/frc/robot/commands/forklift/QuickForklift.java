@@ -5,30 +5,26 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 import frc.robot.consoles.Logger;
-import frc.robot.subsystems.GenericSubsystem;
-import frc.robot.brains.ForkliftBrain;
-import frc.robot.commands.auto.AutoConstants;
+import frc.robot.subsystems.Forklift;
 
-public class CycleFlipper extends CommandBase {
+public class QuickForklift extends CommandBase {
 
-    private GenericSubsystem m_flipper;
-    private double m_targetTime = 1.2;
+    private Forklift m_forklift;
+    private double m_targetTime = 2.0;
     private Timer m_timer;
 
-    private double targetPosition;
-
-    public CycleFlipper(GenericSubsystem flipper) {
-        Logger.setup("Constructing Command: CycleFlipper...");
+    public QuickForklift(Forklift forklift) {
+        Logger.setup("Constructing Command: QuickForklift...");
 
         // Add given subsystem requirements
-        m_flipper = flipper;
         m_timer = new Timer();
-        addRequirements(m_flipper);
+        m_forklift = forklift;
+        addRequirements(m_forklift);
     }
 
     @Override
     public void initialize() {
-        Logger.action("Initializing Command: CycleFlipper...");
+        Logger.action("Initializing Command: QuickForklift...");
         m_timer.reset();
         m_timer.start();
     }
@@ -36,10 +32,11 @@ public class CycleFlipper extends CommandBase {
     @Override
     public void execute() {
         Logger.info(m_timer.get());
-        if(m_timer.get() < m_targetTime / 2){
-            m_flipper.move("sparkMaxFlipper", -1.);
+        if(m_timer.get() < m_targetTime / 3){
+            m_forklift.moveClaw(-0.6);
         }else{
-            m_flipper.move("sparkMaxFlipper", 1.);
+            m_forklift.moveClaw(-0.35);
+            m_forklift.moveArmExtender(-0.965);
         }
     }
 
@@ -58,11 +55,11 @@ public class CycleFlipper extends CommandBase {
     @Override
     public void end(boolean interrupted) {
         if (interrupted) {
-            Logger.ending("Interrupting Command: CycleFlipper...");
+            Logger.ending("Interrupting Command: QuickForklift...");
         } else {
-            Logger.ending("Ending Command: CycleFlipper...");
+            Logger.ending("Ending Command: QuickForklift...");
         }
-        m_flipper.stop("sparkMaxFlipper");
+        m_forklift.stopMotors();
     }
 
 }

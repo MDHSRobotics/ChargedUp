@@ -40,12 +40,12 @@ public class DevSwerveModule {
     private EncoderTranslator m_encoderTranslator;
 
     public DevSwerveModule(String moduleName, DevTalonFX driveTalon, DevTalonFX steerTalon, CANCoder canCoder,
-            boolean driveMotorReversed, boolean turningMotorReversed, boolean absoluteEncoderReversed) {
+            boolean driveMotorReversed, boolean turningMotorReversed, boolean absoluteEncoderReversed, double encoderOffset) {
 
         m_name = moduleName;
         
         m_absoluteEncoderReversed = absoluteEncoderReversed;
-        setAbsoluteEncoderOffset();
+        m_absoluteEncoderOffsetRad = encoderOffset;
 
         m_driveMotor = driveTalon;
         m_turningMotor = steerTalon;
@@ -229,8 +229,13 @@ public class DevSwerveModule {
     }
 
     public void setAbsoluteEncoderOffset(){
+        Logger.info(String.format("Current encoder offset: %1$s radians and %2$s degrees ", m_absoluteEncoderOffsetRad, Math.toDegrees(m_absoluteEncoderOffsetRad)));
         m_absoluteEncoderOffsetRad = Math.toRadians(SwerveDriverBrain.getAbsoluteEncoderOffset(m_name));
-        Logger.info(m_absoluteEncoderOffsetRad);
+        Logger.info(String.format("Setting encoder offset to %1$s radians and %2$s degrees", m_absoluteEncoderOffsetRad, Math.toDegrees(m_absoluteEncoderOffsetRad)));
+    }
+
+    public void resetCanCoder(){
+        Logger.info("Cancoder Position" + m_canCoder.getAbsolutePosition());
     }
 
 }

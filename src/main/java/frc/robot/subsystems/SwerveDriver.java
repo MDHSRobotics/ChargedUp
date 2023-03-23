@@ -31,7 +31,8 @@ public class SwerveDriver extends SubsystemBase {
         Devices.canCoderFL,
         SwerveConstants.kFrontLeftDriveMotorReversed,
         SwerveConstants.kFrontLeftTurningMotorReversed,
-        SwerveConstants.kFrontLeftDriveAbsoluteEncoderReversed);
+        SwerveConstants.kFrontLeftDriveAbsoluteEncoderReversed,
+        Math.toRadians(-76.640625));
 
     private final DevSwerveModule frontRight = new DevSwerveModule(
         "Front Right",
@@ -40,7 +41,8 @@ public class SwerveDriver extends SubsystemBase {
         Devices.canCoderFR,
         SwerveConstants.kFrontRightDriveMotorReversed,
         SwerveConstants.kFrontRightTurningMotorReversed,
-        SwerveConstants.kFrontRightDriveAbsoluteEncoderReversed);
+        SwerveConstants.kFrontRightDriveAbsoluteEncoderReversed,
+        Math.toRadians(-53.26171875));
 
     private final DevSwerveModule rearLeft = new DevSwerveModule(
         "Rear Left",
@@ -49,7 +51,8 @@ public class SwerveDriver extends SubsystemBase {
         Devices.canCoderRL,
         SwerveConstants.kRearLeftDriveMotorReversed,
         SwerveConstants.kRearLeftTurningMotorReversed,
-        SwerveConstants.kRearLeftDriveAbsoluteEncoderReversed);
+        SwerveConstants.kRearLeftDriveAbsoluteEncoderReversed,
+        Math.toRadians(-110.0390625));
 
     private final DevSwerveModule rearRight = new DevSwerveModule(
         "Rear Right",
@@ -58,7 +61,8 @@ public class SwerveDriver extends SubsystemBase {
         Devices.canCoderRR,
         SwerveConstants.kRearRightDriveMotorReversed,
         SwerveConstants.kRearRightTurningMotorReversed,
-        SwerveConstants.kRearRightDriveAbsoluteEncoderReversed);
+        SwerveConstants.kRearRightDriveAbsoluteEncoderReversed,
+        Math.toRadians(-84.90234375));
 
     // Switch between robot and field relative control
     public boolean fieldRelative = false;
@@ -238,6 +242,7 @@ public class SwerveDriver extends SubsystemBase {
     }
 
     private void updateAbsoluteEncoderOffsets(){
+        /* 
         SwerveDriverBrain.setAbsoulteEncoderOffsets(
             frontLeft.getCanCoderAbsolutePosition(),
             frontRight.getCanCoderAbsolutePosition(),
@@ -247,6 +252,11 @@ public class SwerveDriver extends SubsystemBase {
         frontRight.setAbsoluteEncoderOffset();
         rearLeft.setAbsoluteEncoderOffset();
         rearRight.setAbsoluteEncoderOffset();
+        */
+        frontLeft.resetCanCoder();
+        frontRight.resetCanCoder();
+        rearLeft.resetCanCoder();
+        rearRight.resetCanCoder();
     }
 
     public CommandBase toggleOrientationCommand() {

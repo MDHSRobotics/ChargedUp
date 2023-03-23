@@ -24,7 +24,7 @@ public class SwerveDriverBrain {
     public final static double defaultCurrentRotation = 0;
 
     public final static double defaultDeadBand = 0.1;
-    public final static double defaultForwardBackwardSpeed = 2;
+    public final static double defaultForwardBackwardSpeed = 2.4;
     public final static double defaultLeftRightSpeed = 1;
     public final static double defaultRotationSpeed = 2.;
 
@@ -121,13 +121,13 @@ public class SwerveDriverBrain {
     public static double getAbsoluteEncoderOffset(String moduleName){
         double offset;
         if(moduleName.equals("Front Left")){
-            offset = entryAbsoluteEncoderOffsetDegreesFL.getDouble(0);
+            offset = entryAbsoluteEncoderOffsetDegreesFL.getDouble(defaultFLEncoderOffset);
         }else if(moduleName.equals("Front Right")){
-            offset = entryAbsoluteEncoderOffsetDegreesFR.getDouble(0);
+            offset = entryAbsoluteEncoderOffsetDegreesFR.getDouble(defaultFREncoderOffset);
         }else if(moduleName.equals("Rear Left")){
-            offset = entryAbsoluteEncoderOffsetDegreesRL.getDouble(0);
+            offset = entryAbsoluteEncoderOffsetDegreesRL.getDouble(defaultRLEncoderOffset);
         }else if(moduleName.equals("Rear Right")){
-            offset = entryAbsoluteEncoderOffsetDegreesRR.getDouble(0);
+            offset = entryAbsoluteEncoderOffsetDegreesRR.getDouble(defaultRREncoderOffset);
         }else{
             throw new java.lang.Error(String.format("Unkown Module Name %s",moduleName));
         }
