@@ -11,6 +11,7 @@ public class QuickForklift extends CommandBase {
 
     private Forklift m_forklift;
     private double m_targetTime = 2.0;
+    private double m_dropClawTime = 2.0/3.0;
     private Timer m_timer;
 
     public QuickForklift(Forklift forklift) {
@@ -32,7 +33,7 @@ public class QuickForklift extends CommandBase {
     @Override
     public void execute() {
         Logger.info(m_timer.get());
-        if(m_timer.get() < m_targetTime / 3){
+        if(m_timer.get() < m_dropClawTime){
             m_forklift.moveClaw(-0.6);
         }else{
             m_forklift.moveClaw(-0.35);

@@ -32,7 +32,7 @@ public class SwerveDriver extends SubsystemBase {
         SwerveConstants.kFrontLeftDriveMotorReversed,
         SwerveConstants.kFrontLeftTurningMotorReversed,
         SwerveConstants.kFrontLeftDriveAbsoluteEncoderReversed,
-        Math.toRadians(-76.640625));
+        SwerveConstants.kFrontLeftDriveAbsoluteEncoderOffsetRad);
 
     private final DevSwerveModule frontRight = new DevSwerveModule(
         "Front Right",
@@ -42,7 +42,7 @@ public class SwerveDriver extends SubsystemBase {
         SwerveConstants.kFrontRightDriveMotorReversed,
         SwerveConstants.kFrontRightTurningMotorReversed,
         SwerveConstants.kFrontRightDriveAbsoluteEncoderReversed,
-        Math.toRadians(-53.26171875));
+        SwerveConstants.kFrontRightDriveAbsoluteEncoderOffsetRad);
 
     private final DevSwerveModule rearLeft = new DevSwerveModule(
         "Rear Left",
@@ -52,7 +52,7 @@ public class SwerveDriver extends SubsystemBase {
         SwerveConstants.kRearLeftDriveMotorReversed,
         SwerveConstants.kRearLeftTurningMotorReversed,
         SwerveConstants.kRearLeftDriveAbsoluteEncoderReversed,
-        Math.toRadians(-110.0390625));
+        SwerveConstants.kRearLeftDriveAbsoluteEncoderOffsetRad);
 
     private final DevSwerveModule rearRight = new DevSwerveModule(
         "Rear Right",
@@ -62,7 +62,7 @@ public class SwerveDriver extends SubsystemBase {
         SwerveConstants.kRearRightDriveMotorReversed,
         SwerveConstants.kRearRightTurningMotorReversed,
         SwerveConstants.kRearRightDriveAbsoluteEncoderReversed,
-        Math.toRadians(-84.90234375));
+        SwerveConstants.kRearRightDriveAbsoluteEncoderOffsetRad);
 
     // Switch between robot and field relative control
     public boolean fieldRelative = false;
