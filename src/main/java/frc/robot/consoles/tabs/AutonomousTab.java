@@ -68,7 +68,7 @@ public class AutonomousTab {
             m_ejectCubeRight = m_commandLayout.add("Eject Cube Right", BotCommands.ejectCubeRight);
             m_autoCommandDefault = m_commandLayout.add("Default", BotCommands.defaultAutoCommand);
 
-            m_balanceCommand = m_individualCommandLayout.add("Balance Charge Station", new BalanceChargeStation(BotSubsystems.swerveDriver, false));
+            m_balanceCommand = m_individualCommandLayout.add("Balance Charge Station", new BalanceChargeStation(BotSubsystems.swerveDriver, true));
             m_ejectCube = m_individualCommandLayout.add("Eject Cube", new EjectCube(BotSubsystems.intake, 1));
             m_placeCube = m_individualCommandLayout.add("Place Cube", new PlaceCube());
         }

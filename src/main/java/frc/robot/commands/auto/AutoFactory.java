@@ -77,6 +77,9 @@ public class AutoFactory extends SequentialCommandGroup {
                 //Move to the side of the field to clear the charge station
                 addCommands(new TimedSwerve(BotSubsystems.swerveDriver, x1Speed, y1Speed, 0., time1));
                 
+                //Lift the claw
+                addCommands(new LiftClaw(BotSubsystems.forklift, 0.2));
+
                 //Drive outside the community
                 addCommands(new TimedSwerve(BotSubsystems.swerveDriver, x2Speed, y2Speed, 0., time2));
 
