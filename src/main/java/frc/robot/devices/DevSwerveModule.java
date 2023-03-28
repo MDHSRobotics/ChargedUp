@@ -16,7 +16,6 @@ import edu.wpi.first.util.sendable.SendableRegistry;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import frc.robot.brains.SwerveDriverBrain;
-import frc.robot.subsystems.constants.SwerveConstants;
 
 import frc.robot.subsystems.utils.EncoderTranslator;
 import frc.robot.consoles.Logger;
@@ -39,6 +38,13 @@ public class DevSwerveModule {
 
     private EncoderTranslator m_encoderTranslator;
 
+    //Constants
+    private final double DRIVE_RAMP_TIME = 0.4;
+    private final double P_TURNING = 0.5;
+    private final double WHEEL_DIAMETER = Units.inchesToMeters(4.0);
+    private final double GEAR_RATIO_DRIVE = 8.16;
+    private final double GEAR_RATIO_TURNING = 12.8;
+
     public DevSwerveModule(String moduleName, DevTalonFX driveTalon, DevTalonFX steerTalon, CANCoder canCoder,
             boolean driveMotorReversed, boolean turningMotorReversed, boolean absoluteEncoderReversed, double encoderOffset) {
 
@@ -60,22 +66,18 @@ public class DevSwerveModule {
         m_driveMotor.setNeutralMode(NeutralMode.Brake);
         m_turningMotor.setNeutralMode(NeutralMode.Brake);
 
-        m_driveMotor.configOpenloopRamp(SwerveConstants.kDriveRampTime);
+        m_driveMotor.configOpenloopRamp(DRIVE_RAMP_TIME);
 
-        m_turningPidController = new PIDController(SwerveConstants.kPTurning, 0, 0);
+        m_turningPidController = new PIDController(P_TURNING, 0, 0);
         m_turningPidController.enableContinuousInput(-Math.PI, Math.PI);
 
         m_canCoder = canCoder;
         m_canCoder.configAbsoluteSensorRange(AbsoluteSensorRange.Signed_PlusMinus180);
         m_canCoder.setPositionToAbsolute();
 
-        m_drivingEncoderTranslate = new EncoderTranslator("TalonFX",
-                                                   SwerveConstants.kWheelDiameterMeters,
-                                                   SwerveConstants.kGearRatioDriving);
+        m_drivingEncoderTranslate = new EncoderTranslator("TalonFX", WHEEL_DIAMETER, GEAR_RATIO_DRIVE);
 
-        m_turningEncoderTranslate = new EncoderTranslator("TalonFX",
-                                                   SwerveConstants.kWheelDiameterMeters,
-                                                   SwerveConstants.kGearRatioTurning);
+        m_turningEncoderTranslate = new EncoderTranslator("TalonFX", WHEEL_DIAMETER, GEAR_RATIO_TURNING);
 
 
         resetEncoders();

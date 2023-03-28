@@ -11,7 +11,6 @@ import frc.robot.oi.controllers.XboxPositionAccessible;
 import frc.robot.oi.movements.SwerveMovement;
 
 import frc.robot.subsystems.SwerveDriver;
-import frc.robot.subsystems.constants.SwerveConstants;
 
 public class SwerveDrive extends CommandBase {
 
@@ -26,6 +25,10 @@ public class SwerveDrive extends CommandBase {
     private double brainLeftRightSpeed;
     private double brainRotationSpeed;
 
+    // Constants
+    private final double MAX_ACCLERATION = 1.0;
+    private final double MAX_ANGULAR_ACCELERATION = 1.5;
+
     public SwerveDrive (SwerveDriver swerveDriver, JoystickPositionAccessible controller) {
         Logger.setup("Constructing Command: SwerveDrive...");
 
@@ -33,9 +36,9 @@ public class SwerveDrive extends CommandBase {
         m_swerveDriver = swerveDriver;
         m_jstickController = controller;
         m_xboxController = null;
-        m_forwardBackwardLimiter = new SlewRateLimiter(SwerveConstants.kTeleDriveMaxAccelerationUnitsPerSecond);
-        m_sideToSideLimiter = new SlewRateLimiter(SwerveConstants.kTeleDriveMaxAccelerationUnitsPerSecond);
-        m_rotationLimiter = new SlewRateLimiter(SwerveConstants.kTeleDriveMaxAngularAccelerationUnitsPerSecond);
+        m_forwardBackwardLimiter = new SlewRateLimiter(MAX_ACCLERATION);
+        m_sideToSideLimiter = new SlewRateLimiter(MAX_ACCLERATION);
+        m_rotationLimiter = new SlewRateLimiter(MAX_ANGULAR_ACCELERATION);
 
         addRequirements(m_swerveDriver);
     }
@@ -47,9 +50,9 @@ public class SwerveDrive extends CommandBase {
         m_swerveDriver = swerveDriver;
         m_jstickController = null;
         m_xboxController = controller;
-        m_forwardBackwardLimiter = new SlewRateLimiter(SwerveConstants.kTeleDriveMaxAccelerationUnitsPerSecond);
-        m_sideToSideLimiter = new SlewRateLimiter(SwerveConstants.kTeleDriveMaxAccelerationUnitsPerSecond);
-        m_rotationLimiter = new SlewRateLimiter(SwerveConstants.kTeleDriveMaxAngularAccelerationUnitsPerSecond);
+        m_forwardBackwardLimiter = new SlewRateLimiter(MAX_ACCLERATION);
+        m_sideToSideLimiter = new SlewRateLimiter(MAX_ACCLERATION);
+        m_rotationLimiter = new SlewRateLimiter(MAX_ANGULAR_ACCELERATION);
 
         addRequirements(m_swerveDriver);
     }
