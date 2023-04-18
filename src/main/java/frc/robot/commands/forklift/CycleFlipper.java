@@ -6,16 +6,12 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 import frc.robot.consoles.Logger;
 import frc.robot.subsystems.GenericSubsystem;
-import frc.robot.brains.ForkliftBrain;
-import frc.robot.commands.auto.AutoConstants;
 
 public class CycleFlipper extends CommandBase {
 
     private GenericSubsystem m_flipper;
     private double m_targetTime = 1.2;
     private Timer m_timer;
-
-    private double targetPosition;
 
     public CycleFlipper(GenericSubsystem flipper) {
         Logger.setup("Constructing Command: CycleFlipper...");

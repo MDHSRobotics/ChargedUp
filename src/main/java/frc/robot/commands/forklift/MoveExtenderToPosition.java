@@ -10,6 +10,8 @@ import frc.robot.commands.auto.AutoConstants;
 
 public class MoveExtenderToPosition extends CommandBase {
 
+    private final double MOTOR_POSITION_TOLERANCE = 3.0;
+
     private Forklift m_forklift;
     private AutoConstants.Levels m_level;
 
@@ -40,7 +42,7 @@ public class MoveExtenderToPosition extends CommandBase {
             default:
                 throw new java.lang.Error("Unkown Extender Position; should be {PICKUP, MEDIUM, HIGH}");
         }
-        m_forklift.moveExtenderToPosition(targetPosition);
+        m_forklift.moveSparkMaxPosition("sparkMaxExtender", targetPosition);
 
     }
 
@@ -51,7 +53,7 @@ public class MoveExtenderToPosition extends CommandBase {
     // This command continues until interrupted
     @Override
     public boolean isFinished() {
-        return m_forklift.isExtenderAtPosition(-targetPosition);
+        return m_forklift.isSparkMaxAtPosition("sparkMaxExtender", -targetPosition, MOTOR_POSITION_TOLERANCE);
     }
 
     @Override
@@ -61,7 +63,7 @@ public class MoveExtenderToPosition extends CommandBase {
         } else {
             Logger.ending("Ending Command: MoveExtenderToPosition...");
         }
-        m_forklift.stopMotors();
+        m_forklift.stopAllMotors();
     }
 
 }

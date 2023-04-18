@@ -1,12 +1,6 @@
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.Compressor;
-import edu.wpi.first.wpilibj.PneumaticsModuleType;
-import edu.wpi.first.wpilibj.Solenoid;
 import frc.robot.subsystems.constants.MotorIDConstants;
-
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import frc.robot.devices.DevTalonFX;
 import com.ctre.phoenix.sensors.CANCoder;
@@ -35,14 +29,4 @@ public class Devices {
     public static CANCoder canCoderFR = new CANCoder(3);
     public static CANCoder canCoderRL = new CANCoder(2);
     public static CANCoder canCoderRR = new CANCoder(4);
-
-    //Forklift
-    public static CANSparkMax sparkMaxForkliftExtender = new CANSparkMax(MotorIDConstants.motorIdExtender, MotorType.kBrushless);
-    public static CANSparkMax sparkMaxForkliftElevator = new CANSparkMax(MotorIDConstants.motorIDElevator, MotorType.kBrushless);
-    public static CANSparkMax sparkMaxForkliftElevatorTwo = new CANSparkMax(MotorIDConstants.motorIdElevatorTwo, MotorType.kBrushless);
-    public static CANSparkMax sparkMaxClawLift = new CANSparkMax(MotorIDConstants.motorIdClawLift, MotorType.kBrushless);
-
-    //Pneumatics
-    public static Compressor pcmCompressor = new Compressor(0, PneumaticsModuleType.CTREPCM);
-    public static Solenoid clawSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, 7);
 } 

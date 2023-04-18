@@ -15,9 +15,6 @@ public class MoveForklift extends CommandBase {
     private double brainExtenderSpeed;
     private double brainElevatorSpeed;
 
-    //False: Jason, True: TJ
-    private boolean preferences = true;
-
     public MoveForklift(Forklift forklift) {
         Logger.setup("Constructing Command: MoveForklift...");
 
@@ -32,8 +29,6 @@ public class MoveForklift extends CommandBase {
         
         brainExtenderSpeed = ForkliftBrain.getExtenderSpeed();
         brainElevatorSpeed = ForkliftBrain.getElevatorSpeed();
-
-        m_forklift.setSoftStops(ForkliftBrain.getExtenderSoftStop(), ForkliftBrain.getElevatorSoftStop());
     }
 
     @Override
@@ -41,29 +36,11 @@ public class MoveForklift extends CommandBase {
         double extenderPower = BotControllers.xbox2.xbox.getRightY();
         double elevatorPower = BotControllers.xbox2.xbox.getLeftY();
 
-        m_forklift.moveArmExtender(extenderPower * brainExtenderSpeed);
-        m_forklift.moveArmElevator(elevatorPower * brainElevatorSpeed);
-
-        //Set the clamp lift power to the bumpers
-        double clampLiftPower;
-        clampLiftPower = BotControllers.xbox2.btnBumperLeft.getAsBoolean() ? 1. : 0.;
-        clampLiftPower = BotControllers.xbox2.btnBumperRight.getAsBoolean() ? -1. : clampLiftPower;
+        m_forklift.move("sparkMaxExtender", extenderPower * brainExtenderSpeed);
+        m_forklift.move("sparkMaxElevator", elevatorPower * brainElevatorSpeed);
 
         double clawPower = BotControllers.xbox2.xbox.getLeftTriggerAxis() - BotControllers.xbox2.xbox.getRightTriggerAxis();
-        if(preferences){
-            m_forklift.moveClaw(clawPower);
-        }else{
-            m_forklift.moveClaw(clampLiftPower);
-        }
-
-        //Open the clamp if the left trigger is on, close the clamp if the right trigger is on
-        if(!preferences){
-            if(BotControllers.xbox2.xbox.getLeftTriggerAxis() > 0.9){
-                m_forklift.moveClampPneumatic(true);
-            }else if(BotControllers.xbox2.xbox.getRightTriggerAxis() > 0.9){
-                m_forklift.moveClampPneumatic(false);
-            }
-        } 
+        m_forklift.move("sparkMaxClawLift", clawPower);
 
         //Logger.info("Claw power: " + clampLiftPower + " Extender Power: " + extenderPower + " Elevator Power: " + elevatorPower + " Clamp: " + toggleClamp);
         
@@ -82,7 +59,7 @@ public class MoveForklift extends CommandBase {
         } else {
             Logger.ending("Ending Command: MoveForklift...");
         }
-        m_forklift.stopMotors();
+        m_forklift.stopAllMotors();
     }
 
 }

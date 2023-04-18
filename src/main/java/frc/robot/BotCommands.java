@@ -22,7 +22,7 @@ public class BotCommands {
     public static ToggleDriverOrientation toggleDriverOrientation;
 
     public static ChangeDriveSpeed speedUpDrive;
-    public static ChangeDriveSpeed slowDownDrive;
+    public static ChangeDriveSpeed slowDownDrive; 
 
     public static CommandBase toggleOrientation;
     public static CommandBase lockWheels;
@@ -37,8 +37,6 @@ public class BotCommands {
     public static QuickForklift quickForklift;
     public static CommandBase openClamp;
     public static CommandBase closeClamp;
-    public static CommandBase enableSoftStop;
-    public static CommandBase disableSoftStop;
     public static CommandBase resetEncoders;
 
     public static CycleFlipper cycleFlipper;
@@ -71,8 +69,6 @@ public class BotCommands {
         forkliftHighLevelPosition = new ForkliftToPosition(BotSubsystems.forklift, AutoConstants.Levels.HIGH);
         quickForklift = new QuickForklift(BotSubsystems.forklift);
 
-        enableSoftStop = BotSubsystems.forklift.enableSoftStop();
-        disableSoftStop = BotSubsystems.forklift.disableSoftStop();
         resetEncoders = BotSubsystems.forklift.resetEncoders();
 
         cycleFlipper = new CycleFlipper(BotSubsystems.flipper);

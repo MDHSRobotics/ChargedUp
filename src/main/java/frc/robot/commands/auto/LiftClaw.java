@@ -32,7 +32,7 @@ public class LiftClaw extends CommandBase{
 
     @Override
     public void execute() {
-        m_forklift.moveClaw(0.5);
+        m_forklift.move("sparkMaxClaw", 0.5);
     }
 
     @Override
@@ -50,6 +50,6 @@ public class LiftClaw extends CommandBase{
         } else {
             Logger.ending(String.format("Ending Command: LiftClaw... Current Time: %.2f", currentTime));
         }
-        m_forklift.stopMotors();
+        m_forklift.stopAllMotors();
     }
 }

@@ -2,7 +2,6 @@
 package frc.robot.brains;
 
 import edu.wpi.first.networktables.GenericEntry;
-import edu.wpi.first.networktables.NetworkTableEntry;
 
 // This class contains all the shared NetworkTableEntries for the Swerve Drive,
 // their default values, and methods for retrieving their current values

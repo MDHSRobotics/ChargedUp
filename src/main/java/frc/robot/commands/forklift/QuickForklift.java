@@ -34,10 +34,10 @@ public class QuickForklift extends CommandBase {
     public void execute() {
         Logger.info(m_timer.get());
         if(m_timer.get() < m_dropClawTime){
-            m_forklift.moveClaw(-0.6);
+            m_forklift.move("sparkMaxClawLift", -0.6);
         }else{
-            m_forklift.moveClaw(-0.35);
-            m_forklift.moveArmExtender(-0.965);
+            m_forklift.move("sparkMaxClawLift", -0.35);
+            m_forklift.move("sparkMaxExtender", -0.965);
         }
     }
 
@@ -60,7 +60,7 @@ public class QuickForklift extends CommandBase {
         } else {
             Logger.ending("Ending Command: QuickForklift...");
         }
-        m_forklift.stopMotors();
+        m_forklift.stopAllMotors();
     }
 
 }

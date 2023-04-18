@@ -31,30 +31,28 @@ public class LiftForklift extends CommandBase {
     @Override
     public void initialize() {
         Logger.action("Initializing Command: Lift Forklift...");
-        m_forklift.disableSoftStop();
     }
 
     @Override
     public void execute() {
         //Get encoder positions in the command
-        m_extenderEncoderPosition = m_forklift.getExtenderEncoder();
-        m_elevatorEncoderPosition = m_forklift.getElevatorEncoder();
-
+        m_extenderEncoderPosition = m_forklift.getEncoderPosition("sparkMaxExtender");
+        m_elevatorEncoderPosition = m_forklift.getEncoderPosition("sparkMaxElevator");
         //move the elevator up first to the target position
         if(!m_isElevatorAtTarget){
             if(m_elevatorEncoderPosition >= m_targetElevatorPosition){
                 m_isElevatorAtTarget = true;
-                m_forklift.stopMotors();
+                m_forklift.stopAllMotors();
             }else{
-                m_forklift.moveArmElevator(0.5);
+                m_forklift.move("sparkMaxElevator", 0.5);
             }
         }else{
             //move the extender up second to the target position
             if(m_extenderEncoderPosition >= m_targetExtenderPosition){
                 m_isExtenderAtTarget = true;
-                m_forklift.stopMotors();
+                m_forklift.stopAllMotors();
             }else{
-                m_forklift.moveArmExtender(0.5);
+                m_forklift.move("sparkMaxExtender", 0.5);
             }
         }
 
@@ -73,7 +71,7 @@ public class LiftForklift extends CommandBase {
         } else {
             Logger.ending("Ending Command: Lift Forklift... ");
         }
-        m_forklift.stopMotors();
+        m_forklift.stopAllMotors();
     }
 
 }

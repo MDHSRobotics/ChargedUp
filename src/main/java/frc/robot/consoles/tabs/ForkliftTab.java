@@ -128,9 +128,7 @@ public class ForkliftTab {
     public void initialize() {
         m_widgetOpenClamp = m_commandLayout.add("Open Clamp", BotCommands.openClamp);
         m_widgetCloseClamp = m_commandLayout.add("Close Clamp", BotCommands.closeClamp);
-
-        m_widgetEnableSoftStop = m_softStopLayout.add("Enable", BotCommands.enableSoftStop);
-        m_widgetDisableSoftStop = m_softStopLayout.add("Disable", BotCommands.disableSoftStop);
+        
         m_widgetResetEncoders = m_softStopLayout.add("Reset Encoders", BotCommands.resetEncoders);
     }
 

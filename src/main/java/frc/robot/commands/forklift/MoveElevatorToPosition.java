@@ -10,6 +10,8 @@ import frc.robot.commands.auto.AutoConstants;
 
 public class MoveElevatorToPosition extends CommandBase {
 
+    private final double MOTOR_POSITION_TOLERANCE = 3.0;
+
     private Forklift m_forklift;
     private AutoConstants.Levels m_level;
 
@@ -41,7 +43,7 @@ public class MoveElevatorToPosition extends CommandBase {
             default:
                 throw new java.lang.Error("Unkown Elevator Position; should be {PICKUP, MEDIUM, HIGH}");
         }
-        m_forklift.moveElevatorToPosition(targetPosition);
+        m_forklift.moveSparkMaxPosition("sparkMaxElevator", targetPosition);
 
     }
 
@@ -51,8 +53,8 @@ public class MoveElevatorToPosition extends CommandBase {
 
     // This command continues until interrupted
     @Override
-    public boolean isFinished() {
-        return m_forklift.isElevatorAtPosition(-targetPosition);
+    public boolean isFinished(){
+        return m_forklift.isSparkMaxAtPosition("sparkMaxElevator", -targetPosition, MOTOR_POSITION_TOLERANCE);
     }
 
     @Override
@@ -62,7 +64,7 @@ public class MoveElevatorToPosition extends CommandBase {
         } else {
             Logger.ending("Ending Command: MoveElevatorToPosition...");
         }
-        m_forklift.stopMotors();
+        m_forklift.stopAllMotors();
     }
 
 }
