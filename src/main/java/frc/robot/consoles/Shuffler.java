@@ -6,6 +6,8 @@ import edu.wpi.first.wpilibj.shuffleboard.*;
 import frc.robot.consoles.tabs.*;
 import java.util.Map;
 
+import frc.robot.BotCommands;
+
 // Class that wraps all of the interaction with the Shuffleboard
 
 // All decisions about content and layout of the Shuffleboard are consolidated in this file
@@ -15,24 +17,26 @@ import java.util.Map;
 // The Shuffler class knows about the subsystems, commands, etc. but generally not vice versa.
 public class Shuffler {
     // Tabs
-    private DriveTab m_driveTab;
-    private InputsTab m_inputsTab;
-    private ForkliftTab m_forkliftTab;
-    private AutonomousTab m_autonomousTab;
-    private SensorTab m_sensorTab;
-    private MainTab m_mainTab;
+    public static ShuffleboardTab m_driveTab;
+    public static ShuffleboardTab m_inputsTab;
+    public static ShuffleboardTab m_forkliftTab;
+    public static ShuffleboardTab m_autonomousTab;
+    public static ShuffleboardTab m_sensorTab;
+    public static ShuffleboardTab m_mainTab;
+
+    private ShuffleboardLayout m_forklftCommandLayout = constructLayout(m_forkliftTab, "Commands", 0, 0, 4, 2, 1, 2, "LEFT");
 
     public Shuffler() {
         ShuffleLogger.logTrivial("Constructing Shuffler...");
-        m_forkliftTab = new ForkliftTab();
-        m_driveTab = new DriveTab();
-        m_inputsTab = new InputsTab();
-        m_autonomousTab = new AutonomousTab();
-        m_sensorTab = new SensorTab();
-        m_mainTab = new MainTab();
+        m_forkliftTab = Shuffleboard.getTab("Forklift");
+        m_driveTab = Shuffleboard.getTab("Drive");
+        m_inputsTab = Shuffleboard.getTab("Inputs");
+        m_autonomousTab = Shuffleboard.getTab("Autonomous");
+        m_sensorTab = Shuffleboard.getTab("Sensors");
+        m_mainTab = Shuffleboard.getTab("Main");
     }
 
-    public void preInitialize() {
+    /*public void preInitialize() {
         ShuffleLogger.logTrivial("Pre-Initializing Shuffler...");
         m_forkliftTab.preInitialize();
         m_driveTab.preInitialize();
@@ -41,17 +45,21 @@ public class Shuffler {
         m_sensorTab.preInitialize();
         m_mainTab.preInitialize();
     }
-
+    */
     public void initialize() {
         ShuffleLogger.logTrivial("Initializing Shuffler...");
-        m_forkliftTab.initialize();
+
+        m_forklftCommandLayout.add("Open Clamp", BotCommands.openClamp);
+        m_forklftCommandLayout.add("Close Clamp", BotCommands.closeClamp);
+        m_forklftCommandLayout.add("Reset Encoders", BotCommands.resetEncoders);
+        /*m_forkliftTab.initialize();
         m_driveTab.initialize();
         m_inputsTab.initialize();
         m_autonomousTab.initialize();
         m_sensorTab.initialize();
-        m_mainTab.initialize();
+        m_mainTab.initialize();*/
     }
-
+    /*
     public void configure() {
         ShuffleLogger.logTrivial("Configuring Shuffler...");
         m_forkliftTab.configure();
@@ -72,12 +80,7 @@ public class Shuffler {
         m_driveTab.update();
         m_sensorTab.update();
         m_mainTab.update();
-    }
-
-    // This is for stuff that can't be displayed easily in custom Shuffleboard tabs.
-    // It will end up on the SmartDashboard tab.
-    private void setupSmartdashboard() {
-    }
+    }*/
 
     //Method for easier layout construction
     public static ShuffleboardLayout constructLayout(ShuffleboardTab tab, String title, int posX, int posY, int width, int height, int columns, int rows, String labelPosition){

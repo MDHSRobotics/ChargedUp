@@ -60,7 +60,7 @@ public class Robot extends TimedRobot {
         CommandScheduler.getInstance().run();
 
         // Update the Shuffleboard
-        RobotManager.botShuffler.update();
+        //RobotManager.botShuffler.update();
         
     }
 
