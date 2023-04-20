@@ -29,6 +29,8 @@ public class BotCommands {
 
     public static CommandBase resetAbsoluteEncoderOffsets;
 
+    public static TankDrive tankDrive;
+
     // Forklift
     public static MoveForklift moveForklift;
     public static ForkliftToPosition forkliftPickUpPosition;
@@ -63,6 +65,8 @@ public class BotCommands {
         lockWheels = BotSubsystems.swerveDriver.lockWheelsCommand();
 
         resetAbsoluteEncoderOffsets = BotSubsystems.swerveDriver.resetAbsoluteEncoderOffsets();
+
+        tankDrive = new TankDrive(BotSubsystems.tank);
         
         // Forklift
         moveForklift = new MoveForklift(BotSubsystems.forklift); 
