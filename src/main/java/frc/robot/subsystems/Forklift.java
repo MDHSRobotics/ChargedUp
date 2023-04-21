@@ -9,7 +9,7 @@ import java.util.Map;
 public class Forklift extends GenericSubsystem {
 
     public Forklift() {
-        super(Map.of("sparkMaxElevator", 14, "sparkMaxElevatorTwo", 15, "sparkMaxExtender", 23, "sparkMaxClawLift", 20, "solenoidClaw", 7));
+        super(Map.of("sparkMaxElevator", 32, "sparkMaxElevatorTwo", 33, "sparkMaxExtender", 34, "sparkMaxClawLift", 35, "solenoidClaw", 7));
         Logger.setup("Constructing Subsystem: Forklift...");
 
         super.setCANSparkMaxBrakeMode("sparkMaxElevator", IdleMode.kBrake);

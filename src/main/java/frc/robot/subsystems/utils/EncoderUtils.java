@@ -1,12 +1,12 @@
 package frc.robot.subsystems.utils;
 
-import static frc.robot.subsystems.constants.EncoderConstants.*;
-
 import java.lang.Math;
 
 // Utility methods for encoder values.
 public class EncoderUtils {
 
+    private static final int ENCODER_TPR = 4096;
+    
     // Computes an encoder tick count based on the desired motor rotation in degrees for a given gearbox ratio (MS : GS)
     public static double translateAngleToTicks(double angle, double gearRatio) {
         double rotationCountGS = angle / 360.0; // Amount of rotations on the gearbox shaft

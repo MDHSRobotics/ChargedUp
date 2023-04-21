@@ -9,8 +9,6 @@ import edu.wpi.first.wpilibj.SPI;
 import static frc.robot.RobotManager.isReal;
 import frc.robot.consoles.Logger;
 
-import edu.wpi.first.wpilibj2.command.CommandBase;
-
 // This class contains methods for obtaining useful gyro readings.
 public class DevGyro {
 

@@ -4,15 +4,12 @@ package frc.robot.commands.forklift;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 import frc.robot.BotControllers;
-import frc.robot.brains.ForkliftBrain;
 import frc.robot.consoles.Logger;
 import frc.robot.subsystems.Forklift;
 
 import frc.robot.consoles.Shuffler;
 import edu.wpi.first.wpilibj.shuffleboard.*;
-import edu.wpi.first.networktables.NetworkTable.*;
 import java.util.Map;
-
 import edu.wpi.first.networktables.GenericEntry;
 
 public class MoveForklift extends CommandBase {
@@ -28,7 +25,7 @@ public class MoveForklift extends CommandBase {
         .withProperties(Map.of("min", 0, "max", 1.0))
         .getEntry();
     private GenericEntry elevatorSpeedEntry = motorSpeedsLayout
-        .add("Extender Speed", 1.0)
+        .add("Elevator Speed", 1.0)
         .withWidget(BuiltInWidgets.kNumberSlider)
         .withProperties(Map.of("min", 0, "max", 1.0))
         .getEntry();
@@ -37,7 +34,7 @@ public class MoveForklift extends CommandBase {
         .add("Extender Encoder", 0)
         .getEntry();
     private GenericEntry elevatorEncoderEntry = motorEncodersLayout
-        .add("Extender Encoder", 0)
+        .add("Elevator Encoder", 0)
         .getEntry();
     
 

@@ -24,10 +24,6 @@ public class SensorBrain {
     // NetworkTableEntries //
     //---------------------//
 
-    public static GenericEntry entryGyroRoll;
-    public static GenericEntry entryGyroPitch;
-    public static GenericEntry entryGyroYaw;
-
     public static GenericEntry entryTargetDistance;
     public static GenericEntry entryRedValue;
     public static GenericEntry entryGreenValue;
@@ -39,18 +35,6 @@ public class SensorBrain {
     //---------//
     // Getters //
     //---------//
-
-    public static double getGyroRoll() {
-        return entryGyroRoll.getDouble(defaultGyroRoll);
-    }
-
-    public static double getGyroPitch() {
-        return entryGyroRoll.getDouble(defaultGyroPitch);
-    }
-
-    public static double getGyroYaw() {
-        return entryGyroRoll.getDouble(defaultGyroYaw);
-    }
 
     public static double getTargetDistance() {
         return entryTargetDistance.getDouble(defaultTargetDistance);
@@ -71,18 +55,6 @@ public class SensorBrain {
     //---------//
     // Setters //
     //---------//
-
-    public static void setGyroRoll(double value) {
-        entryGyroRoll.setDouble(value);
-    }
-
-    public static void setGyroPitch(double value) {
-        entryGyroPitch.setDouble(value);
-    }
-
-    public static void setGyroYaw(double value) {
-       entryGyroYaw.setDouble(value);
-    }
 
     public static void setTargetDistance(double value) {
         entryTargetDistance.setDouble(value);

@@ -8,6 +8,9 @@ import java.util.Map;
 
 import frc.robot.BotCommands;
 
+import frc.robot.BotSensors;
+import edu.wpi.first.networktables.GenericEntry;
+
 // Class that wraps all of the interaction with the Shuffleboard
 
 // All decisions about content and layout of the Shuffleboard are consolidated in this file
@@ -24,7 +27,12 @@ public class Shuffler {
     public static ShuffleboardTab m_sensorTab;
     public static ShuffleboardTab m_mainTab;
 
-    private ShuffleboardLayout m_forklftCommandLayout = constructLayout(m_forkliftTab, "Commands", 0, 0, 4, 2, 1, 2, "LEFT");
+    private ShuffleboardLayout m_forklftCommandLayout;
+    private ShuffleboardLayout m_gyroLayout;
+
+    private GenericEntry entryRoll;
+    private GenericEntry entryPitch;
+    private GenericEntry entryYaw;
 
     public Shuffler() {
         ShuffleLogger.logTrivial("Constructing Shuffler...");
@@ -34,6 +42,26 @@ public class Shuffler {
         m_autonomousTab = Shuffleboard.getTab("Autonomous");
         m_sensorTab = Shuffleboard.getTab("Sensors");
         m_mainTab = Shuffleboard.getTab("Main");
+
+        m_forklftCommandLayout = constructLayout(m_forkliftTab, "Commands", 0, 0, 4, 2, 1, 2, "LEFT");
+
+        m_gyroLayout = Shuffler.constructLayout(Shuffler.m_sensorTab, "Gyroscope", 0, 0, 3, 3, 1, 3, "LEFT");
+
+        entryRoll = m_gyroLayout
+            .add("Roll", 0.0)
+            .withWidget(BuiltInWidgets.kDial)
+            .withProperties(Map.of("min", 0.0, "max", 360.0))
+            .getEntry();
+        entryPitch = m_gyroLayout
+            .add("Roll", 0.0)
+            .withWidget(BuiltInWidgets.kDial)
+            .withProperties(Map.of("min", 0.0, "max", 360.0))
+            .getEntry();
+        entryYaw = m_gyroLayout
+            .add("Roll", 0.0)
+            .withWidget(BuiltInWidgets.kDial)
+            .withProperties(Map.of("min", 0.0, "max", 360.0))
+            .getEntry();
     }
 
     /*public void preInitialize() {
@@ -49,6 +77,7 @@ public class Shuffler {
     public void initialize() {
         ShuffleLogger.logTrivial("Initializing Shuffler...");
 
+        
         m_forklftCommandLayout.add("Open Clamp", BotCommands.openClamp);
         m_forklftCommandLayout.add("Close Clamp", BotCommands.closeClamp);
         m_forklftCommandLayout.add("Reset Encoders", BotCommands.resetEncoders);
@@ -81,6 +110,12 @@ public class Shuffler {
         m_sensorTab.update();
         m_mainTab.update();
     }*/
+
+    public void update(){
+        entryRoll.setDouble(BotSensors.gyro.getPitch());
+        entryPitch.setDouble(BotSensors.gyro.getPitch());
+        entryYaw.setDouble(BotSensors.gyro.getYaw());
+    }
 
     //Method for easier layout construction
     public static ShuffleboardLayout constructLayout(ShuffleboardTab tab, String title, int posX, int posY, int width, int height, int columns, int rows, String labelPosition){

@@ -9,11 +9,30 @@ import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
 
 import frc.robot.devices.*;
 
-import static frc.robot.subsystems.constants.EncoderConstants.*;
-import static frc.robot.subsystems.constants.TalonConstants.*;
-
 // Utility methods for talon configuration (with or without encoders.)
 public class TalonUtils {
+
+    // Which PID slot to pull gains from.
+    // Starting 2018, you can choose from 0, 1, 2 or 3.
+    // Only the first two (0,1) are visible in web-based configuration.
+    private static final int PID_SLOT_0 = 0;
+
+    // Talon SRX/ Victor SPX will supported multiple (cascaded) PID loops.
+    // For now we just want the primary one.
+    private static final int PID_LOOP_PRIMARY = 0;
+
+    // Number of miliseconds that the talon can stay at peak current.
+    private static final int PEAK_AMPERAGE_DURATION = 100;
+
+    // Max amps that the talon can supply during short intervals.
+    private static final int PEAK_AMPERAGE = 2;
+    
+    // Max amps that the talon can supply continuously.
+    private static final int PEAK_CONTINUOUS_AMPERAGE = 2;
+    
+    // Set to zero to skip waiting for confirmation,
+    // set to nonzero to wait and report to DS if action fails.
+    private static final int TIMEOUT_MS = 20;
 
     // Config the given TalonSRX
     public static void configureBaseTalon(DevTalonSRX talon, boolean motorInvert) {
