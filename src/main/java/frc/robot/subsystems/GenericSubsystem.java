@@ -139,7 +139,7 @@ public class GenericSubsystem extends SubsystemBase {
             m_sparkMaxMap.get(motor).set(power);
         } else if (motor.substring(0, 7).equals("talonFx")) {
             m_talonFxMap.get(motor).set(power);
-        } else if (motor.substring(0, 7).equals("talonSrx")) {
+        } else if (motor.substring(0, 8).equals("talonSrx")) {
             m_talonSrxMap.get(motor).set(power);
         }
     }

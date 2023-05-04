@@ -24,17 +24,26 @@ public class TankDrive extends CommandBase{
     }
 
     @Override
-    public void execute() {
-        double forward = BotControllers.xbox3.xbox.getRightY();
-        double sideways = BotControllers.xbox3.xbox.getRightX();
+    public void execute() {/* 
+        double forward = BotControllers.xbox3.xbox.getLeftY();
+        double sideways = BotControllers.xbox3.xbox.getRightY();
 
         double left = (Math.abs(sideways) > 0) ? sideways : forward;
         double right = (Math.abs(sideways) < 0) ? -sideways : forward;
+        */
+        double x = BotControllers.xbox3.xbox.getLeftX();
+        double y = -BotControllers.xbox3.xbox.getLeftY();
 
-        m_tankDrive.move("talonFxLeft", left);
-        m_tankDrive.move("talonFxLeftTwo", left);
-        m_tankDrive.move("talonFxRight", right);
-        m_tankDrive.move("talonFxRightTwo", right);
+        double v = (100-Math.abs(x))*(y/100)+y;
+        double w = (100-Math.abs(y))*(x/100)+x;
+
+        double r = (v+w)/2;
+        double l = (v-w)/2;
+
+        m_tankDrive.move("talonSrxLeft", l);
+        m_tankDrive.move("talonSrxLeftTwo", l);
+        m_tankDrive.move("talonSrxRight", -r);
+        m_tankDrive.move("talonSrxRightTwo", -r);
     }
 
     // This command continues until interrupted
