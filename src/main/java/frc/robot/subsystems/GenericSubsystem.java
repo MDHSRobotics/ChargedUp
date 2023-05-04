@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import com.revrobotics.CANSparkMax;
 import frc.robot.devices.DevTalonFX;
+import frc.robot.devices.DevTalonSRX;
 import edu.wpi.first.wpilibj.Solenoid;
 import com.revrobotics.SparkMaxPIDController;
 
@@ -16,12 +17,14 @@ import java.util.HashMap;
 
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 public class GenericSubsystem extends SubsystemBase {
 
     private static Map<String, CANSparkMax> m_sparkMaxMap = new HashMap<>();
     private static Map<String, SparkMaxPIDController> m_sparkMaxPIDMap = new HashMap<>();
     private static Map<String, DevTalonFX> m_talonFxMap = new HashMap<>();
+    private static Map<String, DevTalonSRX> m_talonSrxMap = new HashMap<>();
     private static Map<String, Solenoid> m_solenoidMap = new HashMap<>();
 
     /**
@@ -65,6 +68,11 @@ public class GenericSubsystem extends SubsystemBase {
             } else if (deviceName.substring(0, 8).equals("solenoid")) {
                 Solenoid Solenoid = new Solenoid(PneumaticsModuleType.CTREPCM, deviceID);
                 m_solenoidMap.put(deviceName, Solenoid);
+            } else if (deviceName.substring(0, 8).equals("talonSrx")) {
+
+                DevTalonSRX talonSrx = new DevTalonSRX(deviceName, deviceID);
+                talonSrx.configFactoryDefault();
+                m_talonSrxMap.put(deviceName, talonSrx);
             }
         }
     }
@@ -131,6 +139,8 @@ public class GenericSubsystem extends SubsystemBase {
             m_sparkMaxMap.get(motor).set(power);
         } else if (motor.substring(0, 7).equals("talonFx")) {
             m_talonFxMap.get(motor).set(power);
+        } else if (motor.substring(0, 7).equals("talonSrx")) {
+            m_talonSrxMap.get(motor).set(power);
         }
     }
 

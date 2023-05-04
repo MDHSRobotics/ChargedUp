@@ -21,7 +21,7 @@ public class BotSubsystems {
         forklift = new Forklift();
         intake = new Intake();
         flipper = new GenericSubsystem(Map.of("sparkMaxFlipper", 21));
-        tank = new GenericSubsystem(Map.of("talonFxLeft", 18, "talonFxLeftTwo", 19, "talonFxRight", 18, "talonFxRightTwo", 19));
+        tank = new GenericSubsystem(Map.of("talonSrxLeft", 4, "talonSrxLeftTwo", 5, "talonSrxRight", 6, "talonSrxRightTwo", 7));
     }
 
     public static void setTeleopDefaultCommands() {
