@@ -21,9 +21,6 @@ public class BotCommands {
     public static SwerveDrive swerveDrive;
     public static ToggleDriverOrientation toggleDriverOrientation;
 
-    public static ChangeDriveSpeed speedUpDrive;
-    public static ChangeDriveSpeed slowDownDrive; 
-
     public static CommandBase toggleOrientation;
     public static CommandBase lockWheels;
 
@@ -52,9 +49,6 @@ public class BotCommands {
         // SwerveDriver
         swerveDrive = new SwerveDrive(BotSubsystems.swerveDriver, BotControllers.xbox1); 
         toggleDriverOrientation = new ToggleDriverOrientation(BotSubsystems.swerveDriver);
-
-        speedUpDrive = new ChangeDriveSpeed(1);
-        slowDownDrive = new ChangeDriveSpeed(0);
 
         toggleOrientation = BotSubsystems.swerveDriver.toggleOrientationCommand();
 

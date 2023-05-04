@@ -1,0 +1,74 @@
+[
+  {
+    "name": "/Shuffleboard/Drive/Driver Preferences/ Max Forward Backward Speed",
+    "type": "double",
+    "value": 2.4,
+    "properties": {
+      "persistent": true
+    }
+  },
+  {
+    "name": "/Shuffleboard/Drive/Driver Preferences/Max Left Right Speed",
+    "type": "double",
+    "value": 1.2,
+    "properties": {
+      "persistent": true
+    }
+  },
+  {
+    "name": "/Shuffleboard/Drive/Driver Preferences/Max Rotation Speed",
+    "type": "double",
+    "value": 2.0,
+    "properties": {
+      "persistent": true
+    }
+  },
+  {
+    "name": "/Shuffleboard/Drive/Encoder Offset/FL Encoder Offset",
+    "type": "double",
+    "value": -34.893,
+    "properties": {
+      "persistent": true
+    }
+  },
+  {
+    "name": "/Shuffleboard/Drive/Encoder Offset/FR Encoder Offset",
+    "type": "double",
+    "value": -93.604,
+    "properties": {
+      "persistent": true
+    }
+  },
+  {
+    "name": "/Shuffleboard/Drive/Encoder Offset/RL Encoder Offset",
+    "type": "double",
+    "value": -131.045,
+    "properties": {
+      "persistent": true
+    }
+  },
+  {
+    "name": "/Shuffleboard/Drive/Encoder Offset/RR Encoder Offset",
+    "type": "double",
+    "value": -169.805,
+    "properties": {
+      "persistent": true
+    }
+  },
+  {
+    "name": "/Shuffleboard/Drive/Driver Preferences/Max Forward Backward Speed",
+    "type": "double",
+    "value": 2.4,
+    "properties": {
+      "persistent": true
+    }
+  },
+  {
+    "name": "/Shuffleboard/Drive/Driver Preferences/DeadBand",
+    "type": "double",
+    "value": 0.1,
+    "properties": {
+      "persistent": true
+    }
+  }
+]

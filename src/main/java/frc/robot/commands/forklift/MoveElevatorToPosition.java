@@ -5,7 +5,6 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 import frc.robot.consoles.Logger;
 import frc.robot.subsystems.Forklift;
-import frc.robot.brains.ForkliftBrain;
 import frc.robot.commands.auto.AutoConstants;
 
 public class MoveElevatorToPosition extends CommandBase {
@@ -32,13 +31,13 @@ public class MoveElevatorToPosition extends CommandBase {
         Logger.action("Initializing Command: MoveElevatorToPosition...");
         switch(m_level){
             case PICKUP:
-                targetPosition = -ForkliftBrain.getElevatorPickupPosition();
+                targetPosition = -0;
                 break;
             case MEDIUM:
-                targetPosition = -ForkliftBrain.getElevatorMediumPosition();
+                targetPosition = -51;
                 break;
             case HIGH:
-                targetPosition = -ForkliftBrain.getElevatorHighPosition();
+                targetPosition = -75;
                 break;
             default:
                 throw new java.lang.Error("Unkown Elevator Position; should be {PICKUP, MEDIUM, HIGH}");

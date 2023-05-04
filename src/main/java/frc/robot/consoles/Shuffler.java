@@ -3,13 +3,18 @@ package frc.robot.consoles;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardLayout;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.shuffleboard.*;
-import frc.robot.consoles.tabs.*;
 import java.util.Map;
 
 import frc.robot.BotCommands;
+import frc.robot.commands.auto.*;
+import frc.robot.BotSubsystems;
 
 import frc.robot.BotSensors;
 import edu.wpi.first.networktables.GenericEntry;
+
+import edu.wpi.first.cscore.HttpCamera;
+import edu.wpi.first.cscore.VideoSource;
+import edu.wpi.first.cscore.HttpCamera.HttpCameraKind;
 
 // Class that wraps all of the interaction with the Shuffleboard
 
@@ -19,6 +24,9 @@ import edu.wpi.first.networktables.GenericEntry;
 
 // The Shuffler class knows about the subsystems, commands, etc. but generally not vice versa.
 public class Shuffler {
+
+    public static VideoSource limelightCamera = new HttpCamera("limelight-mdrobot", "http://10.41.41.11:5801/", HttpCameraKind.kMJPGStreamer);
+
     // Tabs
     public static ShuffleboardTab m_driveTab;
     public static ShuffleboardTab m_inputsTab;
@@ -27,41 +35,66 @@ public class Shuffler {
     public static ShuffleboardTab m_sensorTab;
     public static ShuffleboardTab m_mainTab;
 
+    //Layouts
     private ShuffleboardLayout m_forklftCommandLayout;
     private ShuffleboardLayout m_gyroLayout;
+    private ShuffleboardLayout m_autoCommandLayout;
+    private ShuffleboardLayout m_autoIndividualCommandLayout;
 
+    //Entries
     private GenericEntry entryRoll;
     private GenericEntry entryPitch;
     private GenericEntry entryYaw;
+    private GenericEntry entryFieldOriented;
 
+    //Initialize Tabs and Some Layouts
     public Shuffler() {
         ShuffleLogger.logTrivial("Constructing Shuffler...");
+
+        //Forklift Tab
         m_forkliftTab = Shuffleboard.getTab("Forklift");
-        m_driveTab = Shuffleboard.getTab("Drive");
-        m_inputsTab = Shuffleboard.getTab("Inputs");
-        m_autonomousTab = Shuffleboard.getTab("Autonomous");
-        m_sensorTab = Shuffleboard.getTab("Sensors");
-        m_mainTab = Shuffleboard.getTab("Main");
-
         m_forklftCommandLayout = constructLayout(m_forkliftTab, "Commands", 0, 0, 4, 2, 1, 2, "LEFT");
+        
+        m_driveTab = Shuffleboard.getTab("Drive");
 
-        m_gyroLayout = Shuffler.constructLayout(Shuffler.m_sensorTab, "Gyroscope", 0, 0, 3, 3, 1, 3, "LEFT");
+        m_inputsTab = Shuffleboard.getTab("Inputs");
 
+        //Autonomous Tab
+        m_autonomousTab = Shuffleboard.getTab("Autonomous");
+        m_autoCommandLayout = Shuffler.constructLayout(m_autonomousTab, "Auto Commands", 0, 0, 4, 5, 1, 5, "LEFT");
+        m_autoIndividualCommandLayout = Shuffler.constructLayout(m_autonomousTab, "Individual Auto Commands", 4, 0, 4, 4, 1, 2, "LEFT");
+
+        //Sensor Tab
+        m_sensorTab = Shuffleboard.getTab("Sensors");
+        m_gyroLayout = Shuffler.constructLayout(m_sensorTab, "Gyroscope", 0, 0, 3, 3, 1, 3, "LEFT");
         entryRoll = m_gyroLayout
             .add("Roll", 0.0)
             .withWidget(BuiltInWidgets.kDial)
             .withProperties(Map.of("min", 0.0, "max", 360.0))
             .getEntry();
         entryPitch = m_gyroLayout
-            .add("Roll", 0.0)
+            .add("Pitch", 0.0)
             .withWidget(BuiltInWidgets.kDial)
             .withProperties(Map.of("min", 0.0, "max", 360.0))
             .getEntry();
         entryYaw = m_gyroLayout
-            .add("Roll", 0.0)
+            .add("Yaw", 0.0)
             .withWidget(BuiltInWidgets.kDial)
             .withProperties(Map.of("min", 0.0, "max", 360.0))
             .getEntry();
+        
+        
+        //Main Tab
+        m_mainTab = Shuffleboard.getTab("Main");
+
+        entryFieldOriented = m_mainTab.add("Field Oriented", false)
+            .withPosition(12, 0)
+            .getEntry();
+
+        m_mainTab.add("Camera Feed", limelightCamera)
+            .withPosition(0, 0)
+            .withSize(8, 8)
+            .withWidget(BuiltInWidgets.kCameraStream);
     }
 
     /*public void preInitialize() {
@@ -81,6 +114,20 @@ public class Shuffler {
         m_forklftCommandLayout.add("Open Clamp", BotCommands.openClamp);
         m_forklftCommandLayout.add("Close Clamp", BotCommands.closeClamp);
         m_forklftCommandLayout.add("Reset Encoders", BotCommands.resetEncoders);
+
+        m_autoCommandLayout.add("Place Cube Inner", BotCommands.placeCubeInner);
+        m_autoCommandLayout.add("Place Cube Left", BotCommands.placeCubeLeft);
+        m_autoCommandLayout.add("Place Cube Right", BotCommands.placeCubeRight);
+        m_autoCommandLayout.add("Eject Cube Inner", BotCommands.ejectCubeInner);
+        m_autoCommandLayout.add("Eject Cube Left", BotCommands.ejectCubeLeft);
+        m_autoCommandLayout.add("Eject Cube Right", BotCommands.ejectCubeRight);
+        m_autoCommandLayout.add("Default", BotCommands.defaultAutoCommand);
+
+        m_autoIndividualCommandLayout.add("Balance Charge Station", new BalanceChargeStation(BotSubsystems.swerveDriver, true));
+        m_autoIndividualCommandLayout.add("Eject Cube", new EjectCube(BotSubsystems.intake, 1));
+        m_autoIndividualCommandLayout.add("Place Cube", new PlaceCube());
+
+        
         /*m_forkliftTab.initialize();
         m_driveTab.initialize();
         m_inputsTab.initialize();
@@ -115,6 +162,8 @@ public class Shuffler {
         entryRoll.setDouble(BotSensors.gyro.getPitch());
         entryPitch.setDouble(BotSensors.gyro.getPitch());
         entryYaw.setDouble(BotSensors.gyro.getYaw());
+
+        entryFieldOriented.setBoolean(BotSubsystems.swerveDriver.fieldRelative);
     }
 
     //Method for easier layout construction

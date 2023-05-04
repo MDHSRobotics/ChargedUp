@@ -1,7 +1,6 @@
 
 package frc.robot.oi.positions;
 
-import frc.robot.brains.XboxBrain;
 import frc.robot.oi.controllers.XboxPositionAccessible;
 
 // The position values obtained from xbox thumbsticks.
@@ -42,10 +41,10 @@ public class ThumbstickPosition {
         }
 
         // Deadzones
-        double yLeftDeadZone = XboxBrain.getYleftDeadZone();
-        double xLeftDeadZone = XboxBrain.getXleftDeadZone();
-        double yRightDeadZone = XboxBrain.getYrightDeadZone();
-        double xRightDeadZone = XboxBrain.getXrightDeadZone();
+        double yLeftDeadZone = 0.1;
+        double xLeftDeadZone = 0.1;
+        double yRightDeadZone = 0.1;
+        double xRightDeadZone = 0.1;
 
         if (Math.abs(yLeft) <= yLeftDeadZone) yLeft = 0;
         if (Math.abs(xLeft) <= xLeftDeadZone) xLeft = 0;
@@ -62,10 +61,10 @@ public class ThumbstickPosition {
         if (xRight < 0) xRight = xRight + xRightDeadZone;
 
         // Sensitivity
-        double yLeftSensitivity = XboxBrain.getYleftSensitivity();
-        double xLeftSensitivity = XboxBrain.getXleftSensitivity();
-        double yRightSensitivity = XboxBrain.getYrightSensitivity();
-        double xRightSensitivity = XboxBrain.getXrightSensitivity();
+        double yLeftSensitivity = 0.5;
+        double xLeftSensitivity = 0.5;
+        double yRightSensitivity = 0.5;
+        double xRightSensitivity = 0.5;
 
         pos.leftForwardBackPosition = yLeft * yLeftSensitivity;
         pos.leftSideToSidePosition = xLeft * xLeftSensitivity;

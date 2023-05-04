@@ -5,7 +5,6 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 import frc.robot.consoles.Logger;
 import frc.robot.subsystems.Forklift;
-import frc.robot.brains.ForkliftBrain;
 import frc.robot.commands.auto.AutoConstants;
 
 public class MoveExtenderToPosition extends CommandBase {
@@ -31,13 +30,13 @@ public class MoveExtenderToPosition extends CommandBase {
         Logger.action("Initializing Command: MoveExtenderToPosition...");
         switch(m_level){
             case PICKUP:
-                targetPosition = -ForkliftBrain.getExtenderPickupPosition();
+                targetPosition = -0;
                 break;
             case MEDIUM:
-                targetPosition = -ForkliftBrain.getExtenderMediumPosition();
+                targetPosition = -60;
                 break;
             case HIGH:
-                targetPosition = -ForkliftBrain.getExtenderHighPosition();
+                targetPosition = -100;
                 break;
             default:
                 throw new java.lang.Error("Unkown Extender Position; should be {PICKUP, MEDIUM, HIGH}");

@@ -13,7 +13,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import frc.robot.BotSensors;
-import frc.robot.brains.SwerveDriverBrain;
 import frc.robot.consoles.Logger;
 import frc.robot.devices.DevSwerveModule;
 import static frc.robot.subsystems.Devices.*;
@@ -217,15 +216,12 @@ public class SwerveDriver extends SubsystemBase {
         SmartDashboard.putNumber("Robot Heading", getHeading());
         SmartDashboard.putString("Robot Location", getPose().getTranslation().toString());
 
-        SwerveDriverBrain.entryCurrentPosition.setString(getPose().getTranslation().toString());
-        SwerveDriverBrain.entryCurrentRotation.setDouble(getHeading());
-
 
         // Update Shuffleboard
-        frontLeft.setShuffleboardBrain();
+        /*frontLeft.setShuffleboardBrain();
         frontRight.setShuffleboardBrain();
         rearLeft.setShuffleboardBrain();
-        rearRight.setShuffleboardBrain();
+        rearRight.setShuffleboardBrain();*/
     }
 
     public void stopModules() {
@@ -298,11 +294,19 @@ public class SwerveDriver extends SubsystemBase {
         frontRight.setAbsoluteEncoderOffset();
         rearLeft.setAbsoluteEncoderOffset();
         rearRight.setAbsoluteEncoderOffset();
-        */
+        
         frontLeft.resetCanCoder();
         frontRight.resetCanCoder();
         rearLeft.resetCanCoder();
-        rearRight.resetCanCoder();
+        rearRight.resetCanCoder();*/
+    }
+    
+    public String getPosition(){
+        return getPose().getTranslation().toString();
+    }
+
+    public double getRotation(){
+        return getHeading();
     }
 
     public CommandBase toggleOrientationCommand() {

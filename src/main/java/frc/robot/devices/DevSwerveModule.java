@@ -15,11 +15,6 @@ import edu.wpi.first.math.util.Units;
 import edu.wpi.first.util.sendable.SendableRegistry;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import frc.robot.brains.SwerveDriverBrain;
-
-import frc.robot.subsystems.utils.EncoderTranslator;
-import frc.robot.consoles.Logger;
-
 
 public class DevSwerveModule {
 
@@ -207,9 +202,6 @@ public class DevSwerveModule {
 
         //SmartDashboard.putString("01: Swerve Power: " + m_name, String.format("Drive = %.2f; Turning = %.2f", drivePower, turningPower));
 
-        SwerveDriverBrain.setModuleDrivePower(m_name, drivePower);
-        SwerveDriverBrain.setModuleTurningPower(m_name, turningPower);
-
         m_driveMotor.set(drivePower);
         m_turningMotor.set(turningPower);
     }
@@ -217,20 +209,17 @@ public class DevSwerveModule {
     public void stop() {
         m_driveMotor.set(0);
         m_turningMotor.set(0);
-
-        SwerveDriverBrain.setModuleDrivePower(m_name, 0.);
-        SwerveDriverBrain.setModuleTurningPower(m_name, 0.);
     }
 
-    public void setShuffleboardBrain() {
+    /*public void setShuffleboardBrain() {
         SwerveDriverBrain.setModuleEncoderReadings(m_name, getEncoderReadings());
-    }
+    }*/
 
     public void setTurningWheelPosition(double angle){
         m_turningMotor.set(ControlMode.Position, m_encoderTranslator.degrees_to_ticks(angle + Math.toDegrees(m_absoluteEncoderOffsetRad)));
     }
 
-    public void setAbsoluteEncoderOffset(){
+    /*public void setAbsoluteEncoderOffset(){
         Logger.info(String.format("Current encoder offset: %1$s radians and %2$s degrees ", m_absoluteEncoderOffsetRad, Math.toDegrees(m_absoluteEncoderOffsetRad)));
         m_absoluteEncoderOffsetRad = Math.toRadians(SwerveDriverBrain.getAbsoluteEncoderOffset(m_name));
         Logger.info(String.format("Setting encoder offset to %1$s radians and %2$s degrees", m_absoluteEncoderOffsetRad, Math.toDegrees(m_absoluteEncoderOffsetRad)));
@@ -238,6 +227,6 @@ public class DevSwerveModule {
 
     public void resetCanCoder(){
         Logger.info("Cancoder Position" + m_canCoder.getAbsolutePosition());
-    }
+    }*/
 
 }

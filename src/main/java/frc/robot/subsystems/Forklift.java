@@ -1,7 +1,6 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.brains.ForkliftBrain;
 import frc.robot.consoles.Logger;
 import com.revrobotics.CANSparkMax.IdleMode;
 import java.util.Map;
@@ -27,8 +26,6 @@ public class Forklift extends GenericSubsystem {
 
     @Override
     public void periodic() {
-        ForkliftBrain.setElevatorEncoder(super.getEncoderPosition("sparkMaxElevator"));
-        ForkliftBrain.setExtenderEncoder(super.getEncoderPosition("sparkMaxExtender"));
     }
 
     //Reset the encoders

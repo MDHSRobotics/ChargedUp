@@ -64,6 +64,7 @@ public class MoveForklift extends CommandBase {
 
         //Logger.info("Claw power: " + clampLiftPower + " Extender Power: " + extenderPower + " Elevator Power: " + elevatorPower + " Clamp: " + toggleClamp);
 
+        //Retrieve Shuffleboard data from subsystem
         extenderEncoderEntry.setDouble(m_forklift.getEncoderPosition("sparkMaxExtender"));
         elevatorEncoderEntry.setDouble(m_forklift.getEncoderPosition("sparkMaxElevator"));
     }
