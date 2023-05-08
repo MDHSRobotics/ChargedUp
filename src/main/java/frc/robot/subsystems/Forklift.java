@@ -4,12 +4,18 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.consoles.Logger;
 import com.revrobotics.CANSparkMax.IdleMode;
 import java.util.Map;
+import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
 
 public class Forklift extends GenericSubsystem {
+
+    public static Compressor pcmCompressor = new Compressor(0, PneumaticsModuleType.CTREPCM);
 
     public Forklift() {
         super(Map.of("sparkMaxElevator", 32, "sparkMaxElevatorTwo", 33, "sparkMaxExtender", 34, "sparkMaxClawLift", 35, "solenoidClaw", 7));
         Logger.setup("Constructing Subsystem: Forklift...");
+
+        
 
         super.setCANSparkMaxBrakeMode("sparkMaxElevator", IdleMode.kBrake);
         super.setCANSparkMaxBrakeMode("sparkMaxElevatorTwo", IdleMode.kBrake);

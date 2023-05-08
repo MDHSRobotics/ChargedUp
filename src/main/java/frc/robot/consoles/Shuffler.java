@@ -53,7 +53,7 @@ public class Shuffler {
 
         //Forklift Tab
         m_forkliftTab = Shuffleboard.getTab("Forklift");
-        m_forklftCommandLayout = constructLayout(m_forkliftTab, "Commands", 0, 0, 4, 2, 1, 2, "LEFT");
+        m_forklftCommandLayout = constructLayout(m_forkliftTab, "Commands", 0, 0, 4, 3, 1, 2, "LEFT");
         
         m_driveTab = Shuffleboard.getTab("Drive");
 

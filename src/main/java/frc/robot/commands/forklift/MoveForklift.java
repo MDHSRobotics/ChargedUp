@@ -17,7 +17,7 @@ public class MoveForklift extends CommandBase {
     private Forklift m_forklift;
 
     private ShuffleboardLayout motorSpeedsLayout = Shuffler.constructLayout(Shuffler.m_forkliftTab, "Motor Speeds", 4, 0, 6, 3, 1, 2, "LEFT");
-    private ShuffleboardLayout motorEncodersLayout = Shuffler.constructLayout(Shuffler.m_forkliftTab, "Motor Encoders", 0, 2, 4, 2, 1, 2, "LEFT");
+    private ShuffleboardLayout motorEncodersLayout = Shuffler.constructLayout(Shuffler.m_forkliftTab, "Motor Encoders", 0, 3, 4, 2, 1, 2, "LEFT");
 
     private GenericEntry extenderSpeedEntry = motorSpeedsLayout
         .add("Extender Speed", 1.0)
