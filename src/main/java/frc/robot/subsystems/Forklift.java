@@ -15,16 +15,14 @@ public class Forklift extends GenericSubsystem {
         super(Map.of("sparkMaxElevator", 32, "sparkMaxElevatorTwo", 33, "sparkMaxExtender", 34, "sparkMaxClawLift", 35, "solenoidClaw", 7));
         Logger.setup("Constructing Subsystem: Forklift...");
 
-        
-
-        super.setCANSparkMaxBrakeMode("sparkMaxElevator", IdleMode.kBrake);
-        super.setCANSparkMaxBrakeMode("sparkMaxElevatorTwo", IdleMode.kBrake);
-        super.setCANSparkMaxBrakeMode("sparkMaxExtender", IdleMode.kBrake);
-        super.setCANSparkMaxBrakeMode("sparkMaxClawLift", IdleMode.kBrake);
+        super.setCANSparkMaxBrakeMode("Elevator", IdleMode.kBrake);
+        super.setCANSparkMaxBrakeMode("ElevatorTwo", IdleMode.kBrake);
+        super.setCANSparkMaxBrakeMode("Extender", IdleMode.kBrake);
+        super.setCANSparkMaxBrakeMode("ClawLift", IdleMode.kBrake);
 
         super.invert("sparkMaxExtender");
 
-        super.setFollow("sparkMaxElevator", "sparkMaxElevatorTwo", false);
+        super.follow("sparkMaxElevator", "sparkMaxElevatorTwo", false);
 
         super.configureSparkMaxPID("sparkMaxElevator", 0.03, 0.0000001, 0.0001);
         super.configureSparkMaxPID("sparkMaxExtender", 0.03, 0.0000001, 0.0001);

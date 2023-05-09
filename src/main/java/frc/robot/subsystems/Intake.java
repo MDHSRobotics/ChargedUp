@@ -6,11 +6,11 @@ import com.revrobotics.CANSparkMax.IdleMode;
 public class Intake extends GenericSubsystem {
 
     public Intake() {
-        super(Map.of("sparkMaxIntake", 18, "sparkMaxIntakeTwo", 19));
+        super(Map.of("sparkMaxIntake", 36, "sparkMaxIntakeTwo", 37));
 
         super.setCANSparkMaxBrakeMode("sparkMaxIntake", IdleMode.kBrake);
         super.setCANSparkMaxBrakeMode("sparkMaxIntakeTwo", IdleMode.kBrake);
 
-        super.setFollow("sparkMaxIntake", "sparkMaxIntakeTwo", true);
+        super.follow("sparkMaxIntake", "sparkMaxIntakeTwo", true);
     }  
 }

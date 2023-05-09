@@ -1,20 +1,21 @@
 
 package frc.robot.devices;
 
-import com.revrobotics.CANSparkMax; 
+import com.revrobotics.CANSparkMax;
 
 import static frc.robot.RobotManager.isSim;
+import static frc.robot.RobotManager.isReal;
 
-// This class is a wrapper around TalonFX in order to handle cases where the
+// This class is a wrapper around SparkMax in order to handle cases where the
 // Talon controller and associated motor are not physically connected.  This
 // can be the case when running the simulator but it can also happen when
 // executing code on the RoboRio without a fully assembled robot with all of
 // necessary motors and controllers.
 
-// If the Talon is connected then this class just forwards any calls directly
-// to the TalonFX class.
+// If the SparkMax is connected then this class just forwards any calls directly
+// to the SparkMax class.
 
-// If the Talon is not connected, only a subset of the TalonFX interface is
+// If the SparkMax is not connected, only a subset of the TalonFX interface is
 // supported, mainly by tracing and other monitoring.
 
 public class DevSparkMax extends CANSparkMax {
@@ -47,7 +48,7 @@ public class DevSparkMax extends CANSparkMax {
         return true;
     }
 
-    /*
+    
     public void set(double power){
         if (isConnected) {
             super.set(power);
@@ -69,9 +70,9 @@ public class DevSparkMax extends CANSparkMax {
         m_monitor.log(methodName);
     }
 
-    public double getSelectedSensorPosition() {
+    public double getEncoderPosition() {
         if (isConnected) {
-            return super.getSelectedSensorPosition();
+            return super.getEncoder().getPosition();
         }
 
         if (isReal) return 0.;
@@ -80,6 +81,6 @@ public class DevSparkMax extends CANSparkMax {
         double position = 4096.;
         return position;
     }
-    */
+    
 
 }

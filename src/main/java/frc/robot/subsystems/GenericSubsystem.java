@@ -3,7 +3,10 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import com.revrobotics.CANSparkMax;
+
+import frc.robot.devices.DevSparkMax;
 import frc.robot.devices.DevTalonFX;
+import frc.robot.devices.DevTalonSRX;
 import edu.wpi.first.wpilibj.Solenoid;
 import com.revrobotics.SparkMaxPIDController;
 
@@ -19,8 +22,9 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 
 public class GenericSubsystem extends SubsystemBase {
 
-    private static Map<String, CANSparkMax> m_sparkMaxMap = new HashMap<>();
     private static Map<String, SparkMaxPIDController> m_sparkMaxPIDMap = new HashMap<>();
+    private static Map<String, DevSparkMax> m_sparkMaxMap = new HashMap<>();
+    private static Map<String, DevTalonSRX> m_talonSrxMap = new HashMap<>();
     private static Map<String, DevTalonFX> m_talonFxMap = new HashMap<>();
     private static Map<String, Solenoid> m_solenoidMap = new HashMap<>();
 
@@ -31,8 +35,8 @@ public class GenericSubsystem extends SubsystemBase {
      * name of the device and the value is an Integer representing the device ID.
      * Depending on the prefix of the device name, this constructor will initialize
      * the device as the appropriate type and add it to the corresponding map.
-     * The types of devices supported by this constructor are CANSparkMax,
-     * DevTalonFX, and Solenoid.
+     * The types of devices supported by this constructor are DevSparkMax,
+     * DevTalonFX, DevTalonSRX and Solenoid.
      * 
      * @param devices A Map where the key is a String representing the name of the
      *                device and the value is an Integer representing the device ID.
@@ -41,30 +45,56 @@ public class GenericSubsystem extends SubsystemBase {
      * @date 3/4/2023
      */
     public GenericSubsystem(Map<String, Integer> devices) {
+
         for (Map.Entry<String, Integer> entry : devices.entrySet()) {
+
             String deviceName = entry.getKey();
             int deviceID = entry.getValue();
 
             // Initialize CANSparkMax Device
             if (deviceName.substring(0, 8).equals("sparkMax")) {
-                CANSparkMax sparkMax = new CANSparkMax(deviceID, MotorType.kBrushless);
+
+                String sparkMaxName = deviceName.substring(8);
+
+                DevSparkMax sparkMax = new DevSparkMax(deviceName, deviceID, MotorType.kBrushless);
                 SparkMaxPIDController sparkMaxPID = sparkMax.getPIDController();
+
                 sparkMax.restoreFactoryDefaults();
                 sparkMax.setSmartCurrentLimit(15);
-                m_sparkMaxMap.put(deviceName, sparkMax);
-                m_sparkMaxPIDMap.put(deviceName, sparkMaxPID);
+
+                m_sparkMaxMap.put(sparkMaxName, sparkMax);
+                m_sparkMaxPIDMap.put(sparkMaxName, sparkMaxPID);
 
                 // Initialize talonFx Device
             } else if (deviceName.substring(0, 7).equals("talonFx")) {
+
+                String talonFxName = deviceName.substring(7);
+
                 DevTalonFX talonFX = new DevTalonFX(deviceName, deviceID);
+
                 talonFX.configFactoryDefault();
                 talonFX.setCurrentLimit(15);
-                m_talonFxMap.put(deviceName, talonFX);
+
+                m_talonFxMap.put(talonFxName, talonFX);
 
                 // Initialize Solenoid Devices
+            } else if (deviceName.substring(0, 8).equals("talonSrx")) {
+
+                String talonSrxName = deviceName.substring(8);
+
+                DevTalonSRX talonSrx = new DevTalonSRX(deviceName, deviceID);
+
+                talonSrx.configFactoryDefault();
+
+                m_talonSrxMap.put(talonSrxName, talonSrx);
+            
             } else if (deviceName.substring(0, 8).equals("solenoid")) {
+
+                String solenoidName = deviceName.substring(8);
+
                 Solenoid Solenoid = new Solenoid(PneumaticsModuleType.CTREPCM, deviceID);
-                m_solenoidMap.put(deviceName, Solenoid);
+
+                m_solenoidMap.put(solenoidName, Solenoid);
             }
         }
     }
@@ -82,13 +112,19 @@ public class GenericSubsystem extends SubsystemBase {
     }
 
     /**
-     * Sets the neutral mode for a motor controlled by a DevTalonFX.
+     * Sets the neutral mode for a Talon motor controller.
      * 
      * @param motor The name of the motor to set the neutral mode for.
      * @param mode  The NeutralMode to set the motor to.
      */
-    public void setTalonFxBrakeMode(String motor, NeutralMode mode) {
-        m_talonFxMap.get(motor).setNeutralMode(mode);
+    public void setTalonBrakeMode(String motor, NeutralMode mode) {
+        if(m_talonFxMap.containsKey(motor)){
+            m_talonFxMap.get(motor).setNeutralMode(mode);
+        }else if(m_talonSrxMap.containsKey(motor)){
+            m_talonSrxMap.get(motor).setNeutralMode(mode);
+        }else{
+            throw new java.lang.Error(String.format("Set Brake Mode: Invalid Motor %s", motor));
+        }
     }
 
     /**
@@ -97,10 +133,14 @@ public class GenericSubsystem extends SubsystemBase {
      * @param motor The name of the motor to invert.
      */
     public void invert(String motor) {
-        if (motor.substring(0, 8).equals("sparkMax")) {
+        if (m_sparkMaxMap.containsKey(motor)) {
             m_sparkMaxMap.get(motor).setInverted(true);
-        } else if (motor.substring(0, 7).equals("talonFx")) {
+        } else if (m_talonFxMap.containsKey(motor)) {
             m_talonFxMap.get(motor).setInverted(true);
+        } else if (m_talonSrxMap.containsKey(motor)){
+            m_talonSrxMap.get(motor).setInverted(true);
+        }else{
+            throw new java.lang.Error(String.format("Invert: Invalid Motor %s", motor));
         }
     }
 
@@ -112,11 +152,15 @@ public class GenericSubsystem extends SubsystemBase {
      * @param inverted If the follower should follow the leader in reverse. Only for
      *                 CANSparkMax
      */
-    public void setFollow(String leader, String follower, boolean inverted) {
-        if (leader.substring(0, 8).equals("sparkMax")) {
+    public void follow(String leader, String follower, boolean inverted) {
+        if (m_sparkMaxMap.containsKey(leader)) {
             m_sparkMaxMap.get(follower).follow(m_sparkMaxMap.get(leader), inverted);
-        } else if (leader.substring(0, 7).equals("talonFx")) {
+        } else if (m_talonFxMap.containsKey(leader)) {
             m_talonFxMap.get(follower).follow(m_talonFxMap.get(leader));
+        } else if (m_talonSrxMap.containsKey(leader)){
+            m_talonSrxMap.get(follower).follow(m_talonSrxMap.get(leader));
+        }else{
+            throw new java.lang.Error(String.format("Follow: Invalid Motor %s", leader));
         }
     }
 
@@ -127,10 +171,14 @@ public class GenericSubsystem extends SubsystemBase {
      * @param power The power to move the motor at.
      */
     public void move(String motor, double power) {
-        if (motor.substring(0, 8).equals("sparkMax")) {
+        if (m_sparkMaxMap.containsKey(motor)) {
             m_sparkMaxMap.get(motor).set(power);
-        } else if (motor.substring(0, 7).equals("talonFx")) {
+        } else if (m_talonFxMap.containsKey(motor)) {
             m_talonFxMap.get(motor).set(power);
+        } else if (m_talonSrxMap.containsKey(motor)){
+            m_talonSrxMap.get(motor).set(power);
+        }else{
+            throw new java.lang.Error(String.format("Move: Invalid Motor %s", motor));
         }
     }
 
@@ -144,10 +192,14 @@ public class GenericSubsystem extends SubsystemBase {
     public void move(String motor, double power, double minPower) {
         double speed = Math.abs(power) >= minPower ? power : 0;
 
-        if (motor.substring(0, 8).equals("sparkMax")) {
+        if (m_sparkMaxMap.containsKey(motor)) {
             m_sparkMaxMap.get(motor).set(speed);
-        } else if (motor.substring(0, 7).equals("talonFx")) {
+        } else if (m_talonFxMap.containsKey(motor)) {
             m_talonFxMap.get(motor).set(speed);
+        } else if (m_talonSrxMap.containsKey(motor)){
+            m_talonSrxMap.get(motor).set(speed);
+        }else{
+            throw new java.lang.Error(String.format("Move: Invalid Motor %s", motor));
         }
 
     }
@@ -167,7 +219,15 @@ public class GenericSubsystem extends SubsystemBase {
         double speed2 = (getEncoderPosition(motor) > softStopMin && speed > 0) ||
                 (getEncoderPosition(motor) < softStopMax && speed < 0) ? speed : 0;
 
-        m_sparkMaxMap.get(motor).set(speed2);
+        if (m_sparkMaxMap.containsKey(motor)) {
+            m_sparkMaxMap.get(motor).set(speed2);
+        } else if (m_talonFxMap.containsKey(motor)) {
+            m_talonFxMap.get(motor).set(speed2);
+        } else if (m_talonSrxMap.containsKey(motor)){
+            m_talonSrxMap.get(motor).set(speed2);
+        }else{
+            throw new java.lang.Error(String.format("Move: Invalid Motor %s", motor));
+        }
     }
 
     /**
@@ -187,7 +247,7 @@ public class GenericSubsystem extends SubsystemBase {
      * Stops all sparkMax and TalonFX motors.
      */
     public void stopAllMotors(){
-        for (Map.Entry<String, CANSparkMax> motor : m_sparkMaxMap.entrySet()) {
+        for (Map.Entry<String, DevSparkMax> motor : m_sparkMaxMap.entrySet()) {
             motor.getValue().stopMotor();
         }
 
