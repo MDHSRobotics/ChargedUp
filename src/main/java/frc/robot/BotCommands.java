@@ -5,6 +5,8 @@ import frc.robot.commands.auto.*;
 import frc.robot.commands.forklift.*;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.commands.swervedrive.*;
+import frc.robot.commands.tank.TankDrive;
+import frc.robot.commands.tank.WriteN;
 
 public class BotCommands {
 
@@ -30,6 +32,7 @@ public class BotCommands {
     public static CommandBase resetAbsoluteEncoderOffsets;
 
     public static TankDrive tankDrive;
+    public static WriteN writeN;
 
     // Forklift
     public static MoveForklift moveForklift;
@@ -67,6 +70,7 @@ public class BotCommands {
         resetAbsoluteEncoderOffsets = BotSubsystems.swerveDriver.resetAbsoluteEncoderOffsets();
 
         tankDrive = new TankDrive(BotSubsystems.tank);
+        writeN = new WriteN();
         
         // Forklift
         moveForklift = new MoveForklift(BotSubsystems.forklift); 

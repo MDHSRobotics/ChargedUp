@@ -25,6 +25,8 @@ public class ButtonBindings {
         //Lock the wheels
         BotControllers.xbox1.btnX.onTrue(BotCommands.lockWheels);
 
+        BotControllers.xbox1.btnBumperLeft.onTrue(BotCommands.writeN);
+
     }
 
     // Configure xbox 2 buttons
