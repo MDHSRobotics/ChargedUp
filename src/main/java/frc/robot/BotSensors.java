@@ -6,7 +6,6 @@ import static frc.robot.RobotManager.isReal;
 import frc.robot.consoles.Logger;
 import frc.robot.sensors.DevGyro;
 import frc.robot.sensors.DevRevV3ColorSensor;
-import frc.robot.sensors.Limelight;;
 import frc.robot.sensors.Limelight;
 
 // This class contains singleton instances of id mapped sensors.

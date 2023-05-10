@@ -16,7 +16,6 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.BotSensors;
 import frc.robot.consoles.Logger;
 import frc.robot.devices.DevSwerveModule;
-import frc.robot.subsystems.constants.SwerveConstants;
 import static frc.robot.subsystems.Devices.*;
 
 import edu.wpi.first.math.geometry.Translation2d;

@@ -12,7 +12,6 @@ import frc.robot.oi.controllers.XboxPositionAccessible;
 import frc.robot.oi.movements.SwerveMovement;
 
 import frc.robot.subsystems.SwerveDriver;
-import frc.robot.subsystems.constants.SwerveConstants;
 
 import frc.robot.consoles.Shuffler;
 import edu.wpi.first.wpilibj.shuffleboard.*;
