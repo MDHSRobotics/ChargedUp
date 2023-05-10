@@ -42,7 +42,7 @@ public class MoveElevatorToPosition extends CommandBase {
             default:
                 throw new java.lang.Error("Unkown Elevator Position; should be {PICKUP, MEDIUM, HIGH}");
         }
-        m_forklift.moveSparkMaxPosition("sparkMaxElevator", targetPosition);
+        m_forklift.moveSparkMaxPosition("Elevator", targetPosition);
 
     }
 
@@ -53,7 +53,7 @@ public class MoveElevatorToPosition extends CommandBase {
     // This command continues until interrupted
     @Override
     public boolean isFinished(){
-        return m_forklift.isSparkMaxAtPosition("sparkMaxElevator", -targetPosition, MOTOR_POSITION_TOLERANCE);
+        return m_forklift.isSparkMaxAtPosition("Elevator", -targetPosition, MOTOR_POSITION_TOLERANCE);
     }
 
     @Override

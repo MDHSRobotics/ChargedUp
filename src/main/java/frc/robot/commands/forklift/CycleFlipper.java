@@ -33,9 +33,9 @@ public class CycleFlipper extends CommandBase {
     public void execute() {
         Logger.info(m_timer.get());
         if(m_timer.get() < m_targetTime / 2){
-            m_flipper.move("sparkMaxFlipper", -1.);
+            m_flipper.move("Flipper", -1.);
         }else{
-            m_flipper.move("sparkMaxFlipper", 1.);
+            m_flipper.move("Flipper", 1.);
         }
     }
 
@@ -58,7 +58,7 @@ public class CycleFlipper extends CommandBase {
         } else {
             Logger.ending("Ending Command: CycleFlipper...");
         }
-        m_flipper.stop("sparkMaxFlipper");
+        m_flipper.stop("Flipper");
     }
 
 }

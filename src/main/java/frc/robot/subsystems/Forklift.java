@@ -20,12 +20,12 @@ public class Forklift extends GenericSubsystem {
         super.setCANSparkMaxBrakeMode("Extender", IdleMode.kBrake);
         super.setCANSparkMaxBrakeMode("ClawLift", IdleMode.kBrake);
 
-        super.invert("sparkMaxExtender");
+        super.invert("Extender");
 
-        super.follow("sparkMaxElevator", "sparkMaxElevatorTwo", false);
+        super.follow("Elevator", "ElevatorTwo", false);
 
-        super.configureSparkMaxPID("sparkMaxElevator", 0.03, 0.0000001, 0.0001);
-        super.configureSparkMaxPID("sparkMaxExtender", 0.03, 0.0000001, 0.0001);
+        super.configureSparkMaxPID("Elevator", 0.03, 0.0000001, 0.0001);
+        super.configureSparkMaxPID("Extender", 0.03, 0.0000001, 0.0001);
     }
 
     @Override
@@ -35,8 +35,8 @@ public class Forklift extends GenericSubsystem {
     //Reset the encoders
     private void resetMotorEncoders(){
         Logger.info("Resetting Motor Encoders");
-        super.resetEncoder("sparkMaxElevator");
-        super.resetEncoder("sparkMaxExtender");
+        super.resetEncoder("Elevator");
+        super.resetEncoder("Extender");
     }
 
     /* One Line Commands */

@@ -56,17 +56,17 @@ public class MoveForklift extends CommandBase {
         double extenderPower = BotControllers.xbox2.xbox.getRightY();
         double elevatorPower = BotControllers.xbox2.xbox.getLeftY();
 
-        m_forklift.move("sparkMaxExtender", extenderPower * extenderSpeedEntry.getDouble(1.0));
-        m_forklift.move("sparkMaxElevator", elevatorPower * elevatorSpeedEntry.getDouble(1.0));
+        m_forklift.move("Extender", extenderPower * extenderSpeedEntry.getDouble(1.0));
+        m_forklift.move("Elevator", elevatorPower * elevatorSpeedEntry.getDouble(1.0));
 
         double clawPower = BotControllers.xbox2.xbox.getLeftTriggerAxis() - BotControllers.xbox2.xbox.getRightTriggerAxis();
-        m_forklift.move("sparkMaxClawLift", clawPower);
+        m_forklift.move("ClawLift", clawPower);
 
         //Logger.info("Claw power: " + clampLiftPower + " Extender Power: " + extenderPower + " Elevator Power: " + elevatorPower + " Clamp: " + toggleClamp);
 
         //Retrieve Shuffleboard data from subsystem
-        extenderEncoderEntry.setDouble(m_forklift.getEncoderPosition("sparkMaxExtender"));
-        elevatorEncoderEntry.setDouble(m_forklift.getEncoderPosition("sparkMaxElevator"));
+        extenderEncoderEntry.setDouble(m_forklift.getEncoderPosition("Extender"));
+        elevatorEncoderEntry.setDouble(m_forklift.getEncoderPosition("Elevator"));
     }
 
     // This command continues until interrupted

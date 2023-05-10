@@ -236,10 +236,14 @@ public class GenericSubsystem extends SubsystemBase {
      * @param motor The name of the motor to stop.
      */
     public void stop(String motor) {
-        if (motor.substring(0, 8).equals("sparkMax")) {
+        if (m_sparkMaxMap.containsKey(motor)) {
             m_sparkMaxMap.get(motor).stopMotor();
-        } else if (motor.substring(0, 7).equals("talonFx")) {
+        } else if (m_talonFxMap.containsKey(motor)) {
             m_talonFxMap.get(motor).stopMotor();
+        } else if (m_talonSrxMap.containsKey(motor)){
+            m_talonSrxMap.get(motor).stopMotor();
+        }else{
+            throw new java.lang.Error(String.format("Stop: Invalid Motor %s", motor));
         }
     }
 
@@ -254,6 +258,11 @@ public class GenericSubsystem extends SubsystemBase {
         for (Map.Entry<String, DevTalonFX>  motor : m_talonFxMap.entrySet()) {
             motor.getValue().stopMotor();
         }
+
+        for (Map.Entry<String, DevTalonSRX>  motor : m_talonSrxMap.entrySet()) {
+            motor.getValue().stopMotor();
+        }
+
     }
 
     /**

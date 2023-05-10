@@ -27,7 +27,7 @@ public class MoveIntake extends CommandBase{
     public void execute() {
         double intakePower = BotControllers.xbox1.xbox.getRightTriggerAxis() - BotControllers.xbox1.xbox.getLeftTriggerAxis();
 
-        m_intake.move("sparkMaxIntake", intakePower, 0.1);
+        m_intake.move("Intake", intakePower, 0.1);
     }
 
         // This command continues until interrupted

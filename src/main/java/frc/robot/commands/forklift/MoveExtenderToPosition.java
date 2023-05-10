@@ -41,7 +41,7 @@ public class MoveExtenderToPosition extends CommandBase {
             default:
                 throw new java.lang.Error("Unkown Extender Position; should be {PICKUP, MEDIUM, HIGH}");
         }
-        m_forklift.moveSparkMaxPosition("sparkMaxExtender", targetPosition);
+        m_forklift.moveSparkMaxPosition("Extender", targetPosition);
 
     }
 
@@ -52,7 +52,7 @@ public class MoveExtenderToPosition extends CommandBase {
     // This command continues until interrupted
     @Override
     public boolean isFinished() {
-        return m_forklift.isSparkMaxAtPosition("sparkMaxExtender", -targetPosition, MOTOR_POSITION_TOLERANCE);
+        return m_forklift.isSparkMaxAtPosition("Extender", -targetPosition, MOTOR_POSITION_TOLERANCE);
     }
 
     @Override
