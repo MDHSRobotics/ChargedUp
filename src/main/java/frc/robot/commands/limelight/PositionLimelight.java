@@ -2,7 +2,6 @@ package frc.robot.commands.limelight;
 
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.brains.SwerveDriverBrain;
 import frc.robot.consoles.Logger;
 import frc.robot.sensors.Limelight;
 import frc.robot.subsystems.SwerveDriver;
@@ -30,13 +29,13 @@ public class PositionLimelight extends CommandBase {
 
         Limelight.setPipeline(0);
 
-        double kPxOffset = SwerveDriverBrain.getPositionLimelightkPxOffset();
-        double kIxOffset = SwerveDriverBrain.getPositionLimelightkIxOffset();
-        double kDxOffset = SwerveDriverBrain.getPositionLimelightkDxOffset();
+        double kPxOffset = 0.0001;
+        double kIxOffset = 0;
+        double kDxOffset = 0;
 
-        double kPDistance = SwerveDriverBrain.getPositionLimelightkPDistance();
-        double kIDistance = SwerveDriverBrain.getPositionLimelightkIDistance();
-        double kDDistance = SwerveDriverBrain.getPositionLimelightkDDistance();
+        double kPDistance = 0.0001;
+        double kIDistance = 0;
+        double kDDistance = 0;
 
         double xOffsetSetPoint = 0.; 
         double xOffsetTolerance = 0.05;
