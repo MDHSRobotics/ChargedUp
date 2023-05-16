@@ -6,6 +6,7 @@ import frc.robot.commands.forklift.*;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.commands.swervedrive.*;
 import frc.robot.commands.tank.TankDrive;
+import frc.robot.commands.tank.WriteA;
 import frc.robot.commands.tank.WriteN;
 
 public class BotCommands {
@@ -33,6 +34,7 @@ public class BotCommands {
 
     public static TankDrive tankDrive;
     public static WriteN writeN;
+    public static WriteA writeA;
 
     // Forklift
     public static MoveForklift moveForklift;
@@ -71,6 +73,7 @@ public class BotCommands {
 
         tankDrive = new TankDrive(BotSubsystems.tank);
         writeN = new WriteN();
+        writeA = new WriteA();
         
         // Forklift
         moveForklift = new MoveForklift(BotSubsystems.forklift); 

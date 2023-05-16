@@ -15,8 +15,6 @@ public class TimeTank extends CommandBase {
     private double m_x;
     private double m_y;
 
-    private double targetPosition;
-
     public TimeTank(GenericSubsystem tank, double x, double y, double targetTime) {
         Logger.setup("Constructing Command: WriteN...");
 
@@ -75,7 +73,7 @@ public class TimeTank extends CommandBase {
         } else {
             Logger.ending("Ending Command: WriteN...");
         }
-        m_tank.stop("sparkMaxTank");
+        m_tank.stopAllMotors();
     }
 
 }
