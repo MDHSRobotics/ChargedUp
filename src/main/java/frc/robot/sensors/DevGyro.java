@@ -38,7 +38,7 @@ public class DevGyro {
         if (isReal) {
             m_ahrsGyro.reset();
         }
-{}    }
+    }
 
     public double getPitch() {
         double value;
@@ -77,6 +77,36 @@ public class DevGyro {
             value = m_ahrsGyro.getAngle();
         } else {
             value = 40.;
+        }
+        return value;
+    }
+
+    public double getXAcceleration(){
+        double value;
+        if (isReal) {
+            value = m_ahrsGyro.getWorldLinearAccelX();
+        } else {
+            value = 0.0;
+        }
+        return value;
+    }
+
+    public double getYAcceleration(){
+        double value;
+        if (isReal) {
+            value = m_ahrsGyro.getWorldLinearAccelY();
+        } else {
+            value = 0.0;
+        }
+        return value;
+    }
+
+    public double getZAcceleration(){
+        double value;
+        if (isReal) {
+            value = m_ahrsGyro.getWorldLinearAccelZ();
+        } else {
+            value = 0.0;
         }
         return value;
     }
