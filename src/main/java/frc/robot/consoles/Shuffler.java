@@ -88,7 +88,7 @@ public class Shuffler {
         m_mainTab = Shuffleboard.getTab("Main");
 
         entryFieldOriented = m_mainTab.add("Field Oriented", false)
-            .withPosition(12, 0)
+            .withPosition(8, 0)
             .getEntry();
 
         m_mainTab.add("Camera Feed", limelightCamera)
@@ -97,16 +97,6 @@ public class Shuffler {
             .withWidget(BuiltInWidgets.kCameraStream);
     }
 
-    /*public void preInitialize() {
-        ShuffleLogger.logTrivial("Pre-Initializing Shuffler...");
-        m_forkliftTab.preInitialize();
-        m_driveTab.preInitialize();
-        m_inputsTab.preInitialize();
-        m_autonomousTab.preInitialize();
-        m_sensorTab.preInitialize();
-        m_mainTab.preInitialize();
-    }
-    */
     public void initialize() {
         ShuffleLogger.logTrivial("Initializing Shuffler...");
 
@@ -126,37 +116,7 @@ public class Shuffler {
         m_autoIndividualCommandLayout.add("Balance Charge Station", new BalanceChargeStation(BotSubsystems.swerveDriver, true));
         m_autoIndividualCommandLayout.add("Eject Cube", new EjectCube(BotSubsystems.intake, 1));
         m_autoIndividualCommandLayout.add("Place Cube", new PlaceCube());
-
-        
-        /*m_forkliftTab.initialize();
-        m_driveTab.initialize();
-        m_inputsTab.initialize();
-        m_autonomousTab.initialize();
-        m_sensorTab.initialize();
-        m_mainTab.initialize();*/
     }
-    /*
-    public void configure() {
-        ShuffleLogger.logTrivial("Configuring Shuffler...");
-        m_forkliftTab.configure();
-        m_driveTab.configure();
-        m_inputsTab.configure();
-        m_autonomousTab.configure();
-        m_sensorTab.configure();
-        m_mainTab.configure();
-
-        setupSmartdashboard();
-    }
-
-    public void update() {
-        m_forkliftTab.update();
-        m_driveTab.update();
-        m_inputsTab.update();
-        m_autonomousTab.update();
-        m_driveTab.update();
-        m_sensorTab.update();
-        m_mainTab.update();
-    }*/
 
     public void update(){
         entryRoll.setDouble(BotSensors.gyro.getPitch());

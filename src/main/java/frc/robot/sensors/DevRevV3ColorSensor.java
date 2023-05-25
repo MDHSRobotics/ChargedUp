@@ -2,7 +2,6 @@ package frc.robot.sensors;
 
 import com.revrobotics.ColorSensorV3;
 import com.revrobotics.ColorMatchResult;
-import com.kauailabs.navx.frc.AHRS;
 import com.revrobotics.ColorMatch;
 
 import edu.wpi.first.wpilibj.util.Color;

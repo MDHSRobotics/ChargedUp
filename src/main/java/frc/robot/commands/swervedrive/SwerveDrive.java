@@ -3,7 +3,6 @@ package frc.robot.commands.swervedrive;
 import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.BotCommands;
 import frc.robot.BotControllers;
 import frc.robot.consoles.Logger;
 
@@ -33,7 +32,7 @@ public class SwerveDrive extends CommandBase {
     private final double MAX_ANGULAR_ACCELERATION = 1.5;
 
     private ShuffleboardLayout m_telemetryLayout = Shuffler.constructLayout(Shuffler.m_driveTab, "Telemetry", 0, 0, 7, 2, 1, 2, "LEFT");
-    private ShuffleboardLayout m_preferencesLayout = Shuffler.constructLayout(Shuffler.m_driveTab, "Driver Preferences", 0, 4, 7, 4, 2, 2, "LEFT");
+    private ShuffleboardLayout m_preferencesLayout = Shuffler.constructLayout(Shuffler.m_driveTab, "Driver Preferences", 0, 2, 7, 4, 2, 2, "LEFT");
 
     // Current Position and Rotation
     private GenericEntry entryPosition = m_telemetryLayout
