@@ -66,7 +66,7 @@ public class Shuffler {
 
         //Sensor Tab
         m_sensorTab = Shuffleboard.getTab("Sensors");
-        m_gyroLayout = Shuffler.constructLayout(m_sensorTab, "Gyroscope", 0, 0, 3, 3, 1, 3, "LEFT");
+        m_gyroLayout = Shuffler.constructLayout(m_sensorTab, "Gyroscope", 0, 0, 3, 6, 1, 3, "LEFT");
         entryRoll = m_gyroLayout
             .add("Roll", 0.0)
             .withWidget(BuiltInWidgets.kDial)
@@ -82,7 +82,6 @@ public class Shuffler {
             .withWidget(BuiltInWidgets.kDial)
             .withProperties(Map.of("min", 0.0, "max", 360.0))
             .getEntry();
-        
         
         //Main Tab
         m_mainTab = Shuffleboard.getTab("Main");

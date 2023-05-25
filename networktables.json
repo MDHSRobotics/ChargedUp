@@ -24,17 +24,17 @@
     }
   },
   {
-    "name": "/Shuffleboard/Drive/Driver Preferences/Max Forward Backward Speed",
+    "name": "/Shuffleboard/Drive/Driver Preferences/DeadBand",
     "type": "double",
-    "value": 2.4,
+    "value": 0.1,
     "properties": {
       "persistent": true
     }
   },
   {
-    "name": "/Shuffleboard/Drive/Driver Preferences/DeadBand",
+    "name": "/Shuffleboard/Drive/Driver Preferences/Max Forward Backward Speed",
     "type": "double",
-    "value": 0.1,
+    "value": 2.4,
     "properties": {
       "persistent": true
     }
