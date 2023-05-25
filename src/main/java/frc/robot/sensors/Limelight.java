@@ -5,9 +5,6 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
  
 public class Limelight { 
-    private static double averageDistance; 
-    private static int sampleSize = 20; 
-    private static double[] averageDistanceSamples = new double[sampleSize]; 
  
     private static final double CAMERA_HEIGHT = 12.0; // height of lens (in) h1
     private static final double TARGET_HEIGHT = 24.0; //height to the center of target(in) h2
