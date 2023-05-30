@@ -14,6 +14,9 @@ public class PositionLimelight extends CommandBase {
     private PIDController m_xOffsetPidController;
     private PIDController m_distancePidController;
 
+    private boolean yCorrect = false;
+    private boolean xCorrect = false;
+
     public PositionLimelight(SwerveDriver swerveDriver) {
 
         Logger.setup("Constructing Command: PositionLimelight...");
@@ -29,19 +32,19 @@ public class PositionLimelight extends CommandBase {
 
         Limelight.setPipeline(0);
 
-        double kPxOffset = 0.0001;
+        double kPxOffset = 0.01;
         double kIxOffset = 0;
         double kDxOffset = 0;
 
-        double kPDistance = 0.0001;
+        double kPDistance = 0.01;
         double kIDistance = 0;
         double kDDistance = 0;
 
-        double xOffsetSetPoint = 0.; 
-        double xOffsetTolerance = 0.05;
+        double xOffsetSetPoint = -5.0; 
+        double xOffsetTolerance = 0.1;
 
-        double distanceSetPoint = 0.5;
-        double distanceTolerance = 0.05;  
+        double distanceSetPoint = 5;
+        double distanceTolerance = 0.1;  
 
         m_xOffsetPidController = new PIDController(kPxOffset, kIxOffset, kDxOffset);
         m_distancePidController = new PIDController(kPDistance, kIDistance, kDDistance); 
@@ -60,18 +63,39 @@ public class PositionLimelight extends CommandBase {
         double distance = Limelight.calculateDistanceToTarget();
         double xOffset = Limelight.getXOffset();
 
-        double strafeSpeed = m_xOffsetPidController.calculate(xOffset);
+        /*double strafeSpeed = m_xOffsetPidController.calculate(xOffset);
         double forwardSpeed = m_distancePidController.calculate(distance);
 
-        Logger.info("SwerveDriver -> Limelight -> Distance: " + distance + "; xOffset: " + xOffset);
-        m_swerveDriver.setChassisSpeed(strafeSpeed, forwardSpeed, 0);
+        Logger.info("Distance: " + distance + "; xOffset: " + xOffset + "; strafeSpeed: " + strafeSpeed);
+        m_swerveDriver.setChassisSpeed(strafeSpeed, -forwardSpeed, 0);*/
+
+        if(xOffset <= -9){
+            Logger.info("moving left");
+            m_swerveDriver.setChassisSpeed(0, 0.2, 0);
+        }else if (xOffset >= -6){
+            Logger.info("moving right");
+            m_swerveDriver.setChassisSpeed(0, -0.2, 0);
+        }else{
+            yCorrect = true;
+        }
+        if(yCorrect){
+            if(distance >= 5){
+                Logger.info("moving forward");
+                m_swerveDriver.setChassisSpeed(0.2, 0, 0);
+            }else if (distance <= 3){
+                Logger.info("moving backward");
+                m_swerveDriver.setChassisSpeed(-0.2, 0, 0);
+            }else{
+                xCorrect = true;
+            }
+        }
     }
 
     @Override
     public boolean isFinished() {
         boolean atTarget;
 
-        if (m_xOffsetPidController.atSetpoint() && m_distancePidController.atSetpoint()){
+        if (xCorrect && yCorrect){
             m_swerveDriver.stopModules();
             atTarget = true;
             Limelight.setPipeline(1);

@@ -6,9 +6,9 @@ import edu.wpi.first.networktables.NetworkTableInstance;
  
 public class Limelight { 
  
-    private static final double CAMERA_HEIGHT = 12.0; // height of lens (in) h1
-    private static final double TARGET_HEIGHT = 24.0; //height to the center of target(in) h2
-    private static final double CAMERA_ANGLE = 35.0;// angle of the camera(deg) a1 
+    private static final double CAMERA_HEIGHT = 25.0; // height of lens (in) h1
+    private static final double TARGET_HEIGHT = 18.0; //height to the center of target(in) h2
+    private static final double CAMERA_ANGLE = 0.0;// angle of the camera(deg) a1 
 
     private static NetworkTable m_limelightNetworkTable = NetworkTableInstance.getDefault().getTable("limelight-mdrobot"); 
     

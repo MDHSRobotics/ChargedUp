@@ -148,6 +148,8 @@ public class Shuffler {
         m_autoIndividualCommandLayout.add("Balance Charge Station", new BalanceChargeStation(BotSubsystems.swerveDriver, true));
         m_autoIndividualCommandLayout.add("Eject Cube", new EjectCube(BotSubsystems.intake, 1));
         m_autoIndividualCommandLayout.add("Place Cube", new PlaceCube());
+
+        m_limelightTab.add("Position Limelight", BotCommands.positionLimelight);
     }
 
     public void update(){
