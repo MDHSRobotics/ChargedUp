@@ -76,22 +76,23 @@ public class PositionLimelight extends CommandBase {
         }else if(yawDifference > 1){
             newTurningSpeed += 0.1;
         }
+
         if(xOffset <= -9){
             Logger.info("moving left");
-            m_swerveDriver.setChassisSpeed(0, 0.2, 0);
+            m_swerveDriver.setChassisSpeed(0, 0.2, newTurningSpeed);
         }else if (xOffset >= -6){
             Logger.info("moving right");
-            m_swerveDriver.setChassisSpeed(0, -0.2, 0);
+            m_swerveDriver.setChassisSpeed(0, -0.2, newTurningSpeed);
         }else{
             yCorrect = true;
         }
         if(yCorrect){
-            if(distance >= 5){
+            if(distance >= 6){
                 Logger.info("moving forward");
-                m_swerveDriver.setChassisSpeed(0.2, 0, 0);
+                m_swerveDriver.setChassisSpeed(0.2, 0, newTurningSpeed);
             }else if (distance <= 3){
                 Logger.info("moving backward");
-                m_swerveDriver.setChassisSpeed(-0.2, 0, 0);
+                m_swerveDriver.setChassisSpeed(-0.2, 0, newTurningSpeed);
             }else{
                 xCorrect = true;
             }

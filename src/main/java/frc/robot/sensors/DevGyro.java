@@ -94,4 +94,8 @@ public class DevGyro {
     public void setSideways() {
         isSideways = true;
     }
+
+    public void calibrate() {
+        m_ahrsGyro.reset();
+    }
 }

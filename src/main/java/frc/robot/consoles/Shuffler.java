@@ -154,6 +154,8 @@ public class Shuffler {
         m_limelightCommandsLayout.add("Position Limelight", BotCommands.positionLimelight);
         m_limelightCommandsLayout.add("Align Gyro", BotCommands.alignGyro);
         m_limelightCommandsLayout.add("Align Limelight", BotCommands.alignLimelight);
+
+        m_sensorTab.add("Calibrate Gyro", BotCommands.calibrateGyro);
     }
 
     public void update(){
