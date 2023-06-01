@@ -44,6 +44,8 @@ public class BotCommands {
 
     // Limelight
     public static PositionLimelight positionLimelight;
+    public static AlignGyro alignGyro;
+    public static AlignLimelight alignLimelight;
 
     // Initialize all robot commands
     public static void initializeCommands() {
@@ -62,7 +64,9 @@ public class BotCommands {
         
 
         // Limelight
+        alignGyro = new AlignGyro(BotSubsystems.swerveDriver, 0);
         positionLimelight = new PositionLimelight(BotSubsystems.swerveDriver);
+        alignLimelight = new AlignLimelight();
  
         // Forklift
         moveForklift = new MoveForklift(BotSubsystems.forklift); 

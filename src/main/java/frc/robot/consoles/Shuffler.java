@@ -42,6 +42,7 @@ public class Shuffler {
     private ShuffleboardLayout m_autoCommandLayout;
     private ShuffleboardLayout m_autoIndividualCommandLayout;
     private ShuffleboardLayout m_limelightLayout;
+    private ShuffleboardLayout m_limelightCommandsLayout;
 
     //Entries
     private GenericEntry entryRoll;
@@ -76,22 +77,23 @@ public class Shuffler {
         entryRoll = m_gyroLayout
             .add("Roll", 0.0)
             .withWidget(BuiltInWidgets.kDial)
-            .withProperties(Map.of("min", 0.0, "max", 360.0))
+            .withProperties(Map.of("min", -180.0, "max", 180.0))
             .getEntry();
         entryPitch = m_gyroLayout
             .add("Pitch", 0.0)
             .withWidget(BuiltInWidgets.kDial)
-            .withProperties(Map.of("min", 0.0, "max", 360.0))
+            .withProperties(Map.of("min", -180.0, "max", 180.0))
             .getEntry();
         entryYaw = m_gyroLayout
             .add("Yaw", 0.0)
             .withWidget(BuiltInWidgets.kDial)
-            .withProperties(Map.of("min", 0.0, "max", 360.0))
+            .withProperties(Map.of("min", -180.0, "max", 180.0))
             .getEntry();
         
         //Limelight Tab
         m_limelightTab = Shuffleboard.getTab("Limelight");
         m_limelightLayout = Shuffler.constructLayout(m_limelightTab, "Limelight Info", 0, 0, 3, 3, 1, 3, "LEFT");
+        m_limelightCommandsLayout = Shuffler.constructLayout(m_limelightTab, "Limelight Commands", 5, 0, 3, 3, 1, 3, "LEFT");
         entryX = m_limelightLayout
             .add("X", 0.0)
             .getEntry();
@@ -149,7 +151,9 @@ public class Shuffler {
         m_autoIndividualCommandLayout.add("Eject Cube", new EjectCube(BotSubsystems.intake, 1));
         m_autoIndividualCommandLayout.add("Place Cube", new PlaceCube());
 
-        m_limelightTab.add("Position Limelight", BotCommands.positionLimelight);
+        m_limelightCommandsLayout.add("Position Limelight", BotCommands.positionLimelight);
+        m_limelightCommandsLayout.add("Align Gyro", BotCommands.alignGyro);
+        m_limelightCommandsLayout.add("Align Limelight", BotCommands.alignLimelight);
     }
 
     public void update(){

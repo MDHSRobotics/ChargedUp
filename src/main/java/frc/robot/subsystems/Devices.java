@@ -21,7 +21,7 @@ public class Devices {
     public static final int motorIdTurnFL = 17;
     public static final int motorIdTurnFR = 19;
     public static final int motorIdTurnRL = 21;
-    public static final int motorIdTurnRR = 30;
+    public static final int motorIdTurnRR = 23;
 
     // SwerveDrive
     public static DevTalonFX talonFxSwerveDriveFL = new DevTalonFX("talonFxSwerveDriveWheelFrontLeft", motorIdDriveFL);

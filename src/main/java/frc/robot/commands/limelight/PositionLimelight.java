@@ -6,6 +6,7 @@ import frc.robot.consoles.Logger;
 import frc.robot.sensors.Limelight;
 import frc.robot.subsystems.SwerveDriver;
 
+import static frc.robot.BotSensors.gyro;
 
 public class PositionLimelight extends CommandBase {
 
@@ -68,7 +69,13 @@ public class PositionLimelight extends CommandBase {
 
         Logger.info("Distance: " + distance + "; xOffset: " + xOffset + "; strafeSpeed: " + strafeSpeed);
         m_swerveDriver.setChassisSpeed(strafeSpeed, -forwardSpeed, 0);*/
-
+        double yawDifference = 0 - gyro.getYaw();
+        double newTurningSpeed = 0;
+        if(yawDifference < -1){
+            newTurningSpeed -= 0.1;
+        }else if(yawDifference > 1){
+            newTurningSpeed += 0.1;
+        }
         if(xOffset <= -9){
             Logger.info("moving left");
             m_swerveDriver.setChassisSpeed(0, 0.2, 0);
