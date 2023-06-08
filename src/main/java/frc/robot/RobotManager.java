@@ -76,7 +76,7 @@ public class RobotManager {
         autoCommandChooser.addOption("Eject Cube Left", BotCommands.ejectCubeLeft);
         autoCommandChooser.addOption("Eject Cube Right", BotCommands.ejectCubeRight);
         autoCommandChooser.addOption("Eject Cube Inner", BotCommands.ejectCubeInner);
-        autoCommandChooser.addOption("Testing Auto Command", BotCommands.writeA);
+        autoCommandChooser.addOption("Testing Auto Command", BotCommands.writeN);
 
         // Put the chooser on the dashboard
         SmartDashboard.putData("AutoMode", autoCommandChooser);
