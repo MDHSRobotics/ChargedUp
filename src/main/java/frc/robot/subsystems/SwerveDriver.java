@@ -1,5 +1,6 @@
 package frc.robot.subsystems;
 
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 
@@ -59,10 +60,10 @@ public class SwerveDriver extends SubsystemBase {
           current absolute position in degrees. That number is the offset
           for this module.  Convert that value from degrees to radians below.
     */
-    public final double FL_ABSOLUTE_ENCODER_OFFSET = Units.degreesToRadians(-81.562500); 
-    public final double FR_ABSOLUTE_ENCODER_OFFSET = Units.degreesToRadians(-41.748047);
-    public final double RL_ABSOLUTE_ENCODER_OFFSET = Units.degreesToRadians(-150.732422);
-    public final double RR_ABSOLUTE_ENCODER_OFFSET = Units.degreesToRadians(-52.646484);
+    public final double FL_ABSOLUTE_ENCODER_OFFSET = Units.degreesToRadians(-76.816406); 
+    public final double FR_ABSOLUTE_ENCODER_OFFSET = Units.degreesToRadians(-42.275391);
+    public final double RL_ABSOLUTE_ENCODER_OFFSET = Units.degreesToRadians(-160.751953);
+    public final double RR_ABSOLUTE_ENCODER_OFFSET = Units.degreesToRadians(-33.925781);
 
     //Drive Ramp Time
     private final double RAMP_TIME = 0.4;
@@ -118,8 +119,6 @@ public class SwerveDriver extends SubsystemBase {
     private final SwerveDriveOdometry odometer;
 
     SwerveModulePosition[] modulePositions = new SwerveModulePosition[4];
-
-    
 
     // Constructs new SwerveDriver
     public SwerveDriver() {
@@ -213,8 +212,8 @@ public class SwerveDriver extends SubsystemBase {
         odometer.update(getRotation2d(), modulePositions);
 
         // Update SmartDashboard
-        SmartDashboard.putNumber("Robot Heading", getHeading());
-        SmartDashboard.putString("Robot Location", getPose().getTranslation().toString());
+        //SmartDashboard.putNumber("Robot Heading", getHeading());
+        //SmartDashboard.putString("Robot Location", getPose().getTranslation().toString());
 
 
         // Update Shuffleboard

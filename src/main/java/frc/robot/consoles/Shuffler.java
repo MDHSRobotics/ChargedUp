@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardLayout;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.shuffleboard.*;
 import java.util.Map;
+import frc.robot.sensors.Limelight;
 
 import frc.robot.BotCommands;
 import frc.robot.commands.auto.*;
@@ -29,23 +30,31 @@ public class Shuffler {
 
     // Tabs
     public static ShuffleboardTab m_driveTab;
-    public static ShuffleboardTab m_inputsTab;
     public static ShuffleboardTab m_forkliftTab;
     public static ShuffleboardTab m_autonomousTab;
     public static ShuffleboardTab m_sensorTab;
     public static ShuffleboardTab m_mainTab;
+    public static ShuffleboardTab m_limelightTab;
 
     //Layouts
     private ShuffleboardLayout m_forklftCommandLayout;
     private ShuffleboardLayout m_gyroLayout;
     private ShuffleboardLayout m_autoCommandLayout;
     private ShuffleboardLayout m_autoIndividualCommandLayout;
+    private ShuffleboardLayout m_limelightLayout;
+    private ShuffleboardLayout m_limelightCommandsLayout;
 
     //Entries
     private GenericEntry entryRoll;
     private GenericEntry entryPitch;
     private GenericEntry entryYaw;
+
     private GenericEntry entryFieldOriented;
+
+    private GenericEntry entryX;
+    private GenericEntry entryY;
+    private GenericEntry entryZ;
+    private GenericEntry targetDetectedEntry;
 
     //Initialize Tabs and Some Layouts
     public Shuffler() {
@@ -56,8 +65,6 @@ public class Shuffler {
         m_forklftCommandLayout = constructLayout(m_forkliftTab, "Commands", 0, 0, 4, 3, 1, 2, "LEFT");
         
         m_driveTab = Shuffleboard.getTab("Drive");
-
-        m_inputsTab = Shuffleboard.getTab("Inputs");
 
         //Autonomous Tab
         m_autonomousTab = Shuffleboard.getTab("Autonomous");
@@ -70,17 +77,35 @@ public class Shuffler {
         entryRoll = m_gyroLayout
             .add("Roll", 0.0)
             .withWidget(BuiltInWidgets.kDial)
-            .withProperties(Map.of("min", 0.0, "max", 360.0))
+            .withProperties(Map.of("min", -180.0, "max", 180.0))
             .getEntry();
         entryPitch = m_gyroLayout
             .add("Pitch", 0.0)
             .withWidget(BuiltInWidgets.kDial)
-            .withProperties(Map.of("min", 0.0, "max", 360.0))
+            .withProperties(Map.of("min", -180.0, "max", 180.0))
             .getEntry();
         entryYaw = m_gyroLayout
             .add("Yaw", 0.0)
             .withWidget(BuiltInWidgets.kDial)
-            .withProperties(Map.of("min", 0.0, "max", 360.0))
+            .withProperties(Map.of("min", -180.0, "max", 180.0))
+            .getEntry();
+        
+        //Limelight Tab
+        m_limelightTab = Shuffleboard.getTab("Limelight");
+        m_limelightLayout = Shuffler.constructLayout(m_limelightTab, "Limelight Info", 0, 0, 3, 3, 1, 3, "LEFT");
+        m_limelightCommandsLayout = Shuffler.constructLayout(m_limelightTab, "Limelight Commands", 5, 0, 3, 3, 1, 3, "LEFT");
+        entryX = m_limelightLayout
+            .add("X", 0.0)
+            .getEntry();
+        entryY = m_limelightLayout
+            .add("Y", 0.0)
+            .getEntry();
+        entryZ = m_limelightLayout
+            .add("Z", 0.0)
+            .getEntry();
+        
+        targetDetectedEntry = m_limelightTab.add("Target Detected", false)
+            .withPosition(3, 0)
             .getEntry();
         
         //Main Tab
@@ -115,6 +140,12 @@ public class Shuffler {
         m_autoIndividualCommandLayout.add("Balance Charge Station", new BalanceChargeStation(BotSubsystems.swerveDriver, true));
         m_autoIndividualCommandLayout.add("Eject Cube", new EjectCube(BotSubsystems.intake, 1));
         m_autoIndividualCommandLayout.add("Place Cube", new PlaceCube());
+
+        m_limelightCommandsLayout.add("Position Limelight", BotCommands.positionLimelight);
+        m_limelightCommandsLayout.add("Align Gyro", BotCommands.alignGyro);
+        m_limelightCommandsLayout.add("Align Limelight", BotCommands.alignLimelight);
+
+        m_sensorTab.add("Calibrate Gyro", BotCommands.calibrateGyro);
     }
 
     public void update(){
@@ -123,6 +154,11 @@ public class Shuffler {
         entryYaw.setDouble(BotSensors.gyro.getYaw());
 
         entryFieldOriented.setBoolean(BotSubsystems.swerveDriver.fieldRelative);
+
+        entryX.setDouble(Limelight.getXOffset());
+        entryY.setDouble(Limelight.getYOffset());
+        entryZ.setDouble(Limelight.calculateDistanceToTarget());
+        targetDetectedEntry.setBoolean(Limelight.getDetectionState());
     }
 
     //Method for easier layout construction

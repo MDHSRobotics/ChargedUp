@@ -5,6 +5,7 @@ import frc.robot.commands.auto.*;
 import frc.robot.commands.forklift.*;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.commands.swervedrive.*;
+import frc.robot.commands.limelight.*;
 
 public class BotCommands {
 
@@ -26,6 +27,8 @@ public class BotCommands {
 
     public static CommandBase resetAbsoluteEncoderOffsets;
 
+    public static CalibrateGyro calibrateGyro;
+
     // Forklift
     public static MoveForklift moveForklift;
     public static ForkliftToPosition forkliftPickUpPosition;
@@ -40,6 +43,11 @@ public class BotCommands {
 
     //Intake
     public static MoveIntake moveIntake;
+
+    // Limelight
+    public static PositionLimelight positionLimelight;
+    public static AlignGyro alignGyro;
+    public static AlignLimelight alignLimelight;
 
     // Initialize all robot commands
     public static void initializeCommands() {
@@ -56,6 +64,13 @@ public class BotCommands {
 
         resetAbsoluteEncoderOffsets = BotSubsystems.swerveDriver.resetAbsoluteEncoderOffsets();
         
+        calibrateGyro = new CalibrateGyro();
+
+        // Limelight
+        alignGyro = new AlignGyro(BotSubsystems.swerveDriver, 0);
+        positionLimelight = new PositionLimelight(BotSubsystems.swerveDriver);
+        alignLimelight = new AlignLimelight();
+ 
         // Forklift
         moveForklift = new MoveForklift(BotSubsystems.forklift); 
         forkliftPickUpPosition = new ForkliftToPosition(BotSubsystems.forklift, AutoConstants.Levels.PICKUP); 
