@@ -60,10 +60,10 @@ public class SwerveDriver extends SubsystemBase {
           current absolute position in degrees. That number is the offset
           for this module.  Convert that value from degrees to radians below.
     */
-    public final double FL_ABSOLUTE_ENCODER_OFFSET = Units.degreesToRadians(-76.816406); 
-    public final double FR_ABSOLUTE_ENCODER_OFFSET = Units.degreesToRadians(-42.275391);
-    public final double RL_ABSOLUTE_ENCODER_OFFSET = Units.degreesToRadians(-160.751953);
-    public final double RR_ABSOLUTE_ENCODER_OFFSET = Units.degreesToRadians(-33.925781);
+    public final double FL_ABSOLUTE_ENCODER_OFFSET = Units.degreesToRadians(-81.5625); 
+    public final double FR_ABSOLUTE_ENCODER_OFFSET = Units.degreesToRadians(-31.7285156255);
+    public final double RL_ABSOLUTE_ENCODER_OFFSET = Units.degreesToRadians(-156.884765625);
+    public final double RR_ABSOLUTE_ENCODER_OFFSET = Units.degreesToRadians(-73.740234375);
 
     //Drive Ramp Time
     private final double RAMP_TIME = 0.4;
@@ -251,9 +251,9 @@ public class SwerveDriver extends SubsystemBase {
 
     //Set chassis speeds
     public void setChassisSpeed(double xSpeed, double ySpeed, double turningSpeed, boolean fieldOriented) {
-        //SmartDashboard.putString("07: xSpeed", "" + xSpeed);
-        //SmartDashboard.putString("07: ySpeed", "" + ySpeed);
-        //SmartDashboard.putString("07: turningSpeed", "" + turningSpeed);
+        SmartDashboard.putString("07: xSpeed", "" + xSpeed);
+        SmartDashboard.putString("07: ySpeed", "" + ySpeed);
+        SmartDashboard.putString("07: turningSpeed", "" + turningSpeed);
         //SmartDashboard.putString("07: fieldOriented", "" + fieldOriented);
         // Construct desired chassis speeds
         ChassisSpeeds chassisSpeeds;

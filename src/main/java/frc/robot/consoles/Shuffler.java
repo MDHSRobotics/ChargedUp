@@ -49,6 +49,10 @@ public class Shuffler {
     private GenericEntry entryPitch;
     private GenericEntry entryYaw;
 
+    private GenericEntry entryXAccel;
+    private GenericEntry entryYAccel;
+    private GenericEntry entryZAccel;
+
     private GenericEntry entryFieldOriented;
 
     private GenericEntry entryX;
@@ -88,6 +92,15 @@ public class Shuffler {
             .add("Yaw", 0.0)
             .withWidget(BuiltInWidgets.kDial)
             .withProperties(Map.of("min", -180.0, "max", 180.0))
+            .getEntry();
+        entryXAccel = m_gyroLayout
+            .add("X Accel", 0.0)
+            .getEntry();
+        entryYAccel = m_gyroLayout
+            .add("Y Accel", 0.0)
+            .getEntry();
+        entryZAccel = m_gyroLayout
+            .add("Z Accel", 0.0)
             .getEntry();
         
         //Limelight Tab
@@ -152,6 +165,10 @@ public class Shuffler {
         entryRoll.setDouble(BotSensors.gyro.getPitch());
         entryPitch.setDouble(BotSensors.gyro.getPitch());
         entryYaw.setDouble(BotSensors.gyro.getYaw());
+
+        entryXAccel.setDouble(BotSensors.gyro.getXAcceleration());
+        entryYAccel.setDouble(BotSensors.gyro.getYAcceleration());
+        entryZAccel.setDouble(BotSensors.gyro.getZAcceleration());
 
         entryFieldOriented.setBoolean(BotSubsystems.swerveDriver.fieldRelative);
 

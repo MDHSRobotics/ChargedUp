@@ -3,6 +3,12 @@
 import edu.wpi.first.networktables.NetworkTable; 
 import edu.wpi.first.networktables.NetworkTableEntry; 
 import edu.wpi.first.networktables.NetworkTableInstance;
+
+import org.opencv.core.*;
+import org.opencv.imgproc.Imgproc;
+import org.opencv.videoio.VideoCapture;
+
+import frc.robot.consoles.Logger;
  
 public class Limelight { 
  
@@ -75,6 +81,36 @@ public class Limelight {
 
     public static double getTagID(){
         return m_tagID.getDouble(0);
+    }
+
+    public static boolean isPathValid(){
+        boolean canContinue = true;
+        VideoCapture capture = new VideoCapture("http://10.41.41.11:5801/");
+
+        if(!capture.isOpened()){
+            Logger.warning("Failed to open camera stream");
+            return false;
+        }
+
+        Mat frame = new Mat();
+        capture.read(frame);
+
+        Mat resizedFrame = new Mat();
+        Imgproc.resize(frame, resizedFrame, new Size(16,16));
+        for(int row = 8; row < 16; row++){
+            for(int col = 0; col < 16; col++){
+                Rect roi = new Rect(col, row, 1, 1);
+                Mat pixel = resizedFrame.submat(roi);
+                Scalar pixelMean = Core.mean(pixel);
+                double blueValue = pixelMean.val[0];
+                if (blueValue > 150){
+                    canContinue = false;
+                }
+            }
+        }
+        capture.release();
+
+        return canContinue;
     }
 
 }
