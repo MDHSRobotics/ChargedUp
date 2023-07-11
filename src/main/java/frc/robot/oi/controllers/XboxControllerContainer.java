@@ -1,28 +1,24 @@
-
 package frc.robot.oi.controllers;
 
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
 import frc.robot.oi.positions.ThumbstickPosition;
 import frc.robot.oi.positions.TriggerAxisPosition;
 
-// This class contains an xbox controller and properties for all its buttons.
-public class XboxControllerContainer extends ControllerContainer implements XboxPositionAccessible {
+// This class contains a xbox controller and properties for all its buttons.
+public class XboxControllerContainer extends ControllerContainer implements HandHeldPositionAccessible {
 
-    public XboxController xbox;
-    public JoystickButton btnA;
-    public JoystickButton btnB;
-    public JoystickButton btnX;
-    public JoystickButton btnY;
-    public JoystickButton btnBumperLeft;
-    public JoystickButton btnBumperRight;
-    public JoystickButton btnBack;
-    public JoystickButton btnStart;
-    public JoystickButton btnStickLeft;
-    public JoystickButton btnStickRight;
+    public Trigger btnA;
+    public Trigger btnB;
+    public Trigger btnX;
+    public Trigger btnY;
+    public Trigger btnBack;
+    public Trigger btnStart;
+    public Trigger btnBumperLeft;
+    public Trigger btnBumperRight;
+    public Trigger btnStickLeft;
+    public Trigger btnStickRight;
     public Trigger btnDpadUp;
     public Trigger btnDpadDown;
     public Trigger btnDpadLeft;
@@ -32,30 +28,30 @@ public class XboxControllerContainer extends ControllerContainer implements Xbox
     public Trigger btnDpadDownLeft;
     public Trigger btnDpadDownRight;
     public Trigger btnBumperBoth;
+    //Command Controller
+    public CommandXboxController xbox = new CommandXboxController(port);
 
     public XboxControllerContainer(int port) {
         super(port);
-        CommandXboxController commandXboxController = new CommandXboxController(port);
-    
-        xbox = new XboxController(port);
-        btnA = new JoystickButton(xbox, 1);
-        btnB = new JoystickButton(xbox, 2);
-        btnX = new JoystickButton(xbox, 3);
-        btnY = new JoystickButton(xbox, 4);
-        btnBumperLeft = new JoystickButton(xbox, 5);
-        btnBumperRight = new JoystickButton(xbox, 6);
-        btnBack = new JoystickButton(xbox, 7);
-        btnStart = new JoystickButton(xbox, 8);
-        btnStickLeft = new JoystickButton(xbox, 9);
-        btnStickRight = new JoystickButton(xbox, 10);
-        btnDpadUp = commandXboxController.povUp();
-        btnDpadDown = commandXboxController.povDown();
-        btnDpadLeft = commandXboxController.povLeft();
-        btnDpadRight = commandXboxController.povRight();
-        btnDpadUpLeft = commandXboxController.povUpLeft();
-        btnDpadUpRight = commandXboxController.povUpRight();
-        btnDpadDownLeft = commandXboxController.povDownLeft();
-        btnDpadDownRight = commandXboxController.povDownRight();
+        
+        btnA = xbox.a();
+        btnB = xbox.b();
+        btnX = xbox.x();
+        btnY = xbox.y();
+        btnBack = xbox.back();
+        btnStart = xbox.start();
+        btnBumperLeft = xbox.leftBumper();
+        btnBumperRight = xbox.rightBumper();
+        btnStickLeft = xbox.leftStick();
+        btnStickRight = xbox.rightStick();
+        btnDpadUp = xbox.povUp();
+        btnDpadDown = xbox.povDown();
+        btnDpadLeft = xbox.povLeft();
+        btnDpadRight = xbox.povRight();
+        btnDpadUpLeft = xbox.povUpLeft();
+        btnDpadUpRight = xbox.povUpRight();
+        btnDpadDownLeft = xbox.povDownLeft();
+        btnDpadDownRight = xbox.povDownRight();
         btnBumperBoth = btnBumperRight.and(btnBumperLeft);
     }
 

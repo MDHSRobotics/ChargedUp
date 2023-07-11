@@ -1,7 +1,7 @@
 
 package frc.robot.oi.positions;
 
-import frc.robot.oi.controllers.XboxPositionAccessible;
+import frc.robot.oi.controllers.HandHeldPositionAccessible;
 
 // The position values obtained from xbox trigger axis.
 public class TriggerAxisPosition {
@@ -18,7 +18,7 @@ public class TriggerAxisPosition {
     }
 
     // Gets the xbox trigger axis positions
-    public static TriggerAxisPosition getTriggerAxisPositions(XboxPositionAccessible controller) {
+    public static TriggerAxisPosition getTriggerAxisPositions(HandHeldPositionAccessible controller) {
         TriggerAxisPosition pos = controller.getTriggerAxisPositions();
         return pos;
     }

@@ -2,7 +2,7 @@
 package frc.robot.oi.movements;
 
 import frc.robot.oi.controllers.JoystickPositionAccessible;
-import frc.robot.oi.controllers.XboxPositionAccessible;
+import frc.robot.oi.controllers.HandHeldPositionAccessible;
 import frc.robot.oi.positions.JoystickPosition;
 import frc.robot.oi.positions.ThumbstickPosition;
 
@@ -35,7 +35,7 @@ public class SwerveMovement {
         return move;
     }
 
-    public static SwerveMovement getMovement(XboxPositionAccessible controller, boolean isYFlipped) {
+    public static SwerveMovement getMovement(HandHeldPositionAccessible controller, boolean isYFlipped) {
         ThumbstickPosition pos = ThumbstickPosition.getPositions(controller, isYFlipped);
         SwerveMovement move = new SwerveMovement(pos.leftForwardBackPosition, pos.leftSideToSidePosition, pos.rightForwardBackPosition, pos.rightSideToSidePosition);
         return move;

@@ -3,11 +3,10 @@ package frc.robot.commands.swervedrive;
 import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.BotControllers;
 import frc.robot.consoles.Logger;
 
 import frc.robot.oi.controllers.JoystickPositionAccessible;
-import frc.robot.oi.controllers.XboxPositionAccessible;
+import frc.robot.oi.controllers.HandHeldPositionAccessible;
 import frc.robot.oi.movements.SwerveMovement;
 
 import frc.robot.subsystems.SwerveDriver;
@@ -21,7 +20,7 @@ public class SwerveDrive extends CommandBase {
 
     private final SwerveDriver m_swerveDriver;
     private final JoystickPositionAccessible m_jstickController;
-    private final XboxPositionAccessible m_xboxController;
+    private final HandHeldPositionAccessible m_xboxController;
     private final SlewRateLimiter m_forwardBackwardLimiter, m_sideToSideLimiter, m_rotationLimiter;
     private final double m_autoAlignPower = 0.5;
     private static String m_chosenController; //jstick or xbox
@@ -85,7 +84,7 @@ public class SwerveDrive extends CommandBase {
 
     }
 
-    public SwerveDrive (SwerveDriver swerveDriver, XboxPositionAccessible controller) {
+    public SwerveDrive (SwerveDriver swerveDriver, HandHeldPositionAccessible controller) {
         Logger.setup("Constructing Command: SwerveDrive...");
 
         m_chosenController = "xbox";
@@ -145,7 +144,7 @@ public class SwerveDrive extends CommandBase {
         entryPosition.setString(m_swerveDriver.getPosition());
         entryRotation.setDouble(m_swerveDriver.getRotation());
 
-        if(BotControllers.xbox1.xbox.getAButtonPressed()){
+        /*if(BotControllers.xbox1.xbox.getAButtonPressed()){
             entryForwardBackwardSpeed.setDouble(2.4);
             entryLeftRightSpeed.setDouble(1.2);
             entryRotationSpeed.setDouble(2.0);
@@ -154,7 +153,7 @@ public class SwerveDrive extends CommandBase {
             entryForwardBackwardSpeed.setDouble(0.5);
             entryLeftRightSpeed.setDouble(0.4);
             entryRotationSpeed.setDouble(0.95);
-        }
+        }*/
     }
 
     @Override
