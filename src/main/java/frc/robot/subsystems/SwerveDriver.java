@@ -59,13 +59,13 @@ public class SwerveDriver extends SubsystemBase {
           current absolute position in degrees. That number is the offset
           for this module.  Convert that value from degrees to radians below.
     */
-    public final double FL_ABSOLUTE_ENCODER_OFFSET = Units.degreesToRadians(-81.5625); 
-    public final double FR_ABSOLUTE_ENCODER_OFFSET = Units.degreesToRadians(-31.7285156255);
-    public final double RL_ABSOLUTE_ENCODER_OFFSET = Units.degreesToRadians(-156.884765625);
-    public final double RR_ABSOLUTE_ENCODER_OFFSET = Units.degreesToRadians(-73.740234375);
+    public final double FL_ABSOLUTE_ENCODER_OFFSET = Units.degreesToRadians(-81.4746093); 
+    public final double FR_ABSOLUTE_ENCODER_OFFSET = Units.degreesToRadians(-14.501953125);
+    public final double RL_ABSOLUTE_ENCODER_OFFSET = Units.degreesToRadians(-168.92578125);
+    public final double RR_ABSOLUTE_ENCODER_OFFSET = Units.degreesToRadians(-74.794921875);
 
     //Drive Ramp Time
-    private final double RAMP_TIME = 0.4;
+    private final double RAMP_TIME = 0.5;
 
     private final DevSwerveModule frontLeft = new DevSwerveModule(
         "Front Left",
@@ -121,10 +121,10 @@ public class SwerveDriver extends SubsystemBase {
 
     // Constructs new SwerveDriver
     public SwerveDriver() {
-        talonFxSwerveDriveFL.configOpenloopRamp(RAMP_TIME);
-        talonFxSwerveDriveFR.configOpenloopRamp(RAMP_TIME);
-        talonFxSwerveDriveRL.configOpenloopRamp(RAMP_TIME);
-        talonFxSwerveDriveRR.configOpenloopRamp(RAMP_TIME);
+        //talonFxSwerveDriveFL.configOpenloopRamp(RAMP_TIME);
+        //talonFxSwerveDriveFR.configOpenloopRamp(RAMP_TIME);
+        //talonFxSwerveDriveRL.configOpenloopRamp(RAMP_TIME);
+        //talonFxSwerveDriveRR.configOpenloopRamp(RAMP_TIME);
 
         talonFxSwerveDriveFL.setNeutralMode(NeutralMode.Brake);
         talonFxSwerveDriveFR.setNeutralMode(NeutralMode.Brake);
@@ -261,9 +261,17 @@ public class SwerveDriver extends SubsystemBase {
             // Relative to field
             chassisSpeeds = ChassisSpeeds.fromFieldRelativeSpeeds(
                     -xSpeed, ySpeed, -turningSpeed, getRotation2d());
+            talonFxSwerveTurnFL.configOpenloopRamp(RAMP_TIME);
+            talonFxSwerveTurnFR.configOpenloopRamp(RAMP_TIME);
+            talonFxSwerveTurnRL.configOpenloopRamp(RAMP_TIME);
+            talonFxSwerveTurnRR.configOpenloopRamp(RAMP_TIME);
         } else {
             // Relative to robot
             chassisSpeeds = new ChassisSpeeds(-xSpeed, ySpeed, -turningSpeed);
+            talonFxSwerveTurnFL.configOpenloopRamp(0);
+            talonFxSwerveTurnFR.configOpenloopRamp(0);
+            talonFxSwerveTurnRL.configOpenloopRamp(0);
+            talonFxSwerveTurnRR.configOpenloopRamp(0);
         }
 
         //SmartDashboard.putString("06: Chassis Speeeds", chassisSpeeds.toString());

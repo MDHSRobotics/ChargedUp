@@ -8,7 +8,7 @@ import frc.robot.subsystems.SwerveDriver;
 
 import static frc.robot.BotSensors.gyro;
 
-public class PositionLimelight extends CommandBase {
+public class EnterZone extends CommandBase {
 
     private SwerveDriver m_swerveDriver;
 
@@ -18,9 +18,9 @@ public class PositionLimelight extends CommandBase {
     private boolean yCorrect = false;
     private boolean xCorrect = false;
 
-    public PositionLimelight(SwerveDriver swerveDriver) {
+    public EnterZone(SwerveDriver swerveDriver) {
 
-        Logger.setup("Constructing Command: PositionLimelight...");
+        Logger.setup("Constructing Command: EnterZone...");
 
         // Add given subsystem requirements
         m_swerveDriver = swerveDriver;
@@ -29,7 +29,7 @@ public class PositionLimelight extends CommandBase {
 
     @Override
     public void initialize() {
-        Logger.action("Initializing Command: PositionLimelight ...");
+        Logger.action("Initializing Command: EnterZone ...");
 
         Limelight.setPipeline(0);
 
@@ -116,9 +116,9 @@ public class PositionLimelight extends CommandBase {
     @Override
     public void end(boolean interrupted) {
         if (interrupted) {
-            Logger.ending("Interrupting Command: PositionLimelight ...");
+            Logger.ending("Interrupting Command: EnterZone ...");
         } else {
-            Logger.ending("Ending Command: PositionLimelight ...");
+            Logger.ending("Ending Command: EnterZone ...");
         }
     }
 

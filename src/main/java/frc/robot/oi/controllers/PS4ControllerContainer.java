@@ -1,5 +1,6 @@
 package frc.robot.oi.controllers;
 
+import edu.wpi.first.wpilibj.PS4Controller;
 import edu.wpi.first.wpilibj2.command.button.CommandPS4Controller;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
@@ -10,6 +11,7 @@ import frc.robot.oi.positions.TriggerAxisPosition;
 public class PS4ControllerContainer extends ControllerContainer implements HandHeldPositionAccessible{
 
     public CommandPS4Controller ps4 = new CommandPS4Controller(port);
+    public PS4Controller regps4 = new PS4Controller(port);
 
     public Trigger btnCircle;
     public Trigger btnCross;

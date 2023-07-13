@@ -15,6 +15,7 @@ import frc.robot.consoles.Shuffler;
 import edu.wpi.first.wpilibj.shuffleboard.*;
 import edu.wpi.first.networktables.GenericEntry;
 import java.util.Map;
+import frc.robot.BotControllers;
 
 public class SwerveDrive extends CommandBase {
 
@@ -144,16 +145,16 @@ public class SwerveDrive extends CommandBase {
         entryPosition.setString(m_swerveDriver.getPosition());
         entryRotation.setDouble(m_swerveDriver.getRotation());
 
-        /*if(BotControllers.xbox1.xbox.getAButtonPressed()){
+        if(BotControllers.xbox1.regps4.getCrossButtonPressed()){
             entryForwardBackwardSpeed.setDouble(2.4);
-            entryLeftRightSpeed.setDouble(1.2);
+            entryLeftRightSpeed.setDouble(1.6);
             entryRotationSpeed.setDouble(2.0);
         }
-        if(BotControllers.xbox1.xbox.getBButtonPressed()){
+        if(BotControllers.xbox1.regps4.getCircleButtonPressed()){
             entryForwardBackwardSpeed.setDouble(0.5);
-            entryLeftRightSpeed.setDouble(0.4);
+            entryLeftRightSpeed.setDouble(0.5);
             entryRotationSpeed.setDouble(0.95);
-        }*/
+        }
     }
 
     @Override
