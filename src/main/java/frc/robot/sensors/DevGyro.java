@@ -128,4 +128,8 @@ public class DevGyro {
     public void calibrate() {
         m_ahrsGyro.reset();
     }
+
+    public float getMagX(){
+        return m_ahrsGyro.getCompassHeading();
+    }
 }

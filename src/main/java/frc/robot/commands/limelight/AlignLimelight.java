@@ -81,7 +81,7 @@ public class AlignLimelight extends CommandBase{
 
     @Override
     public boolean isFinished() {
-        return targetAligned;
+        return targetAligned || m_x > 5;
     }
 
     @Override

@@ -70,7 +70,7 @@ public class BotCommands {
         // Limelight
         alignGyro = new AlignGyro(BotSubsystems.swerveDriver, 0);
         enterZone = new EnterZone(BotSubsystems.swerveDriver);
-        autoDropOff = new AutoDropOff();
+        autoDropOff = new AutoDropOff(8);
         alignLimelight = new AlignLimelight(BotSubsystems.swerveDriver, 6);
  
         // Forklift

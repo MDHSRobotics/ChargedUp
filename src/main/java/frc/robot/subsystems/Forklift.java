@@ -44,13 +44,13 @@ public class Forklift extends GenericSubsystem {
     //Open the clamp
     public CommandBase openClampCommand() {
         Logger.info("Opening Clamp");
-        return this.runOnce(() -> super.setSolenoid("solenoidClaw", true));
+        return this.runOnce(() -> super.setSolenoid("Claw", true));
     }
 
     //Close the clamp
     public CommandBase closeClampCommand() {
         Logger.info("Closing Clamp");
-        return this.runOnce(() -> super.setSolenoid("solenoidClaw", false));
+        return this.runOnce(() -> super.setSolenoid("Claw", false));
     }
 
     //Reset the motor encoders

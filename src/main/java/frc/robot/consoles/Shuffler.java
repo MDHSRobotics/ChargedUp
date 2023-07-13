@@ -59,6 +59,7 @@ public class Shuffler {
     private GenericEntry entryY;
     private GenericEntry entryZ;
     private GenericEntry targetDetectedEntry;
+    private GenericEntry entryMagX;
 
     //Initialize Tabs and Some Layouts
     public Shuffler() {
@@ -101,6 +102,9 @@ public class Shuffler {
             .getEntry();
         entryZAccel = m_gyroLayout
             .add("Z Accel", 0.0)
+            .getEntry();
+        entryMagX = m_gyroLayout
+            .add("Mag X", 0.0)
             .getEntry();
         
         //Limelight Tab
@@ -177,6 +181,8 @@ public class Shuffler {
         entryY.setDouble(Limelight.getYOffset());
         entryZ.setDouble(Limelight.calculateDistanceToTarget());
         targetDetectedEntry.setBoolean(Limelight.getDetectionState());
+
+        entryMagX.setFloat(BotSensors.gyro.getMagX());
     }
 
     //Method for easier layout construction
